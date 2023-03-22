@@ -2,7 +2,7 @@ import type { Entry, Asset } from "contentful";
 export type SeoFields = {
   title: string;
   description: string;
-  file: Asset;
+  image: Asset;
   robots: string;
   keywords: string;
 };

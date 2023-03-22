@@ -1,4 +1,4 @@
-export const fixOnStaticGeneratePath = (path: string) => {
+export const normalizePath = (path: string) => {
   // root route is defined to be empty string
   if (path === "") return path;
 
@@ -11,7 +11,7 @@ export const fixOnStaticGeneratePath = (path: string) => {
 
   // remove trailing slash
   if (newPath.at(-1) === "/") {
-    newPath = newPath.substring(0, newPath.length);
+    newPath = newPath.substring(0, newPath.length - 1);
   }
 
   return newPath;
