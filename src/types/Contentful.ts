@@ -18,7 +18,7 @@ export type Section = EntryHero;
 export type Page = {
   path: string;
   seoFields: EntrySeoFields;
-  sections: Section[];
+  sections?: Section[];
 };
 
 export type EntryPage = Entry<Page>;

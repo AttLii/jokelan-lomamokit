@@ -1,7 +1,6 @@
 import type { Asset, RichTextContent } from "contentful";
 import type {
   EntryPage,
-  Hero,
   SeoFields,
   Section,
   EntryHero,
@@ -77,6 +76,6 @@ export const parseContent = (page: EntryPage): ParsedPage => {
       ...seoFields,
       image: parseImageAsset(image),
     },
-    sections: parseSections(sections),
+    sections: sections ? parseSections(sections) : [],
   };
 };
