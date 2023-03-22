@@ -17,7 +17,7 @@ export const getPageContent = () => {
 export const getContentByPath = async (path: string) => {
   const pageResults = await client.getEntries<Page>({
     content_type: "page",
-    "fields.path[match]": path,
+    "fields.path": path,
   });
 
   if (pageResults.items.length === 0) {
