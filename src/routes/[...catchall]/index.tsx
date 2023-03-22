@@ -3,7 +3,7 @@ import type { StaticGenerateHandler } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { ErrorPage } from '~/components/ErrorPage';
 import { getContentByPath, getPageContent } from '~/repositories/contentful';
-import type { EntryPage } from '~/types/Contentful';
+import type { Page } from '~/types/Contentful';
 import { fixOnStaticGeneratePath, fixRouteLoaderPathname } from '~/utils/qwik';
 
 
@@ -14,18 +14,19 @@ export default component$(() => {
     return <ErrorPage />
   }
 
-  return <pre>{JSON.stringify(content, null, 2)}</pre>;
+  return <pre>{JSON.stringify(content.value, null, 2)}</pre>;
 });
 
 
 export const usePageContent = routeLoader$(async ({ url, status }) => {
   const path = fixRouteLoaderPathname(url.pathname)
-
-  let content: EntryPage | null = null
+  let content: Page | null = null
   try {
-    content = await getContentByPath(path)
-    if (!content) {
+    const _content = await getContentByPath(path)
+    if (!_content) {
       status(404)
+    } else {
+      content = _content.fields
     }
   } catch {
     status(500)
