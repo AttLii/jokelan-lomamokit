@@ -1,9 +1,4 @@
 import type { Entry, Asset } from "contentful";
-export type Path = {
-  path: string;
-};
-export type EntryPath = Entry<Path>;
-
 export type SeoFields = {
   title: string;
   description: string;
@@ -14,6 +9,8 @@ export type SeoFields = {
 export type EntrySeoFields = Entry<SeoFields>;
 
 export type Page = {
-  path: EntryPath;
+  path: string;
   seoFields: EntrySeoFields;
 };
+
+export type EntryPage = Entry<Page>;
