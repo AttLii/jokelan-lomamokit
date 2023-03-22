@@ -1,49 +1,50 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead, StaticGenerateHandler } from '@builder.io/qwik-city';
-import { routeLoader$ } from '@builder.io/qwik-city';
-import { ErrorPage } from '~/components/ErrorPage';
-import type { ParsedPage } from '~/parsers/contentful';
-import { parseContent } from '~/parsers/contentful';
-import { getContentByPath, getPageContent } from '~/repositories/contentful';
-import { normalizePath, fixRouteLoaderPathname } from '~/utils/qwik';
-
+import { component$ } from "@builder.io/qwik";
+import type {
+  DocumentHead,
+  StaticGenerateHandler,
+} from "@builder.io/qwik-city";
+import { routeLoader$ } from "@builder.io/qwik-city";
+import { ErrorPage } from "~/components/ErrorPage";
+import type { ParsedPage } from "~/parsers/contentful";
+import { parseContent } from "~/parsers/contentful";
+import { getContentByPath, getPageContent } from "~/repositories/contentful";
+import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 
 export default component$(() => {
-  const content = usePageContent()
+  const content = usePageContent();
 
   if (!content.value) {
-    return <ErrorPage />
+    return <ErrorPage />;
   }
 
   return <pre>{JSON.stringify(content.value, null, 2)}</pre>;
 });
 
-
 export const usePageContent = routeLoader$(async ({ url, status }) => {
-  const path = fixRouteLoaderPathname(url.pathname)
-  let content: ParsedPage | null = null
+  const path = fixRouteLoaderPathname(url.pathname);
+  let content: ParsedPage | null = null;
   try {
-    const _content = await getContentByPath(path)
+    const _content = await getContentByPath(path);
     if (!_content) {
-      status(404)
+      status(404);
     } else {
-      content = parseContent(_content)
+      content = parseContent(_content);
     }
   } catch {
-    status(500)
+    status(500);
   }
 
-  return content
+  return content;
 });
 
 export const onStaticGenerate: StaticGenerateHandler = async () => {
-  const content = await getPageContent()
+  const content = await getPageContent();
   return {
-    params: content.map(c => {
+    params: content.map((c) => {
       return {
-        catchall: normalizePath(c.fields.path)
-      }
-    })
+        catchall: normalizePath(c.fields.path),
+      };
+    }),
   };
 };
 
@@ -55,74 +56,74 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
       meta: [
         {
           name: "description",
-          content: "Sivua ei löytynyt"
-        }
-      ]
-    }
+          content: "Sivua ei löytynyt",
+        },
+      ],
+    };
   }
 
-  const { title, description, robots, keywords, image } = page.seoFields
+  const { title, description, robots, keywords, image } = page.seoFields;
 
-  const _title = `Jokelan Lomamökit | ${title}`
+  const _title = `Jokelan Lomamökit | ${title}`;
 
-  let _url = import.meta.env.VITE_ORIGIN
-  const path = normalizePath(url.pathname)
+  let _url = import.meta.env.VITE_ORIGIN;
+  const path = normalizePath(url.pathname);
   if (path !== "") {
-    _url += `/${path}`
+    _url += `/${path}`;
   }
   return {
     title: _title,
     links: [
       {
         rel: "canonical",
-        href: _url
-      }
+        href: _url,
+      },
     ],
     meta: [
       {
-        property: 'og:title',
+        property: "og:title",
         content: _title,
       },
       {
-        property: 'og:url',
+        property: "og:url",
         content: _url,
       },
       {
-        property: 'og:type',
+        property: "og:type",
         content: "website",
       },
       {
-        name: 'description',
+        name: "description",
         content: description,
       },
       {
-        property: 'og:description',
+        property: "og:description",
         content: description,
       },
       {
-        name: 'robots',
+        name: "robots",
         content: robots,
       },
       {
-        name: 'keywords',
-        content: keywords
+        name: "keywords",
+        content: keywords,
       },
       {
-        name: 'og:image',
-        content: image.src
+        name: "og:image",
+        content: image.src,
       },
       {
-        name: 'og:image:alt',
-        content: image.alt
+        name: "og:image:alt",
+        content: image.alt,
       },
       {
-        name: 'og:image:width',
-        content: image.width
+        name: "og:image:width",
+        content: image.width,
       },
       {
-        name: 'og:image:height',
-        content: image.height
-      }
+        name: "og:image:height",
+        content: image.height,
+      },
     ],
   };
 };

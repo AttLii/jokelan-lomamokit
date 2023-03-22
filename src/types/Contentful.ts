@@ -1,4 +1,6 @@
-import type { Entry, Asset, RichTextContent } from "contentful";
+import type { Entry, Asset } from "contentful";
+import type { Document } from "@contentful/rich-text-types";
+
 export type SeoFields = {
   title: string;
   description: string;
@@ -10,7 +12,7 @@ export type EntrySeoFields = Entry<SeoFields>;
 
 export type Hero = {
   gallery: Asset[];
-  richText: RichTextContent;
+  richText: Document;
 };
 export type EntryHero = Entry<Hero>;
 export type Section = EntryHero;
