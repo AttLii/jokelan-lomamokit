@@ -2,8 +2,9 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead, StaticGenerateHandler } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { ErrorPage } from '~/components/ErrorPage';
+import type { ParsedPage } from '~/parsers/contentful';
+import { parseContent } from '~/parsers/contentful';
 import { getContentByPath, getPageContent } from '~/repositories/contentful';
-import type { Page } from '~/types/Contentful';
 import { normalizePath, fixRouteLoaderPathname } from '~/utils/qwik';
 
 
@@ -20,13 +21,13 @@ export default component$(() => {
 
 export const usePageContent = routeLoader$(async ({ url, status }) => {
   const path = fixRouteLoaderPathname(url.pathname)
-  let content: Page | null = null
+  let content: ParsedPage | null = null
   try {
     const _content = await getContentByPath(path)
     if (!_content) {
       status(404)
     } else {
-      content = _content.fields
+      content = parseContent(_content)
     }
   } catch {
     status(500)
@@ -60,22 +61,12 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
     }
   }
 
-  const { title, description, robots, keywords, image: {
-    fields: {
-      title: alt,
-      file: {
-        url: imageUrl,
-        details: {
-          image
-        }
-      }
-    }
-  } } = page.seoFields.fields
+  const { title, description, robots, keywords, image } = page.seoFields
 
   const _title = `Jokelan Lomamökit | ${title}`
 
-  const path = normalizePath(url.pathname)
   let _url = import.meta.env.VITE_ORIGIN
+  const path = normalizePath(url.pathname)
   if (path !== "") {
     _url += `/${path}`
   }
@@ -118,19 +109,19 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
       },
       {
         name: 'og:image',
-        content: imageUrl
+        content: image.src
       },
       {
         name: 'og:image:alt',
-        content: alt
+        content: image.alt
       },
       {
         name: 'og:image:width',
-        content: `${(image?.width || 0)}`
+        content: image.width
       },
       {
         name: 'og:image:height',
-        content: `${(image?.height || 0)}`
+        content: image.height
       }
     ],
   };
