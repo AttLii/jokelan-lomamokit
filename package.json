@@ -25,6 +25,8 @@
   "devDependencies": {
     "@builder.io/qwik": "0.23.0",
     "@builder.io/qwik-city": "0.6.5",
+    "@contentful/rich-text-html-renderer": "^16.0.3",
+    "@contentful/rich-text-types": "^16.0.3",
     "@types/eslint": "8.21.2",
     "@types/node": "^18.15.3",
     "@typescript-eslint/eslint-plugin": "5.55.0",

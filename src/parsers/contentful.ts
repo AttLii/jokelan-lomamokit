@@ -1,4 +1,5 @@
-import type { Asset, RichTextContent } from "contentful";
+import type { Asset } from "contentful";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type {
   EntryPage,
   SeoFields,
@@ -33,7 +34,7 @@ export type ParsedSeoFields = Omit<SeoFields, "image"> & {
 
 export type ParsedHero = {
   type: "hero";
-  richText: RichTextContent;
+  richText: string;
   gallery: ParsedImageAsset[];
 };
 export const parseHeroSection = ({
@@ -41,7 +42,7 @@ export const parseHeroSection = ({
 }: EntryHero): ParsedHero => {
   return {
     type: "hero",
-    richText,
+    richText: documentToHtmlString(richText),
     gallery: gallery.map(parseImageAsset),
   };
 };
