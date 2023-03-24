@@ -7,7 +7,7 @@ type Props = {
 }
 export const MenuLink = component$(({ menuItem }: Props) => {
   return (
-    <Link href={menuItem.content.path}>
+    <Link class="hover:underline" href={menuItem.content.path}>
       {menuItem.title}
     </Link>
   )
