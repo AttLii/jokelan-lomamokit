@@ -11,6 +11,7 @@ specifiers:
   '@typescript-eslint/parser': 5.55.0
   autoprefixer: ^10.4.14
   contentful: ^9.3.5
+  dotenv: ^16.0.3
   eslint: 8.36.0
   eslint-plugin-qwik: 0.23.0
   husky: ^7.0.4
@@ -34,6 +35,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.55.0_j4766f7ecgqbon3u7zlxn5zszu
   autoprefixer: 10.4.14_postcss@8.4.21
   contentful: 9.3.5
+  dotenv: 16.0.3
   eslint: 8.36.0
   eslint-plugin-qwik: 0.23.0_eslint@8.36.0
   husky: 7.0.4
@@ -1061,6 +1063,11 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       esutils: 2.0.3
+    dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /eastasianwidth/0.2.0:
