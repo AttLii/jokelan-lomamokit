@@ -1,5 +1,11 @@
 import contentful from "contentful";
-import type { Page } from "~/types/Contentful";
+import type {
+  GlobalContent,
+  Page,
+  EntryMenu,
+  MenuItem,
+  EntryGlobalContent,
+} from "~/types/Contentful";
 
 const client = contentful.createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || "",
@@ -26,3 +32,45 @@ export const getContentByPath = async (path: string) => {
 
   return pageResults.items[0];
 };
+
+export function getEntryById<T>(id: string) {
+  return client.getEntry<T>(id);
+}
+
+export const getGlobalContent =
+  async (): Promise<EntryGlobalContent | null> => {
+    const response = await client.getEntries<GlobalContent>({
+      content_type: "globalContent",
+    });
+
+    if (response.items.length === 0) {
+      return null;
+    }
+
+    // nested references are minimized after two layers.
+    const populateMenuItems = async (menu: EntryMenu): Promise<EntryMenu> => {
+      const populatedMenuItems = await Promise.all(
+        menu.fields.menuItems.map((menuItem) =>
+          getEntryById<MenuItem>(menuItem.sys.id)
+        )
+      );
+      return {
+        ...menu,
+        fields: {
+          ...menu.fields,
+          menuItems: populatedMenuItems,
+        },
+      };
+    };
+
+    const content = response.items[0];
+
+    content.fields.headerMenu = await populateMenuItems(
+      content.fields.headerMenu
+    );
+    content.fields.footerMenu = await populateMenuItems(
+      content.fields.footerMenu
+    );
+
+    return content;
+  };

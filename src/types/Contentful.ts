@@ -24,3 +24,21 @@ export type Page = {
 };
 
 export type EntryPage = Entry<Page>;
+
+export type MenuItem = {
+  title: string;
+  content: EntryPage;
+};
+export type EntryMenuItem = Entry<MenuItem>;
+
+export type Menu = {
+  title: string;
+  menuItems: EntryMenuItem[];
+};
+export type EntryMenu = Entry<Menu>;
+
+export type GlobalContent = {
+  headerMenu: EntryMenu;
+  footerMenu: EntryMenu;
+};
+export type EntryGlobalContent = Entry<GlobalContent>;
