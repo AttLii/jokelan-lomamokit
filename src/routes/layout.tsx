@@ -1,6 +1,7 @@
 import { component$, Slot } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
+import { Footer } from "~/components/Footer";
 import { getGlobalContent } from "~/repositories/contentful";
 import { parseGlobalContent } from "~/parsers/contentful";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
@@ -35,8 +36,7 @@ export default component$(() => {
       <main>
         <Slot />
       </main>
-      <footer>
-      </footer>
+      <Footer menu={globalContent.value.footerMenu} />
     </>
   );
 });
