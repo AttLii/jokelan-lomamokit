@@ -4,6 +4,7 @@ import { staticAdapter } from '@builder.io/qwik-city/adapters/static/vite';
 import { extendConfig } from '@builder.io/qwik-city/vite';
 import baseConfig from '../../vite.config';
 
+console.log('vite', (process.env.VITE_ORIGIN || ""))
 export default extendConfig(baseConfig, () => {
   return {
     build: {
