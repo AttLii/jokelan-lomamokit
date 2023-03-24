@@ -5,6 +5,9 @@ import type {
   SeoFields,
   Section,
   EntryHero,
+  EntryGlobalContent,
+  EntryMenu,
+  EntryMenuItem,
 } from "~/types/Contentful";
 import { isHeroSection } from "~/utils/contentful";
 import { nonNullable } from "~/utils/typescript";
@@ -78,5 +81,52 @@ export const parseContent = (page: EntryPage): ParsedPage => {
       image: parseImageAsset(image),
     },
     sections: sections ? parseSections(sections) : [],
+  };
+};
+
+export type ParsedPageReference = {
+  path: string;
+};
+export const parsePageReference = (page: EntryPage): ParsedPageReference => {
+  return {
+    path: page.fields.path,
+  };
+};
+
+export type ParsedMenuItem = {
+  title: string;
+  content: ParsedPageReference;
+};
+export const parseMenuItem = (menuItem: EntryMenuItem): ParsedMenuItem => {
+  const { title, content } = menuItem.fields;
+  return {
+    title,
+    content: parsePageReference(content),
+  };
+};
+
+export type ParsedMenu = {
+  title: string;
+  menuItems: ParsedMenuItem[];
+};
+export const parseMenu = (menu: EntryMenu): ParsedMenu => {
+  const { title, menuItems } = menu.fields;
+  return {
+    title,
+    menuItems: menuItems.map(parseMenuItem),
+  };
+};
+
+export type ParsedGlobalContent = {
+  headerMenu: ParsedMenu;
+  footerMenu: ParsedMenu;
+};
+export const parseGlobalContent = (
+  globalContent: EntryGlobalContent
+): ParsedGlobalContent => {
+  const { headerMenu, footerMenu } = globalContent.fields;
+  return {
+    headerMenu: parseMenu(headerMenu),
+    footerMenu: parseMenu(footerMenu),
   };
 };
