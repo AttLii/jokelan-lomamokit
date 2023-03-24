@@ -2,8 +2,8 @@
   "name": "my-qwik-basic-starter",
   "description": "App with Routing built-in (recommended)",
   "engines": {
-    "node": "v18.11.0",
-    "pnpm": "7.30.0"
+    "node": ">=18",
+    "pnpm": "7.30.3"
   },
   "private": true,
   "scripts": {
