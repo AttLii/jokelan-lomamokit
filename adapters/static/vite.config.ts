@@ -14,7 +14,7 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [
       staticAdapter({
-        origin: (process.env.ORIGIN || ""),
+        origin: (process.env.VITE_ORIGIN || ""),
       }),
     ],
   };
