@@ -1,3 +1,6 @@
+export const areRelativePathsSame = (url1: string, url2: string) =>
+  normalizePath(url1) === normalizePath(url2);
+
 export const normalizePath = (path: string) => {
   // root route is defined to be empty string
   if (path === "") return path;
