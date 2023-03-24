@@ -1,8 +1,10 @@
 import { component$, Slot } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
+import { Header } from "~/components/Header";
+import { getGlobalContent } from "~/repositories/contentful";
 import { parseGlobalContent } from "~/parsers/contentful";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
-import { getGlobalContent } from "~/repositories/contentful";
+import type { Signal } from "@builder.io/qwik";
 
 export const useGlobalContent = routeLoader$(async ({ exit }) => {
   let globalContent: null | ParsedGlobalContent = null
@@ -24,13 +26,13 @@ export const useGlobalContent = routeLoader$(async ({ exit }) => {
 });
 
 export default component$(() => {
-  const hi = useGlobalContent()
+  // casting type to ParsedGlobalContent
+  // Qwik doesn't recognize that calling exit stops the build
+  const globalContent = useGlobalContent() as Readonly<Signal<ParsedGlobalContent>>
   return (
     <>
-      <header>
-      </header>
+      <Header menu={globalContent.value.headerMenu} />
       <main>
-        {JSON.stringify(hi.value, null, 2)}
         <Slot />
       </main>
       <footer>
