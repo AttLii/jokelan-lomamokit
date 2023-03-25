@@ -5,6 +5,7 @@ import type {
 } from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import { ErrorPage } from "~/components/ErrorPage";
+import { SectionsSelector } from "~/components/SectionsSelector";
 import type { ParsedPage } from "~/parsers/contentful";
 import { parseContent } from "~/parsers/contentful";
 import { getContentByPath, getPageContent } from "~/repositories/contentful";
@@ -17,7 +18,7 @@ export default component$(() => {
     return <ErrorPage />;
   }
 
-  return <pre>{JSON.stringify(content.value, null, 2)}</pre>;
+  return <SectionsSelector sections={content.value.sections} />
 });
 
 export const usePageContent = routeLoader$(async ({ url, status }) => {
