@@ -33,7 +33,7 @@ export default component$(() => {
   return (
     <>
       <Header menu={globalContent.value.headerMenu} />
-      <main class="min-h-screen max-w-7xl mx-auto px-2 pt-6">
+      <main class="min-h-screen pt-6">
         <Slot />
       </main>
       <Footer menu={globalContent.value.footerMenu} />
