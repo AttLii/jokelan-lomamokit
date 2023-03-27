@@ -8,10 +8,12 @@ export const HeroSection = component$(({ gallery, richText }: Props) => {
   return (
     <section class="relative overflow-hidden aspect-[9/16] sm:aspect-[16/9] z-0">
       <Carousel images={gallery} />
-      <RichText
-        _class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white"
-        dangerouslySetInnerHTML={richText}
-      />
+      <div class="flex items-center justify-center p-6 absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-10">
+        <RichText
+          _class="h-max w-full max-w-xl text-white"
+          dangerouslySetInnerHTML={richText}
+        />
+      </div>
     </section>
   )
 })
