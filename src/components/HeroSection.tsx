@@ -6,7 +6,7 @@ import { RichText } from "./RichText"
 type Props = ParsedHero
 export const HeroSection = component$(({ gallery, richText }: Props) => {
   return (
-    <section class="relative overflow-hidden aspect-[9/16] sm:aspect-[16/9] z-0 max-h-[67.5rem]">
+    <section class="relative overflow-hidden aspect-[9/16] sm:aspect-[16/9] z-0 max-h-[67.5rem] w-full">
       <Carousel images={gallery} />
       <div class="flex items-center justify-center p-6 absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-10">
         <RichText
