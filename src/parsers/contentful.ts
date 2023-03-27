@@ -1,4 +1,5 @@
 import type { Asset } from "contentful";
+import type { Options } from "@contentful/rich-text-html-renderer";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type {
   EntryPage,
@@ -11,6 +12,27 @@ import type {
 } from "~/types/Contentful";
 import { isHeroSection } from "~/utils/contentful";
 import { nonNullable } from "~/utils/typescript";
+import type { Document } from "@contentful/rich-text-types";
+import { INLINES } from "@contentful/rich-text-types";
+import { BLOCKS } from "@contentful/rich-text-types";
+
+const documentToHtmlStringOpts: Partial<Options> = {
+  renderNode: {
+    [BLOCKS.HEADING_1]: (node, next) =>
+      `<h1 class="prose-2xl font-bold">${next(node.content)}</h1>`,
+    [BLOCKS.HEADING_2]: (node, next) =>
+      `<h2 class="prose-1xl font-bold">${next(node.content)}</h2>`,
+    [BLOCKS.PARAGRAPH]: (node, next) =>
+      `<p class="prose-base font-normal">${next(node.content)}</p>`,
+    [INLINES.HYPERLINK]: (node, next) =>
+      `<a class="prose-base font-normal underline" href="${
+        node.data.uri
+      }">${next(node.content)}</a>`,
+  },
+};
+const documentToString = (document: Document) => {
+  return documentToHtmlString(document, documentToHtmlStringOpts);
+};
 
 const parseImageAsset = ({
   fields: {
@@ -45,7 +67,7 @@ export const parseHeroSection = ({
 }: EntryHero): ParsedHero => {
   return {
     type: "hero",
-    richText: documentToHtmlString(richText),
+    richText: documentToString(richText),
     gallery: gallery.map(parseImageAsset),
   };
 };
