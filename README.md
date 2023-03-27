@@ -11,3 +11,7 @@ VITE_CONTENTFUL_ACCESS_TOKEN=
 # Canonical urls (f.e. https://client.com)
 VITE_ORIGIN=
 ```
+
+## TODO
+
+- how to pass class prop qwik way (`_class` -> ???)
