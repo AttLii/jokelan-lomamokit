@@ -1,9 +1,10 @@
-import { component$, Slot } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { component$, Slot, useContext, useVisibleTask$ } from "@builder.io/qwik";
+import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { getGlobalContent } from "~/repositories/contentful";
 import { parseGlobalContent } from "~/parsers/contentful";
+import { UiContext } from "~/root";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
 import type { Signal } from "@builder.io/qwik";
 
@@ -30,6 +31,13 @@ export default component$(() => {
   // casting type to ParsedGlobalContent
   // Qwik doesn't recognize that calling exit stops the build
   const globalContent = useGlobalContent() as Readonly<Signal<ParsedGlobalContent>>
+
+  const ui = useContext(UiContext);
+  const location = useLocation()
+  useVisibleTask$(({ track }) => {
+    track(location)
+    ui.nav = false
+  })
   return (
     <>
       <Header menu={globalContent.value.headerMenu} />

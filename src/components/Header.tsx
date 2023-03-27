@@ -1,13 +1,12 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { MenuLink } from "./MenuLink";
-import type { ParsedMenu } from "~/parsers/contentful";
 import { BurgerButton } from "./BurgerButton";
+import type { ParsedMenu } from "~/parsers/contentful";
 
 type Props = {
   menu: ParsedMenu
 }
 export const Header = component$(({ menu: { title, menuItems } }: Props) => {
-  const open = useSignal(false)
   return (
     <header class="fixed w-full bg-slate-300 z-10 h-6">
       <div class="max-w-7xl mx-auto px-2">
@@ -20,7 +19,7 @@ export const Header = component$(({ menu: { title, menuItems } }: Props) => {
             ))}
           </ul>
         </nav>
-        <BurgerButton _class="block sm:hidden ml-auto" open={open} />
+        <BurgerButton _class="block sm:hidden ml-auto" />
       </div>
     </header>
   )

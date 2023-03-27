@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, createContextId, useContextProvider, useStore } from "@builder.io/qwik";
 import {
   QwikCityProvider,
   RouterOutlet,
@@ -8,7 +8,14 @@ import { RouterHead } from "./components/RouterHead";
 
 import "./global.css";
 
+export type UiStore = {
+  nav: boolean
+}
+export const UiContext = createContextId<UiStore>('ui');
+
 export default component$(() => {
+  const uiStore = useStore<UiStore>({ nav: false });
+  useContextProvider(UiContext, uiStore);
   return (
     <QwikCityProvider>
       <head>
