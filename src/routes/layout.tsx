@@ -34,10 +34,13 @@ export default component$(() => {
 
   const ui = useContext(UiContext);
   const location = useLocation()
+
+  // close nav on path change
   useVisibleTask$(({ track }) => {
     track(location)
     ui.nav = false
   })
+
   return (
     <>
       <Header menu={globalContent.value.headerMenu} />

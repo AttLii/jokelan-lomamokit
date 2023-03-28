@@ -22,7 +22,7 @@ export default component$(() => {
         <RouterHead />
         <meta charSet="utf-8" />
       </head>
-      <body>
+      <body class={uiStore.nav ? "overflow-hidden" : ""}>
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>
