@@ -21,6 +21,7 @@ export default component$(() => {
       <head>
         <RouterHead />
         <meta charSet="utf-8" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
       <body class={uiStore.nav ? "overflow-hidden" : ""}>
         <RouterOutlet />
