@@ -1,3 +1,4 @@
+import type { ContentfulClientApi } from "contentful";
 import contentful from "contentful";
 import type {
   GlobalContent,
@@ -7,39 +8,39 @@ import type {
   EntryGlobalContent,
 } from "~/types/Contentful";
 
-const client = contentful.createClient({
-  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || "",
-  space: import.meta.env.VITE_CONTENTFUL_SPACE || "",
-});
-
-export const getPageContent = () => {
-  return client
-    .getEntries<Page>({
-      content_type: "page",
-    })
-    .then((r) => r.items);
-};
-
-export const getContentByPath = async (path: string) => {
-  const pageResults = await client.getEntries<Page>({
-    content_type: "page",
-    "fields.path": path,
-  });
-
-  if (pageResults.items.length === 0) {
-    return null;
+export class Contentful {
+  private client: ContentfulClientApi;
+  constructor(accessToken: string, space: string) {
+    this.client = contentful.createClient({ accessToken, space });
   }
 
-  return pageResults.items[0];
-};
+  public getPageContent() {
+    return this.client
+      .getEntries<Page>({
+        content_type: "page",
+      })
+      .then((r) => r.items);
+  }
 
-export function getEntryById<T>(id: string) {
-  return client.getEntry<T>(id);
-}
+  public async getContentByPath(path: string) {
+    const pageResults = await this.client.getEntries<Page>({
+      content_type: "page",
+      "fields.path": path,
+    });
 
-export const getGlobalContent =
-  async (): Promise<EntryGlobalContent | null> => {
-    const response = await client.getEntries<GlobalContent>({
+    if (pageResults.items.length === 0) {
+      return null;
+    }
+
+    return pageResults.items[0];
+  }
+
+  public getEntryById<T>(id: string) {
+    return this.client.getEntry<T>(id);
+  }
+
+  public async getGlobalContent(): Promise<EntryGlobalContent | null> {
+    const response = await this.client.getEntries<GlobalContent>({
       content_type: "globalContent",
     });
 
@@ -51,7 +52,7 @@ export const getGlobalContent =
     const populateMenuItems = async (menu: EntryMenu): Promise<EntryMenu> => {
       const populatedMenuItems = await Promise.all(
         menu.fields.menuItems.map((menuItem) =>
-          getEntryById<MenuItem>(menuItem.sys.id)
+          this.getEntryById<MenuItem>(menuItem.sys.id)
         )
       );
       return {
@@ -73,4 +74,10 @@ export const getGlobalContent =
     );
 
     return content;
-  };
+  }
+}
+
+export const appContentful = new Contentful(
+  import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || "",
+  import.meta.env.VITE_CONTENTFUL_SPACE || ""
+);

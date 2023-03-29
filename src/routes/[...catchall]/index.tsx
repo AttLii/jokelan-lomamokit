@@ -8,7 +8,7 @@ import { ErrorPage } from "~/components/ErrorPage";
 import { SectionsSelector } from "~/components/SectionsSelector";
 import type { ParsedPage } from "~/parsers/contentful";
 import { parseContent } from "~/parsers/contentful";
-import { getContentByPath, getPageContent } from "~/repositories/contentful";
+import { appContentful } from "~/repositories/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 
 export default component$(() => {
@@ -25,7 +25,7 @@ export const usePageContent = routeLoader$(async ({ url, status }) => {
   const path = fixRouteLoaderPathname(url.pathname);
   let content: ParsedPage | null = null;
   try {
-    const _content = await getContentByPath(path);
+    const _content = await appContentful.getContentByPath(path);
     if (!_content) {
       status(404);
     } else {
@@ -39,7 +39,7 @@ export const usePageContent = routeLoader$(async ({ url, status }) => {
 });
 
 export const onStaticGenerate: StaticGenerateHandler = async () => {
-  const content = await getPageContent();
+  const content = await appContentful.getPageContent();
   return {
     params: content.map((c) => {
       return {

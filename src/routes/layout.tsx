@@ -2,7 +2,7 @@ import { component$, Slot, useContext, useVisibleTask$ } from "@builder.io/qwik"
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
-import { getGlobalContent } from "~/repositories/contentful";
+import { appContentful } from "~/repositories/contentful";
 import { parseGlobalContent } from "~/parsers/contentful";
 import { UiContext } from "~/root";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
@@ -11,7 +11,7 @@ import type { Signal } from "@builder.io/qwik";
 export const useGlobalContent = routeLoader$(async ({ exit }) => {
   let globalContent: null | ParsedGlobalContent = null
   try {
-    const _globalContent = await getGlobalContent()
+    const _globalContent = await appContentful.getGlobalContent()
 
     if (!_globalContent) {
       exit() // TODO: better solution?
