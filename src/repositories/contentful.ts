@@ -1,6 +1,4 @@
 import type { ContentfulClientApi } from "contentful";
-// https://github.com/contentful/contentful.js/issues/133
-import * as contentful from "contentful";
 import type {
   GlobalContent,
   Page,
@@ -11,10 +9,7 @@ import type {
 } from "~/types/Contentful";
 
 export class Contentful {
-  private client: ContentfulClientApi;
-  constructor(accessToken: string, space: string) {
-    this.client = contentful.createClient({ accessToken, space });
-  }
+  constructor(private client: ContentfulClientApi) {}
 
   public async getPageContent() {
     return this.client
