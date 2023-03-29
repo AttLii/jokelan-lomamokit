@@ -14,7 +14,7 @@ export class Contentful {
     this.client = contentful.createClient({ accessToken, space });
   }
 
-  public getPageContent() {
+  public async getPageContent() {
     return this.client
       .getEntries<Page>({
         content_type: "page",
@@ -76,8 +76,3 @@ export class Contentful {
     return content;
   }
 }
-
-export const appContentful = new Contentful(
-  import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || "",
-  import.meta.env.VITE_CONTENTFUL_SPACE || ""
-);

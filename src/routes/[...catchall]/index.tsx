@@ -8,7 +8,7 @@ import { ErrorPage } from "~/components/ErrorPage";
 import { SectionsSelector } from "~/components/SectionsSelector";
 import type { ParsedPage } from "~/parsers/contentful";
 import { parseContent } from "~/parsers/contentful";
-import { appContentful } from "~/repositories/contentful";
+import { appContentful } from "~/factories/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 
 export default component$(() => {

@@ -2,7 +2,7 @@ import { component$, Slot, useContext, useVisibleTask$ } from "@builder.io/qwik"
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
-import { appContentful } from "~/repositories/contentful";
+import { appContentful } from "~/factories/contentful";
 import { parseGlobalContent } from "~/parsers/contentful";
 import { UiContext } from "~/root";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
