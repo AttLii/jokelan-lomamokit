@@ -12,9 +12,8 @@ import type {
 } from "~/types/Contentful";
 import { isHeroSection } from "~/utils/contentful";
 import { nonNullable } from "~/utils/typescript";
+import { INLINES, BLOCKS } from "@contentful/rich-text-types";
 import type { Document } from "@contentful/rich-text-types";
-import { INLINES } from "@contentful/rich-text-types";
-import { BLOCKS } from "@contentful/rich-text-types";
 
 const documentToHtmlStringOpts: Partial<Options> = {
   renderNode: {

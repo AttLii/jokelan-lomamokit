@@ -42,3 +42,9 @@ export type GlobalContent = {
   footerMenu: EntryMenu;
 };
 export type EntryGlobalContent = Entry<GlobalContent>;
+
+export type Translation = {
+  slug: string;
+  translation: string;
+};
+export type EntryTranslation = Entry<Translation>;

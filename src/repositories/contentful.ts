@@ -1,11 +1,13 @@
 import type { ContentfulClientApi } from "contentful";
-import contentful from "contentful";
+// https://github.com/contentful/contentful.js/issues/133
+import * as contentful from "contentful";
 import type {
   GlobalContent,
   Page,
   EntryMenu,
   MenuItem,
   EntryGlobalContent,
+  Translation,
 } from "~/types/Contentful";
 
 export class Contentful {
@@ -74,5 +76,13 @@ export class Contentful {
     );
 
     return content;
+  }
+
+  public async getTranslations() {
+    return this.client
+      .getEntries<Translation>({
+        content_type: "stringTranslation",
+      })
+      .then((r) => r.items);
   }
 }
