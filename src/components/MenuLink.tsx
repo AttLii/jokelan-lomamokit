@@ -4,15 +4,16 @@ import type { ParsedMenuItem } from "~/parsers/contentful";
 import { areRelativePathsSame } from "~/utils/qwik";
 
 type Props = {
-  menuItem: ParsedMenuItem
+  menuItem: ParsedMenuItem,
+  _class?: string
 }
-export const MenuLink = component$(({ menuItem }: Props) => {
+export const MenuLink = component$(({ menuItem, _class }: Props) => {
   const location = useLocation()
   const activeClass = areRelativePathsSame(location.url.pathname, menuItem.content.path)
     ? 'font-semibold'
     : ''
   return (
-    <Link class={`hover:underline ${activeClass}`} href={menuItem.content.path}>
+    <Link class={`hover:underline ${activeClass} ${_class}`} href={menuItem.content.path}>
       {menuItem.title}
     </Link>
   )
