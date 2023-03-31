@@ -1,4 +1,4 @@
-import type { Entry, Asset } from "contentful";
+import type { Asset, Entry } from "contentful";
 import type { Document } from "@contentful/rich-text-types";
 
 export type SeoFields = {
@@ -22,8 +22,15 @@ export type Page = {
   seoFields: EntrySeoFields;
   sections?: Section[];
 };
+export type Cabin = {
+  path: string;
+  seoFields: EntrySeoFields;
+  sections?: Section[];
+};
 
 export type EntryPage = Entry<Page>;
+export type EntryCabin = Entry<Cabin>;
+export type EntryContent = EntryPage | EntryCabin;
 
 export type MenuItem = {
   title: string;

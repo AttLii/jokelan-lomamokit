@@ -9,6 +9,7 @@ import type {
   EntryGlobalContent,
   EntryMenu,
   EntryMenuItem,
+  EntryContent,
 } from "~/types/Contentful";
 import { isHeroSection } from "~/utils/contentful";
 import { nonNullable } from "~/utils/typescript";
@@ -88,7 +89,7 @@ export type ParsedPage = {
   seoFields: ParsedSeoFields;
   sections: ParsedSection[];
 };
-export const parseContent = (page: EntryPage): ParsedPage => {
+export const parseContent = (page: EntryContent): ParsedPage => {
   const {
     sections,
     seoFields: {

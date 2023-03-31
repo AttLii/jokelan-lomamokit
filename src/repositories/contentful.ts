@@ -2,34 +2,44 @@ import type { ContentfulClientApi } from "contentful";
 import type {
   GlobalContent,
   Page,
+  Cabin,
   EntryMenu,
   MenuItem,
   EntryGlobalContent,
   Translation,
+  EntryContent,
 } from "~/types/Contentful";
 
 export class Contentful {
   constructor(private client: ContentfulClientApi) {}
 
-  public async getPageContent() {
-    return this.client
-      .getEntries<Page>({
-        content_type: "page",
-      })
-      .then((r) => r.items);
+  private getEntries<T>(query: any) {
+    return this.client.getEntries<T>(query).then((r) => r.items);
   }
 
-  public async getContentByPath(path: string) {
-    const pageResults = await this.client.getEntries<Page>({
+  public async getPageContent() {
+    return Promise.all([
+      this.getEntries<Page>({ content_type: "page" }),
+      this.getEntries<Cabin>({ content_type: "cabin" }),
+    ]).then((results) => results.flat());
+  }
+
+  public async getContentByPath(path: string): Promise<EntryContent | null> {
+    const pages = await this.getEntries<Page>({
       content_type: "page",
       "fields.path": path,
     });
 
-    if (pageResults.items.length === 0) {
-      return null;
+    if (pages.length > 0) {
+      return pages[0];
     }
 
-    return pageResults.items[0];
+    const cabins = await this.getEntries<Cabin>({
+      content_type: "cabin",
+      "fields.path": path,
+    });
+
+    return cabins.length > 0 ? cabins[0] : null;
   }
 
   public getEntryById<T>(id: string) {
@@ -37,11 +47,11 @@ export class Contentful {
   }
 
   public async getGlobalContent(): Promise<EntryGlobalContent | null> {
-    const response = await this.client.getEntries<GlobalContent>({
+    const globalContents = await this.getEntries<GlobalContent>({
       content_type: "globalContent",
     });
 
-    if (response.items.length === 0) {
+    if (globalContents.length === 0) {
       return null;
     }
 
@@ -61,7 +71,7 @@ export class Contentful {
       };
     };
 
-    const content = response.items[0];
+    const content = globalContents[0];
 
     content.fields.headerMenu = await populateMenuItems(
       content.fields.headerMenu
@@ -74,10 +84,8 @@ export class Contentful {
   }
 
   public async getTranslations() {
-    return this.client
-      .getEntries<Translation>({
-        content_type: "stringTranslation",
-      })
-      .then((r) => r.items);
+    return this.getEntries<Translation>({
+      content_type: "stringTranslation",
+    });
   }
 }
