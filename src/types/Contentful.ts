@@ -15,7 +15,13 @@ export type Hero = {
   richText: Document;
 };
 export type EntryHero = Entry<Hero>;
-export type Section = EntryHero;
+export type CabinReferences = {
+  richText: Document;
+  cabinReferences: [];
+};
+export type EntryCabinReferences = Entry<CabinReferences>;
+
+export type Section = EntryHero | EntryCabinReferences;
 
 export type Page = {
   path: string;

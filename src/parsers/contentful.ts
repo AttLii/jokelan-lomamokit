@@ -10,8 +10,12 @@ import type {
   EntryMenu,
   EntryMenuItem,
   EntryContent,
+  EntryCabinReferences,
 } from "~/types/Contentful";
-import { isHeroSection } from "~/utils/contentful";
+import {
+  isEntryCabinReferencesSection,
+  isEntryHeroSection,
+} from "~/typeguards/contentful";
 import { nonNullable } from "~/utils/typescript";
 import { INLINES, BLOCKS } from "@contentful/rich-text-types";
 import type { Document } from "@contentful/rich-text-types";
@@ -72,12 +76,30 @@ export const parseHeroSection = ({
   };
 };
 
-export type ParsedSection = ParsedHero;
+export type ParsedCabinReferences = {
+  type: "cabinReferences";
+  richText: string;
+  cabinReferences: [];
+};
+export const parseCabinReferencesSection = ({
+  fields: { richText, cabinReferences },
+}: EntryCabinReferences): ParsedCabinReferences => {
+  console.log(JSON.stringify(cabinReferences));
+  return {
+    type: "cabinReferences",
+    richText: documentToString(richText),
+    cabinReferences: cabinReferences, // todo
+  };
+};
+
+export type ParsedSection = ParsedHero | ParsedCabinReferences;
 export const parseSections = (sections: Section[]): ParsedSection[] => {
   return sections
     .map((section) => {
-      if (isHeroSection(section)) {
+      if (isEntryHeroSection(section)) {
         return parseHeroSection(section);
+      } else if (isEntryCabinReferencesSection(section)) {
+        return parseCabinReferencesSection(section);
       } else {
         return null;
       }
