@@ -10,6 +10,7 @@ import type { ParsedPage } from "~/parsers/contentful";
 import { parseContent } from "~/parsers/contentful";
 import { appContentful } from "~/factories/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
+import { translations } from "~/constants/translations";
 
 export default component$(() => {
   const content = usePageContent();
@@ -53,11 +54,11 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
   const page = resolveValue(usePageContent);
   if (!page) {
     return {
-      title: "404", // TODO: string translations
+      title: translations["404Title"],
       meta: [
         {
-          name: "description",
-          content: "Sivua ei löytynyt",
+          name: translations["404Description"],
+          content: translations["404Content"],
         },
       ],
     };
@@ -65,7 +66,7 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
 
   const { title, description, robots, keywords, image } = page.seoFields;
 
-  const _title = `Jokelan Lomamökit | ${title}`;
+  const _title = `${translations.seoTitle} | ${title}`;
 
   let _url = import.meta.env.VITE_ORIGIN;
   const path = normalizePath(url.pathname);
