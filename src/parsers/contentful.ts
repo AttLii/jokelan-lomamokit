@@ -140,6 +140,8 @@ export const parsePageReference = (page: EntryPage): ParsedPageReference => {
 export type ParsedCabinReference = {
   path: string;
   id: string;
+  title: string;
+  image: ParsedImageAsset;
 };
 export const parseCabinReference = (
   cabin: EntryCabin
@@ -147,6 +149,8 @@ export const parseCabinReference = (
   return {
     id: cabin.sys.id,
     path: cabin.fields.path,
+    title: cabin.fields.name,
+    image: parseImageAsset(cabin.fields.referenceImage),
   };
 };
 

@@ -6,7 +6,7 @@ type Props = LinkProps
 
 export const ButtonLink = component$((props: Props) => {
   return (
-    <Link {...props} class="inline-block py-2 px-4 bg-slate-500 rounded-2xl hover:bg-slate-400 transition-colors">
+    <Link {...props} class="inline-block py-2 px-4 bg-slate-500 rounded-2xl border-white border-spacing-1 hover:bg-slate-400 transition-colors text-white">
       <Slot />
     </Link>
   )

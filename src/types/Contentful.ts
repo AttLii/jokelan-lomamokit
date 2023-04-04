@@ -32,6 +32,8 @@ export type Cabin = {
   path: string;
   seoFields: EntrySeoFields;
   sections?: Section[];
+  referenceImage: Asset;
+  name: string;
 };
 
 export type EntryPage = Entry<Page>;
