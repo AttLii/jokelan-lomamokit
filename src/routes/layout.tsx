@@ -12,7 +12,6 @@ export const useGlobalContent = routeLoader$(async ({ exit }) => {
   let globalContent: null | ParsedGlobalContent = null
   try {
     const _globalContent = await appContentful.getGlobalContent()
-
     if (!_globalContent) {
       exit() // TODO: better solution?
       return

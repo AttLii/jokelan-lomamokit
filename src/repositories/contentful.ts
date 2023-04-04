@@ -3,8 +3,6 @@ import type {
   GlobalContent,
   Page,
   Cabin,
-  EntryMenu,
-  MenuItem,
   EntryGlobalContent,
   Translation,
   EntryContent,
@@ -51,38 +49,14 @@ export class Contentful {
   public async getGlobalContent(): Promise<EntryGlobalContent | null> {
     const globalContents = await this.getEntries<GlobalContent>({
       content_type: "globalContent",
+      include: 3,
     });
 
     if (globalContents.length === 0) {
       return null;
     }
 
-    // nested references are minimized after two layers.
-    const populateMenuItems = async (menu: EntryMenu): Promise<EntryMenu> => {
-      const populatedMenuItems = await Promise.all(
-        menu.fields.menuItems.map((menuItem) =>
-          this.getEntryById<MenuItem>(menuItem.sys.id)
-        )
-      );
-      return {
-        ...menu,
-        fields: {
-          ...menu.fields,
-          menuItems: populatedMenuItems,
-        },
-      };
-    };
-
-    const content = globalContents[0];
-
-    content.fields.headerMenu = await populateMenuItems(
-      content.fields.headerMenu
-    );
-    content.fields.footerMenu = await populateMenuItems(
-      content.fields.footerMenu
-    );
-
-    return content;
+    return globalContents[0];
   }
 
   public async getTranslations() {
