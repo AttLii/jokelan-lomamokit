@@ -17,7 +17,7 @@ export type Hero = {
 export type EntryHero = Entry<Hero>;
 export type CabinReferences = {
   richText: Document;
-  cabinReferences: [];
+  cabinReferences: EntryCabin[];
 };
 export type EntryCabinReferences = Entry<CabinReferences>;
 

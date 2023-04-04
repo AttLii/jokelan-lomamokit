@@ -11,6 +11,7 @@ import type {
   EntryMenuItem,
   EntryContent,
   EntryCabinReferences,
+  EntryCabin,
 } from "~/types/Contentful";
 import {
   isEntryCabinReferencesSection,
@@ -79,16 +80,15 @@ export const parseHeroSection = ({
 export type ParsedCabinReferences = {
   type: "cabinReferences";
   richText: string;
-  cabinReferences: [];
+  cabinReferences: ParsedCabinReference[];
 };
 export const parseCabinReferencesSection = ({
   fields: { richText, cabinReferences },
 }: EntryCabinReferences): ParsedCabinReferences => {
-  console.log(JSON.stringify(cabinReferences));
   return {
     type: "cabinReferences",
     richText: documentToString(richText),
-    cabinReferences: cabinReferences, // todo
+    cabinReferences: cabinReferences.map(parseCabinReference), // todo
   };
 };
 
@@ -134,6 +134,17 @@ export type ParsedPageReference = {
 export const parsePageReference = (page: EntryPage): ParsedPageReference => {
   return {
     path: page.fields.path,
+  };
+};
+
+export type ParsedCabinReference = {
+  path: string;
+};
+export const parseCabinReference = (
+  cabin: EntryCabin
+): ParsedCabinReference => {
+  return {
+    path: cabin.fields.path,
   };
 };
 

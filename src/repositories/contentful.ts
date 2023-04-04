@@ -28,6 +28,7 @@ export class Contentful {
     const pages = await this.getEntries<Page>({
       content_type: "page",
       "fields.path": path,
+      include: 2,
     });
 
     if (pages.length > 0) {
@@ -37,6 +38,7 @@ export class Contentful {
     const cabins = await this.getEntries<Cabin>({
       content_type: "cabin",
       "fields.path": path,
+      include: 2,
     });
 
     return cabins.length > 0 ? cabins[0] : null;
