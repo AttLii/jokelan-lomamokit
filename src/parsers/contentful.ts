@@ -139,11 +139,13 @@ export const parsePageReference = (page: EntryPage): ParsedPageReference => {
 
 export type ParsedCabinReference = {
   path: string;
+  id: string;
 };
 export const parseCabinReference = (
   cabin: EntryCabin
 ): ParsedCabinReference => {
   return {
+    id: cabin.sys.id,
     path: cabin.fields.path,
   };
 };
