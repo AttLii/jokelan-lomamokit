@@ -12,7 +12,7 @@ export const AssetImage = component$(({ _class, alt, loading, height, src, width
       {srcSet && Object.keys(srcSet)?.map((key, i) => (
         <source key={i} media={key} srcSet={srcSet[key]} />
       ))}
-      <img class={_class} src={src} loading={loading} alt={alt} height={height} width={width} decoding="async" />
+      <img class={_class} src={src} loading={loading} title={alt} alt={alt} height={height} width={width} decoding="async" />
     </picture>
   )
 })
