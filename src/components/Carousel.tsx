@@ -26,9 +26,9 @@ export const Carousel = component$(({ images }: Props) => {
             {...rest}
             _class="w-full h-full object-cover object-center"
             loading={i === 0 ? "eager" : "lazy"}
-            src={`${src}?w=639&h=1136`}
+            src={`${src}&w=639&h=1136`}
             srcSet={{
-              '(min-width: 640px)': `${src}?w=1920&h=1080`
+              '(min-width: 640px)': `${src}&w=1920&h=1080`
             }}
           />
         </li>

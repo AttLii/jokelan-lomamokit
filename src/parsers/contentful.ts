@@ -52,7 +52,7 @@ const parseImageAsset = ({
 }: Asset) => {
   return {
     alt: title,
-    src: url,
+    src: `${url}?fm=webp`,
     width: `${image?.width || 0}`,
     height: `${image?.height || 0}`,
   };
