@@ -1,6 +1,17 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-
-export default (request: VercelRequest, response: VercelResponse) => {
-  const { name } = request.query;
-  response.status(200).send(`Hello ${name}!`);
+export const config = {
+  runtime: "edge",
 };
+
+export default async function handler() {
+  return new Response(
+    JSON.stringify({
+      message: "Hello, world!",
+    }),
+    {
+      status: 200,
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
+}
