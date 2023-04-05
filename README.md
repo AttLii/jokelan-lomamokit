@@ -15,3 +15,4 @@ VITE_ORIGIN=
 ## TODO
 
 - how to pass class prop qwik way (`_class` -> ???)
+- navigating with Link component in dev environment requests page's json (%PATH%/q-data.json), this breaks data fetching logic
