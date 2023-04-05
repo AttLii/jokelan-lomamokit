@@ -21,6 +21,7 @@ export type CabinReferences = {
 };
 export type EntryCabinReferences = Entry<CabinReferences>;
 export type Map = {
+  title: string;
   richText: Document;
   location: EntryFields.Location;
 };

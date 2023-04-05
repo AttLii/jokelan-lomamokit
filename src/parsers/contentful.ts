@@ -96,15 +96,17 @@ export const parseCabinReferencesSection = ({
 
 export type ParsedMap = {
   type: "map";
+  title: string;
   richText: string;
   location: EntryFields.Location;
 };
 export const parseMapSection = ({
-  fields: { richText, location },
+  fields: { richText, location, title },
 }: EntryMapSection): ParsedMap => {
   return {
     type: "map",
     richText: documentToString(richText),
+    title,
     location,
   };
 };
