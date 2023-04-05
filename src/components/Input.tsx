@@ -5,6 +5,7 @@ type Props = {
   required?: boolean,
   placeholder?: string
 }
-export const Input = component$((props: Props) => {
-  return <input class="p-2 bg-transparent border-b-2 border-black hover:bg-slate-200 focus:bg-slate-200" {...props} />
+export const Input = component$(({ required, placeholder, ...rest }: Props) => {
+  const _placeholder = placeholder + (required ? " *" : "")
+  return <input class="p-2 bg-transparent border-b-2 border-black hover:bg-slate-200 focus:bg-slate-200" placeholder={_placeholder} required={required} {...rest} />
 })

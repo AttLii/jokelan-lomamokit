@@ -10,7 +10,7 @@ type Props = {
 }
 export const CabinCard = component$(({ cabinReference: { path, title, image: { src, ...imageRest } } }: Props) => {
   return (
-    <article class="bg-slate-400 rounded-xl overflow-hidden">
+    <article class="bg-slate-200 border-black border-2 rounded-md overflow-hidden">
       <Link href={path} aria-label={translations.genericReadMore}>
         <AssetImage {...imageRest} loading="lazy"
           src={`${src}&w=608&h=342`} />
