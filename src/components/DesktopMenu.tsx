@@ -7,8 +7,8 @@ type Props = {
 }
 export const DesktopMenu = component$(({ menu: { title, menuItems } }: Props) => {
   return (
-    <nav class="hidden sm:block" aria-label={title}>
-      <ul class="flex flex-wrap gap-x-4">
+    <nav class="hidden sm:flex" aria-label={title}>
+      <ul class="flex flex-wrap gap-x-4 my-auto">
         {menuItems.map((menuItem, i) => (
           <li key={i}>
             <MenuLink menuItem={menuItem} />

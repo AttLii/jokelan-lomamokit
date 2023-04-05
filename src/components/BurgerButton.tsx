@@ -13,9 +13,9 @@ export const BurgerButton = component$(({ _class }: Props) => {
   const label = ui.nav ? translations.uiNavClose : translations.uiNavOpen
   return (
     <button onClick$={() => ui.nav = !ui.nav} aria-label={label} class={`${_class} relative w-4 h-3 my-1.5`}>
-      <span class={`absolute left-0 w-full bg-slate-600 h-0.5 transition-all ${openClassFirst}`} />
-      <span class={`absolute top-1/2 -translate-y-1/2 left-0 w-full bg-slate-600 h-0.5 transition-all ${openClassMiddle}`} />
-      <span class={`absolute left-0 w-full bg-slate-600 h-0.5 transition-all ${openClassLast}`} />
+      <span class={`absolute left-0 w-full bg-black h-0.5 transition-all ${openClassFirst}`} />
+      <span class={`absolute top-1/2 -translate-y-1/2 left-0 w-full bg-black h-0.5 transition-all ${openClassMiddle}`} />
+      <span class={`absolute left-0 w-full bg-black h-0.5 transition-all ${openClassLast}`} />
     </button>
   )
 })
