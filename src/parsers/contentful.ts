@@ -1,4 +1,4 @@
-import type { Asset } from "contentful";
+import type { Asset, EntryFields } from "contentful";
 import type { Options } from "@contentful/rich-text-html-renderer";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type {
@@ -12,10 +12,12 @@ import type {
   EntryContent,
   EntryCabinReferences,
   EntryCabin,
+  EntryMapSection,
 } from "~/types/Contentful";
 import {
   isEntryCabinReferencesSection,
   isEntryHeroSection,
+  isEntryMapSection,
 } from "~/typeguards/contentful";
 import { nonNullable } from "~/utils/typescript";
 import { INLINES, BLOCKS } from "@contentful/rich-text-types";
@@ -92,7 +94,22 @@ export const parseCabinReferencesSection = ({
   };
 };
 
-export type ParsedSection = ParsedHero | ParsedCabinReferences;
+export type ParsedMap = {
+  type: "map";
+  richText: string;
+  location: EntryFields.Location;
+};
+export const parseMapSection = ({
+  fields: { richText, location },
+}: EntryMapSection): ParsedMap => {
+  return {
+    type: "map",
+    richText: documentToString(richText),
+    location,
+  };
+};
+
+export type ParsedSection = ParsedHero | ParsedCabinReferences | ParsedMap;
 export const parseSections = (sections: Section[]): ParsedSection[] => {
   return sections
     .map((section) => {
@@ -100,7 +117,10 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
         return parseHeroSection(section);
       } else if (isEntryCabinReferencesSection(section)) {
         return parseCabinReferencesSection(section);
+      } else if (isEntryMapSection(section)) {
+        return parseMapSection(section);
       } else {
+        console.log(section);
         return null;
       }
     })

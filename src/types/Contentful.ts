@@ -1,4 +1,4 @@
-import type { Asset, Entry } from "contentful";
+import type { Asset, Entry, EntryFields } from "contentful";
 import type { Document } from "@contentful/rich-text-types";
 
 export type SeoFields = {
@@ -20,8 +20,13 @@ export type CabinReferences = {
   cabinReferences: EntryCabin[];
 };
 export type EntryCabinReferences = Entry<CabinReferences>;
+export type Map = {
+  richText: Document;
+  location: EntryFields.Location;
+};
+export type EntryMapSection = Entry<Map>;
 
-export type Section = EntryHero | EntryCabinReferences;
+export type Section = EntryHero | EntryCabinReferences | EntryMapSection;
 
 export type Page = {
   path: string;
