@@ -122,7 +122,6 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
       } else if (isEntryMapSection(section)) {
         return parseMapSection(section);
       } else {
-        console.log(section);
         return null;
       }
     })
