@@ -9,5 +9,11 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "src/routes/api/contact-form/index.ts": {
+      "memory": 3008,
+      "maxDuration": 30
+    }
+  }
 }
