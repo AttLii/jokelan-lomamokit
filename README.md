@@ -15,3 +15,4 @@ VITE_ORIGIN=
 ## TODO
 
 - how to pass class prop qwik way (`_class` -> ???)
+- Test this [package](https://github.com/intercom/contentful-typescript-codegen)
