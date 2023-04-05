@@ -13,9 +13,11 @@ import type {
   EntryCabinReferences,
   EntryCabin,
   EntryMapSection,
+  EntryFormSection,
 } from "~/types/Contentful";
 import {
   isEntryCabinReferencesSection,
+  isEntryFormSection,
   isEntryHeroSection,
   isEntryMapSection,
 } from "~/typeguards/contentful";
@@ -111,7 +113,26 @@ export const parseMapSection = ({
   };
 };
 
-export type ParsedSection = ParsedHero | ParsedCabinReferences | ParsedMap;
+export type ParsedForm = {
+  type: "form";
+  richText: string;
+  form: "Contact";
+};
+export const parseFormSection = ({
+  fields: { richText, form },
+}: EntryFormSection): ParsedForm => {
+  return {
+    type: "form",
+    richText: documentToString(richText),
+    form,
+  };
+};
+
+export type ParsedSection =
+  | ParsedHero
+  | ParsedCabinReferences
+  | ParsedMap
+  | ParsedForm;
 export const parseSections = (sections: Section[]): ParsedSection[] => {
   return sections
     .map((section) => {
@@ -121,7 +142,10 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
         return parseCabinReferencesSection(section);
       } else if (isEntryMapSection(section)) {
         return parseMapSection(section);
+      } else if (isEntryFormSection(section)) {
+        return parseFormSection(section);
       } else {
+        console.log(section);
         return null;
       }
     })

@@ -1,5 +1,6 @@
 import type {
   ParsedCabinReferences,
+  ParsedForm,
   ParsedHero,
   ParsedMap,
   ParsedSection,
@@ -9,6 +10,7 @@ import type {
   Section,
   EntryCabinReferences,
   EntryMapSection,
+  EntryFormSection,
 } from "~/types/Contentful";
 
 export const isEntryHeroSection = (section: Section): section is EntryHero => {
@@ -39,6 +41,18 @@ export const isEntryMapSection = (
   return section.sys.contentType.sys.id === "map";
 };
 
+export const isEntryFormSection = (
+  section: Section
+): section is EntryFormSection => {
+  return section.sys.contentType.sys.id === "form";
+};
+
 export const isMapSection = (section: ParsedSection): section is ParsedMap => {
   return section.type === "map";
+};
+
+export const isFormSection = (
+  section: ParsedSection
+): section is ParsedForm => {
+  return section.type === "form";
 };

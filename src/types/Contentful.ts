@@ -27,7 +27,17 @@ export type Map = {
 };
 export type EntryMapSection = Entry<Map>;
 
-export type Section = EntryHero | EntryCabinReferences | EntryMapSection;
+export type Form = {
+  richText: Document;
+  form: "Contact";
+};
+export type EntryFormSection = Entry<Form>;
+
+export type Section =
+  | EntryHero
+  | EntryCabinReferences
+  | EntryMapSection
+  | EntryFormSection;
 
 export type Page = {
   path: string;
