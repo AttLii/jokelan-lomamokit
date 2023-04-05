@@ -9,7 +9,7 @@ type Props = {
 export const Footer = component$(({ menu: { title, menuItems } }: Props) => {
   return (
     <footer class="w-full bg-slate-300">
-      <Container>
+      <Container type="wide">
         <nav aria-label={title}>
           <ul class="gap-y-4">
             {menuItems.map((menuItem, i) => (
