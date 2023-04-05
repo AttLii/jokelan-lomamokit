@@ -7,7 +7,7 @@ type Props = {
 }
 export const OpenStreetMapEmbed = component$(({ title, location: { lat, lon } }: Props) => {
   return (
-    <div class="relative w-full aspect-16/9">
+    <div class="relative w-full aspect-9/16 sm:aspect-16/9">
       <iframe
         title={title}
         class="absolute w-full h-full"
