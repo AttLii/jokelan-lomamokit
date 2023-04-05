@@ -32,9 +32,13 @@ export const fixRouteLoaderPathname = (pathname: string) => {
     return newPathname;
   }
 
+  // remove /q-data.json (qwik link component issue)
+  newPathname = newPathname.replace("/q-data.json", "");
+
   // remove trailing slash
   if (newPathname.at(-1) === "/") {
     newPathname = newPathname.substring(0, newPathname.length - 1);
   }
+
   return newPathname;
 };
