@@ -11,7 +11,7 @@
     }
   ],
   "functions": {
-    "src/routes/api/contact-form/index.ts": {
+    "api/contact-form.ts": {
       "memory": 512,
       "maxDuration": 10
     }
