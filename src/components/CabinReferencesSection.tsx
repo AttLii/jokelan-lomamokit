@@ -6,7 +6,7 @@ import { SectionWithRichText } from "./SectionWithRichText";
 type Props = ParsedCabinReferences
 export const CabinReferencesSection = component$(({ richText, cabinReferences }: Props) => {
   return (
-    <SectionWithRichText richText={richText}>
+    <SectionWithRichText richText={richText} type="wide">
       <CabinReferenceList cabinReferences={cabinReferences} />
     </SectionWithRichText>
   )

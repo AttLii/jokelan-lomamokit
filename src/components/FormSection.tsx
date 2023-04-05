@@ -6,7 +6,7 @@ import { ContactForm } from "./ContactForm"
 type Props = ParsedForm
 export const FormSection = component$(({ richText, form }: Props) => {
   return (
-    <SectionWithRichText richText={richText}>
+    <SectionWithRichText richText={richText} type="narrow">
       {form === "Contact" && (
         <ContactForm />
       )}

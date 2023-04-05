@@ -1,5 +1,10 @@
 import { Slot, component$ } from "@builder.io/qwik";
 
-export const Container = component$(() => {
-  return <div class="max-w-7xl mx-auto px-2"><Slot /></div>
+export type Props = {
+  type: "wide" | "narrow"
+}
+
+export const Container = component$(({ type }: Props) => {
+  const maxWidth = type === "wide" ? "max-w-7xl" : "max-w-xl"
+  return <div class={`mx-auto px-2 ${maxWidth}`}><Slot /></div>
 })
