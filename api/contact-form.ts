@@ -1,4 +1,4 @@
-import { z } from "@builder.io/qwik-city";
+import { z } from "zod";
 import v from "validator";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
