@@ -2,10 +2,6 @@ import { z } from "zod";
 import v from "validator";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
-export const config = {
-  runtime: "edge",
-};
-
 const composeResponse = (message: string, status: number) => {
   return new Response(JSON.stringify({ message }), {
     status,
