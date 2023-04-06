@@ -1,5 +1,5 @@
 import v from "validator";
-import { z } from "@builder.io/qwik-city";
+import { z } from "zod";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
 const composeResponse = (message: string, status: number) => {
