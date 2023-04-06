@@ -1,9 +1,10 @@
 import { component$ } from "@builder.io/qwik";
 
 type Props = {
-  type: "text" | "email" | "tel",
-  required?: boolean,
-  placeholder?: string
+  type: "text" | "email" | "tel";
+  required?: boolean;
+  placeholder?: string;
+  name: string;
 }
 export const Input = component$(({ required, placeholder, ...rest }: Props) => {
   const _placeholder = placeholder + (required ? " *" : "")
