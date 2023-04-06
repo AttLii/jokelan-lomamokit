@@ -37,7 +37,7 @@ export default async function handler(req: Request) {
       message: z.string(),
     }).parse(dataObj);
   } catch {
-    return composeResponse("Couldn't parse form data", 400);
+    return composeResponse("Couldn't parse form data", 422);
   }
 
   try {
