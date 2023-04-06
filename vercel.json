@@ -12,8 +12,8 @@
   ],
   "functions": {
     "api/contact-form.ts": {
-      "memory": 512,
-      "maxDuration": 10,
+      "memory": 1024,
+      "maxDuration": 30,
       "excludeFiles": "./tsconfig.json",
       "includeFiles": "./api/tsconfig.json"
     }
