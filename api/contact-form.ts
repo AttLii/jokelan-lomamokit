@@ -1,5 +1,6 @@
 import { z } from "@builder.io/qwik-city";
 import v from "validator";
+import { GoogleSpreadsheet } from "google-spreadsheet";
 
 export const config = {
   runtime: "edge",
@@ -43,15 +44,21 @@ export default async function handler(req: Request) {
     return composeResponse("Couldn't parse form data", 400);
   }
 
-  return new Response(
-    JSON.stringify({
-      message: "Hello, ",
-    }),
-    {
-      status: 200,
-      headers: {
-        "content-type": "application/json",
-      },
+  try {
+    const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEETS_ID);
+    await doc.useServiceAccountAuth({
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || "",
+      private_key: process.env.GOOGLE_PRIVATE_KEY || "",
+    });
+    await doc.loadInfo();
+    const sheet = doc.sheetsByIndex[0];
+    if (!sheet.headerValues) {
+      await sheet.setHeaderRow(Object.keys(dataObj));
     }
-  );
+    sheet.addRow(dataObj);
+  } catch {
+    return composeResponse("Couldn't save the form data", 500);
+  }
+
+  return composeResponse("Form saved successfully", 201);
 }
