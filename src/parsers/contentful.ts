@@ -145,7 +145,7 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
       } else if (isEntryFormSection(section)) {
         return parseFormSection(section);
       } else {
-        console.log(section);
+        console.log("Unrecognized section: ", section);
         return null;
       }
     })
