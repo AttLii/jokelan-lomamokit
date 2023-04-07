@@ -14,7 +14,7 @@ export const ContactForm = component$(() => {
 
     const formData = new FormData(form)
 
-    const { status } = await fetch("/api/contact-form", {
+    const { status } = await fetch((import.meta.env.VITE_ENDPOINT_ORIGIN || "") + "/api/contact-form", {
       body: JSON.stringify(Object.fromEntries(formData)),
       method: "post",
       headers: {
