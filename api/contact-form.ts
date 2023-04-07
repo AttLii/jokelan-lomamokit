@@ -47,7 +47,6 @@ const handler = async (
   }
 
   try {
-    body["date"] = new Date().toISOString();
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEETS_ID);
     await doc.useServiceAccountAuth({
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || "",
@@ -55,6 +54,7 @@ const handler = async (
     });
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
+    body["date"] = new Date().toISOString();
     if (!sheet.headerValues) {
       await sheet.setHeaderRow(Object.keys(body));
     }

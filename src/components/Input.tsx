@@ -9,5 +9,5 @@ type Props = {
 }
 export const Input = component$(({ required, placeholder, ...rest }: Props) => {
   const _placeholder = placeholder + (required ? " *" : "")
-  return <input class="p-2 bg-transparent border-b-2 disabled:border-slate-400 enabled:border-black hover:enabled:bg-slate-200 focus:enabled:bg-slate-200" placeholder={_placeholder} required={required} {...rest} />
+  return <input class="rounded-none p-2 bg-transparent border-b-2 disabled:border-slate-400 enabled:border-black hover:enabled:bg-slate-200 focus:enabled:bg-slate-200" placeholder={_placeholder} required={required} {...rest} />
 })

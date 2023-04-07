@@ -8,5 +8,5 @@ type Props = {
 }
 export const Textarea = component$(({ placeholder, required, ...rest }: Props) => {
   const _placeholder = placeholder + (required ? " *" : "")
-  return <textarea class="p-2 bg-transparent border-b-2 disabled:border-slate-400 enabled:border-black hover:enabled:bg-slate-200 focus:enabled:bg-slate-200" required={required} placeholder={_placeholder} {...rest} />
+  return <textarea class="rounded-none p-2 bg-transparent border-b-2 disabled:border-slate-400 enabled:border-black hover:enabled:bg-slate-200 focus:enabled:bg-slate-200" rows={5} required={required} placeholder={_placeholder} {...rest} />
 })
