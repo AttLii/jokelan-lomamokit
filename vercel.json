@@ -13,7 +13,7 @@
   "functions": {
     "api/contact-form.ts": {
       "memory": 1024,
-      "maxDuration": 30,
+      "maxDuration": 10,
       "excludeFiles": "./tsconfig.json",
       "includeFiles": "./api/tsconfig.json"
     }

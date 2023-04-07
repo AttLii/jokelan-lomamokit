@@ -10,5 +10,8 @@ export const translations = {
   contactFormName: "contact.form.name",
   contactFormEmail: "contact.form.email",
   contactFormPhonenumber: "contact.form.phonenumber",
-  contactFormMessage: "contact.form.message"
+  contactFormMessage: "contact.form.message",
+  contactFormSubmitSuccess: "contact.form.submit.success",
+  contactFormSubmitClientError: "contact.form.submit.client.error",
+  contactFormSubmitServerError: "contact.form.submit.server.error",
 }

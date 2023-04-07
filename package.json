@@ -19,7 +19,8 @@
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
     "qwik": "qwik",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "vercel": "vercel"
   },
   "devDependencies": {
     "@builder.io/qwik": "0.23.0",
@@ -39,6 +40,7 @@
     "dotenv": "^16.0.3",
     "eslint": "8.36.0",
     "eslint-plugin-qwik": "0.23.0",
+    "google-spreadsheet": "^3.3.0",
     "husky": "^7.0.4",
     "lint-staged": "^13.2.0",
     "postcss": "^8.4.21",
@@ -47,11 +49,9 @@
     "typescript": "5.0.2",
     "undici": "5.21.0",
     "validator": "^13.9.0",
+    "vercel": "^28.18.3",
     "vite": "4.2.0",
     "vite-tsconfig-paths": "3.5.0",
     "zod": "^3.21.4"
-  },
-  "dependencies": {
-    "google-spreadsheet": "^3.3.0"
   }
 }

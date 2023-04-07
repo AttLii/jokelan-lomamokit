@@ -1,46 +1,35 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { z } from "zod";
 import v from "validator";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
-const composeResponse = (message: string, status: number) => {
-  return new Response(JSON.stringify({ message }), {
-    status,
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-};
+export default async function handler(
+  { method, body }: VercelRequest,
+  response: VercelResponse
+) {
+  const processResponse = (status: number, message: string) =>
+    response.status(status).json({ message });
 
-export default async function handler(req: Request) {
-  if (req.method !== "POST") {
-    return composeResponse(`POST-method expected to this endpoint`, 404);
+  if (method !== "POST") {
+    return processResponse(404, "Unsupported method");
   }
 
-  const dataObj: { [key: string]: string } = {};
+  let json: { [key in string]: string } = {};
   try {
-    const data = await req.formData();
-    for (const [key, value] of data.entries()) {
-      if (typeof value !== "string") {
-        throw new Error("form value is not a string");
-      }
-      dataObj[key] = value;
-    }
-  } catch {
-    return composeResponse("Couldn't parse form data", 400);
-  }
+    json = JSON.parse(body) as { [key in string]: string };
 
-  try {
     z.object({
       name: z.string(),
       email: z.string().email(),
       tel: z.string().refine(v.isMobilePhone).optional(),
       message: z.string(),
-    }).parse(dataObj);
+    }).parse(json);
   } catch {
-    return composeResponse("Couldn't parse form data", 400);
+    return processResponse(422, "Provided body is in unexpected form");
   }
 
   try {
+    json["date"] = new Date().toISOString();
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEETS_ID);
     await doc.useServiceAccountAuth({
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || "",
@@ -49,12 +38,12 @@ export default async function handler(req: Request) {
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
     if (!sheet.headerValues) {
-      await sheet.setHeaderRow(Object.keys(dataObj));
+      await sheet.setHeaderRow(Object.keys(json));
     }
-    sheet.addRow(dataObj);
+    await sheet.addRow(json);
   } catch {
-    return composeResponse("Couldn't save the form data", 500);
+    return processResponse(500, "Couldn't save the form data");
   }
 
-  return composeResponse("Form saved successfully", 201);
+  return processResponse(201, "Form saved successfully");
 }
