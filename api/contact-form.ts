@@ -66,4 +66,6 @@ const handler = async (
   return processResponse(201, "Form saved successfully");
 };
 
-export default allowCors(handler);
+export default process.env.NODE_ENV === "development"
+  ? allowCors(handler)
+  : handler;
