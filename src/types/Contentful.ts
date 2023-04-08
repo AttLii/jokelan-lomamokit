@@ -33,11 +33,24 @@ export type Form = {
 };
 export type EntryFormSection = Entry<Form>;
 
+export type InfoCard = {
+  title: string;
+  image: Asset;
+  richText: Document;
+};
+export type EntryInfoCard = Entry<InfoCard>;
+export type InfoCards = {
+  richText: Document;
+  infoCards: EntryInfoCard[];
+};
+export type EntryInfoCardsSection = Entry<InfoCards>;
+
 export type Section =
   | EntryHero
   | EntryCabinReferences
   | EntryMapSection
-  | EntryFormSection;
+  | EntryFormSection
+  | EntryInfoCardsSection;
 
 export type Page = {
   path: string;

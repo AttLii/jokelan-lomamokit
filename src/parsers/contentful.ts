@@ -14,11 +14,14 @@ import type {
   EntryCabin,
   EntryMapSection,
   EntryFormSection,
+  EntryInfoCardsSection,
+  EntryInfoCard,
 } from "~/types/Contentful";
 import {
   isEntryCabinReferencesSection,
   isEntryFormSection,
   isEntryHeroSection,
+  isEntryInfoCardsSection,
   isEntryMapSection,
 } from "~/typeguards/contentful";
 import { nonNullable } from "~/utils/typescript";
@@ -128,11 +131,42 @@ export const parseFormSection = ({
   };
 };
 
+export type ParsedInfoCard = {
+  title: string;
+  image: ParsedImageAsset;
+  richText: string;
+};
+export const parseInfoCard = (entryInfoCard: EntryInfoCard): ParsedInfoCard => {
+  const { title, image, richText } = entryInfoCard.fields;
+  return {
+    title,
+    image: parseImageAsset(image),
+    richText: documentToString(richText),
+  };
+};
+
+export type ParsedInfoCards = {
+  type: "infoCards";
+  richText: string;
+  infoCards: ParsedInfoCard[];
+};
+export const parseInfoCardsSection = (
+  section: EntryInfoCardsSection
+): ParsedInfoCards => {
+  const { infoCards, richText } = section.fields;
+  return {
+    type: "infoCards",
+    richText: documentToString(richText),
+    infoCards: infoCards.map(parseInfoCard),
+  };
+};
+
 export type ParsedSection =
   | ParsedHero
   | ParsedCabinReferences
   | ParsedMap
-  | ParsedForm;
+  | ParsedForm
+  | ParsedInfoCards;
 export const parseSections = (sections: Section[]): ParsedSection[] => {
   return sections
     .map((section) => {
@@ -144,8 +178,10 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
         return parseMapSection(section);
       } else if (isEntryFormSection(section)) {
         return parseFormSection(section);
+      } else if (isEntryInfoCardsSection(section)) {
+        return parseInfoCardsSection(section);
       } else {
-        console.log(section);
+        console.log(JSON.stringify(section, null, 2));
         return null;
       }
     })
