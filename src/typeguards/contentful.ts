@@ -2,6 +2,7 @@ import type {
   ParsedCabinReferences,
   ParsedForm,
   ParsedHero,
+  ParsedInfoCards,
   ParsedMap,
   ParsedSection,
 } from "~/parsers/contentful";
@@ -62,4 +63,10 @@ export const isFormSection = (
   section: ParsedSection
 ): section is ParsedForm => {
   return section.type === "form";
+};
+
+export const isInfoCardsSection = (
+  section: ParsedSection
+): section is ParsedInfoCards => {
+  return section.type === "infoCards";
 };
