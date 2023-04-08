@@ -11,7 +11,7 @@ module.exports = {
         "9/16": "9 / 16",
       },
       maxHeight: {
-        "67.5rem": "67.5rem",
+        "50rem": "50rem",
       },
     },
   },
