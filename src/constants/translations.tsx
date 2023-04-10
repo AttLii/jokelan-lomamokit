@@ -7,6 +7,7 @@ export const translations = {
   "404Content": "404.content",
   genericReadMore: "generic.read.more",
   genericFormSubmit: "generic.form.submit",
+  genericFormPrivacyPolicy: "generic.form.privacy.policy",
   contactFormName: "contact.form.name",
   contactFormEmail: "contact.form.email",
   contactFormPhonenumber: "contact.form.phonenumber",
