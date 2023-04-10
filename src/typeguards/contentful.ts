@@ -55,6 +55,12 @@ export const isEntryInfoCardsSection = (
   return section.sys.contentType.sys.id === "infoCards";
 };
 
+export const isEntryContentSection = (
+  section: Section
+): section is EntryInfoCardsSection => {
+  return section.sys.contentType.sys.id === "content";
+};
+
 export const isMapSection = (section: ParsedSection): section is ParsedMap => {
   return section.type === "map";
 };

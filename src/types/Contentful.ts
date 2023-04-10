@@ -43,7 +43,13 @@ export type InfoCards = {
   richText: Document;
   infoCards: EntryInfoCard[];
 };
+
 export type EntryInfoCardsSection = Entry<InfoCards>;
+
+export type Content = {
+  richText: Document;
+};
+export type EntryContentSection = Entry<Content>;
 
 export type Section =
   | EntryHero

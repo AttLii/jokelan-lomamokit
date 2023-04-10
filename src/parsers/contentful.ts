@@ -16,9 +16,11 @@ import type {
   EntryFormSection,
   EntryInfoCardsSection,
   EntryInfoCard,
+  EntryContentSection,
 } from "~/types/Contentful";
 import {
   isEntryCabinReferencesSection,
+  isEntryContentSection,
   isEntryFormSection,
   isEntryHeroSection,
   isEntryInfoCardsSection,
@@ -161,12 +163,27 @@ export const parseInfoCardsSection = (
   };
 };
 
+export type ParsedContent = {
+  type: "content";
+  richText: string;
+};
+export const parseContentSection = (
+  section: EntryContentSection
+): ParsedContent => {
+  const { richText } = section.fields;
+  return {
+    type: "content",
+    richText: documentToString(richText),
+  };
+};
+
 export type ParsedSection =
   | ParsedHero
   | ParsedCabinReferences
   | ParsedMap
   | ParsedForm
-  | ParsedInfoCards;
+  | ParsedInfoCards
+  | ParsedContent;
 export const parseSections = (sections: Section[]): ParsedSection[] => {
   return sections
     .map((section) => {
@@ -180,6 +197,8 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
         return parseFormSection(section);
       } else if (isEntryInfoCardsSection(section)) {
         return parseInfoCardsSection(section);
+      } else if (isEntryContentSection(section)) {
+        return parseContentSection(section);
       } else {
         console.log(JSON.stringify(section, null, 2));
         return null;
