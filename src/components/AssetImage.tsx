@@ -6,7 +6,7 @@ type Props = ParsedImageAsset & {
   loading: "eager" | "lazy",
   srcSet?: Record<string, string>
 }
-export const AssetImage = component$(({ _class, alt, loading, height, src, width, srcSet }: Props) => {
+export const AssetImage = component$(({ _class = "", alt, loading, height, src, width, srcSet }: Props) => {
   return (
     <picture>
       {srcSet && Object.keys(srcSet)?.map((key, i) => (

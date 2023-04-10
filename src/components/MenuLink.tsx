@@ -7,7 +7,7 @@ type Props = {
   menuItem: ParsedMenuItem,
   _class?: string
 }
-export const MenuLink = component$(({ menuItem, _class }: Props) => {
+export const MenuLink = component$(({ menuItem, _class = "" }: Props) => {
   const location = useLocation()
   const activeClass = areRelativePathsSame(location.url.pathname, menuItem.content.path)
     ? 'font-semibold'
