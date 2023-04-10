@@ -1,3 +1,32 @@
+const plugin = require("tailwindcss/plugin");
+
+const backfaceVisibility = plugin(({ addUtilities }) => {
+  addUtilities({
+    ".backface-hidden": {
+      "backface-visibility": "hidden",
+    },
+  });
+});
+
+const transformStyle = plugin(({ addUtilities }) => {
+  addUtilities({
+    ".transform-style-preserve-3d": {
+      "transform-style": "preserve-3d",
+    },
+  });
+});
+
+const rotateY = plugin(({ addUtilities }) => {
+  addUtilities({
+    ".rotate-y-0": {
+      transform: "rotateY(0deg)",
+    },
+    ".rotate-y-180": {
+      transform: "rotateY(180deg)",
+    },
+  });
+});
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -15,5 +44,10 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    backfaceVisibility,
+    rotateY,
+    transformStyle,
+  ],
 };
