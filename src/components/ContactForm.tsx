@@ -4,6 +4,7 @@ import { $, component$ } from "@builder.io/qwik";
 import { Input } from "./Input";
 import { translations } from "~/constants/translations";
 import { Textarea } from "./Textarea";
+import { RichText } from "./RichText";
 
 export const ContactForm = component$(() => {
   const submitting = useSignal(false)
@@ -40,6 +41,7 @@ export const ContactForm = component$(() => {
       <Input type="email" name="email" required placeholder={translations.contactFormEmail} disabled={submitting.value} />
       <Input type="tel" name="tel" placeholder={translations.contactFormPhonenumber} disabled={submitting.value} />
       <Textarea name="message" required placeholder={translations.contactFormMessage} disabled={submitting.value} />
+      <RichText _class="mt-4" dangerouslySetInnerHTML={translations.genericFormPrivacyPolicy} />
       <input class="enabled:cursor-pointer color-black disabled:text-slate-500 disabled:cursor-default mt-4 bg-slate-300 p-2 border-black disabled:border-slate-500 border-2 hover:enabled:bg-slate-400 focus:enabled:bg-slate-400" type="submit" value={translations.genericFormSubmit} disabled={submitting.value} />
       {(message.value !== "") && <p class="font-bold">{message}</p>}
     </form>
