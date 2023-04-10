@@ -1,5 +1,6 @@
 import type {
   ParsedCabinReferences,
+  ParsedContent,
   ParsedForm,
   ParsedHero,
   ParsedInfoCards,
@@ -75,4 +76,10 @@ export const isInfoCardsSection = (
   section: ParsedSection
 ): section is ParsedInfoCards => {
   return section.type === "infoCards";
+};
+
+export const isContentSection = (
+  section: ParsedSection
+): section is ParsedContent => {
+  return section.type === "content";
 };
