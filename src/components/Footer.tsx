@@ -8,10 +8,10 @@ type Props = {
 }
 export const Footer = component$(({ menu: { title, menuItems } }: Props) => {
   return (
-    <footer class="w-full bg-slate-100">
-      <Container type="wide">
+    <footer class="w-full bg-slate-100 py-4">
+      <Container type="wide" _class="flex flex-col gap-4">
         <nav aria-label={title}>
-          <ul class="gap-y-4">
+          <ul class="flex flex-col gap-0.5">
             {menuItems.map((menuItem, i) => (
               <li key={i}>
                 <MenuLink menuItem={menuItem} />
@@ -19,6 +19,8 @@ export const Footer = component$(({ menu: { title, menuItems } }: Props) => {
             ))}
           </ul>
         </nav>
+        <hr />
+        <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
       </Container>
     </footer>
   )
