@@ -3,7 +3,7 @@ import { BurgerButton } from "./BurgerButton";
 import { DesktopMenu } from "./DesktopMenu";
 import { MobileMenu } from "./MobileMenu";
 import { Container } from "./Container";
-import { LogoLink } from "./LogoLink";
+import { HeaderLogoLink } from "./HeaderLogoLink";
 import type { ParsedMenu } from "~/parsers/contentful";
 
 type Props = {
@@ -13,8 +13,8 @@ export const Header = component$(({ menu }: Props) => {
   return (
     <header class="fixed w-full bg-slate-100 z-10 h-14 border-black border-b-2 py-2">
       <Container type="wide" _class="flex h-full align-middle justify-between">
-        <LogoLink />
-        <DesktopMenu menu={menu} />
+        <HeaderLogoLink />
+        <DesktopMenu menu={menu} _class="hidden sm:flex" />
         <div />
         <BurgerButton _class="block sm:hidden ml-auto my-auto" />
         <MobileMenu menu={menu} />

@@ -3,11 +3,12 @@ import type { ParsedMenu } from "~/parsers/contentful";
 import { MenuLink } from "./MenuLink";
 
 type Props = {
-  menu: ParsedMenu
+  _class: string;
+  menu: ParsedMenu;
 }
-export const DesktopMenu = component$(({ menu: { title, menuItems } }: Props) => {
+export const DesktopMenu = component$(({ _class, menu: { title, menuItems } }: Props) => {
   return (
-    <nav class="hidden sm:flex" aria-label={title}>
+    <nav class={_class} aria-label={title}>
       <ul class="flex flex-wrap gap-x-4 my-auto">
         {menuItems.map((menuItem, i) => (
           <li key={i}>
