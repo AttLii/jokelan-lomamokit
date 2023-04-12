@@ -4,6 +4,7 @@ import { Container } from "./Container";
 import { RichText } from "./RichText";
 import type { ParsedMenu } from "~/parsers/contentful";
 import { FooterLogoLink } from "./FooterLogoLink";
+import { BackToTopButton } from "./BackToTopButton";
 
 type Props = {
   menu: ParsedMenu;
@@ -11,7 +12,7 @@ type Props = {
 }
 export const Footer = component$(({ menu: { title, menuItems }, contactInformation }: Props) => {
   return (
-    <footer class="w-full bg-slate-100 py-4 border-t-2 border-black">
+    <footer class="w-full bg-slate-100 py-4 border-t-2 border-black relative">
       <Container type="wide" _class="flex flex-col gap-4">
         <nav aria-label={title}>
           <ul class="flex flex-col md:flex-row gap-x-4 gap-y-1">
@@ -26,6 +27,7 @@ export const Footer = component$(({ menu: { title, menuItems }, contactInformati
         <FooterLogoLink _class="mx-auto" />
         <hr />
         <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
+        <BackToTopButton _class="absolute bottom-1.5 right-1.5" />
       </Container>
     </footer>
   )
