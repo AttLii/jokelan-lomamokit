@@ -2,11 +2,13 @@ import { component$ } from "@builder.io/qwik";
 import { MenuLink } from "./MenuLink";
 import { Container } from "./Container";
 import type { ParsedMenu } from "~/parsers/contentful";
+import { RichText } from "./RichText";
 
 type Props = {
-  menu: ParsedMenu
+  menu: ParsedMenu;
+  contactInformation: string;
 }
-export const Footer = component$(({ menu: { title, menuItems } }: Props) => {
+export const Footer = component$(({ menu: { title, menuItems }, contactInformation }: Props) => {
   return (
     <footer class="w-full bg-slate-100 py-4">
       <Container type="wide" _class="flex flex-col gap-4">
@@ -19,6 +21,7 @@ export const Footer = component$(({ menu: { title, menuItems } }: Props) => {
             ))}
           </ul>
         </nav>
+        <RichText dangerouslySetInnerHTML={contactInformation} />
         <hr />
         <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
       </Container>

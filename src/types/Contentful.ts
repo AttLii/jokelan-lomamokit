@@ -90,6 +90,7 @@ export type EntryMenu = Entry<Menu>;
 export type GlobalContent = {
   headerMenu: EntryMenu;
   footerMenu: EntryMenu;
+  contactInformation: Document;
 };
 export type EntryGlobalContent = Entry<GlobalContent>;
 
