@@ -8,7 +8,7 @@ type Props = {
 }
 export const Footer = component$(({ menu: { title, menuItems } }: Props) => {
   return (
-    <footer class="w-full bg-slate-300">
+    <footer class="w-full bg-slate-100">
       <Container type="wide">
         <nav aria-label={title}>
           <ul class="gap-y-4">

@@ -12,7 +12,7 @@ type Props = {
 }
 export const Header = component$(({ menu }: Props) => {
   return (
-    <header class="fixed w-full bg-slate-300 z-10 h-14 border-black border-b-2 py-2">
+    <header class="fixed w-full bg-slate-100 z-10 h-14 border-black border-b-2 py-2">
       <Container type="wide" _class="flex h-full align-middle justify-between">
         <Link href="/" aria-label={translations.genericLogoLink}>
           <img src="/logo.svg" loading="eager" width="40" height="40" alt="" />
