@@ -25,10 +25,12 @@ export const Footer = component$(({ menu: { title, menuItems }, contactInformati
         </nav>
         <RichText dangerouslySetInnerHTML={contactInformation} _class="w-full md:w-1/2" />
         <FooterLogoLink _class="mx-auto" />
-        <hr />
-        <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
-        <BackToTopButton _class="absolute bottom-1.5 right-1.5" />
       </Container>
+      <div class="border-t-2 border-black" />
+      <Container type="wide">
+        <p class="text-center mt-4">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
+      </Container>
+      <BackToTopButton _class="absolute bottom-1.5 right-1.5" />
     </footer>
   )
 })
