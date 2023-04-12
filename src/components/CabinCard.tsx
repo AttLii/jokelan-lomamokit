@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import type { ParsedCabinReference } from "~/parsers/contentful";
-import { ButtonLink } from "./ButtonLink";
+import { IconLink } from "./IconLink";
 import { translations } from "~/constants/translations";
 import { AssetImage } from "./AssetImage";
 import { Link } from "@builder.io/qwik-city";
@@ -13,11 +13,11 @@ export const CabinCard = component$(({ cabinReference: { path, title, image: { s
     <article class="bg-slate-100 border-black border-2 rounded-md overflow-hidden">
       <Link href={path} aria-label={translations.genericReadMore}>
         <AssetImage {...imageRest} loading="lazy"
-          src={`${src}&w=608&h=342&fit=fill`} />
+          src={`${src}&w=608&h=456&fit=fill`} />
       </Link>
-      <div class="p-2">
+      <div class="p-4">
         <h3 class="mb-2">{title}</h3>
-        <ButtonLink href={path}>{translations.genericReadMore}</ButtonLink>
+        <IconLink href={path}>{translations.genericReadMore}</IconLink>
       </div>
     </article>
   )
