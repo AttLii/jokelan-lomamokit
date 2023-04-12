@@ -39,7 +39,7 @@ const documentToHtmlStringOpts: Partial<Options> = {
     [BLOCKS.PARAGRAPH]: (node, next) =>
       `<p class="prose-base font-normal">${next(node.content)}</p>`,
     [INLINES.HYPERLINK]: (node, next) =>
-      `<a class="prose-base font-normal underline" href="${
+      `<a class="prose-base font-normal underline hover:no-underline focus:no-underline" href="${
         node.data.uri
       }">${next(node.content)}</a>`,
   },
@@ -281,13 +281,15 @@ export const parseMenu = (menu: EntryMenu): ParsedMenu => {
 export type ParsedGlobalContent = {
   headerMenu: ParsedMenu;
   footerMenu: ParsedMenu;
+  contactInformation: string;
 };
 export const parseGlobalContent = (
   globalContent: EntryGlobalContent
 ): ParsedGlobalContent => {
-  const { headerMenu, footerMenu } = globalContent.fields;
+  const { headerMenu, footerMenu, contactInformation } = globalContent.fields;
   return {
     headerMenu: parseMenu(headerMenu),
     footerMenu: parseMenu(footerMenu),
+    contactInformation: documentToString(contactInformation),
   };
 };

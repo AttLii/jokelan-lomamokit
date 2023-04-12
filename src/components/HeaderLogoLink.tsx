@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
 import { translations } from "~/constants/translations";
 
-export const LogoLink = component$(() => {
+export const HeaderLogoLink = component$(() => {
   return (
     <Link
       href="/"

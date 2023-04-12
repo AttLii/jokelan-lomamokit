@@ -46,7 +46,7 @@ export default component$(() => {
       <main class="min-h-screen pt-14">
         <Slot />
       </main>
-      <Footer menu={globalContent.value.footerMenu} />
+      <Footer menu={globalContent.value.footerMenu} contactInformation={globalContent.value.contactInformation} />
     </>
   );
 });
