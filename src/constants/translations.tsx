@@ -8,6 +8,7 @@ export const translations = {
   genericReadMore: "generic.read.more",
   genericFormSubmit: "generic.form.submit",
   genericFormPrivacyPolicy: "generic.form.privacy.policy",
+  genericLogoLink: "generic.logo.link",
   contactFormName: "contact.form.name",
   contactFormEmail: "contact.form.email",
   contactFormPhonenumber: "contact.form.phonenumber",
