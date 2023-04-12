@@ -36,7 +36,7 @@ export const ContactForm = component$(() => {
     submitting.value = false
   })
   return (
-    <form preventdefault:submit onSubmit$={onSubmit} class="flex flex-col gap-2 p-4 border-black border-2 rounded-md">
+    <form preventdefault:submit onSubmit$={onSubmit} class="flex flex-col gap-2 p-4 bg-slate-100 border-black border-2 rounded-md">
       <Input type="text" name="name" required placeholder={translations.contactFormName} disabled={submitting.value} />
       <Input type="email" name="email" required placeholder={translations.contactFormEmail} disabled={submitting.value} />
       <Input type="tel" name="tel" placeholder={translations.contactFormPhonenumber} disabled={submitting.value} />
