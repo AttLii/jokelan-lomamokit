@@ -49,7 +49,7 @@ export class Contentful {
   public async getGlobalContent(): Promise<EntryGlobalContent | null> {
     const globalContents = await this.getEntries<GlobalContent>({
       content_type: "globalContent",
-      include: 3,
+      include: 4,
     });
 
     if (globalContents.length === 0) {

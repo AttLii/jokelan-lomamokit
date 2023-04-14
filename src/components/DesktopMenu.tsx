@@ -12,7 +12,7 @@ export const DesktopMenu = component$(({ _class, menu: { title, menuItems } }: P
       <ul class="flex flex-wrap gap-x-4 my-auto">
         {menuItems.map((menuItem, i) => (
           <li key={i}>
-            <MenuLink menuItem={menuItem} />
+            <MenuLink menuItem={menuItem} showSubItems _class="min-w-[5rem] text-center" />
           </li>
         ))}
       </ul>

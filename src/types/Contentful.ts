@@ -77,7 +77,8 @@ export type EntryContent = EntryPage | EntryCabin;
 
 export type MenuItem = {
   title: string;
-  content: EntryPage;
+  content: EntryContent;
+  subItems?: EntryMenuItem[];
 };
 export type EntryMenuItem = Entry<MenuItem>;
 
