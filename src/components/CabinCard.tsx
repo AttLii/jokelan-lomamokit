@@ -16,7 +16,7 @@ export const CabinCard = component$(({ cabinReference: { path, title, image: { s
           src={`${src}&w=608&h=456&fit=fill`} />
       </Link>
       <div class="p-4 border-black border-t-2">
-        <h3 class="mb-2">{title}</h3>
+        <h3 class="text-2xl font-bold mb-2">{title}</h3>
         <IconLink href={path}>{translations.genericReadMore}</IconLink>
       </div>
     </article>

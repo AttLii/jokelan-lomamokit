@@ -33,6 +33,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['"cabin"'],
+      display: ["'PT Sans'"],
     },
     extend: {
       aspectRatio: {
@@ -44,10 +45,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    backfaceVisibility,
-    rotateY,
-    transformStyle,
-  ],
+  plugins: [backfaceVisibility, rotateY, transformStyle],
 };
