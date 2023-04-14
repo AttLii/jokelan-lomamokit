@@ -1,9 +1,10 @@
-import type { Component } from "@builder.io/qwik";
 import { component$ } from "@builder.io/qwik";
 import { Link, useLocation } from "@builder.io/qwik-city";
 import { HiChevronDown } from "@qwikest/icons/heroicons";
-import type { ParsedMenuItem } from "~/parsers/contentful";
+import { translations } from "~/constants/translations";
 import { areRelativePathsSame } from "~/utils/qwik";
+import type { Component } from "@builder.io/qwik";
+import type { ParsedMenuItem } from "~/parsers/contentful";
 
 export type SubItemsRendererProps = {
   subItems: ParsedMenuItem[]
@@ -41,7 +42,7 @@ export const MenuLink = component$(({
       </Link>
 
       {showIcon && (
-        <button tabIndex={0} class="aspect-square absolute top-0 right-0">
+        <button tabIndex={0} class="aspect-square absolute top-0 right-0" aria-label={translations.subMenuToggle}>
           <HiChevronDown variant="mini" class=" h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
         </button>
       )}

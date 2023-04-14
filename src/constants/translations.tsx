@@ -1,6 +1,7 @@
 export const translations = {
   uiNavOpen: "nav.open",
   uiNavClose: "nav.close",
+  subMenuToggle: "sub.menu.toggle",
   seoTitle: "seo.title",
   "404Title": "404.title",
   "404Description": "404.description",
