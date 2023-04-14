@@ -15,7 +15,6 @@ export const Header = component$(({ menu }: Props) => {
       <Container type="wide" _class="flex h-full align-middle justify-between">
         <HeaderLogoLink />
         <DesktopMenu menu={menu} _class="hidden sm:flex" />
-        <div />
         <BurgerButton _class="block sm:hidden ml-auto my-auto" />
         <MobileMenu menu={menu} />
       </Container>
