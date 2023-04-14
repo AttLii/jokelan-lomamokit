@@ -1,7 +1,33 @@
 /**
- * Tailwind CSS imports
+
+@apply * Tailwind CSS imports
  * View the full documentation at https://tailwindcss.com
  */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// One case scenario for when we need to apply styles to html string (richtext-field in contentful).
+.rich-text {
+  h1 {
+    @apply text-6xl;
+    @apply font-display;
+  }
+  h2 {
+    @apply text-4xl;
+    @apply font-display;
+  }
+  h3 {
+    @apply text-6xl;
+    @apply font-display;
+  }
+  p {
+    @apply text-base;
+  }
+  a {
+    @apply text-base;
+    @apply underline;
+    @apply hover:no-underline;
+    @apply focus:no-underline;
+  }
+}

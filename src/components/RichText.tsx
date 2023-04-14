@@ -6,6 +6,6 @@ type Props = {
 }
 export const RichText = component$(({ _class = "", dangerouslySetInnerHTML }: Props) => {
   return (
-    <div class={_class} dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
+    <div class={`${_class} rich-text`} dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
   )
-})
+});
