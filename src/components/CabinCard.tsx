@@ -12,6 +12,7 @@ export const CabinCard = component$(({ cabinReference: { path, title, image: { s
     <article class="bg-slate-100 border-black border-2 rounded-md overflow-hidden">
       <AssetImage
         {...imageRest}
+        alt=""
         width="608"
         height="456"
         loading="lazy"
