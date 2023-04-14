@@ -33,13 +33,15 @@ import type { Document } from "@contentful/rich-text-types";
 const documentToHtmlStringOpts: Partial<Options> = {
   renderNode: {
     [BLOCKS.HEADING_1]: (node, next) =>
-      `<h1 class="prose-2xl font-bold">${next(node.content)}</h1>`,
+      `<h1 class="text-6xl font-display">${next(node.content)}</h1>`,
     [BLOCKS.HEADING_2]: (node, next) =>
-      `<h2 class="prose-1xl font-bold">${next(node.content)}</h2>`,
+      `<h2 class="text-4xl font-display">${next(node.content)}</h2>`,
+    [BLOCKS.HEADING_3]: (node, next) =>
+      `<h3 class="text-2xl font-display">${next(node.content)}</h3>`,
     [BLOCKS.PARAGRAPH]: (node, next) =>
-      `<p class="prose-base font-normal">${next(node.content)}</p>`,
+      `<p class="text-base">${next(node.content)}</p>`,
     [INLINES.HYPERLINK]: (node, next) =>
-      `<a class="prose-base font-normal underline hover:no-underline focus:no-underline" href="${
+      `<a class="text-base underline hover:no-underline focus:no-underline" href="${
         node.data.uri
       }">${next(node.content)}</a>`,
   },
