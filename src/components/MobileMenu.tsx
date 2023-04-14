@@ -1,7 +1,20 @@
 import { component$, useContext } from "@builder.io/qwik";
-import type { ParsedMenu } from "~/parsers/contentful";
 import { UiContext } from "~/root";
+import type { SubItemsRendererProps } from "./MenuLink";
 import { MenuLink } from "./MenuLink";
+import type { ParsedMenu } from "~/parsers/contentful";
+
+const SubMenuRenderer = component$(({ subItems }: SubItemsRendererProps) => (
+  <div class="w-full pl-4 mb-4 hidden group-hover:block group-focus-within:block">
+    <ul class="flex flex-col gap-1">
+      {subItems.map((subItem, i) => (
+        <li key={i}>
+          <MenuLink menuItem={subItem} showSubItems={false} />
+        </li>
+      ))}
+    </ul>
+  </div>
+))
 
 type Props = {
   menu: ParsedMenu
@@ -18,7 +31,7 @@ export const MobileMenu = component$(({ menu }: Props) => {
         <ul class="flex flex-col gap-x-4">
           {menu.menuItems.map((menuItem, i) => (
             <li key={i}>
-              <MenuLink _class="block" menuItem={menuItem} showSubItems={false} />
+              <MenuLink _class="justify-between text-left flex-wrap gap-1" menuItem={menuItem} showSubItems={true} SubMenuRenderer={SubMenuRenderer} />
             </li>
           ))}
         </ul>

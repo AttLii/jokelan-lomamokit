@@ -1,11 +1,9 @@
 import { component$ } from "@builder.io/qwik";
-import type { ParsedMenu, ParsedMenuItem } from "~/parsers/contentful";
 import { MenuLink } from "./MenuLink";
+import type { ParsedMenu } from "~/parsers/contentful";
+import type { SubItemsRendererProps } from "./MenuLink";
 
-type SubMenuRendererProps = {
-  subItems: ParsedMenuItem[]
-}
-const SubMenuRenderer = component$(({ subItems }: SubMenuRendererProps) => (
+const SubMenuRenderer = component$(({ subItems }: SubItemsRendererProps) => (
   <div class="
       w-full min-w-[7.5rem] absolute top-full left-1/2 -translate-x-1/2 pt-[0.95rem]
       opacity-0

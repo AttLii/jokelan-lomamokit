@@ -36,14 +36,16 @@ export const MenuLink = component$(({
   const showIcon = showSubItems && subItems.length > 0
   return (
     <div class={`group relative ${_class} ${showIcon ? "pr-6" : ""} flex items-center justify-center`}>
-      <Link class={`hover:underline text-center ${activeClass}`} href={path}>
+      <Link class={`w-full hover:underline ${activeClass}`} href={path}>
         {title}
       </Link>
 
       {showIcon && (
-        <HiChevronDown variant="mini" class="absolute right-0 h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
+        <button tabIndex={0} class="aspect-square absolute top-0 right-0">
+          <HiChevronDown variant="mini" class=" h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
+        </button>
       )}
-      {showIcon && SubMenuRenderer && (
+      {(showIcon && SubMenuRenderer) && (
         <SubMenuRenderer subItems={subItems} />
       )}
     </div>
