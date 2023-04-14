@@ -8,7 +8,7 @@ type Props = {
 export const CabinReferenceList = component$(({ cabinReferences }: Props) => {
   if (cabinReferences.length === 0) return null;
   return (
-    <ul class="grid gap-4 sm:grid-cols-2">
+    <ul class="grid gap-4 sm:grid-cols-4">
       {cabinReferences.map((cabinReference) => {
         return (
           <li key={cabinReference.id}>
