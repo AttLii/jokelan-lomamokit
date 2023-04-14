@@ -7,12 +7,12 @@ export const HeaderLogoLink = component$(() => {
     <Link
       href="/"
       aria-label={translations.genericLogoLink}
-      class="flex items-center gap-2 uppercase"
+      class="flex items-center gap-2 uppercase font-semibold group"
     >
       <img src="/logo.svg" loading="eager" width="40" height="40" alt="" />
       <div class="flex flex-col leading-tight">
-        <span>Jokelan</span>
-        <span>Lomamökit</span>
+        <span class="group-hover:ml-1 group-focus:ml-1 transition-all">Jokelan</span>
+        <span class="group-hover:ml-2 group-focus:ml-2 transition-all">Lomamökit</span>
       </div>
     </Link>
   )

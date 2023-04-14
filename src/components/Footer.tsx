@@ -12,7 +12,7 @@ type Props = {
 }
 export const Footer = component$(({ menu: { title, menuItems }, contactInformation }: Props) => {
   return (
-    <footer class="w-full bg-slate-100 py-4 border-t-2 border-black relative">
+    <footer class="w-full bg-slate-100 pt-10 pb-4 border-t-2 border-black relative">
       <Container type="wide" _class="flex flex-col gap-4">
         <nav aria-label={title}>
           <ul class="flex flex-col md:flex-row gap-x-4 gap-y-1">
@@ -25,10 +25,7 @@ export const Footer = component$(({ menu: { title, menuItems }, contactInformati
         </nav>
         <RichText dangerouslySetInnerHTML={contactInformation} _class="w-full md:w-1/2" />
         <FooterLogoLink _class="mx-auto" />
-      </Container>
-      <div class="border-t-2 border-black" />
-      <Container type="wide">
-        <p class="text-center mt-4">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
+        <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
       </Container>
       <BackToTopButton _class="absolute bottom-1.5 right-1.5" />
     </footer>
