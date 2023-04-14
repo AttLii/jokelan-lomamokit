@@ -9,6 +9,7 @@ export const translations = {
   genericFormSubmit: "generic.form.submit",
   genericFormPrivacyPolicy: "generic.form.privacy.policy",
   genericLogoLink: "generic.logo.link",
+  genericSkipToContent: "generic.skip.to.content",
   backToTop: "generic.back.to.top",
   contactFormName: "contact.form.name",
   contactFormEmail: "contact.form.email",

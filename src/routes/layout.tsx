@@ -1,4 +1,4 @@
-import { component$, Slot, useContext, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, Slot, useContext, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
@@ -7,6 +7,7 @@ import { parseGlobalContent } from "~/parsers/contentful";
 import { UiContext } from "~/root";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
 import type { Signal } from "@builder.io/qwik";
+import { SkipToContent } from "~/components/SkipToContent";
 
 export const useGlobalContent = routeLoader$(async ({ exit }) => {
   let globalContent: null | ParsedGlobalContent = null
@@ -30,6 +31,7 @@ export default component$(() => {
   // casting type to ParsedGlobalContent
   // Qwik doesn't recognize that calling exit stops the build
   const globalContent = useGlobalContent() as Readonly<Signal<ParsedGlobalContent>>
+  const main = useSignal<HTMLElement>()
 
   const ui = useContext(UiContext);
   const location = useLocation()
@@ -42,8 +44,9 @@ export default component$(() => {
 
   return (
     <>
+      <SkipToContent focusElement={main} />
       <Header menu={globalContent.value.headerMenu} />
-      <main class="min-h-screen pt-14">
+      <main tabIndex={-1} ref={main} class="min-h-screen pt-14">
         <Slot />
       </main>
       <Footer menu={globalContent.value.footerMenu} contactInformation={globalContent.value.contactInformation} />
