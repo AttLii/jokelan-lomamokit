@@ -36,12 +36,12 @@ export const ContactForm = component$(() => {
     submitting.value = false
   })
   return (
-    <form preventdefault:submit onSubmit$={onSubmit} class="flex flex-col gap-2 p-4 bg-slate-100 border-black border-2 rounded-md">
-      <Input type="text" name="name" required placeholder={translations.contactFormName} disabled={submitting.value} />
-      <Input type="email" name="email" required placeholder={translations.contactFormEmail} disabled={submitting.value} />
-      <Input type="tel" name="tel" placeholder={translations.contactFormPhonenumber} disabled={submitting.value} />
-      <Textarea name="message" required placeholder={translations.contactFormMessage} disabled={submitting.value} />
-      <RichText _class="mt-4" dangerouslySetInnerHTML={translations.genericFormPrivacyPolicy} />
+    <form preventdefault:submit onSubmit$={onSubmit} class="flex flex-col gap-4 p-4 bg-slate-100 border-black border-2 rounded-md">
+      <Input type="text" name="name" required label={translations.contactFormName} disabled={submitting.value} />
+      <Input type="email" name="email" required label={translations.contactFormEmail} disabled={submitting.value} />
+      <Input type="tel" name="tel" label={translations.contactFormPhonenumber} disabled={submitting.value} />
+      <Textarea name="message" required label={translations.contactFormMessage} disabled={submitting.value} />
+      <RichText dangerouslySetInnerHTML={translations.genericFormPrivacyPolicy} />
       <input class="enabled:cursor-pointer color-black disabled:text-slate-500 disabled:cursor-default mt-4 bg-slate-300 p-2 border-black disabled:border-slate-500 border-2 hover:enabled:bg-slate-400 focus:enabled:bg-slate-400" type="submit" value={translations.genericFormSubmit} disabled={submitting.value} />
       {(message.value !== "") && <p class="font-bold">{message}</p>}
     </form>
