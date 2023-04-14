@@ -112,7 +112,7 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
       },
       {
         name: "og:image",
-        content: image.src,
+        content: image.src + "&w=1200&h=630&fit=fill",
       },
       {
         name: "og:image:alt",
@@ -120,11 +120,11 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
       },
       {
         name: "og:image:width",
-        content: image.width,
+        content: "1200",
       },
       {
         name: "og:image:height",
-        content: image.height,
+        content: "630",
       },
     ],
   };
