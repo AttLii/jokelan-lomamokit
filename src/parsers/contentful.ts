@@ -1,5 +1,4 @@
 import type { Asset, EntryFields } from "contentful";
-import type { Options } from "@contentful/rich-text-html-renderer";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type {
   EntryPage,
@@ -27,28 +26,6 @@ import {
   isEntryMapSection,
 } from "~/typeguards/contentful";
 import { nonNullable } from "~/utils/typescript";
-import { INLINES, BLOCKS } from "@contentful/rich-text-types";
-import type { Document } from "@contentful/rich-text-types";
-
-const documentToHtmlStringOpts: Partial<Options> = {
-  renderNode: {
-    [BLOCKS.HEADING_1]: (node, next) =>
-      `<h1 class="text-6xl font-display">${next(node.content)}</h1>`,
-    [BLOCKS.HEADING_2]: (node, next) =>
-      `<h2 class="text-4xl font-display">${next(node.content)}</h2>`,
-    [BLOCKS.HEADING_3]: (node, next) =>
-      `<h3 class="text-2xl font-display">${next(node.content)}</h3>`,
-    [BLOCKS.PARAGRAPH]: (node, next) =>
-      `<p class="text-base">${next(node.content)}</p>`,
-    [INLINES.HYPERLINK]: (node, next) =>
-      `<a class="text-base underline hover:no-underline focus:no-underline" href="${
-        node.data.uri
-      }">${next(node.content)}</a>`,
-  },
-};
-const documentToString = (document: Document) => {
-  return documentToHtmlString(document, documentToHtmlStringOpts);
-};
 
 const parseImageAsset = ({
   fields: {
@@ -83,7 +60,7 @@ export const parseHeroSection = ({
 }: EntryHero): ParsedHero => {
   return {
     type: "hero",
-    richText: documentToString(richText),
+    richText: documentToHtmlString(richText),
     gallery: gallery.map(parseImageAsset),
   };
 };
@@ -98,7 +75,7 @@ export const parseCabinReferencesSection = ({
 }: EntryCabinReferences): ParsedCabinReferences => {
   return {
     type: "cabinReferences",
-    richText: documentToString(richText),
+    richText: documentToHtmlString(richText),
     cabinReferences: cabinReferences.map(parseCabinReference), // todo
   };
 };
@@ -114,7 +91,7 @@ export const parseMapSection = ({
 }: EntryMapSection): ParsedMap => {
   return {
     type: "map",
-    richText: documentToString(richText),
+    richText: documentToHtmlString(richText),
     title,
     location,
   };
@@ -130,7 +107,7 @@ export const parseFormSection = ({
 }: EntryFormSection): ParsedForm => {
   return {
     type: "form",
-    richText: documentToString(richText),
+    richText: documentToHtmlString(richText),
     form,
   };
 };
@@ -145,7 +122,7 @@ export const parseInfoCard = (entryInfoCard: EntryInfoCard): ParsedInfoCard => {
   return {
     title,
     image: parseImageAsset(image),
-    richText: documentToString(richText),
+    richText: documentToHtmlString(richText),
   };
 };
 
@@ -160,7 +137,7 @@ export const parseInfoCardsSection = (
   const { infoCards, richText } = section.fields;
   return {
     type: "infoCards",
-    richText: documentToString(richText),
+    richText: documentToHtmlString(richText),
     infoCards: infoCards.map(parseInfoCard),
   };
 };
@@ -175,7 +152,7 @@ export const parseContentSection = (
   const { richText } = section.fields;
   return {
     type: "content",
-    richText: documentToString(richText),
+    richText: documentToHtmlString(richText),
   };
 };
 
@@ -292,6 +269,6 @@ export const parseGlobalContent = (
   return {
     headerMenu: parseMenu(headerMenu),
     footerMenu: parseMenu(footerMenu),
-    contactInformation: documentToString(contactInformation),
+    contactInformation: documentToHtmlString(contactInformation),
   };
 };
