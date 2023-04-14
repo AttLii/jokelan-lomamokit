@@ -9,6 +9,14 @@
 
 // One case scenario for when we need to apply styles to html string (richtext-field in contentful).
 .rich-text {
+  & > * {
+    &:not(:first-child) {
+      margin-top: 0.3em;
+    }
+    &:not(:last-child) {
+      margin-bottom: 0.3em;
+    }
+  }
   h1 {
     @apply text-6xl;
     @apply font-display;
