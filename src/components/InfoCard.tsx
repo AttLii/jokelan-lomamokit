@@ -18,6 +18,8 @@ export const InfoCard = component$(({ infoCard: { image, richText, title } }: Pr
         _class="absolute w-full h-full object-cover object-center opacity-80"
         loading="lazy"
         {...image}
+        width="619"
+        height="619"
         src={`${image.src}&h=619&w=619&fit=fill`}
         alt=""
       />

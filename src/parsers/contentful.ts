@@ -30,17 +30,12 @@ import { nonNullable } from "~/utils/typescript";
 const parseImageAsset = ({
   fields: {
     title,
-    file: {
-      url,
-      details: { image },
-    },
+    file: { url },
   },
 }: Asset) => {
   return {
     alt: title,
     src: `${url}?fm=webp`,
-    width: `${image?.width || 0}`,
-    height: `${image?.height || 0}`,
   };
 };
 

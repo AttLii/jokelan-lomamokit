@@ -24,6 +24,8 @@ export const Carousel = component$(({ images }: Props) => {
         <li class="min-w-full relative" key={i}>
           <AssetImage
             {...rest}
+            width="639"
+            height="1139"
             _class="w-full h-full object-cover object-center"
             loading={i === 0 ? "eager" : "lazy"}
             src={`${src}&w=639&h=1136&fit=fill`}

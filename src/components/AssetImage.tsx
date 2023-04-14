@@ -5,6 +5,8 @@ type Props = ParsedImageAsset & {
   _class?: string,
   loading: "eager" | "lazy",
   srcSet?: Record<string, string>
+  height: string;
+  width: string;
 }
 export const AssetImage = component$(({ _class = "", alt, loading, height, src, width, srcSet }: Props) => {
   return (
