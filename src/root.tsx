@@ -6,7 +6,7 @@ import {
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/RouterHead";
 
-import "./global.css";
+import "./global.scss";
 
 export type UiStore = {
   nav: boolean
