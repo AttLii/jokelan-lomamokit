@@ -18,7 +18,7 @@ export const Footer = component$(({ menu: { title, menuItems }, contactInformati
           <ul class="flex flex-col md:flex-row gap-x-4 gap-y-1">
             {menuItems.map((menuItem, i) => (
               <li key={i}>
-                <MenuLink menuItem={menuItem} />
+                <MenuLink menuItem={menuItem} showSubItems={false} />
               </li>
             ))}
           </ul>

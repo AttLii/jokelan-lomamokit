@@ -231,12 +231,14 @@ export const parseCabinReference = (
 export type ParsedMenuItem = {
   title: string;
   content: ParsedPageReference;
+  subItems: ParsedMenuItem[];
 };
 export const parseMenuItem = (menuItem: EntryMenuItem): ParsedMenuItem => {
-  const { title, content } = menuItem.fields;
+  const { title, content, subItems } = menuItem.fields;
   return {
     title,
     content: parsePageReference(content),
+    subItems: Array.isArray(subItems) ? subItems.map(parseMenuItem) : [],
   };
 };
 

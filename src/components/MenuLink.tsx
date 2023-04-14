@@ -1,20 +1,53 @@
+import type { Component } from "@builder.io/qwik";
 import { component$ } from "@builder.io/qwik";
 import { Link, useLocation } from "@builder.io/qwik-city";
+import { HiChevronDown } from "@qwikest/icons/heroicons";
 import type { ParsedMenuItem } from "~/parsers/contentful";
 import { areRelativePathsSame } from "~/utils/qwik";
 
+export type SubItemsRendererProps = {
+  subItems: ParsedMenuItem[]
+}
+
 type Props = {
   menuItem: ParsedMenuItem,
-  _class?: string
+  _class?: string,
+  showSubItems: boolean;
+  SubMenuRenderer?: Component<SubItemsRendererProps>
 }
-export const MenuLink = component$(({ menuItem, _class = "" }: Props) => {
+
+export const MenuLink = component$(({
+  menuItem: {
+    title,
+    content: {
+      path
+    },
+    subItems
+  },
+  _class = "",
+  showSubItems,
+  SubMenuRenderer
+}: Props) => {
   const location = useLocation()
-  const activeClass = areRelativePathsSame(location.url.pathname, menuItem.content.path)
+  const activeClass = areRelativePathsSame(location.url.pathname, path)
     ? 'font-semibold'
     : ''
+
+  const showIcon = showSubItems && subItems.length > 0
   return (
-    <Link class={`hover:underline ${activeClass} ${_class}`} href={menuItem.content.path}>
-      {menuItem.title}
-    </Link>
+    <div class={`group relative ${_class} ${showIcon ? "pr-6" : ""} flex items-center justify-center`}>
+      <Link class={`w-full hover:underline ${activeClass}`} href={path}>
+        {title}
+      </Link>
+
+      {showIcon && (
+        <button tabIndex={0} class="aspect-square absolute top-0 right-0">
+          <HiChevronDown variant="mini" class=" h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
+        </button>
+      )}
+      {(showIcon && SubMenuRenderer) && (
+        <SubMenuRenderer subItems={subItems} />
+      )}
+    </div>
   )
 })
