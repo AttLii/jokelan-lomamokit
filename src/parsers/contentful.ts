@@ -154,11 +154,11 @@ export const parseContentSection = (
   };
 };
 
-export type ParsedFaq = {
+export type ParsedFAQ = {
   question: string;
   answer: string;
 };
-export const parseFaq = (faq: EntryFAQ): ParsedFaq => {
+export const parseFaq = (faq: EntryFAQ): ParsedFAQ => {
   const { answer, question } = faq.fields;
   return {
     question,
@@ -169,7 +169,7 @@ export const parseFaq = (faq: EntryFAQ): ParsedFaq => {
 export type ParsedFAQsSection = {
   type: "faqs";
   richText: string;
-  faqs: ParsedFaq[];
+  faqs: ParsedFAQ[];
 };
 export const parseFAQsSection = (
   section: EntryFAQsSection
