@@ -42,14 +42,18 @@ export default component$(() => {
     ui.nav = false
   })
 
+  const { headerMenu, footerMenu, contactInformation, structuredData } = globalContent.value
   return (
     <>
       <SkipToContent focusElement={main} />
-      <Header menu={globalContent.value.headerMenu} />
+      <Header menu={headerMenu} />
       <main tabIndex={-1} ref={main} class="min-h-screen pt-14">
         <Slot />
       </main>
-      <Footer menu={globalContent.value.footerMenu} contactInformation={globalContent.value.contactInformation} />
+      <Footer menu={footerMenu} contactInformation={contactInformation} />
+      {structuredData && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={structuredData} />
+      )}
     </>
   );
 });

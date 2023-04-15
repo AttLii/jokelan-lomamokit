@@ -92,6 +92,7 @@ export type GlobalContent = {
   headerMenu: EntryMenu;
   footerMenu: EntryMenu;
   contactInformation: Document;
+  structuredData?: string;
 };
 export type EntryGlobalContent = Entry<GlobalContent>;
 
