@@ -51,12 +51,24 @@ export type Content = {
 };
 export type EntryContentSection = Entry<Content>;
 
+export type FAQ = {
+  question: string;
+  answer: Document;
+};
+export type EntryFAQ = Entry<FAQ>;
+export type FAQs = {
+  richText: Document;
+  faqs: EntryFAQ[];
+};
+export type EntryFAQsSection = Entry<FAQs>;
+
 export type Section =
   | EntryHero
   | EntryCabinReferences
   | EntryMapSection
   | EntryFormSection
-  | EntryInfoCardsSection;
+  | EntryInfoCardsSection
+  | EntryFAQsSection;
 
 export type Page = {
   path: string;

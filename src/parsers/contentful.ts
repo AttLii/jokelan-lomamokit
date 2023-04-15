@@ -16,10 +16,13 @@ import type {
   EntryInfoCardsSection,
   EntryInfoCard,
   EntryContentSection,
+  EntryFAQsSection,
+  EntryFAQ,
 } from "~/types/Contentful";
 import {
   isEntryCabinReferencesSection,
   isEntryContentSection,
+  isEntryFAQsSection,
   isEntryFormSection,
   isEntryHeroSection,
   isEntryInfoCardsSection,
@@ -151,13 +154,42 @@ export const parseContentSection = (
   };
 };
 
+export type ParsedFaq = {
+  question: string;
+  answer: string;
+};
+export const parseFaq = (faq: EntryFAQ): ParsedFaq => {
+  const { answer, question } = faq.fields;
+  return {
+    question,
+    answer: documentToHtmlString(answer),
+  };
+};
+
+export type ParsedFAQsSection = {
+  type: "faqs";
+  richText: string;
+  faqs: ParsedFaq[];
+};
+export const parseFAQsSection = (
+  section: EntryFAQsSection
+): ParsedFAQsSection => {
+  const { richText, faqs } = section.fields;
+  return {
+    type: "faqs",
+    richText: documentToHtmlString(richText),
+    faqs: faqs.map(parseFaq),
+  };
+};
+
 export type ParsedSection =
   | ParsedHero
   | ParsedCabinReferences
   | ParsedMap
   | ParsedForm
   | ParsedInfoCards
-  | ParsedContent;
+  | ParsedContent
+  | ParsedFAQsSection;
 export const parseSections = (sections: Section[]): ParsedSection[] => {
   return sections
     .map((section) => {
@@ -173,6 +205,8 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
         return parseInfoCardsSection(section);
       } else if (isEntryContentSection(section)) {
         return parseContentSection(section);
+      } else if (isEntryFAQsSection(section)) {
+        return parseFAQsSection(section);
       } else {
         console.log(JSON.stringify(section, null, 2));
         return null;
