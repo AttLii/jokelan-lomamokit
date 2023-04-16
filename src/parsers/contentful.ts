@@ -327,18 +327,22 @@ export const parseMenu = (menu: EntryMenu): ParsedMenu => {
 export type ParsedGlobalContent = {
   headerMenu: ParsedMenu;
   footerMenu: ParsedMenu;
-  contactInformation: string;
   structuredData?: string;
+  email: string;
+  location: string;
+  telephone: string;
 };
 export const parseGlobalContent = (
   globalContent: EntryGlobalContent
 ): ParsedGlobalContent => {
-  const { headerMenu, footerMenu, contactInformation, structuredData } =
+  const { headerMenu, footerMenu, structuredData, email, location, telephone } =
     globalContent.fields;
   return {
     headerMenu: parseMenu(headerMenu),
     footerMenu: parseMenu(footerMenu),
-    contactInformation: documentToHtml(contactInformation),
     structuredData,
+    email: email || "",
+    location: location || "",
+    telephone: telephone || "",
   };
 };
