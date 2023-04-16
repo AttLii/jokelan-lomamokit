@@ -16,6 +16,7 @@ import type {
   EntryFormSection,
   EntryInfoCardsSection,
   EntryFAQsSection,
+  EntryFiftyFiftySection,
 } from "~/types/Contentful";
 
 export const isEntryHeroSection = (section: Section): section is EntryHero => {
@@ -68,6 +69,12 @@ export const isEntryFAQsSection = (
   section: Section
 ): section is EntryFAQsSection => {
   return section.sys.contentType.sys.id === "faqs";
+};
+
+export const isEntryFiftyFiftySection = (
+  section: Section
+): section is EntryFiftyFiftySection => {
+  return section.sys.contentType.sys.id === "fiftyFifty";
 };
 
 export const isMapSection = (section: ParsedSection): section is ParsedMap => {
