@@ -32,6 +32,18 @@ import {
 } from "~/typeguards/contentful";
 import { nonNullable } from "~/utils/typescript";
 import type { EntryFiftyFiftySection } from "~/types/Contentful";
+import type { Document } from "@contentful/rich-text-types";
+
+/**
+ * @see https://github.com/contentful/rich-text/issues/122#issue-527478687
+ */
+const documentToHtml = (document: Document): string => {
+  const REGEX_REPLACE_SANITIZED_SHY_TAG = /&amp;shy;/gm;
+  return documentToHtmlString(document).replace(
+    REGEX_REPLACE_SANITIZED_SHY_TAG,
+    "&shy;"
+  );
+};
 
 const parseImageAsset = ({
   fields: {
@@ -61,7 +73,7 @@ export const parseHeroSection = ({
 }: EntryHero): ParsedHero => {
   return {
     type: "hero",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
     gallery: gallery.map(parseImageAsset),
   };
 };
@@ -76,7 +88,7 @@ export const parseCabinReferencesSection = ({
 }: EntryCabinReferences): ParsedCabinReferences => {
   return {
     type: "cabinReferences",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
     cabinReferences: cabinReferences.map(parseCabinReference), // todo
   };
 };
@@ -92,7 +104,7 @@ export const parseMapSection = ({
 }: EntryMapSection): ParsedMap => {
   return {
     type: "map",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
     title,
     location,
   };
@@ -108,7 +120,7 @@ export const parseFormSection = ({
 }: EntryFormSection): ParsedForm => {
   return {
     type: "form",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
     form,
   };
 };
@@ -123,7 +135,7 @@ export const parseInfoCard = (entryInfoCard: EntryInfoCard): ParsedInfoCard => {
   return {
     title,
     image: parseImageAsset(image),
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
   };
 };
 
@@ -138,7 +150,7 @@ export const parseInfoCardsSection = (
   const { infoCards, richText } = section.fields;
   return {
     type: "infoCards",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
     infoCards: infoCards.map(parseInfoCard),
   };
 };
@@ -153,7 +165,7 @@ export const parseContentSection = (
   const { richText } = section.fields;
   return {
     type: "content",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
   };
 };
 
@@ -165,7 +177,7 @@ export const parseFaq = (faq: EntryFAQ): ParsedFAQ => {
   const { answer, question } = faq.fields;
   return {
     question,
-    answer: documentToHtmlString(answer),
+    answer: documentToHtml(answer),
   };
 };
 
@@ -180,7 +192,7 @@ export const parseFAQsSection = (
   const { richText, faqs } = section.fields;
   return {
     type: "faqs",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
     faqs: faqs.map(parseFaq),
   };
 };
@@ -197,7 +209,7 @@ export const parseFiftyFiftySection = (
   const { richText, image, order } = section.fields;
   return {
     type: "fiftyFifty",
-    richText: documentToHtmlString(richText),
+    richText: documentToHtml(richText),
     image: parseImageAsset(image),
     order,
   };
@@ -326,7 +338,7 @@ export const parseGlobalContent = (
   return {
     headerMenu: parseMenu(headerMenu),
     footerMenu: parseMenu(footerMenu),
-    contactInformation: documentToHtmlString(contactInformation),
+    contactInformation: documentToHtml(contactInformation),
     structuredData,
   };
 };
