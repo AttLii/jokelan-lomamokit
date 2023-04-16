@@ -5,9 +5,10 @@ import { Footer } from "~/components/Footer";
 import { appContentful } from "~/factories/contentful";
 import { parseGlobalContent } from "~/parsers/contentful";
 import { UiContext } from "~/root";
+import { SkipToContent } from "~/components/SkipToContent";
+import { HiEnvelope, HiMapPin, HiPhone } from "@qwikest/icons/heroicons";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
 import type { Signal } from "@builder.io/qwik";
-import { SkipToContent } from "~/components/SkipToContent";
 
 export const useGlobalContent = routeLoader$(async ({ exit }) => {
   let globalContent: null | ParsedGlobalContent = null
@@ -42,7 +43,22 @@ export default component$(() => {
     ui.nav = false
   })
 
-  const { headerMenu, footerMenu, contactInformation, structuredData } = globalContent.value
+  const { headerMenu, footerMenu, structuredData, email, location: _location, telephone } = globalContent.value
+
+  const infoRows = [
+    {
+      Icon: HiPhone,
+      text: telephone
+    },
+    {
+      Icon: HiEnvelope,
+      text: email
+    },
+    {
+      Icon: HiMapPin,
+      text: _location
+    }
+  ].filter(({ text }) => text !== "")
   return (
     <>
       <SkipToContent focusElement={main} />
@@ -50,7 +66,7 @@ export default component$(() => {
       <main tabIndex={-1} ref={main} class="min-h-screen pt-14">
         <Slot />
       </main>
-      <Footer menu={footerMenu} contactInformation={contactInformation} />
+      <Footer menu={footerMenu} infoRows={infoRows} />
       {structuredData && (
         <script type="application/ld+json" dangerouslySetInnerHTML={structuredData} />
       )}
