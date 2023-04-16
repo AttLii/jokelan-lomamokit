@@ -62,13 +62,22 @@ export type FAQs = {
 };
 export type EntryFAQsSection = Entry<FAQs>;
 
+export type FiftyFiftyOrder = "Text-Image" | "Image-Text";
+export type FiftyFifty = {
+  richText: Document;
+  image: Asset;
+  order: FiftyFiftyOrder;
+};
+export type EntryFiftyFiftySection = Entry<FiftyFifty>;
+
 export type Section =
   | EntryHero
   | EntryCabinReferences
   | EntryMapSection
   | EntryFormSection
   | EntryInfoCardsSection
-  | EntryFAQsSection;
+  | EntryFAQsSection
+  | EntryFiftyFiftySection;
 
 export type Page = {
   path: string;

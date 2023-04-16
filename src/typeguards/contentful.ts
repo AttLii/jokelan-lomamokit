@@ -2,6 +2,7 @@ import type {
   ParsedCabinReferences,
   ParsedContent,
   ParsedFAQsSection,
+  ParsedFiftyFiftySection,
   ParsedForm,
   ParsedHero,
   ParsedInfoCards,
@@ -16,6 +17,7 @@ import type {
   EntryFormSection,
   EntryInfoCardsSection,
   EntryFAQsSection,
+  EntryFiftyFiftySection,
 } from "~/types/Contentful";
 
 export const isEntryHeroSection = (section: Section): section is EntryHero => {
@@ -70,6 +72,12 @@ export const isEntryFAQsSection = (
   return section.sys.contentType.sys.id === "faqs";
 };
 
+export const isEntryFiftyFiftySection = (
+  section: Section
+): section is EntryFiftyFiftySection => {
+  return section.sys.contentType.sys.id === "fiftyFifty";
+};
+
 export const isMapSection = (section: ParsedSection): section is ParsedMap => {
   return section.type === "map";
 };
@@ -96,4 +104,10 @@ export const isFAQsSection = (
   section: ParsedSection
 ): section is ParsedFAQsSection => {
   return section.type === "faqs";
+};
+
+export const isFiftyFiftySection = (
+  section: ParsedSection
+): section is ParsedFiftyFiftySection => {
+  return section.type === "fiftyFifty";
 };
