@@ -2,6 +2,7 @@ import type {
   ParsedCabinReferences,
   ParsedContent,
   ParsedFAQsSection,
+  ParsedFiftyFiftySection,
   ParsedForm,
   ParsedHero,
   ParsedInfoCards,
@@ -103,4 +104,10 @@ export const isFAQsSection = (
   section: ParsedSection
 ): section is ParsedFAQsSection => {
   return section.type === "faqs";
+};
+
+export const isFiftyFiftySection = (
+  section: ParsedSection
+): section is ParsedFiftyFiftySection => {
+  return section.type === "fiftyFifty";
 };

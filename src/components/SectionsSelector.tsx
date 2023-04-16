@@ -6,7 +6,8 @@ import { FormSection } from "./FormSection"
 import { InfoCardsSection } from "./InfoCardsSection"
 import { ContentSection } from "./ContentSection"
 import { FAQsSection } from "./FAQsSection"
-import { isCabinReferencesSection, isContentSection, isFAQsSection, isFormSection, isHeroSection, isInfoCardsSection, isMapSection } from "~/typeguards/contentful"
+import { FiftyFiftySection } from "./FiftyFiftySection"
+import { isCabinReferencesSection, isContentSection, isFAQsSection, isFiftyFiftySection, isFormSection, isHeroSection, isInfoCardsSection, isMapSection } from "~/typeguards/contentful"
 import type { ParsedSection } from "~/parsers/contentful"
 
 type Props = {
@@ -30,6 +31,8 @@ export const SectionsSelector = component$(({ sections }: Props) => {
           return <ContentSection key={i} {...section} />
         } else if (isFAQsSection(section)) {
           return <FAQsSection key={i} {...section} />
+        } else if (isFiftyFiftySection(section)) {
+          return <FiftyFiftySection key={i} {...section} />
         } else {
           console.warn(section)
           return <Fragment key={i} />
