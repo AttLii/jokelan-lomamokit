@@ -20,6 +20,7 @@ export const parsedCabinToApartmentJsonLD = ({
   streetAddress,
   seoFields,
   location: { lat, lon },
+  smokingAllowed,
 }: ParsedCabin) => {
   const [minValue, maxValue] = occupancy.split("-").map(Number);
   return {
@@ -56,5 +57,6 @@ export const parsedCabinToApartmentJsonLD = ({
     },
     latitude: lat,
     longitude: lon,
+    smokingAllowed,
   };
 };

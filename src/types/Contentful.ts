@@ -107,6 +107,7 @@ export type Cabin = {
   postalCode: string;
   streetAddress: string;
   location: EntryFields.Location;
+  smokingAllowed: boolean;
 };
 
 export type EntryPage = Entry<Page>;

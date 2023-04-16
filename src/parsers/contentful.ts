@@ -288,6 +288,7 @@ export type ParsedCabin = {
   postalCode: string;
   streetAddress: string;
   location: EntryFields.Location;
+  smokingAllowed: boolean;
 };
 export type ParsedPageOrCabin = ParsedPage | ParsedCabin;
 
