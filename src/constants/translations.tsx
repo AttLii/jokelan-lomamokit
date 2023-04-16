@@ -11,6 +11,7 @@ export const translations = {
   genericFormPrivacyPolicy: "generic.form.privacy.policy",
   genericLogoLink: "generic.logo.link",
   genericSkipToContent: "generic.skip.to.content",
+  genericMeterSquared: "generic.meter.squared",
   backToTop: "generic.back.to.top",
   contactFormName: "contact.form.name",
   contactFormEmail: "contact.form.email",
@@ -19,4 +20,15 @@ export const translations = {
   contactFormSubmitSuccess: "contact.form.submit.success",
   contactFormSubmitClientError: "contact.form.submit.client.error",
   contactFormSubmitServerError: "contact.form.submit.server.error",
+  cabinMapLocation: "cabin.map.location",
+  cabinActionLinkText: "cabin.action.link.text",
+  cabinActionLinkDisabledHelp: "cabin.action.link.disabled.help",
+  cabinPetsAllowed: "cabin.pets.allowed",
+  cabinPetsNotAllowed: "cabin.pets.not.allowed",
+  cabinNumberOfRooms: "cabin.number.of.rooms",
+  cabinNumberOfBedrooms: "cabin.number.of.bedrooms",
+  cabinYearBuilt: "cabin.year.built",
+  cabinSmokingAllowed: "cabin.smoking.allowed",
+  cabinSmokingNotAllowed: "cabin.smoking.not.allowed",
+  cabinOccupancy: "cabin.occupancy"
 }
