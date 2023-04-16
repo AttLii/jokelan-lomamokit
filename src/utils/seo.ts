@@ -18,6 +18,7 @@ export const parsedCabinToApartmentJsonLD = ({
   addressRegion,
   postalCode,
   streetAddress,
+  seoFields,
   location: { lat, lon },
 }: ParsedCabin) => {
   const [minValue, maxValue] = occupancy.split("-").map(Number);
@@ -26,6 +27,7 @@ export const parsedCabinToApartmentJsonLD = ({
     "@type": "Apartment",
     name,
     description,
+    image: seoFields.image.src,
     numberOfRooms,
     occupancy: {
       "@type": "QuantitativeValue",
