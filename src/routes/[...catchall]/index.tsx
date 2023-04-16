@@ -11,6 +11,8 @@ import { appContentful } from "~/factories/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 import { translations } from "~/constants/translations";
 import type { ParsedPageOrCabin } from "~/parsers/contentful";
+import { isParsedPage } from "~/typeguards/contentful";
+import { CabinPage } from "~/components/CabinPage";
 
 export default component$(() => {
   const content = usePageContent();
@@ -19,7 +21,11 @@ export default component$(() => {
     return <ErrorPage />;
   }
 
-  return <SectionsSelector sections={content.value.sections} />
+  if (isParsedPage(content.value)) {
+    return <SectionsSelector sections={content.value.sections} />
+  } else {
+    return <CabinPage content={content.value} />
+  }
 });
 
 export const usePageContent = routeLoader$(async ({ url, status }) => {
