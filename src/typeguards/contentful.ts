@@ -1,4 +1,5 @@
 import type {
+  ParsedCabin,
   ParsedCabinReferences,
   ParsedContent,
   ParsedFAQsSection,
@@ -7,6 +8,8 @@ import type {
   ParsedHero,
   ParsedInfoCards,
   ParsedMap,
+  ParsedPage,
+  ParsedPageOrCabin,
   ParsedSection,
 } from "~/parsers/contentful";
 import type {
@@ -18,7 +21,18 @@ import type {
   EntryInfoCardsSection,
   EntryFAQsSection,
   EntryFiftyFiftySection,
+  EntryContent,
+  EntryPage,
+  EntryCabin,
 } from "~/types/Contentful";
+
+export const isEntryPage = (entry: EntryContent): entry is EntryPage => {
+  return entry.sys.contentType.sys.id === "page";
+};
+
+export const isEntryCabin = (entry: EntryContent): entry is EntryCabin => {
+  return entry.sys.contentType.sys.id === "cabin";
+};
 
 export const isEntryHeroSection = (section: Section): section is EntryHero => {
   return section.sys.contentType.sys.id === "hero";
@@ -76,6 +90,18 @@ export const isEntryFiftyFiftySection = (
   section: Section
 ): section is EntryFiftyFiftySection => {
   return section.sys.contentType.sys.id === "fiftyFifty";
+};
+
+export const isParsedPage = (
+  parsedPageOrCabin: ParsedPageOrCabin
+): parsedPageOrCabin is ParsedPage => {
+  return parsedPageOrCabin.type === "page";
+};
+
+export const isParsedCabin = (
+  parsedPageOrCabin: ParsedPageOrCabin
+): parsedPageOrCabin is ParsedCabin => {
+  return parsedPageOrCabin.type === "cabin";
 };
 
 export const isMapSection = (section: ParsedSection): section is ParsedMap => {

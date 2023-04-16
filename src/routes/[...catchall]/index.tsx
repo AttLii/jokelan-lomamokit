@@ -6,11 +6,11 @@ import type {
 import { routeLoader$ } from "@builder.io/qwik-city";
 import { ErrorPage } from "~/components/ErrorPage";
 import { SectionsSelector } from "~/components/SectionsSelector";
-import type { ParsedPage } from "~/parsers/contentful";
 import { parseContent } from "~/parsers/contentful";
 import { appContentful } from "~/factories/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 import { translations } from "~/constants/translations";
+import type { ParsedPageOrCabin } from "~/parsers/contentful";
 
 export default component$(() => {
   const content = usePageContent();
@@ -24,13 +24,16 @@ export default component$(() => {
 
 export const usePageContent = routeLoader$(async ({ url, status }) => {
   const path = fixRouteLoaderPathname(url.pathname);
-  let content: ParsedPage | null = null;
+  let content: ParsedPageOrCabin | null = null;
   try {
     const _content = await appContentful.getContentByPath(path);
     if (!_content) {
       status(404);
     } else {
       content = parseContent(_content);
+      if (!content) {
+        status(404)
+      }
     }
   } catch {
     status(500);
