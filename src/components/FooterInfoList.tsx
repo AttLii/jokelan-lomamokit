@@ -14,13 +14,16 @@ export type Props = {
 export const FooterInfoList = component$(({ rows }: Props) => {
   if (rows.length === 0) return null;
   return (
-    <ul class="flex flex-col gap-1">
-      {rows.map(({ Icon, text }, i) => (
-        <li key={i} class="flex gap-2 items-start">
-          <Icon class="mt-1 min-w-min" />
-          <RichText dangerouslySetInnerHTML={text} />
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h2 class="text-2xl font-display mb-2">Jokelan Lomamökit</h2>
+      <ul class="flex flex-col gap-1">
+        {rows.map(({ Icon, text }, i) => (
+          <li key={i} class="flex gap-2 items-start">
+            <Icon class="mt-1 min-w-min" />
+            <RichText dangerouslySetInnerHTML={text} />
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }) 
