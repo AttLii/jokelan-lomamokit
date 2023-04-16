@@ -6,7 +6,6 @@ import { appContentful } from "~/factories/contentful";
 import { parseGlobalContent } from "~/parsers/contentful";
 import { UiContext } from "~/root";
 import { SkipToContent } from "~/components/SkipToContent";
-import { HiEnvelope, HiMapPin, HiPhone } from "@qwikest/icons/heroicons";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
 import type { Signal } from "@builder.io/qwik";
 
@@ -45,20 +44,6 @@ export default component$(() => {
 
   const { headerMenu, footerMenu, structuredData, email, location: _location, telephone } = globalContent.value
 
-  const infoRows = [
-    {
-      Icon: HiPhone,
-      text: telephone
-    },
-    {
-      Icon: HiEnvelope,
-      text: email
-    },
-    {
-      Icon: HiMapPin,
-      text: _location
-    }
-  ].filter(({ text }) => text !== "")
   return (
     <>
       <SkipToContent focusElement={main} />
@@ -66,7 +51,7 @@ export default component$(() => {
       <main tabIndex={-1} ref={main} class="min-h-screen pt-14">
         <Slot />
       </main>
-      <Footer menu={footerMenu} infoRows={infoRows} />
+      <Footer menu={footerMenu} email={email} location={_location} telephone={telephone} />
       {structuredData && (
         <script type="application/ld+json" dangerouslySetInnerHTML={structuredData} />
       )}

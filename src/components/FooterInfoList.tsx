@@ -1,28 +1,36 @@
 import { component$ } from "@builder.io/qwik";
 import { RichText } from "./RichText";
-import type { Component } from "@builder.io/qwik";
-import type { HiProps } from "@qwikest/icons/heroicons";
-import type { IconProps } from "@qwikest/icons/lib/utils/icon-props";
+import { HiEnvelope, HiMapPin, HiPhone } from "@qwikest/icons/heroicons";
 
-type Row = {
-  Icon: Component<IconProps & HiProps>
-  text: string;
-}
 export type Props = {
-  rows: Row[]
+  email: string;
+  telephone: string;
+  location: string;
 }
-export const FooterInfoList = component$(({ rows }: Props) => {
-  if (rows.length === 0) return null;
+export const FooterInfoList = component$(({ email, telephone, location }: Props) => {
+  if (email === "" && telephone === "" && location === "") return null;
   return (
     <div>
       <h2 class="text-2xl font-display mb-2">Jokelan Lomamökit</h2>
       <ul class="flex flex-col gap-1">
-        {rows.map(({ Icon, text }, i) => (
-          <li key={i} class="flex gap-2 items-start">
-            <Icon class="mt-1 min-w-min" />
-            <RichText dangerouslySetInnerHTML={text} />
+        {telephone && (
+          <li class="flex gap-2 items-start">
+            <HiPhone class="mt-1" variant="solid" />
+            <RichText dangerouslySetInnerHTML={telephone} />
           </li>
-        ))}
+        )}
+        {email && (
+          <li class="flex gap-2 items-start">
+            <HiEnvelope class="mt-1" variant="solid" />
+            <RichText dangerouslySetInnerHTML={email} />
+          </li>
+        )}
+        {location && (
+          <li class="flex gap-2 items-start">
+            <HiMapPin class="mt-1" variant="solid" />
+            <RichText dangerouslySetInnerHTML={location} />
+          </li>
+        )}
       </ul>
     </div>
   )

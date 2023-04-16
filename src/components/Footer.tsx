@@ -4,16 +4,19 @@ import { Container } from "./Container";
 import { FooterLogoLink } from "./FooterLogoLink";
 import { BackToTopButton } from "./BackToTopButton";
 import { FooterInfoList } from "./FooterInfoList";
-import type { Props as FooterInfoListProps } from "./FooterInfoList";
 import type { ParsedMenu } from "~/parsers/contentful";
 
 type Props = {
   menu: ParsedMenu;
-  infoRows: FooterInfoListProps['rows']
+  email: string;
+  location: string;
+  telephone: string;
 }
 export const Footer = component$(({
   menu: { title, menuItems },
-  infoRows
+  email,
+  location,
+  telephone
 }: Props) => {
   return (
     <footer class="w-full bg-slate-100 pt-10 pb-4 border-t-2 border-black relative">
@@ -28,7 +31,7 @@ export const Footer = component$(({
               ))}
             </ul>
           </nav>
-          <FooterInfoList rows={infoRows} />
+          <FooterInfoList email={email} location={location} telephone={telephone} />
         </div>
         <FooterLogoLink _class="mx-auto" />
         <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
