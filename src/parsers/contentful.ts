@@ -19,8 +19,10 @@ import type {
   EntryFAQsSection,
   EntryFAQ,
   FiftyFiftyOrder,
+  EntrySeoFields,
 } from "~/types/Contentful";
 import {
+  isEntryCabin,
   isEntryCabinReferencesSection,
   isEntryContentSection,
   isEntryFAQsSection,
@@ -29,6 +31,7 @@ import {
   isEntryHeroSection,
   isEntryInfoCardsSection,
   isEntryMapSection,
+  isEntryPage,
 } from "~/typeguards/contentful";
 import { nonNullable } from "~/utils/typescript";
 import type { EntryFiftyFiftySection } from "~/types/Contentful";
@@ -58,10 +61,6 @@ const parseImageAsset = ({
 };
 
 export type ParsedImageAsset = ReturnType<typeof parseImageAsset>;
-
-export type ParsedSeoFields = Omit<SeoFields, "image"> & {
-  image: ParsedImageAsset;
-};
 
 export type ParsedHero = {
   type: "hero";
@@ -251,25 +250,76 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
     .filter(nonNullable);
 };
 
+export type ParsedSeoFields = Omit<SeoFields, "image"> & {
+  image: ParsedImageAsset;
+};
+const parseSeoFields = (seoFields: EntrySeoFields): ParsedSeoFields => {
+  const { image, ...rest } = seoFields.fields;
+  return {
+    ...rest,
+    image: parseImageAsset(image),
+  };
+};
+
 export type ParsedPage = {
+  type: "page";
   seoFields: ParsedSeoFields;
   sections: ParsedSection[];
 };
-export const parseContent = (page: EntryContent): ParsedPage => {
-  const {
-    sections,
-    seoFields: {
-      fields: { image, ...seoFields },
-    },
-  } = page.fields;
+export type ParsedCabin = {
+  type: "cabin";
+  seoFields: ParsedSeoFields;
+  sections: ParsedSection[];
+  name: string;
+  description: string;
+  numberOfRooms: number;
+  occupancy: string;
+  floorLevel: number;
+  floorSize: number;
+  numberOfBathroomsTotal: number;
+  numberOfBedrooms: number;
+  petsAllowed: boolean;
+  tourBookingPage?: string;
+  yearBuilt: number;
+  telephone: number;
+  addressCountry: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+  streetAddress: string;
+  location: EntryFields.Location;
+};
+export type ParsedPageOrCabin = ParsedPage | ParsedCabin;
+
+const parsePageContent = (page: EntryPage): ParsedPage => {
+  const { sections, seoFields } = page.fields;
 
   return {
-    seoFields: {
-      ...seoFields,
-      image: parseImageAsset(image),
-    },
+    type: "page",
+    seoFields: parseSeoFields(seoFields),
     sections: sections ? parseSections(sections) : [],
   };
+};
+
+const parseCabinContent = (cabin: EntryCabin): ParsedCabin => {
+  const { sections, seoFields, ...rest } = cabin.fields;
+
+  return {
+    type: "cabin",
+    seoFields: parseSeoFields(seoFields),
+    sections: sections ? parseSections(sections) : [],
+    ...rest,
+  };
+};
+
+export const parseContent = (entry: EntryContent): ParsedPageOrCabin | null => {
+  if (isEntryPage(entry)) {
+    return parsePageContent(entry);
+  } else if (isEntryCabin(entry)) {
+    return parseCabinContent(entry);
+  } else {
+    return null;
+  }
 };
 
 export type ParsedPageReference = {

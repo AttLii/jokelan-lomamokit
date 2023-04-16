@@ -90,6 +90,23 @@ export type Cabin = {
   sections?: Section[];
   referenceImage: Asset;
   name: string;
+  description: string;
+  numberOfRooms: number;
+  occupancy: string;
+  floorLevel: number;
+  floorSize: number;
+  numberOfBathroomsTotal: number;
+  numberOfBedrooms: number;
+  petsAllowed: boolean;
+  tourBookingPage?: string;
+  yearBuilt: number;
+  telephone: number;
+  addressCountry: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+  streetAddress: string;
+  location: EntryFields.Location;
 };
 
 export type EntryPage = Entry<Page>;
