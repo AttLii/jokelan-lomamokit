@@ -17,22 +17,27 @@ export const Breadcrumbs = ({ breadcrumbs }: Props) => {
         <ul class="flex flex-wrap gap-1 text-sm">
           {breadcrumbs.map(({ name, path }, i) => (
             <li key={i} class="flex flex-nowrap gap-1 items-center">
-              <Link
-                href={path}
-                class="hover:underline focus:underline flex flex-nowrap items-center gap-0.5"
-                aria-current={i === breadcrumbs.length - 1 ? "location" : undefined}
-              >
-                {i === 0 ? (
-                  <>
-                    <LuHome />
-                    <span class="sr-only">{name}</span>
-                  </>
-                ) : (
-                  name
-                )}
-              </Link>
-              {i !== breadcrumbs.length - 1 && (
-                <LuChevronRight />
+              {i === breadcrumbs.length - 1 ? (
+                <span aria-current="location">
+                  {name}
+                </span>
+              ) : (
+                <>
+                  <Link
+                    href={path}
+                    class="underline hover:no-underline focus:no-underline"
+                  >
+                    {i === 0 ? (
+                      <>
+                        <LuHome />
+                        <span class="sr-only">{name}</span>
+                      </>
+                    ) : (
+                      name
+                    )}
+                  </Link>
+                  <LuChevronRight />
+                </>
               )}
             </li>
           ))}
