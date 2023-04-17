@@ -397,3 +397,16 @@ export const parseGlobalContent = (
     telephone: telephone || "",
   };
 };
+
+export type Breadcrumb = {
+  name: string;
+  path: string;
+};
+export const parseBreadcrumbs = (entries: EntryContent[]): Breadcrumb[] => {
+  return entries.map(({ fields: { name, path } }) => {
+    return {
+      name,
+      path,
+    };
+  });
+};
