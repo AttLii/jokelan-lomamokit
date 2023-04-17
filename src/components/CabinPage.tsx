@@ -34,7 +34,7 @@ export const CabinPage = component$(({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
-        <Container type="wide" _class="flex flex-wrap flex-col md:flex-row justify-between gap-4 relative">
+        <Container type="wide" _class="flex flex-wrap flex-col md:flex-row gap-4 relative">
           <h1 class="w-full text-6xl font-display">{name}</h1>
           <div class="w-full md:w-9/12 flex flex-col gap-4">
             <CabinGallery gallery={gallery} />
