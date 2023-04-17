@@ -12,9 +12,9 @@ export const Breadcrumbs = ({ breadcrumbs }: Props) => {
   if (breadcrumbs.length === 0) return null
   const jsonLD = parseBreadcrumbsToJsonLD(breadcrumbs)
   return (
-    <div class="border-b-2 border-black">
+    <div class="border-b-2 border-black bg-slate-100 py-1">
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
-      <Container type="wide" _class="bg-[#f7f7f7] py-1">
+      <Container type="wide">
         <nav aria-label={translations.ariaLabelBreadcrumbs}>
           <ul class="flex flex-wrap gap-1 text-sm">
             {breadcrumbs.map(({ name, path }, i) => (
