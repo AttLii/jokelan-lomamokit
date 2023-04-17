@@ -7,7 +7,7 @@ type Props = {
 }
 export const Carousel = component$(({ images }: Props) => {
   const index = useSignal(0);
-  useVisibleTask$(() => {
+  useVisibleTask$(({ cleanup }) => {
     const onInterval = () => {
       if (index.value === images.length - 1) {
         index.value = 0;
@@ -16,7 +16,7 @@ export const Carousel = component$(({ images }: Props) => {
       }
     }
     const timer = setInterval(onInterval, 5000);
-    return () => clearInterval(timer);
+    cleanup(() => clearInterval(timer));
   });
   return (
     <ul class="flex h-full transition-all duration-1000" style={{ transform: `translateX(${index.value === 0 ? 0 : index.value * 100 * -1}%)` }}>

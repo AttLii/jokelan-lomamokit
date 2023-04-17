@@ -12,8 +12,8 @@ export const CabinGallery = component$(({ gallery }: Props) => {
   const onClick = $((i: number) => index.value = i)
 
   useVisibleTask$(({ track }) => {
-    track(index)
-    track(scrollContainer)
+    track(() => index.value)
+    track(() => scrollContainer.value)
 
     if (!scrollContainer.value || gallery.length === 0) return
 

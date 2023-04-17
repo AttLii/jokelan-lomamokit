@@ -38,12 +38,11 @@ export default component$(() => {
 
   // close nav on path change
   useVisibleTask$(({ track }) => {
-    track(location)
+    track(() => location.url)
     ui.nav = false
   })
 
   const { headerMenu, footerMenu, structuredData, email, location: _location, telephone } = globalContent.value
-
   return (
     <>
       <SkipToContent focusElement={main} />
