@@ -269,6 +269,7 @@ export type ParsedPage = {
 export type ParsedCabin = {
   type: "cabin";
   seoFields: ParsedSeoFields;
+  gallery: ParsedImageAsset[];
   sections: ParsedSection[];
   name: string;
   description: string;
@@ -303,12 +304,13 @@ const parsePageContent = (page: EntryPage): ParsedPage => {
 };
 
 const parseCabinContent = (cabin: EntryCabin): ParsedCabin => {
-  const { sections, seoFields, ...rest } = cabin.fields;
+  const { sections, seoFields, gallery, ...rest } = cabin.fields;
 
   return {
     type: "cabin",
     seoFields: parseSeoFields(seoFields),
     sections: sections ? parseSections(sections) : [],
+    gallery: gallery.map(parseImageAsset),
     ...rest,
   };
 };
