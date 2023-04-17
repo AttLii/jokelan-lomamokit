@@ -31,5 +31,6 @@ export const translations = {
   cabinSmokingAllowed: "cabin.smoking.allowed",
   cabinSmokingNotAllowed: "cabin.smoking.not.allowed",
   cabinOccupancy: "cabin.occupancy",
-  ariaLabelBreadcrumbs: "aria.label.breadcrumbs"
+  ariaLabelBreadcrumbs: "aria.label.breadcrumbs",
+  cabinGalleryGoTo: "cabin.gallery.go.to"
 }

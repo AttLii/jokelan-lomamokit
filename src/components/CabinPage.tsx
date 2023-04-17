@@ -1,12 +1,13 @@
 import { component$ } from "@builder.io/qwik";
-import { translations } from "~/constants/translations";
-import type { ParsedCabin } from "~/parsers/contentful";
-import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
+import { LuBedDouble, LuBox, LuCigarette, LuCigaretteOff, LuCircleSlashed, LuDog, LuHammer, LuLayoutGrid, LuPhone, LuUsers } from "@qwikest/icons/lucide";
 import { ActionLink } from "./ActionLink";
 import { Container } from "./Container";
 import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
 import { Section } from "./Section";
-import { LuBedDouble, LuBox, LuCigarette, LuCigaretteOff, LuCircleSlashed, LuDog, LuHammer, LuLayoutGrid, LuPhone, LuUsers } from "@qwikest/icons/lucide";
+import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
+import { CabinGallery } from "./CabinGallery";
+import { translations } from "~/constants/translations";
+import type { ParsedCabin } from "~/parsers/contentful";
 
 type Props = {
   content: ParsedCabin
@@ -27,12 +28,13 @@ export const CabinPage = component$(({
     smokingAllowed,
     occupancy,
     telephone,
+    gallery
   } = content
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
-        <Container type="wide" _class="flex flex-nowrap flex-col md:flex-row gap-4, ">
+        <Container type="wide" _class="flex flex-nowrap flex-col md:flex-row gap-4">
           <div class="hidden md:block md:order-last md:w-3/12">
             {tourBookingPage
               ? <ActionLink href={tourBookingPage}>{translations.cabinActionLinkText} {name}</ActionLink>
@@ -45,6 +47,7 @@ export const CabinPage = component$(({
             }
           </div>
           <div class="md:w-9/12 flex flex-col gap-4">
+            <CabinGallery gallery={gallery} />
             <ul class="flex flex-col gap-1">
               <li class="flex flex-nowrap items-center gap-2">
                 <LuHammer />
