@@ -1,36 +1,43 @@
 import { component$ } from "@builder.io/qwik";
+import { routeLoader$ } from "@builder.io/qwik-city";
+import { ErrorPage } from "~/components/ErrorPage";
+import { SectionsSelector } from "~/components/SectionsSelector";
+import { appContentful } from "~/factories/contentful";
+import { CabinPage } from "~/components/CabinPage";
+import { Breadcrumbs } from "~/components/Breadcrumbs";
+import { parseBreadcrumbs, parseContent } from "~/parsers/contentful";
+import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
+import { isParsedPage } from "~/typeguards/contentful";
+import { translations } from "~/constants/translations";
 import type {
   DocumentHead,
   StaticGenerateHandler,
 } from "@builder.io/qwik-city";
-import { routeLoader$ } from "@builder.io/qwik-city";
-import { ErrorPage } from "~/components/ErrorPage";
-import { SectionsSelector } from "~/components/SectionsSelector";
-import { parseContent } from "~/parsers/contentful";
-import { appContentful } from "~/factories/contentful";
-import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
-import { translations } from "~/constants/translations";
-import type { ParsedPageOrCabin } from "~/parsers/contentful";
-import { isParsedPage } from "~/typeguards/contentful";
-import { CabinPage } from "~/components/CabinPage";
+import type { ParsedPageOrCabin, Breadcrumb } from "~/parsers/contentful";
 
 export default component$(() => {
-  const content = usePageContent();
+  const page = usePageContent();
 
-  if (!content.value) {
+  if (!page.value.content) {
     return <ErrorPage />;
   }
 
-  if (isParsedPage(content.value)) {
-    return <SectionsSelector sections={content.value.sections} />
-  } else {
-    return <CabinPage content={content.value} />
-  }
+  return (
+    <>
+      <Breadcrumbs breadcrumbs={page.value.breadcrumbs} />
+      {isParsedPage(page.value.content) ? (
+        <SectionsSelector sections={page.value.content.sections} />
+      ) : (
+        <CabinPage content={page.value.content} />
+      )}
+    </>
+  )
 });
 
 export const usePageContent = routeLoader$(async ({ url, status }) => {
   const path = fixRouteLoaderPathname(url.pathname);
   let content: ParsedPageOrCabin | null = null;
+  let breadcrumbs: Breadcrumb[] = [];
   try {
     const _content = await appContentful.getContentByPath(path);
     if (!_content) {
@@ -40,12 +47,15 @@ export const usePageContent = routeLoader$(async ({ url, status }) => {
       if (!content) {
         status(404)
       }
+
+      const _breadcrumbs = await appContentful.getBreadcrumbs(path);
+      breadcrumbs = parseBreadcrumbs(_breadcrumbs)
     }
   } catch {
     status(500);
   }
 
-  return content;
+  return { content, breadcrumbs };
 });
 
 export const onStaticGenerate: StaticGenerateHandler = async () => {
@@ -61,7 +71,7 @@ export const onStaticGenerate: StaticGenerateHandler = async () => {
 
 export const head: DocumentHead = ({ resolveValue, url }) => {
   const page = resolveValue(usePageContent);
-  if (!page) {
+  if (!page.content) {
     return {
       title: translations["404Title"],
       meta: [
@@ -73,7 +83,7 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
     };
   }
 
-  const { title, description, robots, keywords, image } = page.seoFields;
+  const { title, description, robots, keywords, image } = page.content.seoFields;
 
   const _title = `${translations.seoTitle} | ${title}`;
 

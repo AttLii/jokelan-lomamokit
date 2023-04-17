@@ -80,6 +80,7 @@ export type Section =
   | EntryFiftyFiftySection;
 
 export type Page = {
+  name: string;
   path: string;
   seoFields: EntrySeoFields;
   sections?: Section[];

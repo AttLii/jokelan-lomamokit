@@ -1,4 +1,4 @@
-import type { ParsedCabin } from "~/parsers/contentful";
+import type { Breadcrumb, ParsedCabin } from "~/parsers/contentful";
 
 export const parsedCabinToApartmentJsonLD = ({
   name,
@@ -58,5 +58,21 @@ export const parsedCabinToApartmentJsonLD = ({
     latitude: lat,
     longitude: lon,
     smokingAllowed,
+  };
+};
+
+export const parseBreadcrumbsToJsonLD = (breadcrumbs: Breadcrumb[]) => {
+  return {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map(({ name, path }, i) => {
+      const item = import.meta.env.VITE_ORIGIN + (path === "/" ? "" : path);
+      return {
+        "@type": "ListItem",
+        position: i + 1,
+        name,
+        item,
+      };
+    }),
   };
 };

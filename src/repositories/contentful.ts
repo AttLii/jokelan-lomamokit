@@ -42,6 +42,23 @@ export class Contentful {
     return cabins.length > 0 ? cabins[0] : null;
   }
 
+  public async getBreadcrumbs(path: string): Promise<EntryContent[]> {
+    const entryBreadcrumbs: EntryContent[] = [];
+    if (path === "/" || path === "") return entryBreadcrumbs;
+
+    while (path !== "") {
+      const entry = await this.getContentByPath(path);
+      if (entry) entryBreadcrumbs.unshift(entry);
+
+      path = path.substring(0, path.lastIndexOf("/"));
+    }
+
+    const frontpageEntry = await this.getContentByPath("/");
+    if (frontpageEntry) entryBreadcrumbs.unshift(frontpageEntry);
+
+    return entryBreadcrumbs;
+  }
+
   public getEntryById<T>(id: string) {
     return this.client.getEntry<T>(id);
   }
