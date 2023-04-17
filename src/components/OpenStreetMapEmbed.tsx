@@ -5,7 +5,9 @@ type Props = {
   title: string;
   location: EntryFields.Location
 }
-export const OpenStreetMapEmbed = component$(({ title, location: { lat, lon } }: Props) => {
+export const OpenStreetMapEmbed = component$<Props>(({ title, location }) => {
+  if (!location) return null;
+  const { lat, lon } = location
   return (
     <div class="relative w-full aspect-square sm:aspect-16/9 border-black border-2 rounded-md overflow-hidden">
       <iframe

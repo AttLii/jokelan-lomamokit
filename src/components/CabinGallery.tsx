@@ -7,6 +7,7 @@ type Props = {
   gallery: ParsedImageAsset[]
 }
 export const CabinGallery = component$(({ gallery }: Props) => {
+  if (!Array.isArray(gallery)) return null
   const scrollContainer = useSignal<Element>()
   const index = useSignal(0)
   const onClick = $((i: number) => index.value = i)
