@@ -2,8 +2,8 @@ import { Link } from "@builder.io/qwik-city"
 import { LuChevronRight, LuHome } from "@qwikest/icons/lucide"
 import { Container } from "./Container"
 import { translations } from "~/constants/translations"
-import type { Breadcrumb } from "~/parsers/contentful"
 import { parseBreadcrumbsToJsonLD } from "~/utils/seo"
+import type { Breadcrumb } from "~/parsers/contentful"
 
 type Props = {
   breadcrumbs: Breadcrumb[]
@@ -23,7 +23,10 @@ export const Breadcrumbs = ({ breadcrumbs }: Props) => {
                 aria-current={i === breadcrumbs.length - 1 ? "location" : undefined}
               >
                 {i === 0 ? (
-                  <LuHome aria-label={name} />
+                  <>
+                    <LuHome />
+                    <span class="sr-only">{name}</span>
+                  </>
                 ) : (
                   name
                 )}
