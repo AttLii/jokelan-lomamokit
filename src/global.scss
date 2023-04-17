@@ -37,6 +37,7 @@
   }
   a {
     @apply text-base;
+    @apply leading-8;
     @apply underline;
     @apply hover:no-underline;
     @apply focus:no-underline;

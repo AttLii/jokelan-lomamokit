@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { RichText } from "./RichText";
-import { HiEnvelope, HiMapPin, HiPhone } from "@qwikest/icons/heroicons";
+import { LuMail, LuMapPin, LuPhone } from "@qwikest/icons/lucide";
 
 export type Props = {
   email: string;
@@ -11,23 +11,23 @@ export const FooterInfoList = component$(({ email, telephone, location }: Props)
   if (email === "" && telephone === "" && location === "") return null;
   return (
     <div>
-      <h2 class="text-2xl font-display font-bold mb-2">Jokelan Lomamökit</h2>
-      <ul class="flex flex-col gap-1">
+      <h2 class="text-2xl font-display font-bold mb-1.5">Jokelan Lomamökit</h2>
+      <ul class="flex flex-col gap-0.5">
         {telephone && (
           <li class="flex gap-2 items-start">
-            <HiPhone class="mt-1" variant="solid" />
+            <LuPhone class="mt-2" />
             <RichText dangerouslySetInnerHTML={telephone} />
           </li>
         )}
         {email && (
           <li class="flex gap-2 items-start">
-            <HiEnvelope class="mt-1" variant="solid" />
+            <LuMail class="mt-2" />
             <RichText dangerouslySetInnerHTML={email} />
           </li>
         )}
         {location && (
           <li class="flex gap-2 items-start">
-            <HiMapPin class="mt-1" variant="solid" />
+            <LuMapPin class="mt-2" />
             <RichText dangerouslySetInnerHTML={location} />
           </li>
         )}
