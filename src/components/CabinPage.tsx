@@ -1,11 +1,11 @@
 import { component$ } from "@builder.io/qwik";
 import { LuBedDouble, LuBox, LuCigarette, LuCigaretteOff, LuCircleSlashed, LuDog, LuHammer, LuLayoutGrid, LuPhone, LuUsers } from "@qwikest/icons/lucide";
-import { ActionLink } from "./ActionLink";
 import { Container } from "./Container";
 import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
 import { Section } from "./Section";
-import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
 import { CabinGallery } from "./CabinGallery";
+import { TourBookingPageLink } from "./TourBookingPageLink";
+import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
 import { translations } from "~/constants/translations";
 import type { ParsedCabin } from "~/parsers/contentful";
 
@@ -34,19 +34,8 @@ export const CabinPage = component$(({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
-        <Container type="wide" _class="flex flex-wrap flex-col md:flex-row justify-between gap-4">
+        <Container type="wide" _class="flex flex-wrap flex-col md:flex-row justify-between gap-4 relative">
           <h1 class="w-full text-6xl font-display">{name}</h1>
-          <aside class="hidden md:block md:order-last md:w-auto">
-            {tourBookingPage
-              ? <ActionLink href={tourBookingPage}>{translations.cabinActionLinkText} {name}</ActionLink>
-              : (
-                <>
-                  <ActionLink href="#" disabled>{translations.cabinActionLinkText} {name}</ActionLink>
-                  <p class="text-sm mt-1">{translations.cabinActionLinkDisabledHelp}</p>
-                </>
-              )
-            }
-          </aside>
           <div class="w-full md:w-9/12 flex flex-col gap-4">
             <CabinGallery gallery={gallery} />
             <h2 class="text-4xl font-display">{translations.cabinInformationTitle}</h2>
@@ -112,6 +101,9 @@ export const CabinPage = component$(({
               location={location}
             />
           </div>
+          <aside class="w-auto">
+            <TourBookingPageLink tourBookingPage={tourBookingPage} name={name} />
+          </aside>
         </Container>
       </Section>
     </>
