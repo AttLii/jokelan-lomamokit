@@ -24,7 +24,7 @@ export const CabinGallery = component$(({ gallery }: Props) => {
   return (
     <div class="flex flex-col gap-2">
       <div>
-        <div class="border-2 border-black rounded-md overflow-hidden">
+        <div class="border-2 border-black rounded-md overflow-hidden relative">
           <ul class="flex flex-nowrap transition-transform duration-1000" style={{
             transform: `translateX(${index.value === 0 ? 0 : index.value * 100 * -1}%)`
           }}>
@@ -34,6 +34,7 @@ export const CabinGallery = component$(({ gallery }: Props) => {
               </li>
             ))}
           </ul>
+          <span class="absolute bottom-1 right-1 p-1 leading-none bg-slate-100 rounded-md">{index.value + 1} / {gallery.length}</span>
         </div>
         {gallery[index.value] && (
           <p class="mt-1 text-center">{gallery[index.value].alt}</p>
