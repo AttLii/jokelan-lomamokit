@@ -48,11 +48,11 @@ export const CabinPage = component$(({
             <ul class="flex flex-col gap-1">
               <li class="flex flex-nowrap items-center gap-2">
                 <LuHammer />
-                {yearBuilt} {translations.cabinYearBuilt}
+                {translations.cabinYearBuilt} {yearBuilt}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 <LuUsers />
-                {occupancy} {translations.cabinOccupancy}
+                {translations.cabinOccupancy} {occupancy}
               </li>
 
               <li class="flex flex-nowrap items-center gap-2">
@@ -61,11 +61,11 @@ export const CabinPage = component$(({
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 <LuLayoutGrid />
-                {numberOfRooms} {translations.cabinNumberOfRooms}
+                {translations.cabinNumberOfRooms} {numberOfRooms}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 <LuBedDouble />
-                {numberOfBedrooms} {translations.cabinNumberOfBedrooms}
+                {translations.cabinNumberOfBedrooms} {numberOfBedrooms}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 {petsAllowed
