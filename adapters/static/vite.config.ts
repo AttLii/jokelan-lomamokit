@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 import { staticAdapter } from '@builder.io/qwik-city/adapters/static/vite';
-import { extendConfig, qwikCity } from '@builder.io/qwik-city/vite';
+import { extendConfig } from '@builder.io/qwik-city/vite';
 import baseConfig from '../../vite.config';
 import { transformStringTranslations } from '../../src/plugins/transformStringTranslations';
 
@@ -18,9 +18,6 @@ export default extendConfig(baseConfig, () => {
         origin: (process.env.VITE_ORIGIN || ""),
       }),
       transformStringTranslations(),
-      qwikCity({
-        trailingSlash: false
-      })
     ],
   };
 });
