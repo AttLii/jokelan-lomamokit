@@ -35,7 +35,7 @@ export const CabinPage = component$(({
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
         <Container type="wide" _class="flex flex-nowrap flex-col md:flex-row gap-4">
-          <div class="hidden md:block md:order-last md:w-3/12">
+          <aside class="hidden md:block md:order-last md:w-3/12">
             {tourBookingPage
               ? <ActionLink href={tourBookingPage}>{translations.cabinActionLinkText} {name}</ActionLink>
               : (
@@ -45,7 +45,7 @@ export const CabinPage = component$(({
                 </>
               )
             }
-          </div>
+          </aside>
           <div class="md:w-9/12 flex flex-col gap-4">
             <CabinGallery gallery={gallery} />
             <ul class="flex flex-col gap-1">
@@ -109,7 +109,6 @@ export const CabinPage = component$(({
             />
           </div>
         </Container>
-
       </Section>
     </>
   )
