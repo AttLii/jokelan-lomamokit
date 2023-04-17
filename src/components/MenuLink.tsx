@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
+import { LuChevronDown } from "@qwikest/icons/lucide";
 import { Link, useLocation } from "@builder.io/qwik-city";
-import { HiChevronDown } from "@qwikest/icons/heroicons";
 import { translations } from "~/constants/translations";
 import { areRelativePathsSame } from "~/utils/qwik";
 import type { Component } from "@builder.io/qwik";
@@ -43,7 +43,7 @@ export const MenuLink = component$(({
 
       {showIcon && (
         <button tabIndex={-1} aria-hidden="true" class="aspect-square absolute top-0 right-0" aria-label={translations.subMenuToggle}>
-          <HiChevronDown variant="mini" class=" h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
+          <LuChevronDown class=" h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
         </button>
       )}
       {(showIcon && SubMenuRenderer) && (
