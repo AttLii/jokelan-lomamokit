@@ -27,13 +27,11 @@ export default component$(() => {
     <>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       {isParsedPage(content)
-        ? (
-          <SectionsSelector sections={content.sections} />
-        )
+        ? <SectionsSelector sections={content.sections} />
         : isParsedCabin(content)
-          ? (
-            <CabinPage content={content} />
-          ) : null}
+          ? <CabinPage content={content} />
+          : null
+      }
     </>
   )
 });
