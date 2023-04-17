@@ -49,6 +49,7 @@ export const parsedCabinToApartmentJsonLD = ({
     telephone,
     address: {
       "@type": "PostalAddress",
+      contactType: "customer service",
       addressCountry,
       addressLocality,
       addressRegion,
