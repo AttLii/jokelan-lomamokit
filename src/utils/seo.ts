@@ -63,7 +63,7 @@ export const parsedCabinToApartmentJsonLD = ({
 
 export const parseBreadcrumbsToJsonLD = (breadcrumbs: Breadcrumb[]) => {
   return {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: breadcrumbs.map(({ name, path }, i) => {
       const item = import.meta.env.VITE_ORIGIN + (path === "/" ? "" : path);

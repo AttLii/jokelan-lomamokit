@@ -35,10 +35,10 @@ export const CabinPage = component$(({
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
         <Container type="wide" _class="flex flex-wrap flex-col md:flex-row gap-4 relative">
-          <h1 class="w-full text-6xl font-display">{name}</h1>
+          <h1 class="w-full text-6xl font-display font-bold">{name}</h1>
           <div class="w-full md:w-9/12 flex flex-col gap-4">
             <CabinGallery gallery={gallery} />
-            <h2 class="text-4xl font-display">{translations.cabinInformationTitle}</h2>
+            <h2 class="text-4xl font-display font-bold">{translations.cabinInformationTitle}</h2>
             <ul class="flex flex-col gap-1">
               <li class="flex flex-nowrap items-center gap-2">
                 <LuHammer />
@@ -95,7 +95,7 @@ export const CabinPage = component$(({
               </li>
             </ul>
 
-            <h2 class="text-4xl font-display">{translations.cabinLocationTitle}</h2>
+            <h2 class="text-4xl font-display font-bold">{translations.cabinLocationTitle}</h2>
             <OpenStreetMapEmbed
               title={translations.cabinMapLocation}
               location={location}

@@ -11,7 +11,7 @@ export const FooterInfoList = component$(({ email, telephone, location }: Props)
   if (email === "" && telephone === "" && location === "") return null;
   return (
     <div>
-      <h2 class="text-2xl font-display mb-2">Jokelan Lomamökit</h2>
+      <h2 class="text-2xl font-display font-bold mb-2">Jokelan Lomamökit</h2>
       <ul class="flex flex-col gap-1">
         {telephone && (
           <li class="flex gap-2 items-start">
