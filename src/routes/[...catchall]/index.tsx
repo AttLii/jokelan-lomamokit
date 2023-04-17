@@ -30,7 +30,7 @@ export default component$(() => {
       {isParsedCabin(content)
         ? <CabinPage content={content} key={pathname} />
         : isParsedPage(content)
-          ? null
+          ? <SectionsSelector sections={content.sections} />
           : null
       }
     </>
