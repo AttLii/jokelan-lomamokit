@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { ErrorPage } from "~/components/ErrorPage";
 import { SectionsSelector } from "~/components/SectionsSelector";
 import { appContentful } from "~/factories/contentful";
@@ -19,6 +19,7 @@ export default component$(() => {
   const page = usePageContent();
 
   const { content, breadcrumbs } = page.value
+  const { url: { pathname } } = useLocation()
   if (!content) {
     return <ErrorPage />;
   }
@@ -27,9 +28,9 @@ export default component$(() => {
     <>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       {isParsedPage(content)
-        ? <SectionsSelector sections={content.sections} />
+        ? <SectionsSelector sections={content.sections} key={pathname} />
         : isParsedCabin(content)
-          ? <CabinPage content={content} />
+          ? <CabinPage content={content} key={pathname} />
           : null
       }
     </>
