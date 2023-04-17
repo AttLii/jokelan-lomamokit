@@ -88,6 +88,7 @@ export type Page = {
 export type Cabin = {
   path: string;
   seoFields: EntrySeoFields;
+  gallery: Asset[];
   sections?: Section[];
   referenceImage: Asset;
   name: string;

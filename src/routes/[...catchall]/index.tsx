@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { ErrorPage } from "~/components/ErrorPage";
 import { SectionsSelector } from "~/components/SectionsSelector";
 import { appContentful } from "~/factories/contentful";
@@ -7,7 +7,7 @@ import { CabinPage } from "~/components/CabinPage";
 import { Breadcrumbs } from "~/components/Breadcrumbs";
 import { parseBreadcrumbs, parseContent } from "~/parsers/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
-import { isParsedPage } from "~/typeguards/contentful";
+import { isParsedCabin, isParsedPage } from "~/typeguards/contentful";
 import { translations } from "~/constants/translations";
 import type {
   DocumentHead,
@@ -18,18 +18,21 @@ import type { ParsedPageOrCabin, Breadcrumb } from "~/parsers/contentful";
 export default component$(() => {
   const page = usePageContent();
 
-  if (!page.value.content) {
+  const { content, breadcrumbs } = page.value
+  const { url: { pathname } } = useLocation()
+  if (!content) {
     return <ErrorPage />;
   }
 
   return (
     <>
-      <Breadcrumbs breadcrumbs={page.value.breadcrumbs} />
-      {isParsedPage(page.value.content) ? (
-        <SectionsSelector sections={page.value.content.sections} />
-      ) : (
-        <CabinPage content={page.value.content} />
-      )}
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      {isParsedPage(content)
+        ? <SectionsSelector sections={content.sections} key={pathname} />
+        : isParsedCabin(content)
+          ? <CabinPage content={content} key={pathname} />
+          : null
+      }
     </>
   )
 });
