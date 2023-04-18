@@ -42,4 +42,15 @@
     @apply hover:no-underline;
     @apply focus:no-underline;
   }
+  sup {
+    text-shadow: 0 0 4px black;
+    color: #f72b32;
+
+    // unset tailwind defaults
+    top: unset;
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: unset;
+    position: unset;
+  }
 }
