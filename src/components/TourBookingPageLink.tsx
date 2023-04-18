@@ -5,14 +5,19 @@ import { translations } from "~/constants/translations";
 type Props = {
   tourBookingPage?: string;
   name: string;
+  _class?: string;
 }
-export const TourBookingPageLink = component$(({ tourBookingPage, name }: Props) => {
-  return tourBookingPage
-    ? <ActionLink href={tourBookingPage}>{translations.cabinActionLinkText} {name}</ActionLink>
-    : (
-      <>
-        <ActionLink href="#" disabled>{translations.cabinActionLinkText} {name}</ActionLink>
-        <p class="text-sm mt-1">{translations.cabinActionLinkDisabledHelp}</p>
-      </>
-    )
+export const TourBookingPageLink = component$(({ tourBookingPage, name, _class = "" }: Props) => {
+  return (
+    <div class={_class}>
+      {tourBookingPage
+        ? <ActionLink href={tourBookingPage}>{translations.cabinActionLinkText} {name}</ActionLink>
+        : (
+          <>
+            <ActionLink href="#" disabled>{translations.cabinActionLinkText} {name}</ActionLink>
+            <p class="text-sm mt-1">{translations.cabinActionLinkDisabledHelp}</p>
+          </>
+        )}
+    </div>
+  )
 })

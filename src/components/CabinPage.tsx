@@ -101,8 +101,8 @@ export const CabinPage = component$(({
               location={location}
             />
           </div>
-          <aside class="w-auto">
-            <TourBookingPageLink tourBookingPage={tourBookingPage} name={name} />
+          <aside class="h-auto relative">
+            <TourBookingPageLink _class="sticky left-0 top-16" tourBookingPage={tourBookingPage} name={name} />
           </aside>
         </Container>
       </Section>
