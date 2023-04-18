@@ -9,12 +9,14 @@ type Props = ParsedImageAsset & {
   width: string;
 }
 export const AssetImage = component$(({ _class = "", alt, loading, height, src, width, srcSet }: Props) => {
+  const Img = () => <img class={_class} src={src} loading={loading} alt={alt} height={height} width={width} decoding="async" />
+  if (!srcSet) return <Img />
   return (
     <picture>
-      {srcSet && Object.keys(srcSet)?.map((key, i) => (
+      {Object.keys(srcSet)?.map((key, i) => (
         <source key={i} media={key} srcSet={srcSet[key]} />
       ))}
-      <img class={_class} src={src} loading={loading} alt={alt} height={height} width={width} decoding="async" />
+      <Img />
     </picture>
   )
 })
