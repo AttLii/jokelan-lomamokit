@@ -43,7 +43,7 @@
     @apply focus:no-underline;
   }
   sup {
-    text-shadow: 0 0 4px black;
+    -webkit-text-stroke: 1px black;
     color: #f72b32;
 
     // unset tailwind defaults
