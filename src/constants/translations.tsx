@@ -36,5 +36,6 @@ export const translations = {
   cabinInformationTitle: "cabin.information.title",
   cabinLocationTitle: "cabin.location.title",
   cabinReviewsAverage: "cabin.reviews.average",
-  cabinReviewsCount: "cabin.reviews.count"
+  cabinReviewsCount: "cabin.reviews.count",
+  cabinReviewRecommendation: "cabin.review.recommendation"
 }

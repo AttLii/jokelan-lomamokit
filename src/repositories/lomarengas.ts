@@ -2,8 +2,12 @@ import { z } from "@builder.io/qwik-city";
 import { parse } from "node-html-parser";
 
 const ratingSchema = z.object({
-  average: z.number(),
-  count: z.number(),
+  totalCountRecommendations: z.number(),
+  recommendsCount: z.number(),
+  averageRating: z.object({
+    average: z.number(),
+    count: z.number(),
+  }),
 });
 export type Reviews = z.infer<typeof ratingSchema>;
 
@@ -24,7 +28,6 @@ export const scrapeReviews = async (url: string): Promise<null | Reviews> => {
     // I'm only expecting this to break in Future. When that happens, find a better solution. this is MVP anyway to get reviews to the page.
     reviews = ratingSchema.parse(
       json?.props?.pageProps?.initialState?.pageAccommodation?.reviews_data
-        ?.averageRating
     );
   } catch (e) {
     console.log(`Error happened while scraping reviews for url '${url}'`, e);
