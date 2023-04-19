@@ -1,28 +1,44 @@
 import type { Breadcrumb, ParsedCabin } from "~/parsers/contentful";
+import type { Reviews } from "~/repositories/lomarengas";
 
-export const parsedCabinToApartmentJsonLD = ({
-  name,
-  description,
-  numberOfRooms,
-  occupancy,
-  floorLevel,
-  floorSize,
-  numberOfBathroomsTotal,
-  numberOfBedrooms,
-  petsAllowed,
-  tourBookingPage,
-  yearBuilt,
-  telephone,
-  addressCountry,
-  addressLocality,
-  addressRegion,
-  postalCode,
-  streetAddress,
-  seoFields,
-  location: { lat, lon },
-  smokingAllowed,
-}: ParsedCabin) => {
+const parseAggregatedRating = ({ average, count }: Reviews, name: string) => {
+  return {
+    "@type": "AggregateRating",
+    ratingValue: average / 2, // lomarengas returns the average from 0-10, json-ld expects 0-5
+    reviewCount: count,
+    itemReviewed: name,
+  };
+};
+
+export const parsedCabinToApartmentJsonLD = (
+  {
+    name,
+    description,
+    numberOfRooms,
+    occupancy,
+    floorLevel,
+    floorSize,
+    numberOfBathroomsTotal,
+    numberOfBedrooms,
+    petsAllowed,
+    tourBookingPage,
+    yearBuilt,
+    telephone,
+    addressCountry,
+    addressLocality,
+    addressRegion,
+    postalCode,
+    streetAddress,
+    seoFields,
+    location: { lat, lon },
+    smokingAllowed,
+  }: ParsedCabin,
+  reviews: Reviews | null
+) => {
   const [minValue, maxValue] = occupancy.split("-").map(Number);
+  const aggregateRating = reviews
+    ? parseAggregatedRating(reviews, name)
+    : undefined;
   return {
     "@context": "https://schema.org",
     "@type": "Apartment",
@@ -59,6 +75,7 @@ export const parsedCabinToApartmentJsonLD = ({
     latitude: lat,
     longitude: lon,
     smokingAllowed,
+    aggregateRating,
   };
 };
 

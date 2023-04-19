@@ -8,14 +8,17 @@ import { TourBookingPageLink } from "./TourBookingPageLink";
 import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
 import { translations } from "~/constants/translations";
 import type { ParsedCabin } from "~/parsers/contentful";
+import type { Reviews } from "~/repositories/lomarengas";
 
 type Props = {
   content: ParsedCabin
+  reviews: Reviews | null
 }
 export const CabinPage = component$(({
-  content
+  content,
+  reviews
 }: Props) => {
-  const jsonLD = parsedCabinToApartmentJsonLD(content)
+  const jsonLD = parsedCabinToApartmentJsonLD(content, reviews)
   const {
     name,
     location,

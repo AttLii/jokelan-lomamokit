@@ -8,27 +8,30 @@ import { Breadcrumbs } from "~/components/Breadcrumbs";
 import { parseBreadcrumbs, parseContent } from "~/parsers/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 import { isParsedCabin, isParsedPage } from "~/typeguards/contentful";
+import { scrapeReviews } from "~/repositories/lomarengas";
 import { translations } from "~/constants/translations";
 import type {
   DocumentHead,
   StaticGenerateHandler,
 } from "@builder.io/qwik-city";
 import type { ParsedPageOrCabin, Breadcrumb } from "~/parsers/contentful";
+import type { Reviews } from "~/repositories/lomarengas";
 
 export default component$(() => {
   const page = usePageContent();
 
-  const { content, breadcrumbs } = page.value
+  const { content, breadcrumbs, reviews } = page.value
   const { url: { pathname } } = useLocation()
   if (!content) {
     return <ErrorPage />;
   }
 
+
   return (
     <>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       {isParsedCabin(content)
-        ? <CabinPage content={content} key={pathname} />
+        ? <CabinPage content={content} reviews={reviews} key={pathname} />
         : isParsedPage(content)
           ? <SectionsSelector sections={content.sections} />
           : null
@@ -41,6 +44,7 @@ export const usePageContent = routeLoader$(async ({ url, status }) => {
   const path = fixRouteLoaderPathname(url.pathname);
   let content: ParsedPageOrCabin | null = null;
   let breadcrumbs: Breadcrumb[] = [];
+  let reviews: Reviews | null = null
   try {
     const _content = await appContentful.getContentByPath(path);
     if (!_content) {
@@ -49,6 +53,8 @@ export const usePageContent = routeLoader$(async ({ url, status }) => {
       content = parseContent(_content);
       if (!content) {
         status(404)
+      } else if (isParsedCabin(content) && content.tourBookingPage) {
+        reviews = await scrapeReviews(content.tourBookingPage)
       }
 
       const _breadcrumbs = await appContentful.getBreadcrumbs(path);
@@ -58,7 +64,7 @@ export const usePageContent = routeLoader$(async ({ url, status }) => {
     status(500);
   }
 
-  return { content, breadcrumbs };
+  return { content, breadcrumbs, reviews };
 });
 
 export const onStaticGenerate: StaticGenerateHandler = async () => {
