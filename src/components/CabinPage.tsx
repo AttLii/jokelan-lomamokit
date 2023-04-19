@@ -39,23 +39,25 @@ export const CabinPage = component$(({
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
         <Container type="wide" _class="flex flex-wrap flex-col md:flex-row gap-4 relative">
-          <h1 class="w-full text-6xl font-display font-bold">{name}</h1>
-          {reviews && reviews.count > 0 && (
-            <div class="w-full flex gap-2 items-center">
-              <StarRating rating={reviews.average} />
-              <span class="sr-only">
-                {translations.cabinReviewsAverage}
-                {reviews.average}
-              </span>
-              <p>
+          <div class="w-full">
+            <h1 class="text-6xl font-display font-bold">{name}</h1>
+            {reviews && reviews.count > 0 && (
+              <div class="flex gap-2 items-center">
+                <StarRating rating={reviews.average} />
                 <span class="sr-only">
-                  {translations.cabinReviewsCount}
+                  {translations.cabinReviewsAverage}
+                  {reviews.average}
                 </span>
-                {" "}
-                ({reviews.count})
-              </p>
-            </div>
-          )}
+                <p>
+                  <span class="sr-only">
+                    {translations.cabinReviewsCount}
+                  </span>
+                  {" "}
+                  ({reviews.count})
+                </p>
+              </div>
+            )}
+          </div>
           <div class="w-full md:w-9/12 flex flex-col gap-4">
             <CabinGallery gallery={gallery} />
             <h2 class="text-4xl font-display font-bold">{translations.cabinInformationTitle}</h2>
