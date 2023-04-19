@@ -34,5 +34,7 @@ export const translations = {
   ariaLabelBreadcrumbs: "aria.label.breadcrumbs",
   cabinGalleryGoTo: "cabin.gallery.go.to",
   cabinInformationTitle: "cabin.information.title",
-  cabinLocationTitle: "cabin.location.title"
+  cabinLocationTitle: "cabin.location.title",
+  cabinReviewsAverage: "cabin.reviews.average",
+  cabinReviewsCount: "cabin.reviews.count"
 }

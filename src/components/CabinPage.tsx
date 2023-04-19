@@ -39,6 +39,21 @@ export const CabinPage = component$(({
       <Section>
         <Container type="wide" _class="flex flex-wrap flex-col md:flex-row gap-4 relative">
           <h1 class="w-full text-6xl font-display font-bold">{name}</h1>
+          {reviews && reviews.count > 0 && (
+            <div class="w-full flex gap-2 items-center">
+              <p class="sr-only">
+                {translations.cabinReviewsAverage}
+                {reviews.average}
+              </p>
+              <p>
+                <span class="sr-only">
+                  {translations.cabinReviewsCount}
+                </span>
+                {" "}
+                ({reviews.count})
+              </p>
+            </div>
+          )}
           <div class="w-full md:w-9/12 flex flex-col gap-4">
             <CabinGallery gallery={gallery} />
             <h2 class="text-4xl font-display font-bold">{translations.cabinInformationTitle}</h2>
