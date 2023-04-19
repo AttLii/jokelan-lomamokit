@@ -1,7 +1,10 @@
 import type { Breadcrumb, ParsedCabin } from "~/parsers/contentful";
 import type { Reviews } from "~/repositories/lomarengas";
 
-const parseAggregatedRating = ({ average, count }: Reviews, name: string) => {
+const parseAggregatedRating = (
+  { averageRating: { average, count } }: Reviews,
+  name: string
+) => {
   return {
     "@type": "AggregateRating",
     ratingValue: average / 2, // lomarengas returns the average from 0-10, json-ld expects 0-5
