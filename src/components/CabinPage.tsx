@@ -5,6 +5,7 @@ import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
 import { Section } from "./Section";
 import { CabinGallery } from "./CabinGallery";
 import { TourBookingPageLink } from "./TourBookingPageLink";
+import { StarRating } from "./StarRating";
 import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
 import { translations } from "~/constants/translations";
 import type { ParsedCabin } from "~/parsers/contentful";
@@ -41,10 +42,11 @@ export const CabinPage = component$(({
           <h1 class="w-full text-6xl font-display font-bold">{name}</h1>
           {reviews && reviews.count > 0 && (
             <div class="w-full flex gap-2 items-center">
-              <p class="sr-only">
+              <StarRating rating={reviews.average} />
+              <span class="sr-only">
                 {translations.cabinReviewsAverage}
                 {reviews.average}
-              </p>
+              </span>
               <p>
                 <span class="sr-only">
                   {translations.cabinReviewsCount}
