@@ -26,7 +26,7 @@ export const FiftyFiftySection = component$(({ image, richText, order }: Props) 
             width="616"
           />
         </div>
-        <div class="my-auto py-8">
+        <div class="my-auto md:py-8">
           <RichText dangerouslySetInnerHTML={richText} />
         </div>
       </Container>
