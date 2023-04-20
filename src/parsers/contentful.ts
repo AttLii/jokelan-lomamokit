@@ -20,6 +20,7 @@ import type {
   EntryFAQ,
   FiftyFiftyOrder,
   EntrySeoFields,
+  EntryTranslation,
 } from "~/types/Contentful";
 import {
   isEntryCabin,
@@ -411,4 +412,15 @@ export const parseBreadcrumbs = (entries: EntryContent[]): Breadcrumb[] => {
       path,
     };
   });
+};
+
+export type ParsedTranslations = Record<string, string>;
+export const parseTranslations = (
+  entries: EntryTranslation[]
+): ParsedTranslations => {
+  return entries.reduce((acc, curr) => {
+    const { slug, translation } = curr.fields;
+    acc[slug] = translation;
+    return acc;
+  }, {} as ParsedTranslations);
 };
