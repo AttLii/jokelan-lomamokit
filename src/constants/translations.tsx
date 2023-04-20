@@ -3,6 +3,8 @@ export const translations = {
   uiNavClose: "nav.close",
   subMenuToggle: "sub.menu.toggle",
   seoTitle: "seo.title",
+  "404PageTitle": "404.page.title",
+  "404PageLink": "404.page.link",
   "404Title": "404.title",
   "404Description": "404.description",
   "404Content": "404.content",
