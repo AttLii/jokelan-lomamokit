@@ -21,10 +21,10 @@ const SubMenuRenderer = component$(({ subItems }: SubItemsRendererProps) => (
 ))
 
 type Props = {
-  _class: string;
+  class?: string;
   menu: ParsedMenu;
 }
-export const DesktopMenu = component$(({ _class, menu: { title, menuItems } }: Props) => {
+export const DesktopMenu = component$(({ class: _class = "", menu: { title, menuItems } }: Props) => {
   return (
     <nav class={_class} aria-label={title}>
       <ul class="flex flex-wrap gap-x-4 my-auto">
@@ -34,7 +34,7 @@ export const DesktopMenu = component$(({ _class, menu: { title, menuItems } }: P
               menuItem={menuItem}
               showSubItems
               SubMenuRenderer={SubMenuRenderer}
-              _class="min-w-[5rem] text-center"
+              class="min-w-[5rem] text-center"
             />
           </li>
         ))}

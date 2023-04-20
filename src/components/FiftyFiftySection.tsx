@@ -10,7 +10,7 @@ export const FiftyFiftySection = component$(({ image, richText, order }: Props) 
   const orderClass = order === "Image-Text" ? "md:order-first" : "md:order-last"
   return (
     <Section>
-      <Container type="wide" _class="grid gap-y-4 gap-x-8 grid-cols-1 md:grid-cols-2">
+      <Container type="wide" class="grid gap-y-4 gap-x-8 grid-cols-1 md:grid-cols-2">
         <div class={`
           my-auto relative border-black border-2 rounded-md overflow-hidden
           aspect-square
@@ -19,7 +19,7 @@ export const FiftyFiftySection = component$(({ image, richText, order }: Props) 
         `}>
           <AssetImage
             {...image}
-            _class="absolute top-0 left-0 w-full h-full object-center object-cover"
+            class="absolute top-0 left-0 w-full h-full object-center object-cover"
             src={`${image.src}&w=616&h=616&fit=fill`}
             loading="lazy"
             height="616"

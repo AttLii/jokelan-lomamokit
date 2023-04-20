@@ -38,7 +38,7 @@ export const CabinPage = component$(({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
-        <Container type="wide" _class="flex flex-wrap flex-col md:flex-row gap-4 relative">
+        <Container type="wide" class="flex flex-wrap flex-col md:flex-row gap-4 relative">
           <div class="w-full">
             <h1 class="text-6xl font-display font-bold">{name}</h1>
             {reviews && reviews.averageRating.count > 0 && (
@@ -132,7 +132,7 @@ export const CabinPage = component$(({
             />
           </div>
           <aside class="h-auto relative">
-            <TourBookingPageLink _class="sticky left-0 top-16" tourBookingPage={tourBookingPage} name={name} />
+            <TourBookingPageLink class="sticky left-0 top-16" tourBookingPage={tourBookingPage} name={name} />
           </aside>
         </Container>
       </Section>

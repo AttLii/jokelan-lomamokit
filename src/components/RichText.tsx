@@ -2,9 +2,9 @@ import { component$ } from "@builder.io/qwik"
 
 type Props = {
   dangerouslySetInnerHTML: string;
-  _class?: string;
+  class?: string;
 }
-export const RichText = component$(({ _class = "", dangerouslySetInnerHTML }: Props) => {
+export const RichText = component$(({ class: _class = "", dangerouslySetInnerHTML }: Props) => {
   return (
     <div class={`${_class} rich-text`} dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
   )

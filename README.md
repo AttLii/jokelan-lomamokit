@@ -34,4 +34,4 @@ GOOGLE_SHEETS_ID=
 
 ## TODO
 
-- how to pass class prop qwik way (`_class` -> ???)
+- Disaster recovery solution

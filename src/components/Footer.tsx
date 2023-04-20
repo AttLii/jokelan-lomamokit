@@ -20,7 +20,7 @@ export const Footer = component$(({
 }: Props) => {
   return (
     <footer class="w-full bg-slate-100 pt-10 pb-4 border-t-2 border-black relative">
-      <Container type="wide" _class="relative flex flex-col gap-4">
+      <Container type="wide" class="relative flex flex-col gap-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <nav aria-label={title} class="md:order-last">
             <ul class="flex flex-col md:flex-row gap-x-4 gap-y-1">
@@ -33,9 +33,9 @@ export const Footer = component$(({
           </nav>
           <FooterInfoList email={email} location={location} telephone={telephone} />
         </div>
-        <FooterLogoLink _class="mx-auto" />
+        <FooterLogoLink class="mx-auto" />
         <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
-        <BackToTopButton _class="absolute bottom-1.5 right-4" />
+        <BackToTopButton class="absolute bottom-1.5 right-4" />
       </Container>
     </footer>
   )

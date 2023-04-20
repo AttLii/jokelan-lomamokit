@@ -3,9 +3,9 @@ import { translations } from "~/constants/translations";
 import { UiContext } from "~/root";
 
 type Props = {
-  _class?: string;
+  class?: string;
 }
-export const BurgerButton = component$(({ _class = "" }: Props) => {
+export const BurgerButton = component$(({ class: _class = "" }: Props) => {
   const ui = useContext(UiContext);
   const openClassFirst = ui.nav ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0 translate-y-0"
   const openClassMiddle = ui.nav ? "opacity-0" : "opacity-100"

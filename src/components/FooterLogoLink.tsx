@@ -3,9 +3,9 @@ import { Link } from "@builder.io/qwik-city";
 import { translations } from "~/constants/translations";
 
 type Props = {
-  _class: string;
+  class?: string;
 }
-export const FooterLogoLink = component$(({ _class }: Props) => {
+export const FooterLogoLink = component$(({ class: _class = "" }: Props) => {
   return (
     <Link
       href="/"

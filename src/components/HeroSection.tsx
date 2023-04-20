@@ -10,7 +10,7 @@ export const HeroSection = component$(({ gallery, richText }: Props) => {
       <Carousel images={gallery} />
       <div class="flex items-center justify-center p-4 absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-10">
         <RichText
-          _class="h-max w-full max-w-xl text-white"
+          class="h-max w-full max-w-xl text-white"
           dangerouslySetInnerHTML={richText}
         />
       </div>

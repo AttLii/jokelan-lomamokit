@@ -15,7 +15,7 @@ export const InfoCard = component$(({ infoCard: { image, richText, title } }: Pr
   return (
     <button onClick$={onClick} class="relative w-full aspect-square border-2 border-black rounded-md bg-black">
       <AssetImage
-        _class="absolute w-full h-full object-cover object-center opacity-80"
+        class="absolute w-full h-full object-cover object-center opacity-80"
         loading="lazy"
         {...image}
         width="619"

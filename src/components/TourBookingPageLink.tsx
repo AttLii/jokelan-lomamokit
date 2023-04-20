@@ -5,9 +5,9 @@ import { translations } from "~/constants/translations";
 type Props = {
   tourBookingPage?: string;
   name: string;
-  _class?: string;
+  class?: string;
 }
-export const TourBookingPageLink = component$(({ tourBookingPage, name, _class = "" }: Props) => {
+export const TourBookingPageLink = component$(({ tourBookingPage, name, class: _class = "" }: Props) => {
   return (
     <div class={_class}>
       {tourBookingPage

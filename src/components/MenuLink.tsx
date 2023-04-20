@@ -12,7 +12,7 @@ export type SubItemsRendererProps = {
 
 type Props = {
   menuItem: ParsedMenuItem,
-  _class?: string,
+  class?: string,
   showSubItems: boolean;
   SubMenuRenderer?: Component<SubItemsRendererProps>
 }
@@ -25,7 +25,7 @@ export const MenuLink = component$(({
     },
     subItems
   },
-  _class = "",
+  class: _class = "",
   showSubItems,
   SubMenuRenderer
 }: Props) => {

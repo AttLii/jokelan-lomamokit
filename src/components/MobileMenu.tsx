@@ -31,7 +31,7 @@ export const MobileMenu = component$(({ menu }: Props) => {
         <ul class="flex flex-col gap-x-4">
           {menu.menuItems.map((menuItem, i) => (
             <li key={i}>
-              <MenuLink _class="justify-between text-left flex-wrap gap-1" menuItem={menuItem} showSubItems={true} SubMenuRenderer={SubMenuRenderer} />
+              <MenuLink class="justify-between text-left flex-wrap gap-1" menuItem={menuItem} showSubItems={true} SubMenuRenderer={SubMenuRenderer} />
             </li>
           ))}
         </ul>

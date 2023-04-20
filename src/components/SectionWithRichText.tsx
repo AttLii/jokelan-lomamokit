@@ -10,7 +10,7 @@ type Props = ContainerProps & {
 export const SectionWithRichText = component$(({ richText, type }: Props) => {
   return (
     <Section>
-      <Container type={type} _class="flex flex-col gap-4">
+      <Container type={type} class="flex flex-col gap-4">
         <RichText dangerouslySetInnerHTML={richText} />
         <Slot />
       </Container>

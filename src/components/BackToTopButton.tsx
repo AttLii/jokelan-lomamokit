@@ -3,9 +3,9 @@ import { LuArrowUp } from "@qwikest/icons/lucide";
 import { translations } from "~/constants/translations";
 
 type Props = {
-  _class: string;
+  class?: string;
 }
-export const BackToTopButton = component$(({ _class }: Props) => {
+export const BackToTopButton = component$(({ class: _class = "" }: Props) => {
   const onClick = $(() => window.scrollTo({
     behavior: "smooth",
     top: 0
