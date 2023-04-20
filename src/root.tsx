@@ -16,6 +16,7 @@ export const UiContext = createContextId<UiStore>('ui');
 export default component$(() => {
   const uiStore = useStore<UiStore>({ nav: false });
   useContextProvider(UiContext, uiStore);
+  const scrollLockClass = uiStore.nav ? "overflow-hidden sm:overflow-auto" : ""
   return (
     <QwikCityProvider>
       <head>
@@ -27,7 +28,7 @@ export default component$(() => {
         <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:wght@700&display=swap" />
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:wght@700&display=swap" rel="stylesheet" />
       </head>
-      <body class={uiStore.nav ? "overflow-hidden sm:overflow-auto" : ""}>
+      <body class={`${scrollLockClass} min-h-screen bg-[#f7f7f7] flex flex-col`}>
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>

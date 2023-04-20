@@ -46,7 +46,7 @@ export default component$(() => {
     <>
       <SkipToContent focusElement={main} />
       <Header menu={headerMenu} />
-      <main tabIndex={-1} ref={main} class="pt-14">
+      <main tabIndex={-1} ref={main} class="pt-14 flex-1">
         <Slot />
       </main>
       <Footer menu={footerMenu} email={email} location={_location} telephone={telephone} />
