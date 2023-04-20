@@ -14,12 +14,12 @@ export type Hero = {
   gallery: Asset[];
   richText: Document;
 };
-export type EntryHero = Entry<Hero>;
+export type EntryHeroSection = Entry<Hero>;
 export type CabinReferences = {
   richText: Document;
   cabinReferences: EntryCabin[];
 };
-export type EntryCabinReferences = Entry<CabinReferences>;
+export type EntryCabinReferencesSection = Entry<CabinReferences>;
 export type Map = {
   title: string;
   richText: Document;
@@ -71,13 +71,14 @@ export type FiftyFifty = {
 export type EntryFiftyFiftySection = Entry<FiftyFifty>;
 
 export type Section =
-  | EntryHero
-  | EntryCabinReferences
+  | EntryHeroSection
+  | EntryCabinReferencesSection
   | EntryMapSection
   | EntryFormSection
   | EntryInfoCardsSection
   | EntryFAQsSection
-  | EntryFiftyFiftySection;
+  | EntryFiftyFiftySection
+  | EntryContentSection;
 
 export type Page = {
   name: string;

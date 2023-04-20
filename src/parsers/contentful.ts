@@ -4,12 +4,12 @@ import type {
   EntryPage,
   SeoFields,
   Section,
-  EntryHero,
+  EntryHeroSection,
   EntryGlobalContent,
   EntryMenu,
   EntryMenuItem,
   EntryContent,
-  EntryCabinReferences,
+  EntryCabinReferencesSection,
   EntryCabin,
   EntryMapSection,
   EntryFormSection,
@@ -69,7 +69,7 @@ export type ParsedHero = {
 };
 export const parseHeroSection = ({
   fields: { richText, gallery },
-}: EntryHero): ParsedHero => {
+}: EntryHeroSection): ParsedHero => {
   return {
     type: "hero",
     richText: documentToHtml(richText),
@@ -84,11 +84,11 @@ export type ParsedCabinReferences = {
 };
 export const parseCabinReferencesSection = ({
   fields: { richText, cabinReferences },
-}: EntryCabinReferences): ParsedCabinReferences => {
+}: EntryCabinReferencesSection): ParsedCabinReferences => {
   return {
     type: "cabinReferences",
     richText: documentToHtml(richText),
-    cabinReferences: cabinReferences.map(parseCabinReference), // todo
+    cabinReferences: cabinReferences.map(parseCabinReference),
   };
 };
 

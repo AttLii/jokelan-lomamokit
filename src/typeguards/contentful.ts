@@ -13,9 +13,9 @@ import type {
   ParsedSection,
 } from "~/parsers/contentful";
 import type {
-  EntryHero,
+  EntryHeroSection,
   Section,
-  EntryCabinReferences,
+  EntryCabinReferencesSection,
   EntryMapSection,
   EntryFormSection,
   EntryInfoCardsSection,
@@ -34,7 +34,9 @@ export const isEntryCabin = (entry: EntryContent): entry is EntryCabin => {
   return entry.sys.contentType.sys.id === "cabin";
 };
 
-export const isEntryHeroSection = (section: Section): section is EntryHero => {
+export const isEntryHeroSection = (
+  section: Section
+): section is EntryHeroSection => {
   return section.sys.contentType.sys.id === "hero";
 };
 
@@ -46,7 +48,7 @@ export const isHeroSection = (
 
 export const isEntryCabinReferencesSection = (
   section: Section
-): section is EntryCabinReferences => {
+): section is EntryCabinReferencesSection => {
   return section.sys.contentType.sys.id === "cabinReferences";
 };
 
