@@ -23,8 +23,8 @@ devDependencies:
     specifier: ^3.3.1
     version: 3.3.1
   '@types/node':
-    specifier: ^18.15.11
-    version: 18.15.11
+    specifier: ^18.15.12
+    version: 18.15.12
   '@types/validator':
     specifier: ^13.7.15
     version: 13.7.15
@@ -35,14 +35,14 @@ devDependencies:
     specifier: 5.59.0
     version: 5.59.0(eslint@8.38.0)(typescript@5.0.4)
   '@vercel/node':
-    specifier: ^2.10.3
-    version: 2.10.3
+    specifier: ^2.11.0
+    version: 2.11.0
   '@vitejs/plugin-legacy':
     specifier: ^4.0.2
     version: 4.0.2(terser@5.17.1)(vite@4.2.2)
   autoprefixer:
     specifier: ^10.4.14
-    version: 10.4.14(postcss@8.4.22)
+    version: 10.4.14(postcss@8.4.23)
   contentful:
     specifier: ^9.3.5
     version: 9.3.5
@@ -68,8 +68,8 @@ devDependencies:
     specifier: ^6.1.5
     version: 6.1.5
   postcss:
-    specifier: ^8.4.22
-    version: 8.4.22
+    specifier: ^8.4.23
+    version: 8.4.23
   prettier:
     specifier: 2.8.7
     version: 2.8.7
@@ -78,7 +78,7 @@ devDependencies:
     version: 1.62.0
   tailwindcss:
     specifier: ^3.3.1
-    version: 3.3.1(postcss@8.4.22)
+    version: 3.3.1(postcss@8.4.23)
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -89,11 +89,11 @@ devDependencies:
     specifier: ^13.9.0
     version: 13.9.0
   vercel:
-    specifier: ^28.18.5
-    version: 28.18.5(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+    specifier: ^28.19.0
+    version: 28.19.0(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
   vite:
     specifier: 4.2.2
-    version: 4.2.2(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+    version: 4.2.2(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
   vite-tsconfig-paths:
     specifier: 4.2.0
     version: 4.2.0(typescript@5.0.4)(vite@4.2.2)
@@ -2294,7 +2294,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 18.15.11
+      '@types/node': 18.15.12
       '@types/responselike': 1.0.0
     dev: true
 
@@ -2335,7 +2335,7 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.15.11
+      '@types/node': 18.15.12
     dev: true
 
   /@types/google-spreadsheet@3.3.1:
@@ -2359,7 +2359,7 @@ packages:
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.15.11
+      '@types/node': 18.15.12
     dev: true
 
   /@types/mdast@3.0.11:
@@ -2388,8 +2388,8 @@ packages:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
     dev: true
 
-  /@types/node@18.15.11:
-    resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
+  /@types/node@18.15.12:
+    resolution: {integrity: sha512-Wha1UwsB3CYdqUm2PPzh/1gujGCNtWVUYF0mB00fJFoR4gTyWTDPjSm+zBF787Ahw8vSGgBja90MkgFwvB86Dg==}
     dev: true
 
   /@types/prop-types@15.7.5:
@@ -2407,7 +2407,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.15.11
+      '@types/node': 18.15.12
     dev: true
 
   /@types/scheduler@0.16.3:
@@ -2580,7 +2580,7 @@ packages:
       outdent: 0.8.0
     dev: true
 
-  /@vanilla-extract/integration@6.2.1(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1):
+  /@vanilla-extract/integration@6.2.1(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1):
     resolution: {integrity: sha512-+xYJz07G7TFAMZGrOqArOsURG+xcYvqctujEkANjw2McCBvGEK505RxQqOuNiA9Mi9hgGdNp2JedSa94f3eoLg==}
     dependencies:
       '@babel/core': 7.21.4
@@ -2594,8 +2594,8 @@ packages:
       lodash: 4.17.21
       mlly: 1.2.0
       outdent: 0.8.0
-      vite: 4.2.2(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
-      vite-node: 0.28.5(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+      vite: 4.2.2(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
+      vite-node: 0.28.5(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -2621,12 +2621,12 @@ packages:
       web-vitals: 0.2.4
     dev: true
 
-  /@vercel/gatsby-plugin-vercel-builder@1.2.8:
-    resolution: {integrity: sha512-Z2HDeD/XzGxLIgaLEKBCwGKhI0aorzmY1gYccq8yaC2pXMKBJblZfU87QQwgQgXI+BWigXM0xmtIca6ijbyALg==}
+  /@vercel/gatsby-plugin-vercel-builder@1.2.9:
+    resolution: {integrity: sha512-ghT1w02WsKfVQeT0QdMD6IdTBfiOK+TVYvGKaciLcHGqdO/I/JwI1UIMSxt4/Nty7Nepd69Gv64Wnv3/046Eow==}
     dependencies:
       '@sinclair/typebox': 0.25.24
       '@vercel/build-utils': 6.7.1
-      '@vercel/node': 2.10.3
+      '@vercel/node': 2.11.0
       '@vercel/routing-utils': 2.2.0
       esbuild: 0.14.47
       etag: 1.8.1
@@ -2637,16 +2637,16 @@ packages:
       - encoding
     dev: true
 
-  /@vercel/go@2.4.4:
-    resolution: {integrity: sha512-JXez+dQ6nXv68SnBor6FJqYy3X71FKnFc+OL4nxrsEsTzhCbqjLS/9hm4ztB0KQslWJvDp+2aRr++zLtyiCeQQ==}
+  /@vercel/go@2.5.0:
+    resolution: {integrity: sha512-KUUuFpl65oxyCbc7gDWkhbRUg2ZcAa5bpUrhnqYW4ohDicPGe7F7mo/v4GCp/zsFGFNJf9msbmycJA1f9Sk9Ug==}
     dev: true
 
-  /@vercel/hydrogen@0.0.62:
-    resolution: {integrity: sha512-A1Ttgc4pBrLEK5CpeLuf4TQp0IsXjISDMZVnRrpWhu10hKUV/KfJ8r8df1w+dEq5Qd9LmJAwvVXlpX5vcJLDRQ==}
+  /@vercel/hydrogen@0.0.63:
+    resolution: {integrity: sha512-FxBjgX0Mt22eqvHGrMKDcfxt/81y9QrHM6md+hGIflkQ9DvrtyYmmFze588yXWAv/I04eCgVoE+/KsgETkRi3w==}
     dev: true
 
-  /@vercel/next@3.7.4:
-    resolution: {integrity: sha512-ADM6ZvAOldy0QZCmKP4pMad145bcO3bZK+pAS7SQ/68jFun50Boz7Ophb5J/CYvRyCybIraJ1TxDEf+dyo9GeA==}
+  /@vercel/next@3.7.5:
+    resolution: {integrity: sha512-NonL8rt49EnwooMnAXYUDpz2B+e+yoQRdEZoekZlnFzP6VF1F1r14N2X9zUqxeRH7rY6X53MgiRNSHeZKqTXPA==}
     dev: true
 
   /@vercel/nft@0.22.5:
@@ -2674,18 +2674,20 @@ packages:
     resolution: {integrity: sha512-XEfKfnLGzlIBpad7eGNPql1HnMhoSTv9q3uDNC4axdaAC/kI5yvl8kXjuCPAXYvpbJnVQPpcSUC5/r5ap8F3jA==}
     dev: true
 
-  /@vercel/node@2.10.3:
-    resolution: {integrity: sha512-R6YwD7YTV4OPEjXnthTP2Zn96ZF2TAjmBhGKfYC9ZuqlmFzSxqyuHn+RUSkknkKBO46b4OzaNdi5XVnAdJizLA==}
+  /@vercel/node@2.11.0:
+    resolution: {integrity: sha512-vGZyh+r+qkU5Ys9nJ22o5RfuVAtZMA2wox96kGvA/XEX333FZNlFfbOUZfNSrDaQkrbDIeAA4zDj3XtvIyYlZw==}
     dependencies:
       '@edge-runtime/vm': 2.0.0
       '@types/node': 14.18.33
       '@vercel/build-utils': 6.7.1
       '@vercel/node-bridge': 4.0.1
-      '@vercel/static-config': 2.0.15
+      '@vercel/static-config': 2.0.16
       edge-runtime: 2.0.0
       esbuild: 0.14.47
       exit-hook: 2.2.1
       node-fetch: 2.6.7
+      path-to-regexp: 6.2.1
+      ts-morph: 12.0.0
       ts-node: 10.9.1(@types/node@14.18.33)(typescript@4.3.4)
       typescript: 4.3.4
     transitivePeerDependencies:
@@ -2694,8 +2696,8 @@ packages:
       - encoding
     dev: true
 
-  /@vercel/python@3.1.58:
-    resolution: {integrity: sha512-RZJkNLyxZMuNcBwJMU589noyuNAq2pNxwAqrMs7bdBucWkNRTURiEh3/rWjUSADOq3eUx4vhfQDzwvaeZyRxoA==}
+  /@vercel/python@3.1.59:
+    resolution: {integrity: sha512-38/KM33nJK5Jk+FiNhi3MTB7arWGGoCF8blejAexpw+NTL70nNy+4O7TN+y7qqx7Az4nygEgBBTgQVfkgIj0Yg==}
     dev: true
 
   /@vercel/redwood@1.1.14:
@@ -2709,13 +2711,13 @@ packages:
       - supports-color
     dev: true
 
-  /@vercel/remix-builder@1.8.4(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1):
-    resolution: {integrity: sha512-bexJo+z0kCZf2nhlne5TBcxWHQ4/xGT2JgmOJ5SaJOhhuZXt0BUZ3B38+2MPScUnItNWPSmn86xzp/VMWNuzuw==}
+  /@vercel/remix-builder@1.8.5(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1):
+    resolution: {integrity: sha512-nXUNsW6+gfHRqnZdXNm9Myx8G8nihbfRe/myAbvUHAXaym+9Bz+WHC3hXXr6YqAOVhjWvCfxAlA9eYqHbhlvKA==}
     dependencies:
-      '@remix-run/dev': /@vercel/remix-run-dev@1.15.0(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+      '@remix-run/dev': /@vercel/remix-run-dev@1.15.0(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
       '@vercel/build-utils': 6.7.1
       '@vercel/nft': 0.22.5
-      '@vercel/static-config': 2.0.15
+      '@vercel/static-config': 2.0.16
       path-to-regexp: 6.2.1
       semver: 7.3.8
       ts-morph: 12.0.0
@@ -2735,7 +2737,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@vercel/remix-run-dev@1.15.0(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1):
+  /@vercel/remix-run-dev@1.15.0(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1):
     resolution: {integrity: sha512-pQTM5WmOzrvhpPSHFDShwqX71YnLaTUxffhnly4MxVNKJ2WKV9zqx8bGQ/7cLfpEu9JfY2c+pVjYYb3wAMBt+Q==}
     engines: {node: '>=14'}
     hasBin: true
@@ -2757,7 +2759,7 @@ packages:
       '@esbuild-plugins/node-modules-polyfill': 0.1.4(esbuild@0.16.3)
       '@npmcli/package-json': 2.0.0
       '@remix-run/server-runtime': 1.15.0
-      '@vanilla-extract/integration': 6.2.1(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+      '@vanilla-extract/integration': 6.2.1(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
       arg: 5.0.2
       cacache: 15.3.0
       chalk: 4.1.2
@@ -2781,10 +2783,10 @@ packages:
       minimatch: 3.1.2
       node-fetch: 2.6.9
       ora: 5.4.1
-      postcss: 8.4.22
-      postcss-discard-duplicates: 5.1.0(postcss@8.4.22)
-      postcss-load-config: 4.0.1(postcss@8.4.22)
-      postcss-modules: 6.0.0(postcss@8.4.22)
+      postcss: 8.4.23
+      postcss-discard-duplicates: 5.1.0(postcss@8.4.23)
+      postcss-load-config: 4.0.1(postcss@8.4.23)
+      postcss-modules: 6.0.0(postcss@8.4.23)
       prettier: 2.7.1
       pretty-ms: 7.0.1
       proxy-agent: 5.0.0
@@ -2825,19 +2827,19 @@ packages:
     resolution: {integrity: sha512-sUmzJnd9O1N7StFEpKG9JvHJvHmJjgfrmhgQsQLEQ7OOQJkO9DYoLomlrIDW9qNdu7dNOeyj7gQY5B8y8RMntw==}
     dev: true
 
-  /@vercel/static-build@1.3.23:
-    resolution: {integrity: sha512-SjlOOqZRoe/10Af3iSWKEo2+pFpTwroZj6pwF1iP7I9Y3G5IDObzOfpxgdpsKCWSlmUIr1sGOjf1fgoPctbdLw==}
+  /@vercel/static-build@1.3.24:
+    resolution: {integrity: sha512-d3eEmXYFxdX28lgm/NTDfcgp6KWXmRmqZw0y/0+kodqDNyEPsblHkye/fQuQwovZ7dLTl8I947AH3XYNr1z1Dg==}
     dependencies:
       '@vercel/gatsby-plugin-vercel-analytics': 1.0.9
-      '@vercel/gatsby-plugin-vercel-builder': 1.2.8
+      '@vercel/gatsby-plugin-vercel-builder': 1.2.9
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
       - encoding
     dev: true
 
-  /@vercel/static-config@2.0.15:
-    resolution: {integrity: sha512-A/N3ZGiOOMql9JArwBTIfhFngFtmVC7ndKQKp0FoFq8MO79AS5qBBtdpILS5QA71M5v+9CPjVkHxN6QweU55Xg==}
+  /@vercel/static-config@2.0.16:
+    resolution: {integrity: sha512-lULo+NWBMpTJb9kR4AwYYK/2e7wknTJO2iFxgYYOkG5i12WHgPhMnXDKrEOcotxctd0yPKx3TsWVGEXniNm63g==}
     dependencies:
       ajv: 8.6.3
       json-schema-to-ts: 1.6.4
@@ -2859,7 +2861,7 @@ packages:
       regenerator-runtime: 0.13.11
       systemjs: 6.14.1
       terser: 5.17.1
-      vite: 4.2.2(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+      vite: 4.2.2(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3081,7 +3083,7 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: true
 
-  /autoprefixer@10.4.14(postcss@8.4.22):
+  /autoprefixer@10.4.14(postcss@8.4.23):
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -3093,7 +3095,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.22
+      postcss: 8.4.23
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -5484,13 +5486,13 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
-  /icss-utils@5.1.0(postcss@8.4.22):
+  /icss-utils@5.1.0(postcss@8.4.23):
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.22
+      postcss: 8.4.23
     dev: true
 
   /ieee754@1.2.1:
@@ -7161,38 +7163,38 @@ packages:
       pathe: 1.1.0
     dev: true
 
-  /postcss-discard-duplicates@5.1.0(postcss@8.4.22):
+  /postcss-discard-duplicates@5.1.0(postcss@8.4.23):
     resolution: {integrity: sha512-zmX3IoSI2aoenxHV6C7plngHWWhUOV3sP1T8y2ifzxzbtnuhk1EdPwm0S1bIUNaJ2eNbWeGLEwzw8huPD67aQw==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      postcss: 8.4.22
+      postcss: 8.4.23
     dev: true
 
-  /postcss-import@14.1.0(postcss@8.4.22):
+  /postcss-import@14.1.0(postcss@8.4.23):
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.22
+      postcss: 8.4.23
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.2
     dev: true
 
-  /postcss-js@4.0.1(postcss@8.4.22):
+  /postcss-js@4.0.1(postcss@8.4.23):
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
     engines: {node: ^12 || ^14 || >= 16}
     peerDependencies:
       postcss: ^8.4.21
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.22
+      postcss: 8.4.23
     dev: true
 
-  /postcss-load-config@3.1.4(postcss@8.4.22):
+  /postcss-load-config@3.1.4(postcss@8.4.23):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
     peerDependencies:
@@ -7205,11 +7207,11 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.22
+      postcss: 8.4.23
       yaml: 1.10.2
     dev: true
 
-  /postcss-load-config@4.0.1(postcss@8.4.22):
+  /postcss-load-config@4.0.1(postcss@8.4.23):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -7222,74 +7224,74 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.22
+      postcss: 8.4.23
       yaml: 2.2.1
     dev: true
 
-  /postcss-modules-extract-imports@3.0.0(postcss@8.4.22):
+  /postcss-modules-extract-imports@3.0.0(postcss@8.4.23):
     resolution: {integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.22
+      postcss: 8.4.23
     dev: true
 
-  /postcss-modules-local-by-default@4.0.0(postcss@8.4.22):
+  /postcss-modules-local-by-default@4.0.0(postcss@8.4.23):
     resolution: {integrity: sha512-sT7ihtmGSF9yhm6ggikHdV0hlziDTX7oFoXtuVWeDd3hHObNkcHRo9V3yg7vCAY7cONyxJC/XXCmmiHHcvX7bQ==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.22)
-      postcss: 8.4.22
+      icss-utils: 5.1.0(postcss@8.4.23)
+      postcss: 8.4.23
       postcss-selector-parser: 6.0.11
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-modules-scope@3.0.0(postcss@8.4.22):
+  /postcss-modules-scope@3.0.0(postcss@8.4.23):
     resolution: {integrity: sha512-hncihwFA2yPath8oZ15PZqvWGkWf+XUfQgUGamS4LqoP1anQLOsOJw0vr7J7IwLpoY9fatA2qiGUGmuZL0Iqlg==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.22
+      postcss: 8.4.23
       postcss-selector-parser: 6.0.11
     dev: true
 
-  /postcss-modules-values@4.0.0(postcss@8.4.22):
+  /postcss-modules-values@4.0.0(postcss@8.4.23):
     resolution: {integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.22)
-      postcss: 8.4.22
+      icss-utils: 5.1.0(postcss@8.4.23)
+      postcss: 8.4.23
     dev: true
 
-  /postcss-modules@6.0.0(postcss@8.4.22):
+  /postcss-modules@6.0.0(postcss@8.4.23):
     resolution: {integrity: sha512-7DGfnlyi/ju82BRzTIjWS5C4Tafmzl3R79YP/PASiocj+aa6yYphHhhKUOEoXQToId5rgyFgJ88+ccOUydjBXQ==}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
       generic-names: 4.0.0
-      icss-utils: 5.1.0(postcss@8.4.22)
+      icss-utils: 5.1.0(postcss@8.4.23)
       lodash.camelcase: 4.3.0
-      postcss: 8.4.22
-      postcss-modules-extract-imports: 3.0.0(postcss@8.4.22)
-      postcss-modules-local-by-default: 4.0.0(postcss@8.4.22)
-      postcss-modules-scope: 3.0.0(postcss@8.4.22)
-      postcss-modules-values: 4.0.0(postcss@8.4.22)
+      postcss: 8.4.23
+      postcss-modules-extract-imports: 3.0.0(postcss@8.4.23)
+      postcss-modules-local-by-default: 4.0.0(postcss@8.4.23)
+      postcss-modules-scope: 3.0.0(postcss@8.4.23)
+      postcss-modules-values: 4.0.0(postcss@8.4.23)
       string-hash: 1.1.3
     dev: true
 
-  /postcss-nested@6.0.0(postcss@8.4.22):
+  /postcss-nested@6.0.0(postcss@8.4.23):
     resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
-      postcss: 8.4.22
+      postcss: 8.4.23
       postcss-selector-parser: 6.0.11
     dev: true
 
@@ -7305,8 +7307,8 @@ packages:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
     dev: true
 
-  /postcss@8.4.22:
-    resolution: {integrity: sha512-XseknLAfRHzVWjCEtdviapiBtfLdgyzExD50Rg2ePaucEesyh8Wv4VPdW0nbyDa1ydbrAxV19jvMT4+LFmcNUA==}
+  /postcss@8.4.23:
+    resolution: {integrity: sha512-bQ3qMcpF6A/YjR55xtoTr0jGOlnPOKAIMdOWiv0EIT6HVPEaJiJB4NLljSbiHoC2RX7DN5Uvjtpbg1NPdwv1oA==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.6
@@ -8151,7 +8153,7 @@ packages:
     resolution: {integrity: sha512-8ftwWd+XnQtZ/aGbatrN4QFNGrKJzmbtixW+ODpci7pyoTajg4sonPP8aFLESAcuVxaC1FyDESt+SpfFCH9rZQ==}
     dev: true
 
-  /tailwindcss@3.3.1(postcss@8.4.22):
+  /tailwindcss@3.3.1(postcss@8.4.23):
     resolution: {integrity: sha512-Vkiouc41d4CEq0ujXl6oiGFQ7bA3WEhUZdTgXAhtKxSy49OmKs8rEfQmupsfF0IGW8fv2iQkp1EVUuapCFrZ9g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
@@ -8172,11 +8174,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.22
-      postcss-import: 14.1.0(postcss@8.4.22)
-      postcss-js: 4.0.1(postcss@8.4.22)
-      postcss-load-config: 3.1.4(postcss@8.4.22)
-      postcss-nested: 6.0.0(postcss@8.4.22)
+      postcss: 8.4.23
+      postcss-import: 14.1.0(postcss@8.4.23)
+      postcss-js: 4.0.1(postcss@8.4.23)
+      postcss-load-config: 3.1.4(postcss@8.4.23)
+      postcss-nested: 6.0.0(postcss@8.4.23)
       postcss-selector-parser: 6.0.11
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1
@@ -8639,22 +8641,22 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /vercel@28.18.5(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1):
-    resolution: {integrity: sha512-WdW5s7w2eGmvKwrIyG32BR/N0hKz9iiZe/INyqopW2Ql+E768ROSP+r+SFpWLMpkGGw14QnmZsFutZ5r7IbpJg==}
+  /vercel@28.19.0(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1):
+    resolution: {integrity: sha512-b2DruLFZnHFcy8LUE3FmPT6AoXTTYZYaJtWlbbowRrVrnRmimxQ0l4HWTn8VJOG0Bt/R19V+tTcRPShcDMg/DA==}
     engines: {node: '>= 14'}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@vercel/build-utils': 6.7.1
-      '@vercel/go': 2.4.4
-      '@vercel/hydrogen': 0.0.62
-      '@vercel/next': 3.7.4
-      '@vercel/node': 2.10.3
-      '@vercel/python': 3.1.58
+      '@vercel/go': 2.5.0
+      '@vercel/hydrogen': 0.0.63
+      '@vercel/next': 3.7.5
+      '@vercel/node': 2.11.0
+      '@vercel/python': 3.1.59
       '@vercel/redwood': 1.1.14
-      '@vercel/remix-builder': 1.8.4(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+      '@vercel/remix-builder': 1.8.5(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
       '@vercel/ruby': 1.3.75
-      '@vercel/static-build': 1.3.23
+      '@vercel/static-build': 1.3.24
     transitivePeerDependencies:
       - '@remix-run/serve'
       - '@swc/core'
@@ -8696,7 +8698,7 @@ packages:
       vfile-message: 3.1.4
     dev: true
 
-  /vite-node@0.28.5(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1):
+  /vite-node@0.28.5(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1):
     resolution: {integrity: sha512-LmXb9saMGlrMZbXTvOveJKwMTBTNUH66c8rJnQ0ZPNX+myPEol64+szRzXtV5ORb0Hb/91yq+/D3oERoyAt6LA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -8708,7 +8710,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.2.2(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+      vite: 4.2.2(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -8730,13 +8732,13 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 2.1.1(typescript@5.0.4)
-      vite: 4.2.2(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1)
+      vite: 4.2.2(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /vite@4.2.2(@types/node@18.15.11)(sass@1.62.0)(terser@5.17.1):
+  /vite@4.2.2(@types/node@18.15.12)(sass@1.62.0)(terser@5.17.1):
     resolution: {integrity: sha512-PcNtT5HeDxb3QaSqFYkEum8f5sCVe0R3WK20qxgIvNBZPXU/Obxs/+ubBMeE7nLWeCo2LDzv+8hRYSlcaSehig==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -8761,9 +8763,9 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.15.11
+      '@types/node': 18.15.12
       esbuild: 0.17.17
-      postcss: 8.4.22
+      postcss: 8.4.23
       resolve: 1.22.2
       rollup: 3.20.6
       sass: 1.62.0
