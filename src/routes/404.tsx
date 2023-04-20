@@ -1,10 +1,10 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
-import { Section } from "./Section";
-import { Container } from "./Container";
+import { Section } from "../components/Section";
+import { Container } from "../components/Container";
 import { translations } from "~/constants/translations";
 
-export const ErrorPage = component$(() => {
+export default component$(() => {
   return (
     <Section>
       <Container type="wide" class="text-center rich-text">

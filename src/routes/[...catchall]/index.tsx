@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
-import { ErrorPage } from "~/components/ErrorPage";
+import ErrorPage from "~/routes/404";
 import { SectionsSelector } from "~/components/SectionsSelector";
 import { appContentful } from "~/factories/contentful";
 import { CabinPage } from "~/components/CabinPage";

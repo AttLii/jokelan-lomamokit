@@ -3,7 +3,7 @@ import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SkipToContent } from "~/components/SkipToContent";
-import { ErrorPage } from "~/components/ErrorPage";
+import ErrorPage from "~/routes/404";
 import { parseGlobalContent } from "~/parsers/contentful";
 import { appContentful } from "~/factories/contentful";
 import { UiContext } from "~/root";
