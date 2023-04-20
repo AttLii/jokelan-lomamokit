@@ -28,11 +28,10 @@ GOOGLE_SHEETS_ID=
 
 - `pnpm i`
 - fill `.env`-file with above information
-  - note: VITE_ENDPOINT_ORIGIN should be by default `http://localhost:3000` (next cli command's port).
+  - note: VITE_ENDPOINT_ORIGIN should be by default `http://localhost:3000` (next command's port).
 - `pnpm vercel dev` - starts server for vercel serverless functions
 - `pnpm dev`
 
 ## TODO
 
 - how to pass class prop qwik way (`_class` -> ???)
-- Test this [package](https://github.com/intercom/contentful-typescript-codegen)
