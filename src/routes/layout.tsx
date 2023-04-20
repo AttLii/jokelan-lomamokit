@@ -2,26 +2,22 @@ import { component$, Slot, useContext, useSignal, useVisibleTask$ } from "@build
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
-import { appContentful } from "~/factories/contentful";
-import { parseGlobalContent } from "~/parsers/contentful";
-import { UiContext } from "~/root";
 import { SkipToContent } from "~/components/SkipToContent";
+import { ErrorPage } from "~/components/ErrorPage";
+import { parseGlobalContent } from "~/parsers/contentful";
+import { appContentful } from "~/factories/contentful";
+import { UiContext } from "~/root";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
-import type { Signal } from "@builder.io/qwik";
 
-export const useGlobalContent = routeLoader$(async ({ exit }) => {
+export const useGlobalContent = routeLoader$(async () => {
   let globalContent: null | ParsedGlobalContent = null
   try {
     const _globalContent = await appContentful.getGlobalContent()
-    if (!_globalContent) {
-      exit() // TODO: better solution?
-      return
-    }
+    if (!_globalContent) return null
 
     globalContent = parseGlobalContent(_globalContent)
   } catch {
-    exit()
-    return
+    console.log("Error: Couldn't load global content")
   }
 
   return globalContent
@@ -30,9 +26,12 @@ export const useGlobalContent = routeLoader$(async ({ exit }) => {
 export default component$(() => {
   // casting type to ParsedGlobalContent
   // Qwik doesn't recognize that calling exit stops the build
-  const globalContent = useGlobalContent() as Readonly<Signal<ParsedGlobalContent>>
-  const main = useSignal<HTMLElement>()
+  const globalContent = useGlobalContent()
+  if (!globalContent.value) {
+    return <ErrorPage />
+  }
 
+  const main = useSignal<HTMLElement>()
   const ui = useContext(UiContext);
   const location = useLocation()
 
