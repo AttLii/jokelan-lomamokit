@@ -1,8 +1,8 @@
 import { component$ } from "@builder.io/qwik";
-import type { ParsedCabinReference } from "~/parsers/contentful";
 import { IconLink } from "./IconLink";
-import { translations } from "~/constants/translations";
 import { AssetImage } from "./AssetImage";
+import { t } from "~/stores/translation";
+import type { ParsedCabinReference } from "~/parsers/contentful";
 
 type Props = {
   cabinReference: ParsedCabinReference
@@ -20,7 +20,7 @@ export const CabinCard = component$(({ cabinReference: { path, title, image: { s
       />
       <div class="p-4 border-black border-t-2">
         <h3 class="text-2xl font-bold mb-2">{title}</h3>
-        <IconLink href={path}>{translations.genericReadMore}</IconLink>
+        <IconLink href={path}>{t('generic.read.more')}</IconLink>
       </div>
     </article>
   )

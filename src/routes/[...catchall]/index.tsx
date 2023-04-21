@@ -9,7 +9,6 @@ import { parseBreadcrumbs, parseContent } from "~/parsers/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 import { isParsedCabin, isParsedPage } from "~/typeguards/contentful";
 import { scrapeReviews } from "~/repositories/lomarengas";
-import { translations } from "~/constants/translations";
 import type {
   DocumentHead,
   StaticGenerateHandler,
@@ -82,11 +81,11 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
   const page = resolveValue(usePageContent);
   if (!page.content) {
     return {
-      title: translations["404Title"],
+      title: "404",
       meta: [
         {
-          name: translations["404Description"],
-          content: translations["404Content"],
+          name: "description",
+          content: "Sivua ei löytynyt",
         },
       ],
     };
@@ -94,7 +93,7 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
 
   const { title, description, robots, keywords, image } = page.content.seoFields;
 
-  const _title = `${translations.seoTitle} | ${title}`;
+  const _title = `Jokelan Lomamökit | ${title}`;
 
   let _url = import.meta.env.VITE_ORIGIN;
   const path = normalizePath(url.pathname);

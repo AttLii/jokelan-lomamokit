@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { ActionLink } from "./ActionLink";
-import { translations } from "~/constants/translations";
+import { t } from "~/stores/translation";
 
 type Props = {
   tourBookingPage?: string;
@@ -11,11 +11,11 @@ export const TourBookingPageLink = component$(({ tourBookingPage, name, class: _
   return (
     <div class={_class}>
       {tourBookingPage
-        ? <ActionLink href={tourBookingPage}>{translations.cabinActionLinkText} {name}</ActionLink>
+        ? <ActionLink href={tourBookingPage}>{t('cabin.action.link.text')} {name}</ActionLink>
         : (
           <>
-            <ActionLink href="#" disabled>{translations.cabinActionLinkText} {name}</ActionLink>
-            <p class="text-sm mt-1">{translations.cabinActionLinkDisabledHelp}</p>
+            <ActionLink href="#" disabled>{t('cabin.action.link.text')} {name}</ActionLink>
+            <p class="text-sm mt-1">{t('cabin.action.link.disabled.help')}</p>
           </>
         )}
     </div>

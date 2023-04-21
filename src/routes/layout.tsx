@@ -1,12 +1,12 @@
 import { component$, Slot, useContext, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
+import ErrorPage from "~/routes/404";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SkipToContent } from "~/components/SkipToContent";
-import ErrorPage from "~/routes/404";
 import { parseGlobalContent } from "~/parsers/contentful";
-import { appContentful } from "~/factories/contentful";
 import { UiContext } from "~/root";
+import { appContentful } from "~/factories/contentful";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
 
 export const useGlobalContent = routeLoader$(async () => {
@@ -33,7 +33,7 @@ export default component$(() => {
 
   const main = useSignal<HTMLElement>()
   const ui = useContext(UiContext);
-  const location = useLocation()
+  const location = useLocation();
 
   // close nav on path change
   useVisibleTask$(({ track }) => {

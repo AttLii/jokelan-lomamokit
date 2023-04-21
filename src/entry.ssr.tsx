@@ -16,9 +16,17 @@ import {
 } from "@builder.io/qwik/server";
 import { manifest } from "@qwik-client-manifest";
 import Root from "./root";
+import { appContentful } from "./factories/contentful";
+import { parseTranslations } from "./parsers/contentful";
 
-export default function (opts: RenderToStreamOptions) {
-  return renderToStream(<Root />, {
+export default async function (opts: RenderToStreamOptions) {
+  const translations = await appContentful
+    .getTranslations()
+    .then(parseTranslations)
+    .catch(() => {
+      process.exit(1)
+    })
+  return renderToStream(<Root translations={translations} />, {
     manifest,
     ...opts,
     // Use container attributes to set attributes on the html tag.

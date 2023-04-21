@@ -1,21 +1,22 @@
+import { component$ } from "@builder.io/qwik"
 import { Link } from "@builder.io/qwik-city"
 import { LuChevronRight, LuHome } from "@qwikest/icons/lucide"
 import { Container } from "./Container"
-import { translations } from "~/constants/translations"
 import { parseBreadcrumbsToJsonLD } from "~/utils/seo"
+import { t } from "~/stores/translation"
 import type { Breadcrumb } from "~/parsers/contentful"
 
 type Props = {
   breadcrumbs: Breadcrumb[]
 }
-export const Breadcrumbs = ({ breadcrumbs }: Props) => {
+export const Breadcrumbs = component$<Props>(({ breadcrumbs }) => {
   if (breadcrumbs.length === 0) return null
   const jsonLD = parseBreadcrumbsToJsonLD(breadcrumbs)
   return (
     <div class="border-b-2 border-black bg-slate-100 py-1">
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Container type="wide">
-        <nav aria-label={translations.ariaLabelBreadcrumbs}>
+        <nav aria-label={t("aria.label.breadcrumbs")}>
           <ul class="flex flex-wrap gap-1 text-sm">
             {breadcrumbs.map(({ name, path }, i) => (
               <li key={i} class="flex flex-nowrap gap-1 items-center">
@@ -48,4 +49,4 @@ export const Breadcrumbs = ({ breadcrumbs }: Props) => {
       </Container>
     </div>
   )
-}
+})
