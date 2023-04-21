@@ -1,13 +1,10 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
 import { RichText } from "./RichText";
 import { LuMail, LuMapPin, LuPhone } from "@qwikest/icons/lucide";
+import { GlobalContentContext } from "~/root";
 
-export type Props = {
-  email: string;
-  telephone: string;
-  location: string;
-}
-export const FooterInfoList = component$(({ email, telephone, location }: Props) => {
+export const FooterInfoList = component$(() => {
+  const { email, telephone, location } = useContext(GlobalContentContext)
   if (email === "" && telephone === "" && location === "") return null;
   return (
     <div>

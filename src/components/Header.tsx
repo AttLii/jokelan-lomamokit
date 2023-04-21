@@ -4,19 +4,15 @@ import { DesktopMenu } from "./DesktopMenu";
 import { MobileMenu } from "./MobileMenu";
 import { Container } from "./Container";
 import { HeaderLogoLink } from "./HeaderLogoLink";
-import type { ParsedMenu } from "~/parsers/contentful";
 
-type Props = {
-  menu: ParsedMenu
-}
-export const Header = component$(({ menu }: Props) => {
+export const Header = component$(() => {
   return (
     <header class="fixed w-full bg-slate-100 z-10 h-14 border-black border-b-2 py-2">
       <Container type="wide" class="flex h-full align-middle justify-between">
         <HeaderLogoLink />
-        <DesktopMenu menu={menu} class="hidden sm:flex" />
+        <DesktopMenu class="hidden sm:flex" />
         <BurgerButton class="block sm:hidden ml-auto my-auto" />
-        <MobileMenu menu={menu} />
+        <MobileMenu />
       </Container>
     </header>
   )
