@@ -305,8 +305,14 @@ const parsePageContent = (page: EntryPage): ParsedPage => {
 };
 
 const parseCabinContent = (cabin: EntryCabin): ParsedCabin => {
-  const { sections, seoFields, gallery, ...rest } = cabin.fields;
-
+  const {
+    sections,
+    seoFields,
+    gallery,
+    referenceImage: _,
+    ...rest
+  } = cabin.fields;
+  _;
   return {
     type: "cabin",
     seoFields: parseSeoFields(seoFields),
