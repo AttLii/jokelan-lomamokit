@@ -414,13 +414,13 @@ export const parseBreadcrumbs = (entries: EntryContent[]): Breadcrumb[] => {
   });
 };
 
-export type ParsedTranslations = Record<string, string>;
+export type ParsedTranslationsContent = Record<string, string>;
 export const parseTranslations = (
   entries: EntryTranslation[]
-): ParsedTranslations => {
+): ParsedTranslationsContent => {
   return entries.reduce((acc, curr) => {
     const { slug, translation } = curr.fields;
     acc[slug] = translation;
     return acc;
-  }, {} as ParsedTranslations);
+  }, {} as ParsedTranslationsContent);
 };

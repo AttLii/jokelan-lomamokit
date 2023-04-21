@@ -7,7 +7,7 @@ import { CabinGallery } from "./CabinGallery";
 import { TourBookingPageLink } from "./TourBookingPageLink";
 import { StarRating } from "./StarRating";
 import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
-import { translations } from "~/constants/translations";
+import { t } from "~/stores/translation";
 import type { ParsedCabin } from "~/parsers/contentful";
 import type { Reviews } from "~/repositories/lomarengas";
 
@@ -45,12 +45,12 @@ export const CabinPage = component$(({
               <div class="flex gap-2 items-center">
                 <StarRating rating={reviews.averageRating.average} />
                 <span class="sr-only">
-                  {translations.cabinReviewsAverage}
+                  {t('cabin.reviews.average')}
                   {reviews.averageRating.average}
                 </span>
                 <p>
                   <span class="sr-only">
-                    {translations.cabinReviewsCount}
+                    {t('cabin.reviews.count')}
                   </span>
                   {" "}
                   ({reviews.averageRating.count})
@@ -60,48 +60,48 @@ export const CabinPage = component$(({
           </div>
           <div class="w-full md:w-9/12 flex flex-col gap-4">
             <CabinGallery gallery={gallery} />
-            <h2 class="text-4xl font-display font-bold">{translations.cabinInformationTitle}</h2>
+            <h2 class="text-4xl font-display font-bold">{t('cabin.information.title')}</h2>
             <ul class="flex flex-col gap-1">
               {reviews && (
                 <li class="flex flex-nowrap items-center gap-2">
                   <LuThumbsUp />
                   {Math.round(reviews.recommendsCount / reviews.totalCountRecommendations * 100)}%
                   {" "}
-                  {translations.cabinReviewRecommendation}
+                  {t('cabin.review.recommendation')}
                 </li>
               )}
               <li class="flex flex-nowrap items-center gap-2">
                 <LuHammer />
-                {translations.cabinYearBuilt} {yearBuilt}
+                {t('cabin.year.built')} {yearBuilt}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 <LuUsers />
-                {translations.cabinOccupancy} {occupancy}
+                {t('cabin.occupancy')} {occupancy}
               </li>
 
               <li class="flex flex-nowrap items-center gap-2">
                 <LuBox />
-                {floorSize} {translations.genericMeterSquared}
+                {floorSize} {t('generic.meter.squared')}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 <LuLayoutGrid />
-                {translations.cabinNumberOfRooms} {numberOfRooms}
+                {t('cabin.number.of.rooms')} {numberOfRooms}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 <LuBedDouble />
-                {translations.cabinNumberOfBedrooms} {numberOfBedrooms}
+                {t('cabin.number.of.bedrooms')} {numberOfBedrooms}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 {petsAllowed
                   ? (
                     <>
                       <LuDog />
-                      {translations.cabinPetsAllowed}
+                      {t('cabin.pets.allowed')}
                     </>
                   ) : (
                     <>
                       <LuCircleSlashed />
-                      {translations.cabinPetsNotAllowed}
+                      {t('cabin.pets.not.allowed')}
                     </>
                   )}
               </li>
@@ -110,12 +110,12 @@ export const CabinPage = component$(({
                   ? (
                     <>
                       <LuCigarette />
-                      {translations.cabinSmokingAllowed}
+                      {t('cabin.smoking.allowed')}
                     </>
                   ) : (
                     <>
                       <LuCigaretteOff />
-                      {translations.cabinSmokingNotAllowed}
+                      {t('cabin.smoking.not.allowed')}
                     </>
                   )}
               </li>
@@ -125,9 +125,9 @@ export const CabinPage = component$(({
               </li>
             </ul>
 
-            <h2 class="text-4xl font-display font-bold">{translations.cabinLocationTitle}</h2>
+            <h2 class="text-4xl font-display font-bold">{t('cabin.location.title')}</h2>
             <OpenStreetMapEmbed
-              title={translations.cabinMapLocation}
+              title={t('cabin.map.location')}
               location={location}
             />
           </div>

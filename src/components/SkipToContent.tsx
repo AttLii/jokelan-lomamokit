@@ -1,5 +1,5 @@
 import { $, component$ } from "@builder.io/qwik";
-import { translations } from "~/constants/translations";
+import { t } from "~/stores/translation";
 import type { Signal } from "@builder.io/qwik";
 
 type Props = {
@@ -19,7 +19,7 @@ export const SkipToContent = component$(({ focusElement }: Props) => {
       "
       onClick$={onClick}
     >
-      {translations.genericSkipToContent}
+      {t('generic.skip.to.content')}
     </button>
   )
 })

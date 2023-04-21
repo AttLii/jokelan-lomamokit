@@ -12,6 +12,7 @@ export type UiStore = {
   nav: boolean
 }
 export const UiContext = createContextId<UiStore>('ui');
+export const TranslationContext = createContextId<UiStore>('translations');
 
 export default component$(() => {
   const uiStore = useStore<UiStore>({ nav: false });

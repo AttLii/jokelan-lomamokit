@@ -9,7 +9,7 @@ import { parseBreadcrumbs, parseContent } from "~/parsers/contentful";
 import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
 import { isParsedCabin, isParsedPage } from "~/typeguards/contentful";
 import { scrapeReviews } from "~/repositories/lomarengas";
-import { translations } from "~/constants/translations";
+import { useTranslationContent } from "../layout";
 import type {
   DocumentHead,
   StaticGenerateHandler,
@@ -80,13 +80,14 @@ export const onStaticGenerate: StaticGenerateHandler = async () => {
 
 export const head: DocumentHead = ({ resolveValue, url }) => {
   const page = resolveValue(usePageContent);
+  const translations = resolveValue(useTranslationContent)
   if (!page.content) {
     return {
-      title: translations["404Title"],
+      title: translations ? translations['404.title'] : "404",
       meta: [
         {
-          name: translations["404Description"],
-          content: translations["404Content"],
+          name: "description",
+          content: translations ? translations['404.description'] : "Sivua ei löytynyt",
         },
       ],
     };
@@ -94,7 +95,7 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
 
   const { title, description, robots, keywords, image } = page.content.seoFields;
 
-  const _title = `${translations.seoTitle} | ${title}`;
+  const _title = `${translations ? translations['seo.title'] : "Jokelan Lomamökit"} | ${title}`;
 
   let _url = import.meta.env.VITE_ORIGIN;
   const path = normalizePath(url.pathname);

@@ -1,10 +1,10 @@
 import { component$ } from "@builder.io/qwik";
 import { LuChevronDown } from "@qwikest/icons/lucide";
 import { Link, useLocation } from "@builder.io/qwik-city";
-import { translations } from "~/constants/translations";
 import { areRelativePathsSame } from "~/utils/qwik";
 import type { Component } from "@builder.io/qwik";
 import type { ParsedMenuItem } from "~/parsers/contentful";
+import { t } from "~/stores/translation";
 
 export type SubItemsRendererProps = {
   subItems: ParsedMenuItem[]
@@ -42,7 +42,7 @@ export const MenuLink = component$(({
       </Link>
 
       {showIcon && (
-        <button tabIndex={-1} aria-hidden="true" class="aspect-square absolute top-0 right-0" aria-label={translations.subMenuToggle}>
+        <button tabIndex={-1} aria-hidden="true" class="aspect-square absolute top-0 right-0" aria-label={t('sub.menu.toggle')}>
           <LuChevronDown class=" h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
         </button>
       )}

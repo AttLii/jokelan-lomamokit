@@ -1,13 +1,15 @@
-import { component$, Slot, useContext, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, Slot, useContext, useContextProvider, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
+import ErrorPage from "~/routes/404";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SkipToContent } from "~/components/SkipToContent";
-import ErrorPage from "~/routes/404";
-import { parseGlobalContent } from "~/parsers/contentful";
-import { appContentful } from "~/factories/contentful";
+import { parseGlobalContent, parseTranslations } from "~/parsers/contentful";
 import { UiContext } from "~/root";
+import { appContentful } from "~/factories/contentful";
+import { translationContext, translationsSchema } from "~/stores/translation";
 import type { ParsedGlobalContent } from "~/parsers/contentful";
+import type { TranslationStore } from "~/stores/translation";
 
 export const useGlobalContent = routeLoader$(async () => {
   let globalContent: null | ParsedGlobalContent = null
@@ -23,17 +25,35 @@ export const useGlobalContent = routeLoader$(async () => {
   return globalContent
 });
 
+export const useTranslationContent = routeLoader$(async () => {
+  let translations: null | TranslationStore = null
+  try {
+    const entries = await appContentful.getTranslations()
+    if (!entries) return null
+
+    const _translations = parseTranslations(entries)
+
+    translations = translationsSchema.parse(_translations)
+  } catch {
+    console.log("Error: Couldn't load translation content")
+  }
+
+  return translations
+});
+
 export default component$(() => {
   // casting type to ParsedGlobalContent
   // Qwik doesn't recognize that calling exit stops the build
   const globalContent = useGlobalContent()
-  if (!globalContent.value) {
+  const translationContent = useTranslationContent()
+  if (!globalContent.value || !translationContent.value) {
     return <ErrorPage />
   }
+  useContextProvider(translationContext, translationContent.value);
 
   const main = useSignal<HTMLElement>()
   const ui = useContext(UiContext);
-  const location = useLocation()
+  const location = useLocation();
 
   // close nav on path change
   useVisibleTask$(({ track }) => {

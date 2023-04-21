@@ -1,10 +1,10 @@
-import type { QwikSubmitEvent } from "@builder.io/qwik";
 import { useSignal } from "@builder.io/qwik";
 import { $, component$ } from "@builder.io/qwik";
 import { Input } from "./Input";
-import { translations } from "~/constants/translations";
 import { Textarea } from "./Textarea";
 import { RichText } from "./RichText";
+import { t } from "~/stores/translation";
+import type { QwikSubmitEvent } from "@builder.io/qwik";
 
 export const ContactForm = component$(() => {
   const submitting = useSignal(false)
@@ -25,24 +25,24 @@ export const ContactForm = component$(() => {
     })
 
     if (status === 201) {
-      message.value = translations.contactFormSubmitSuccess
+      message.value = t('contact.form.submit.success')
       form.reset()
     } else if (status === 404 || status >= 500 && status < 600) {
-      message.value = translations.contactFormSubmitServerError
+      message.value = t('contact.form.submit.server.error')
     } else if (status >= 400 && status < 500) {
-      message.value = translations.contactFormSubmitClientError
+      message.value = t('contact.form.submit.client.error')
     }
 
     submitting.value = false
   })
   return (
     <form preventdefault:submit onSubmit$={onSubmit} class="flex flex-col gap-4 p-4 bg-slate-100 border-black border-2 rounded-md">
-      <Input type="text" name="name" required label={translations.contactFormName} disabled={submitting.value} />
-      <Input type="email" name="email" required label={translations.contactFormEmail} disabled={submitting.value} />
-      <Input type="tel" name="tel" label={translations.contactFormPhonenumber} disabled={submitting.value} />
-      <Textarea name="message" required label={translations.contactFormMessage} disabled={submitting.value} />
-      <RichText dangerouslySetInnerHTML={translations.genericFormPrivacyPolicy} />
-      <input class="enabled:cursor-pointer color-black disabled:text-slate-500 disabled:cursor-default mt-4 bg-slate-300 p-2 border-black disabled:border-slate-500 border-2 hover:enabled:bg-slate-400 focus:enabled:bg-slate-400" type="submit" value={translations.genericFormSubmit} disabled={submitting.value} />
+      <Input type="text" name="name" required label={t('contact.form.name')} disabled={submitting.value} />
+      <Input type="email" name="email" required label={t('contact.form.email')} disabled={submitting.value} />
+      <Input type="tel" name="tel" label={t('contact.form.phonenumber')} disabled={submitting.value} />
+      <Textarea name="message" required label={t('contact.form.message')} disabled={submitting.value} />
+      <RichText dangerouslySetInnerHTML={t('generic.form.privacy.policy')} />
+      <input class="enabled:cursor-pointer color-black disabled:text-slate-500 disabled:cursor-default mt-4 bg-slate-300 p-2 border-black disabled:border-slate-500 border-2 hover:enabled:bg-slate-400 focus:enabled:bg-slate-400" type="submit" value={t('generic.form.submit')} disabled={submitting.value} />
       {(message.value !== "") && <p class="font-bold">{message}</p>}
     </form>
   )
