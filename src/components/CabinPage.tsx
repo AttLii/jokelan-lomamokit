@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useComputed$ } from "@builder.io/qwik";
 import { LuBedDouble, LuBox, LuCigarette, LuCigaretteOff, LuCircleSlashed, LuDog, LuHammer, LuLayoutGrid, LuPhone, LuThumbsUp, LuUsers } from "@qwikest/icons/lucide";
 import { Container } from "./Container";
 import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
@@ -34,6 +34,11 @@ export const CabinPage = component$(({
     telephone,
     gallery
   } = content
+
+  const count = reviews?.averageRating?.count
+  const average = reviews?.averageRating?.average
+  const recommendsCount = reviews?.recommendsCount
+  const totalCountRecommendations = reviews?.totalCountRecommendations
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
@@ -41,19 +46,19 @@ export const CabinPage = component$(({
         <Container type="wide" class="flex flex-wrap flex-col md:flex-row gap-4 relative">
           <div class="w-full">
             <h1 class="text-6xl font-display font-bold">{name}</h1>
-            {reviews && reviews.averageRating.count > 0 && (
+            {count && average && (
               <div class="flex gap-2 items-center">
-                <StarRating rating={reviews.averageRating.average} />
+                <StarRating rating={average} />
                 <span class="sr-only">
                   {t('cabin.reviews.average')}
-                  {reviews.averageRating.average}
+                  {average}
                 </span>
                 <p>
                   <span class="sr-only">
                     {t('cabin.reviews.count')}
                   </span>
                   {" "}
-                  ({reviews.averageRating.count})
+                  ({count})
                 </p>
               </div>
             )}
@@ -62,10 +67,10 @@ export const CabinPage = component$(({
             <CabinGallery gallery={gallery} />
             <h2 class="text-4xl font-display font-bold">{t('cabin.information.title')}</h2>
             <ul class="flex flex-col gap-1">
-              {reviews && (
+              {recommendsCount && totalCountRecommendations && (
                 <li class="flex flex-nowrap items-center gap-2">
                   <LuThumbsUp />
-                  {Math.round(reviews.recommendsCount / reviews.totalCountRecommendations * 100)}%
+                  {Math.round(recommendsCount / totalCountRecommendations * 100)}%
                   {" "}
                   {t('cabin.review.recommendation')}
                 </li>

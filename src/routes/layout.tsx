@@ -14,7 +14,8 @@ export default component$(() => {
   // close nav on path change
   useVisibleTask$(({ track }) => {
     track(() => location.url)
-    ui.nav = false
+    ui.nav = false;
+    (document.activeElement as HTMLElement)?.blur()
   })
 
   return (
