@@ -1,9 +1,9 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
 import { MenuLink } from "./MenuLink";
-import type { ParsedMenu } from "~/parsers/contentful";
 import type { SubItemsRendererProps } from "./MenuLink";
+import { GlobalContentContext } from "~/root";
 
-const SubMenuRenderer = component$(({ subItems }: SubItemsRendererProps) => (
+const SubMenuRenderer = component$<SubItemsRendererProps>(({ subItems }) => (
   <div class="
       w-full min-w-[7.5rem] absolute top-full left-1/2 -translate-x-1/2 pt-[0.95rem]
       opacity-0 pointer-events-none
@@ -22,9 +22,9 @@ const SubMenuRenderer = component$(({ subItems }: SubItemsRendererProps) => (
 
 type Props = {
   class?: string;
-  menu: ParsedMenu;
 }
-export const DesktopMenu = component$(({ class: _class = "", menu: { title, menuItems } }: Props) => {
+export const DesktopMenu = component$<Props>(({ class: _class = "" }) => {
+  const { headerMenu: { title, menuItems } } = useContext(GlobalContentContext)
   return (
     <nav class={_class} aria-label={title}>
       <ul class="flex flex-wrap gap-x-4 my-auto">

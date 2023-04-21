@@ -5,7 +5,7 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/RouterHead";
-import type { ParsedTranslationsContent } from "./parsers/contentful";
+import type { ParsedGlobalContent, ParsedTranslationsContent } from "./parsers/contentful";
 
 import "./global.scss";
 
@@ -14,16 +14,21 @@ export type UiStore = {
 }
 export const UiContext = createContextId<UiStore>('ui');
 export const TranslationContext = createContextId<ParsedTranslationsContent>('translations');
+export const GlobalContentContext = createContextId<ParsedGlobalContent>('globalContent');
 
 type Props = {
   translations: ParsedTranslationsContent;
+  globalContent: ParsedGlobalContent;
 }
-export default component$<Props>(({ translations }) => {
+export default component$<Props>(({ translations, globalContent }) => {
   const uiStore = useStore<UiStore>({ nav: false });
   useContextProvider(UiContext, uiStore);
 
   const translationStore = useStore<ParsedTranslationsContent>(translations)
   useContextProvider(TranslationContext, translationStore);
+
+  const globalContentStore = useStore<ParsedGlobalContent>(globalContent)
+  useContextProvider(GlobalContentContext, globalContentStore);
 
   const scrollLockClass = uiStore.nav ? "overflow-hidden sm:overflow-auto" : ""
   return (

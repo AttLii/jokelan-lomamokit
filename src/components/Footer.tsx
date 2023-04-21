@@ -1,23 +1,13 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
 import { MenuLink } from "./MenuLink";
 import { Container } from "./Container";
 import { FooterLogoLink } from "./FooterLogoLink";
 import { BackToTopButton } from "./BackToTopButton";
 import { FooterInfoList } from "./FooterInfoList";
-import type { ParsedMenu } from "~/parsers/contentful";
+import { GlobalContentContext } from "~/root";
 
-type Props = {
-  menu: ParsedMenu;
-  email: string;
-  location: string;
-  telephone: string;
-}
-export const Footer = component$(({
-  menu: { title, menuItems },
-  email,
-  location,
-  telephone
-}: Props) => {
+export const Footer = component$(() => {
+  const { footerMenu: { title, menuItems } } = useContext(GlobalContentContext)
   return (
     <footer class="w-full bg-slate-100 pt-10 pb-4 border-t-2 border-black relative">
       <Container type="wide" class="relative flex flex-col gap-4">
@@ -31,7 +21,7 @@ export const Footer = component$(({
               ))}
             </ul>
           </nav>
-          <FooterInfoList email={email} location={location} telephone={telephone} />
+          <FooterInfoList />
         </div>
         <FooterLogoLink class="mx-auto" />
         <p class="text-center">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
