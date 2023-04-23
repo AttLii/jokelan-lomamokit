@@ -1,12 +1,19 @@
 import type { Asset, EntryFields } from "contentful";
-import type { Breadcrumb, ParsedCabin } from "~/parsers/contentful";
+import type {
+  Breadcrumb,
+  ParsedAddress,
+  ParsedCabin,
+} from "~/parsers/contentful";
+import { parseAddress } from "~/parsers/contentful";
 import type { Reviews } from "~/repositories/lomarengas";
-import type { EntryAddress, EntryLocalBusiness } from "~/types/Contentful";
+import type { EntryLocalBusiness } from "~/types/Contentful";
 
-const parseAggregatedRating = (
-  { averageRating: { average, count } }: Reviews,
-  name: string
-) => {
+const parseAggregatedRating = (name: string, reviews: Reviews | null) => {
+  if (!reviews) return undefined;
+
+  const {
+    averageRating: { average, count },
+  } = reviews;
   return {
     "@type": "AggregateRating",
     ratingValue: average / 2, // lomarengas returns the average from 0-10, json-ld expects 0-5
@@ -29,21 +36,14 @@ export const parsedCabinToApartmentJsonLD = (
     tourBookingPage,
     yearBuilt,
     telephone,
-    addressCountry,
-    addressLocality,
-    addressRegion,
-    postalCode,
-    streetAddress,
     seoFields,
     location: { lat, lon },
+    address,
     smokingAllowed,
   }: ParsedCabin,
   reviews: Reviews | null
 ) => {
   const [minValue, maxValue] = occupancy.split("-").map(Number);
-  const aggregateRating = reviews
-    ? parseAggregatedRating(reviews, name)
-    : undefined;
   return {
     "@context": "https://schema.org",
     "@type": "Apartment",
@@ -68,19 +68,11 @@ export const parsedCabinToApartmentJsonLD = (
     tourBookingPage,
     yearBuilt,
     telephone,
-    address: {
-      "@type": "PostalAddress",
-      contactType: "customer service",
-      addressCountry,
-      addressLocality,
-      addressRegion,
-      postalCode,
-      streetAddress,
-    },
+    address: parseEntryAddressToType(address),
     latitude: lat,
     longitude: lon,
     smokingAllowed,
-    aggregateRating,
+    aggregateRating: parseAggregatedRating(name, reviews),
   };
 };
 
@@ -114,14 +106,13 @@ export const parseLocationToType = (location: EntryFields.Location) => {
   };
 };
 
-export const parseEntryAddressToType = (entry: EntryAddress) => {
-  const {
-    addressCountry,
-    addressLocality,
-    addressRegion,
-    postalCode,
-    streetAddress,
-  } = entry.fields;
+export const parseEntryAddressToType = ({
+  addressCountry,
+  addressLocality,
+  addressRegion,
+  postalCode,
+  streetAddress,
+}: ParsedAddress) => {
   return {
     "@type": "PostalAddress",
     addressLocality,
@@ -159,7 +150,7 @@ export const parseEntryLocalBusinessToType = (entry: EntryLocalBusiness) => {
     telephone,
     priceRange,
     email,
-    address: parseEntryAddressToType(address),
+    address: parseEntryAddressToType(parseAddress(address)),
     geo: parseLocationToType(geo),
     image: parseAssetToUrl(image),
     logo: parseAssetToUrl(logo),

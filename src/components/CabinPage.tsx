@@ -1,4 +1,4 @@
-import { component$, useComputed$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { LuBedDouble, LuBox, LuCigarette, LuCigaretteOff, LuCircleSlashed, LuDog, LuHammer, LuLayoutGrid, LuPhone, LuThumbsUp, LuUsers } from "@qwikest/icons/lucide";
 import { Container } from "./Container";
 import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";

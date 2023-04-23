@@ -21,6 +21,8 @@ import type {
   FiftyFiftyOrder,
   EntrySeoFields,
   EntryTranslation,
+  EntryAddress,
+  Address,
 } from "~/types/Contentful";
 import {
   isEntryCabin,
@@ -252,6 +254,10 @@ export const parseSections = (sections: Section[]): ParsedSection[] => {
     .filter(nonNullable);
 };
 
+export type ParsedAddress = Address;
+export const parseAddress = (address: EntryAddress): ParsedAddress =>
+  address.fields;
+
 export type ParsedSeoFields = Omit<SeoFields, "image"> & {
   image: ParsedImageAsset;
 };
@@ -285,13 +291,9 @@ export type ParsedCabin = {
   tourBookingPage?: string;
   yearBuilt: number;
   telephone: number;
-  addressCountry: string;
-  addressLocality: string;
-  addressRegion: string;
-  postalCode: string;
-  streetAddress: string;
   location: EntryFields.Location;
   smokingAllowed: boolean;
+  address: ParsedAddress;
 };
 export type ParsedPageOrCabin = ParsedPage | ParsedCabin;
 
@@ -307,10 +309,11 @@ const parsePageContent = (page: EntryPage): ParsedPage => {
 
 const parseCabinContent = (cabin: EntryCabin): ParsedCabin => {
   const {
+    referenceImage: _,
     sections,
     seoFields,
     gallery,
-    referenceImage: _,
+    address,
     ...rest
   } = cabin.fields;
   _;
@@ -319,6 +322,7 @@ const parseCabinContent = (cabin: EntryCabin): ParsedCabin => {
     seoFields: parseSeoFields(seoFields),
     sections: sections ? parseSections(sections) : [],
     gallery: gallery.map(parseImageAsset),
+    address: parseAddress(address),
     ...rest,
   };
 };

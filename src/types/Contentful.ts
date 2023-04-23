@@ -104,13 +104,9 @@ export type Cabin = {
   tourBookingPage?: string;
   yearBuilt: number;
   telephone: number;
-  addressCountry: string;
-  addressLocality: string;
-  addressRegion: string;
-  postalCode: string;
-  streetAddress: string;
   location: EntryFields.Location;
   smokingAllowed: boolean;
+  address: EntryAddress;
 };
 
 export type EntryPage = Entry<Page>;
