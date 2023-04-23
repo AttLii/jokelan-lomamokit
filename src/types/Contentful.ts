@@ -157,7 +157,6 @@ export type GlobalContent = {
   headerMenu: EntryMenu;
   footerMenu: EntryMenu;
   localBusiness: EntryLocalBusiness;
-  structuredData?: string;
 };
 export type EntryGlobalContent = Entry<GlobalContent>;
 
