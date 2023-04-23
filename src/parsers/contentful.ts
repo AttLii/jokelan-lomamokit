@@ -271,11 +271,13 @@ const parseSeoFields = (seoFields: EntrySeoFields): ParsedSeoFields => {
 
 export type ParsedPage = {
   type: "page";
+  path: string;
   seoFields: ParsedSeoFields;
   sections: ParsedSection[];
 };
 export type ParsedCabin = {
   type: "cabin";
+  path: string;
   seoFields: ParsedSeoFields;
   gallery: ParsedImageAsset[];
   sections: ParsedSection[];
@@ -298,10 +300,11 @@ export type ParsedCabin = {
 export type ParsedPageOrCabin = ParsedPage | ParsedCabin;
 
 const parsePageContent = (page: EntryPage): ParsedPage => {
-  const { sections, seoFields } = page.fields;
+  const { sections, seoFields, path } = page.fields;
 
   return {
     type: "page",
+    path,
     seoFields: parseSeoFields(seoFields),
     sections: sections ? parseSections(sections) : [],
   };

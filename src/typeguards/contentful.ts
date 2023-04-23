@@ -106,6 +106,10 @@ export const isParsedCabin = (
   return parsedPageOrCabin.type === "cabin";
 };
 
+export const isFAQPage = (page: ParsedPage) => {
+  return page.sections.some((x) => x.type === "faqs");
+};
+
 export const isMapSection = (section: ParsedSection): section is ParsedMap => {
   return section.type === "map";
 };

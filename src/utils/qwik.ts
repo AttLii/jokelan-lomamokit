@@ -42,3 +42,13 @@ export const fixRouteLoaderPathname = (pathname: string) => {
 
   return newPathname;
 };
+
+export const buildUrlFromRelativePath = (pathname: string) => {
+  let url = import.meta.env.VITE_ORIGIN;
+  const path = normalizePath(pathname);
+  if (path !== "") {
+    url += `/${path}`;
+  }
+
+  return url;
+};

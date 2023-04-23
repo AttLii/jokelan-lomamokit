@@ -37,7 +37,7 @@ export default async function (opts: RenderToStreamOptions) {
     ...opts,
     // Use container attributes to set attributes on the html tag.
     containerAttributes: {
-      lang: "fi-FI",
+      lang: "fi",
       ...opts.containerAttributes,
     },
   });

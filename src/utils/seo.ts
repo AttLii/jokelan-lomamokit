@@ -1,10 +1,13 @@
+import { parseAddress } from "~/parsers/contentful";
+import { isFAQsSection } from "~/typeguards/contentful";
+import { buildUrlFromRelativePath } from "./qwik";
 import type { Asset, EntryFields } from "contentful";
 import type {
   Breadcrumb,
   ParsedAddress,
   ParsedCabin,
+  ParsedPage,
 } from "~/parsers/contentful";
-import { parseAddress } from "~/parsers/contentful";
 import type { Reviews } from "~/repositories/lomarengas";
 import type { EntryLocalBusiness } from "~/types/Contentful";
 
@@ -24,8 +27,6 @@ const parseAggregatedRating = (name: string, reviews: Reviews | null) => {
 
 export const parsedCabinToApartmentJsonLD = (
   {
-    name,
-    description,
     numberOfRooms,
     occupancy,
     floorLevel,
@@ -36,10 +37,11 @@ export const parsedCabinToApartmentJsonLD = (
     tourBookingPage,
     yearBuilt,
     telephone,
-    seoFields,
+    seoFields: { title, description, image },
     location: { lat, lon },
     address,
     smokingAllowed,
+    path,
   }: ParsedCabin,
   reviews: Reviews | null
 ) => {
@@ -47,9 +49,10 @@ export const parsedCabinToApartmentJsonLD = (
   return {
     "@context": "https://schema.org",
     "@type": "Apartment",
-    name,
+    url: buildUrlFromRelativePath(path),
+    name: title,
     description,
-    image: seoFields.image.src,
+    image: image.src,
     numberOfRooms,
     occupancy: {
       "@type": "QuantitativeValue",
@@ -72,7 +75,7 @@ export const parsedCabinToApartmentJsonLD = (
     latitude: lat,
     longitude: lon,
     smokingAllowed,
-    aggregateRating: parseAggregatedRating(name, reviews),
+    aggregateRating: parseAggregatedRating(title, reviews),
   };
 };
 
@@ -81,12 +84,11 @@ export const parseBreadcrumbsToJsonLD = (breadcrumbs: Breadcrumb[]) => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: breadcrumbs.map(({ name, path }, i) => {
-      const item = import.meta.env.VITE_ORIGIN + (path === "/" ? "" : path);
       return {
         "@type": "ListItem",
         position: i + 1,
         name,
-        item,
+        item: buildUrlFromRelativePath(path),
       };
     }),
   };
@@ -154,5 +156,53 @@ export const parseEntryLocalBusinessToType = (entry: EntryLocalBusiness) => {
     geo: parseLocationToType(geo),
     image: parseAssetToUrl(image),
     logo: parseAssetToUrl(logo),
+  };
+};
+
+export const parsedPageToFAQPageJsonLD = (page: ParsedPage) => {
+  const {
+    sections,
+    seoFields: { title, description, keywords },
+    path,
+  } = page;
+  const faqs = sections.filter(isFAQsSection).flatMap((x) => x.faqs);
+  const url = buildUrlFromRelativePath(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "fi",
+    id: url,
+    url,
+    name: title,
+    description,
+    keywords,
+    mainEntity: faqs.map(({ answer, question }) => {
+      return {
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: answer,
+        },
+      };
+    }),
+  };
+};
+
+export const parsedPageToWebPageJsonLD = (page: ParsedPage) => {
+  const {
+    seoFields: { title, description, keywords },
+    path,
+  } = page;
+  const url = buildUrlFromRelativePath(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    id: url,
+    url,
+    inLanguage: "fi",
+    name: title,
+    description,
+    keywords,
   };
 };

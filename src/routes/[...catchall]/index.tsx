@@ -6,8 +6,9 @@ import { CabinContent } from "~/components/CabinContent";
 import { Breadcrumbs } from "~/components/Breadcrumbs";
 import { appContentful } from "~/factories/contentful";
 import { parseBreadcrumbs, parseContent } from "~/parsers/contentful";
-import { normalizePath, fixRouteLoaderPathname } from "~/utils/qwik";
-import { isParsedCabin, isParsedPage } from "~/typeguards/contentful";
+import { normalizePath, fixRouteLoaderPathname, buildUrlFromRelativePath } from "~/utils/qwik";
+import { parsedCabinToApartmentJsonLD, parsedPageToFAQPageJsonLD, parsedPageToWebPageJsonLD } from "~/utils/seo";
+import { isFAQPage, isParsedCabin, isParsedPage } from "~/typeguards/contentful";
 import { scrapeReviews } from "~/repositories/lomarengas";
 import type {
   DocumentHead,
@@ -22,10 +23,13 @@ export default component$(() => {
     return <ErrorPage />;
   }
 
-  const { content, breadcrumbs, reviews } = page.value
+  const { content, breadcrumbs, reviews, jsonLd } = page.value
 
   return (
     <>
+      {jsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLd)} />
+      )}
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       {isParsedCabin(content)
         ? <CabinContent content={content} reviews={reviews} />
@@ -37,21 +41,37 @@ export default component$(() => {
   )
 });
 
+const composeJsonLDfromContent = (content: ParsedPageOrCabin, reviews: Reviews | null) => {
+  if (isParsedCabin(content)) {
+    return parsedCabinToApartmentJsonLD(content, reviews)
+  } else if (isFAQPage(content)) {
+    return parsedPageToFAQPageJsonLD(content)
+  } else if (isParsedPage(content)) {
+    return parsedPageToWebPageJsonLD(content)
+  } else {
+    return null;
+  }
+}
+
 export const usePageContent = routeLoader$(async ({ url, status }) => {
   const path = fixRouteLoaderPathname(url.pathname);
   let content: ParsedPageOrCabin | null = null;
   let breadcrumbs: Breadcrumb[] = [];
-  let reviews: Reviews | null = null
+  let reviews: Reviews | null = null;
+  let jsonLd: null | ReturnType<typeof composeJsonLDfromContent> = null;
   try {
     const _content = await appContentful.getContentByPath(path);
     if (!_content) {
       status(404);
     } else {
       content = parseContent(_content);
-      if (!content) {
+      if (content) {
+        if (isParsedCabin(content) && content.tourBookingPage) {
+          reviews = await scrapeReviews(content.tourBookingPage)
+        }
+        jsonLd = composeJsonLDfromContent(content, reviews)
+      } else {
         status(404)
-      } else if (isParsedCabin(content) && content.tourBookingPage) {
-        reviews = await scrapeReviews(content.tourBookingPage)
       }
 
       const _breadcrumbs = await appContentful.getBreadcrumbs(path);
@@ -61,7 +81,7 @@ export const usePageContent = routeLoader$(async ({ url, status }) => {
     status(500);
   }
 
-  return { content, breadcrumbs, reviews };
+  return { content, breadcrumbs, reviews, jsonLd };
 });
 
 export const onStaticGenerate: StaticGenerateHandler = async () => {
@@ -90,16 +110,10 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
   }
 
   const { title, description, robots, keywords, image } = page.content.seoFields;
+  const _url = buildUrlFromRelativePath(url.pathname);
 
-  const _title = `Jokelan Lomamökit | ${title}`;
-
-  let _url = import.meta.env.VITE_ORIGIN;
-  const path = normalizePath(url.pathname);
-  if (path !== "") {
-    _url += `/${path}`;
-  }
   return {
-    title: _title,
+    title: title,
     links: [
       {
         rel: "canonical",
@@ -109,7 +123,7 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
     meta: [
       {
         property: "og:title",
-        content: _title,
+        content: title,
       },
       {
         property: "og:url",

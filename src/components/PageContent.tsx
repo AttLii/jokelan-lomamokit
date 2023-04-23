@@ -1,4 +1,4 @@
-import { component$, Fragment, getLocale } from "@builder.io/qwik"
+import { component$, Fragment } from "@builder.io/qwik"
 import { HeroSection } from "./HeroSection"
 import { CabinReferencesSection } from "./CabinReferencesSection"
 import { MapSection } from "./MapSection"
