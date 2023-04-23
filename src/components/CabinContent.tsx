@@ -15,7 +15,7 @@ type Props = {
   content: ParsedCabin
   reviews: Reviews | null
 }
-export const CabinPage = component$(({
+export const CabinContent = component$(({
   content,
   reviews
 }: Props) => {

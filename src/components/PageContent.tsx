@@ -1,4 +1,4 @@
-import { component$, Fragment } from "@builder.io/qwik"
+import { component$, Fragment, getLocale } from "@builder.io/qwik"
 import { HeroSection } from "./HeroSection"
 import { CabinReferencesSection } from "./CabinReferencesSection"
 import { MapSection } from "./MapSection"
@@ -8,15 +8,15 @@ import { ContentSection } from "./ContentSection"
 import { FAQsSection } from "./FAQsSection"
 import { FiftyFiftySection } from "./FiftyFiftySection"
 import { isCabinReferencesSection, isContentSection, isFAQsSection, isFiftyFiftySection, isFormSection, isHeroSection, isInfoCardsSection, isMapSection } from "~/typeguards/contentful"
-import type { ParsedSection } from "~/parsers/contentful"
+import type { ParsedPage } from "~/parsers/contentful"
 
 type Props = {
-  sections: ParsedSection[]
+  content: ParsedPage
 }
-export const SectionsSelector = component$(({ sections }: Props) => {
+export const PageContent = component$(({ content }: Props) => {
   return (
     <>
-      {sections.map((section, i) => {
+      {content.sections.map((section, i) => {
         if (isHeroSection(section)) {
           return <HeroSection key={i} {...section} />
         } else if (isCabinReferencesSection(section)) {
