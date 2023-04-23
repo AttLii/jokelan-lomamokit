@@ -389,32 +389,19 @@ export type ParsedGlobalContent = {
   headerMenu: ParsedMenu;
   footerMenu: ParsedMenu;
   structuredData?: string;
-  email: string;
-  location: string;
-  telephone: string;
   localBusiness: ReturnType<typeof parseEntryLocalBusinessToType>;
 };
 export const parseGlobalContent = (
   globalContent: EntryGlobalContent
 ): ParsedGlobalContent => {
-  const {
-    headerMenu,
-    footerMenu,
-    structuredData,
-    email,
-    location,
-    telephone,
-    localBusiness,
-  } = globalContent.fields;
+  const { headerMenu, footerMenu, structuredData, localBusiness } =
+    globalContent.fields;
 
   return {
     headerMenu: parseMenu(headerMenu),
     footerMenu: parseMenu(footerMenu),
     localBusiness: parseEntryLocalBusinessToType(localBusiness),
     structuredData,
-    email: email || "",
-    location: location || "",
-    telephone: telephone || "",
   };
 };
 
