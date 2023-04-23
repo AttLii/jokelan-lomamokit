@@ -3,10 +3,9 @@ import { useLocation } from "@builder.io/qwik-city";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SkipToContent } from "~/components/SkipToContent";
-import { GlobalContentContext, UiContext } from "~/root";
+import { UiContext } from "~/root";
 
 export default component$(() => {
-  const { structuredData } = useContext(GlobalContentContext)
   const main = useSignal<HTMLElement>()
   const ui = useContext(UiContext);
   const location = useLocation();
@@ -26,9 +25,6 @@ export default component$(() => {
         <Slot />
       </main>
       <Footer />
-      {structuredData && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={structuredData} />
-      )}
     </>
   );
 });

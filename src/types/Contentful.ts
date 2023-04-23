@@ -130,9 +130,32 @@ export type Menu = {
 };
 export type EntryMenu = Entry<Menu>;
 
+export type Address = {
+  addressLocality: string;
+  addressRegion: string;
+  streetAddress: string;
+  postalCode: string;
+  addressCountry: string;
+};
+export type EntryAddress = Entry<Address>;
+export type LocalBusiness = {
+  name: string;
+  description: string;
+  telephone: string;
+  geo: EntryFields.Location;
+  image: Asset;
+  logo: Asset;
+  url: string;
+  id: string;
+  priceRange: string;
+  address: EntryAddress;
+};
+export type EntryLocalBusiness = Entry<LocalBusiness>;
+
 export type GlobalContent = {
   headerMenu: EntryMenu;
   footerMenu: EntryMenu;
+  localBusiness: EntryLocalBusiness;
   structuredData?: string;
   telephone?: string;
   email?: string;

@@ -1,5 +1,7 @@
+import type { Asset, EntryFields } from "contentful";
 import type { Breadcrumb, ParsedCabin } from "~/parsers/contentful";
 import type { Reviews } from "~/repositories/lomarengas";
+import type { EntryAddress, EntryLocalBusiness } from "~/types/Contentful";
 
 const parseAggregatedRating = (
   { averageRating: { average, count } }: Reviews,
@@ -95,5 +97,76 @@ export const parseBreadcrumbsToJsonLD = (breadcrumbs: Breadcrumb[]) => {
         item,
       };
     }),
+  };
+};
+
+export const parseAssetToUrl = (asset: Asset) => {
+  if (!asset) return undefined;
+  const { url } = asset.fields.file;
+  return url.startsWith("//") ? `https://${url.substring(2)}` : url;
+};
+
+export const parseLocationToType = (location: EntryFields.Location) => {
+  if (!location) return undefined;
+
+  const { lat, lon } = location;
+  return {
+    "@type": "GeoCoordinates",
+    latitude: lat,
+    longitude: lon,
+  };
+};
+
+export const parseEntryAddressToType = (entry: EntryAddress) => {
+  if (!entry) return undefined;
+
+  const {
+    addressCountry,
+    addressLocality,
+    addressRegion,
+    postalCode,
+    streetAddress,
+  } = entry.fields;
+  return {
+    "@type": "PostalAddress",
+    addressLocality,
+    addressRegion,
+    streetAddress,
+    postalCode,
+    addressCountry,
+  };
+};
+
+export const parseEntryLocalBusinessToType = (entry: EntryLocalBusiness) => {
+  if (!entry) return undefined;
+
+  const {
+    fields: {
+      address,
+      description,
+      geo,
+      id,
+      image,
+      logo,
+      name,
+      priceRange,
+      telephone,
+      url,
+    },
+  } = entry;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": id,
+    url,
+    name,
+    description,
+    telephone,
+    priceRange,
+    address: parseEntryAddressToType(address),
+    geo: parseLocationToType(geo),
+    image: parseAssetToUrl(image),
+    logo: parseAssetToUrl(logo),
   };
 };

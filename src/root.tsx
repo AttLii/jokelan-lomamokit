@@ -41,6 +41,12 @@ export default component$<Props>(({ translations, globalContent }) => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:wght@700&display=swap" />
         <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:wght@700&display=swap" rel="stylesheet" />
+        {globalContent.localBusiness && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(globalContent.localBusiness)} />
+        )}
+        {globalContent.structuredData && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={globalContent.structuredData} />
+        )}
       </head>
       <body class={`${scrollLockClass} min-h-screen bg-[#f7f7f7] flex flex-col`}>
         <RouterOutlet />

@@ -34,6 +34,7 @@ import {
   isEntryMapSection,
   isEntryPage,
 } from "~/typeguards/contentful";
+import { parseEntryLocalBusinessToType } from "~/utils/seo";
 import { nonNullable } from "~/utils/typescript";
 import type { EntryFiftyFiftySection } from "~/types/Contentful";
 import type { Document } from "@contentful/rich-text-types";
@@ -391,15 +392,25 @@ export type ParsedGlobalContent = {
   email: string;
   location: string;
   telephone: string;
+  localBusiness: ReturnType<typeof parseEntryLocalBusinessToType>;
 };
 export const parseGlobalContent = (
   globalContent: EntryGlobalContent
 ): ParsedGlobalContent => {
-  const { headerMenu, footerMenu, structuredData, email, location, telephone } =
-    globalContent.fields;
+  const {
+    headerMenu,
+    footerMenu,
+    structuredData,
+    email,
+    location,
+    telephone,
+    localBusiness,
+  } = globalContent.fields;
+
   return {
     headerMenu: parseMenu(headerMenu),
     footerMenu: parseMenu(footerMenu),
+    localBusiness: parseEntryLocalBusinessToType(localBusiness),
     structuredData,
     email: email || "",
     location: location || "",
