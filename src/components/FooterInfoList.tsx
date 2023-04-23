@@ -4,30 +4,47 @@ import { LuMail, LuMapPin, LuPhone } from "@qwikest/icons/lucide";
 import { GlobalContentContext } from "~/root";
 
 export const FooterInfoList = component$(() => {
-  const { email, telephone, location } = useContext(GlobalContentContext)
-  if (email === "" && telephone === "" && location === "") return null;
+  const {
+    localBusiness: {
+      name,
+      telephone,
+      email,
+      address: {
+        streetAddress,
+        postalCode,
+        addressLocality
+      },
+      geo: {
+        latitude,
+        longitude
+      }
+    }
+  } = useContext(GlobalContentContext)
   return (
     <div>
-      <h2 class="text-2xl font-display font-bold mb-1.5">Jokelan Lomamökit</h2>
+      <h2 class="text-2xl font-display font-bold mb-1.5">{name}</h2>
       <ul class="flex flex-col gap-0.5">
-        {telephone && (
-          <li class="flex gap-2 items-start">
-            <LuPhone class="mt-2" />
-            <RichText dangerouslySetInnerHTML={telephone} />
-          </li>
-        )}
-        {email && (
-          <li class="flex gap-2 items-start">
-            <LuMail class="mt-2" />
-            <RichText dangerouslySetInnerHTML={email} />
-          </li>
-        )}
-        {location && (
-          <li class="flex gap-2 items-start">
-            <LuMapPin class="mt-2" />
-            <RichText dangerouslySetInnerHTML={location} />
-          </li>
-        )}
+        <li class="flex gap-2 items-start">
+          <LuPhone class="mt-2" />
+          <RichText dangerouslySetInnerHTML={`<a href="tel:${telephone}">${telephone}</a>`} />
+        </li>
+        <li class="flex gap-2 items-start">
+          <LuMail class="mt-2" />
+          <RichText dangerouslySetInnerHTML={`<a href="mailto:${email}">${email}</a>`} />
+        </li>
+        <li class="flex gap-2 items-start">
+          <LuMapPin class="mt-2" />
+          <RichText
+            dangerouslySetInnerHTML={`
+                <a
+                  href="https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=14/${latitude}/${longitude}"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  ${streetAddress}, ${postalCode} ${addressLocality}
+                </a>
+              `} />
+        </li>
       </ul>
     </div>
   )

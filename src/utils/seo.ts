@@ -101,14 +101,11 @@ export const parseBreadcrumbsToJsonLD = (breadcrumbs: Breadcrumb[]) => {
 };
 
 export const parseAssetToUrl = (asset: Asset) => {
-  if (!asset) return undefined;
   const { url } = asset.fields.file;
   return url.startsWith("//") ? `https://${url.substring(2)}` : url;
 };
 
 export const parseLocationToType = (location: EntryFields.Location) => {
-  if (!location) return undefined;
-
   const { lat, lon } = location;
   return {
     "@type": "GeoCoordinates",
@@ -118,8 +115,6 @@ export const parseLocationToType = (location: EntryFields.Location) => {
 };
 
 export const parseEntryAddressToType = (entry: EntryAddress) => {
-  if (!entry) return undefined;
-
   const {
     addressCountry,
     addressLocality,
@@ -138,8 +133,6 @@ export const parseEntryAddressToType = (entry: EntryAddress) => {
 };
 
 export const parseEntryLocalBusinessToType = (entry: EntryLocalBusiness) => {
-  if (!entry) return undefined;
-
   const {
     fields: {
       address,
@@ -152,6 +145,7 @@ export const parseEntryLocalBusinessToType = (entry: EntryLocalBusiness) => {
       priceRange,
       telephone,
       url,
+      email,
     },
   } = entry;
 
@@ -164,6 +158,7 @@ export const parseEntryLocalBusinessToType = (entry: EntryLocalBusiness) => {
     description,
     telephone,
     priceRange,
+    email,
     address: parseEntryAddressToType(address),
     geo: parseLocationToType(geo),
     image: parseAssetToUrl(image),

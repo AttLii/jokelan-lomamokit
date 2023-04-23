@@ -149,6 +149,7 @@ export type LocalBusiness = {
   id: string;
   priceRange: string;
   address: EntryAddress;
+  email: string;
 };
 export type EntryLocalBusiness = Entry<LocalBusiness>;
 
