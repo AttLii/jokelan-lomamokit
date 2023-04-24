@@ -6,7 +6,6 @@ import { Section } from "./Section";
 import { CabinGallery } from "./CabinGallery";
 import { TourBookingPageLink } from "./TourBookingPageLink";
 import { StarRating } from "./StarRating";
-import { parsedCabinToApartmentJsonLD } from "~/utils/seo";
 import { t } from "~/stores/translation";
 import type { ParsedCabin } from "~/parsers/contentful";
 import type { Reviews } from "~/repositories/lomarengas";
@@ -19,7 +18,6 @@ export const CabinContent = component$(({
   content,
   reviews
 }: Props) => {
-  const jsonLD = parsedCabinToApartmentJsonLD(content, reviews)
   const {
     name,
     location,
@@ -41,7 +39,6 @@ export const CabinContent = component$(({
   const totalCountRecommendations = reviews?.totalCountRecommendations
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(jsonLD)} />
       <Section>
         <Container type="wide" class="flex flex-wrap flex-col md:flex-row gap-4 relative">
           <div class="w-full">
