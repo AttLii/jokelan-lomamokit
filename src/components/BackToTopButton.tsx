@@ -1,6 +1,6 @@
 import { $, component$ } from "@builder.io/qwik";
-import { LuArrowUp } from "@qwikest/icons/lucide";
 import { t } from "~/stores/translation";
+import { ArrowUp } from "./icons/ArrowUp";
 
 type Props = {
   class?: string;
@@ -16,7 +16,7 @@ export const BackToTopButton = component$(({ class: _class = "" }: Props) => {
       onClick$={onClick}
       aria-label={t('generic.back.to.top')}
     >
-      <LuArrowUp class="w-7 h-7 m-auto " />
+      <ArrowUp class="w-7 h-7 m-auto " />
     </button>
   )
 })

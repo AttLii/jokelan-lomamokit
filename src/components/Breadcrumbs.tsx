@@ -1,7 +1,8 @@
 import { component$ } from "@builder.io/qwik"
 import { Link } from "@builder.io/qwik-city"
-import { LuChevronRight, LuHome } from "@qwikest/icons/lucide"
 import { Container } from "./Container"
+import { ChevronRight } from "./icons/ChevronRight"
+import { Home } from "./icons/Home"
 import { parseBreadcrumbsToJsonLD } from "~/utils/seo"
 import { t } from "~/stores/translation"
 import type { Breadcrumb } from "~/parsers/contentful"
@@ -32,14 +33,14 @@ export const Breadcrumbs = component$<Props>(({ breadcrumbs }) => {
                     >
                       {i === 0 ? (
                         <>
-                          <LuHome />
+                          <Home class="text-small" />
                           <span class="sr-only">{name}</span>
                         </>
                       ) : (
                         name
                       )}
                     </Link>
-                    <LuChevronRight />
+                    <ChevronRight />
                   </>
                 )}
               </li>

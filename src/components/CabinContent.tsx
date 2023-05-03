@@ -1,11 +1,21 @@
 import { component$ } from "@builder.io/qwik";
-import { LuBedDouble, LuBox, LuCigarette, LuCigaretteOff, LuCircleSlashed, LuDog, LuHammer, LuLayoutGrid, LuPhone, LuThumbsUp, LuUsers } from "@qwikest/icons/lucide";
 import { Container } from "./Container";
 import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
 import { Section } from "./Section";
 import { CabinGallery } from "./CabinGallery";
 import { TourBookingPageLink } from "./TourBookingPageLink";
 import { StarRating } from "./StarRating";
+import { DoubleBed } from "./icons/DoubleBed";
+import { Box } from "./icons/Box";
+import { Cigarette } from "./icons/Cigarette";
+import { CigaretteOff } from "./icons/CigaretteOff";
+import { Phone } from "./icons/Phone";
+import { Dog } from "./icons/Dog";
+import { Hammer } from "./icons/Hammer";
+import { Users } from "./icons/Users";
+import { ThumbsUp } from "./icons/ThumbsUp";
+import { LayoutGrid } from "./icons/LayoutGrid";
+import { Ban } from "./icons/Ban";
 import { t } from "~/stores/translation";
 import type { ParsedCabin } from "~/parsers/contentful";
 import type { Reviews } from "~/repositories/lomarengas";
@@ -66,43 +76,43 @@ export const CabinContent = component$(({
             <ul class="flex flex-col gap-1">
               {recommendsCount && totalCountRecommendations && (
                 <li class="flex flex-nowrap items-center gap-2">
-                  <LuThumbsUp />
+                  <ThumbsUp />
                   {Math.round(recommendsCount / totalCountRecommendations * 100)}%
                   {" "}
                   {t('cabin.review.recommendation')}
                 </li>
               )}
               <li class="flex flex-nowrap items-center gap-2">
-                <LuHammer />
+                <Hammer />
                 {t('cabin.year.built')} {yearBuilt}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
-                <LuUsers />
+                <Users />
                 {t('cabin.occupancy')} {occupancy}
               </li>
 
               <li class="flex flex-nowrap items-center gap-2">
-                <LuBox />
+                <Box />
                 {floorSize} {t('generic.meter.squared')}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
-                <LuLayoutGrid />
+                <LayoutGrid />
                 {t('cabin.number.of.rooms')} {numberOfRooms}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
-                <LuBedDouble />
+                <DoubleBed />
                 {t('cabin.number.of.bedrooms')} {numberOfBedrooms}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
                 {petsAllowed
                   ? (
                     <>
-                      <LuDog />
+                      <Dog />
                       {t('cabin.pets.allowed')}
                     </>
                   ) : (
                     <>
-                      <LuCircleSlashed />
+                      <Ban />
                       {t('cabin.pets.not.allowed')}
                     </>
                   )}
@@ -111,18 +121,18 @@ export const CabinContent = component$(({
                 {smokingAllowed
                   ? (
                     <>
-                      <LuCigarette />
+                      <Cigarette />
                       {t('cabin.smoking.allowed')}
                     </>
                   ) : (
                     <>
-                      <LuCigaretteOff />
+                      <CigaretteOff />
                       {t('cabin.smoking.not.allowed')}
                     </>
                   )}
               </li>
               <li class="flex flex-nowrap items-center gap-2">
-                <LuPhone />
+                <Phone />
                 <a class="underline hover:no-underline focus:no-underline" href={`tel:${telephone}`}>{telephone}</a>
               </li>
             </ul>

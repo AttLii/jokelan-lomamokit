@@ -1,5 +1,6 @@
 import { $, Slot, component$ } from "@builder.io/qwik";
-import { LuCalendar, LuCalendarOff } from "@qwikest/icons/lucide";
+import { Calendar } from "./icons/Calendar";
+import { CalendarOff } from "./icons/CalendarOff";
 
 type Props = {
   href: string;
@@ -21,10 +22,11 @@ export const ActionLink = component$(({ href, disabled }: Props) => {
       disabled={disabled}
     >
       {disabled
-        ? <LuCalendarOff />
-        : <LuCalendar />
+        ? <CalendarOff />
+        : <Calendar />
       }
       <Slot />
     </button>
   )
 })
+
