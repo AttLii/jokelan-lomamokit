@@ -1,6 +1,6 @@
 import { component$, useContext } from "@builder.io/qwik";
 import { RichText } from "./RichText";
-import { LuMail, LuMapPin, LuPhone } from "@qwikest/icons/lucide";
+import { Mail, MapPin, Phone } from "./icons/lucide";
 import { GlobalContentContext } from "~/root";
 
 export const FooterInfoList = component$(() => {
@@ -25,15 +25,15 @@ export const FooterInfoList = component$(() => {
       <h2 class="text-2xl font-display font-bold mb-1.5">{name}</h2>
       <ul class="flex flex-col gap-0.5">
         <li class="flex gap-2 items-start">
-          <LuPhone class="mt-2" />
+          <Phone class="mt-2" />
           <RichText dangerouslySetInnerHTML={`<a href="tel:${telephone}">${telephone}</a>`} />
         </li>
         <li class="flex gap-2 items-start">
-          <LuMail class="mt-2" />
+          <Mail class="mt-2" />
           <RichText dangerouslySetInnerHTML={`<a href="mailto:${email}">${email}</a>`} />
         </li>
         <li class="flex gap-2 items-start">
-          <LuMapPin class="mt-2" />
+          <MapPin class="mt-2" />
           <RichText
             dangerouslySetInnerHTML={`
                 <a
