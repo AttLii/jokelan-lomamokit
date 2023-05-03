@@ -1,8 +1,8 @@
 import { component$, useContext } from "@builder.io/qwik";
 import { RichText } from "./RichText";
-import { Mail } from "./icons/Mail";
-import { MapPin } from "./icons/MapPin";
-import { Phone } from "./icons/Phone";
+import { Mail } from "./icons/lucide/Mail";
+import { MapPin } from "./icons/lucide/MapPin";
+import { Phone } from "./icons/lucide/Phone";
 import { GlobalContentContext } from "~/root";
 
 export const FooterInfoList = component$(() => {

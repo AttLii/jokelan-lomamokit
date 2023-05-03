@@ -1,6 +1,6 @@
 import { Slot, component$ } from "@builder.io/qwik"
 import { Link } from "@builder.io/qwik-city"
-import { ChevronRight } from "./icons/ChevronRight";
+import { ChevronRight } from "./icons/lucide/ChevronRight";
 import type { LinkProps } from "@builder.io/qwik-city";
 
 type Props = LinkProps
