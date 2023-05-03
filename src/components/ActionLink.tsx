@@ -1,6 +1,5 @@
 import { $, Slot, component$ } from "@builder.io/qwik";
-import { Calendar } from "./icons/lucide/Calendar";
-import { CalendarOff } from "./icons/lucide/CalendarOff";
+import { Calendar, CalendarOff } from "./icons/lucide";
 
 type Props = {
   href: string;

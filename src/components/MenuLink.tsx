@@ -4,7 +4,7 @@ import { areRelativePathsSame } from "~/utils/qwik";
 import type { Component } from "@builder.io/qwik";
 import type { ParsedMenuItem } from "~/parsers/contentful";
 import { t } from "~/stores/translation";
-import { ChevronDown } from "./icons/lucide/ChevronDown";
+import { ChevronDown } from "./icons/lucide";
 
 export type SubItemsRendererProps = {
   subItems: ParsedMenuItem[]

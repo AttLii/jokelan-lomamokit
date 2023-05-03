@@ -1,6 +1,6 @@
 import { $, component$ } from "@builder.io/qwik";
 import { t } from "~/stores/translation";
-import { ArrowUp } from "./icons/lucide/ArrowUp";
+import { ArrowUp } from "./icons/lucide";
 
 type Props = {
   class?: string;

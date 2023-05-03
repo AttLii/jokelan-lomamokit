@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { StarHalf } from "./icons/lucide/StarHalf";
+import { StarHalf } from "./icons/lucide";
 
 
 type Props = {
