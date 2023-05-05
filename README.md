@@ -15,6 +15,11 @@ VITE_ORIGIN=
 # Vercel Serverless function's origin
 VITE_ENDPOINT_ORIGIN=
 
+# https://dashboard.hcaptcha.com/welcome
+# Default keys from: https://docs.hcaptcha.com/#integration-testing-test-keys
+VITE_HCAPTCHA_SITE_KEY="10000000-ffff-ffff-ffff-000000000001"
+VITE_HCAPTCHA_SECRET="0x0000000000000000000000000000000000000000"
+
 # Contact Form to google sheets
 # https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
 GOOGLE_SERVICE_ACCOUNT_EMAIL=
