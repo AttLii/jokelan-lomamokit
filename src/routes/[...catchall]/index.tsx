@@ -112,6 +112,7 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
   const { title, description, robots, keywords, image } = page.content.seoFields;
   const _url = buildUrlFromRelativePath(url.pathname);
 
+  const imageUrl = image.src + "&w=1200&h=630&fit=fill"
   return {
     title: title,
     links: [
@@ -122,8 +123,20 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
     ],
     meta: [
       {
+        name: "robots",
+        content: robots,
+      },
+      {
+        name: "keywords",
+        content: keywords,
+      },
+      {
         property: "og:title",
         content: title,
+      },
+      {
+        property: "og:description",
+        content: description,
       },
       {
         property: "og:url",
@@ -138,20 +151,8 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
         content: description,
       },
       {
-        property: "og:description",
-        content: description,
-      },
-      {
-        name: "robots",
-        content: robots,
-      },
-      {
-        name: "keywords",
-        content: keywords,
-      },
-      {
         name: "og:image",
-        content: image.src + "&w=1200&h=630&fit=fill",
+        content: imageUrl,
       },
       {
         name: "og:image:alt",
@@ -164,6 +165,22 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
       {
         name: "og:image:height",
         content: "630",
+      },
+      {
+        name: "twitter:card",
+        content: "summary",
+      },
+      {
+        name: "twitter:image",
+        content: imageUrl,
+      },
+      {
+        name: "twitter:title",
+        content: title,
+      },
+      {
+        name: "twitter:description",
+        content: description,
       },
     ],
   };
