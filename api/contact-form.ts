@@ -1,7 +1,16 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { z } from "zod";
-import v from "validator";
+import { verify } from "hcaptcha";
 import { GoogleSpreadsheet } from "google-spreadsheet";
+
+const formSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  tel: z.string(),
+  message: z.string(),
+  "h-captcha-response": z.string().min(1),
+  date: z.string().optional(),
+});
 
 const allowCors =
   (fn: (req: VercelRequest, res: VercelResponse) => void) =>
@@ -21,7 +30,7 @@ const allowCors =
       res.status(200).end();
       return;
     }
-    return await fn(req, res);
+    return fn(req, res);
   };
 
 const handler = async (
@@ -35,14 +44,20 @@ const handler = async (
     return processResponse(404, "Unsupported method");
   }
 
-  try {
-    z.object({
-      name: z.string(),
-      email: z.string().email(),
-      tel: z.string().refine(v.isMobilePhone).optional(),
-      message: z.string(),
-    }).parse(body);
-  } catch (e) {
+  const validatedBody = formSchema.safeParse(body);
+  if (!validatedBody.success) {
+    return processResponse(422, "Provided body is in unexpected form");
+  }
+
+  const { "h-captcha-response": token, ...bodyWithoutHCaptcha } =
+    validatedBody.data;
+
+  const hCaptchaVerification = await verify(
+    process.env.VITE_HCAPTCHA_SECRET + "",
+    token
+  );
+
+  if (!hCaptchaVerification.success) {
     return processResponse(422, "Provided body is in unexpected form");
   }
 
@@ -54,11 +69,11 @@ const handler = async (
     });
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[0];
-    body["date"] = new Date().toISOString();
+    bodyWithoutHCaptcha["date"] = new Date().toISOString();
     if (!sheet.headerValues) {
-      await sheet.setHeaderRow(Object.keys(body));
+      await sheet.setHeaderRow(Object.keys(bodyWithoutHCaptcha));
     }
-    await sheet.addRow(body);
+    await sheet.addRow(bodyWithoutHCaptcha);
   } catch {
     return processResponse(500, "Couldn't save the form data");
   }
@@ -66,6 +81,6 @@ const handler = async (
   return processResponse(201, "Form saved successfully");
 };
 
-export default process.env.NODE_ENV === "development"
-  ? allowCors(handler)
-  : handler;
+export default process.env.NODE_ENV === "production"
+  ? handler
+  : allowCors(handler);

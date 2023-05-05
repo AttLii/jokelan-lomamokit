@@ -52,6 +52,9 @@ devDependencies:
   google-spreadsheet:
     specifier: ^3.3.0
     version: 3.3.0
+  hcaptcha:
+    specifier: ^0.1.1
+    version: 0.1.1
   husky:
     specifier: ^8.0.3
     version: 8.0.3
@@ -79,9 +82,6 @@ devDependencies:
   undici:
     specifier: 5.22.0
     version: 5.22.0
-  validator:
-    specifier: ^13.9.0
-    version: 13.9.0
   vercel:
     specifier: ^29.0.3
     version: 29.0.3(@types/node@18.16.3)(sass@1.62.1)
@@ -5183,6 +5183,10 @@ packages:
     resolution: {integrity: sha512-nAxA0v8+vXSBDt3AnRUNjyRIQ0rD+ntpbAp4LnPkumc5M9yUbSMa4XDU9Q6etY4f1Wp4bNgvc1yjiZtsTTrSng==}
     dev: true
 
+  /hcaptcha@0.1.1:
+    resolution: {integrity: sha512-iMrDmH2VpIEKOrcKWidVjI89FdDKTEdZ7PfPWkP27sTazIIkob8YfdY2ezaufAnWBiUUcvzsn0qF+dyXtBH2Vw==}
+    dev: true
+
   /he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
@@ -8331,11 +8335,6 @@ packages:
 
   /v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
-    dev: true
-
-  /validator@13.9.0:
-    resolution: {integrity: sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA==}
-    engines: {node: '>= 0.10'}
     dev: true
 
   /vary@1.1.2:
