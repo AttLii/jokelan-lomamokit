@@ -10,7 +10,7 @@ import type { QwikSubmitEvent } from "@builder.io/qwik";
 export const ContactForm = component$(() => {
   const successMessage = t('contact.form.submit.success')
   const serverErrorMessage = t('contact.form.submit.server.error')
-  const clientErrorMessage = t('contact.form.submit.success')
+  const clientErrorMessage = t('contact.form.submit.client.error')
 
   const submitting = useSignal(false)
   const message = useSignal("")
@@ -28,6 +28,7 @@ export const ContactForm = component$(() => {
           'Content-Type': 'application/json'
         },
       })
+      console.log(status, clientErrorMessage)
 
       if (status === 201) {
         message.value = successMessage
@@ -37,7 +38,8 @@ export const ContactForm = component$(() => {
       } else if (status >= 400 && status < 500) {
         message.value = clientErrorMessage
       }
-    } catch {
+    } catch (e) {
+      console.log(e)
       // error if endpoint is not setup properly
       message.value = serverErrorMessage
     } finally {
