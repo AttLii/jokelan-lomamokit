@@ -18,25 +18,31 @@ export const ContactForm = component$(() => {
     message.value = ""
     const formData = new FormData(form)
 
-    const url = (import.meta.env.VITE_ENDPOINT_ORIGIN || "") + "/api/contact-form"
-    const { status } = await fetch(url, {
-      body: JSON.stringify(Object.fromEntries(formData)),
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    })
-    if (status === 201) {
-      message.value = successMessage
-      form.reset()
-    } else if (status === 404 || status >= 500 && status < 600) {
+    try {
+      const { status } = await fetch((import.meta.env.VITE_ENDPOINT_ORIGIN || "") + "/api/contact-form", {
+        body: JSON.stringify(Object.fromEntries(formData)),
+        method: "post",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      })
+
+      if (status === 201) {
+        message.value = successMessage
+        form.reset()
+      } else if (status === 404 || status >= 500 && status < 600) {
+        message.value = serverErrorMessage
+      } else if (status >= 400 && status < 500) {
+        message.value = clientErrorMessage
+      }
+    } catch {
+      // error if endpoint is not setup properly
       message.value = serverErrorMessage
-    } else if (status >= 400 && status < 500) {
-      message.value = clientErrorMessage
+    } finally {
+      submitting.value = false
     }
 
-    submitting.value = false
   })
 
   return (
