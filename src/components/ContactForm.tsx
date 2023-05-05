@@ -8,15 +8,16 @@ import { t } from "~/stores/translation";
 import type { QwikSubmitEvent } from "@builder.io/qwik";
 
 export const ContactForm = component$(() => {
-  const successMessage = t('contact.form.submit.success')
   const serverErrorMessage = t('contact.form.submit.server.error')
   const clientErrorMessage = t('contact.form.submit.client.error')
 
+  const hCaptchaVerified = useSignal(false)
   const submitting = useSignal(false)
-  const message = useSignal("")
+  const submitted = useSignal(false)
+  const errorMessage = useSignal("")
   const useSubmit = $(async (_: QwikSubmitEvent<HTMLFormElement>, form: HTMLFormElement) => {
     submitting.value = true;
-    message.value = ""
+    errorMessage.value = ""
     const formData = new FormData(form)
 
     try {
@@ -30,31 +31,37 @@ export const ContactForm = component$(() => {
       })
 
       if (status === 201) {
-        message.value = successMessage
-        form.reset()
+        submitted.value = true;
       } else if (status === 404 || status >= 500 && status < 600) {
-        message.value = serverErrorMessage
+        errorMessage.value = serverErrorMessage
       } else if (status >= 400 && status < 500) {
-        message.value = clientErrorMessage
+        errorMessage.value = clientErrorMessage
       }
     } catch (e) {
       // error if endpoint is not setup properly
-      message.value = serverErrorMessage
+      errorMessage.value = serverErrorMessage
     } finally {
       submitting.value = false
     }
   })
 
   return (
-    <form preventdefault:submit onSubmit$={useSubmit} class="flex flex-col gap-4 p-4 bg-slate-100 border-black border-2 rounded-md">
-      <Input type="text" name="name" required label={t('contact.form.name')} disabled={submitting.value} />
-      <Input type="email" name="email" required label={t('contact.form.email')} disabled={submitting.value} />
-      <Input type="tel" name="tel" label={t('contact.form.phonenumber')} disabled={submitting.value} />
-      <Textarea name="message" required label={t('contact.form.message')} disabled={submitting.value} />
-      <RichText dangerouslySetInnerHTML={t('generic.form.privacy.policy')} />
-      <HCaptcha />
-      <input class="enabled:cursor-pointer color-black disabled:text-slate-500 disabled:cursor-default mt-4 bg-slate-300 p-2 border-black disabled:border-slate-500 border-2 hover:enabled:bg-slate-400 focus:enabled:bg-slate-400" type="submit" value={t('generic.form.submit')} disabled={submitting.value} />
-      {(message.value !== "") && <p class="font-bold">{message}</p>}
-    </form>
+    <div class="p-4 bg-slate-100 border-black border-2 rounded-md">
+      {submitted.value
+        ? <p class="font-bold">{t('contact.form.submit.success')}</p>
+        : (
+          <form preventdefault:submit onSubmit$={useSubmit} class="flex flex-col gap-4">
+            <Input type="text" name="name" required label={t('contact.form.name')} disabled={submitting.value} />
+            <Input type="email" name="email" required label={t('contact.form.email')} disabled={submitting.value} />
+            <Input type="tel" name="tel" label={t('contact.form.phonenumber')} disabled={submitting.value} />
+            <Textarea name="message" required label={t('contact.form.message')} disabled={submitting.value} />
+            <RichText dangerouslySetInnerHTML={t('generic.form.privacy.policy')} />
+            <HCaptcha verified={hCaptchaVerified} />
+            <input class="enabled:cursor-pointer color-black disabled:text-slate-500 disabled:cursor-default mt-4 bg-slate-300 p-2 border-black disabled:border-slate-500 border-2 hover:enabled:bg-slate-400 focus:enabled:bg-slate-400" type="submit" value={t('generic.form.submit')} disabled={submitting.value || !hCaptchaVerified.value} />
+            {(errorMessage.value !== "") && <p class="font-bold">{errorMessage}</p>}
+          </form>
+        )
+      }
+    </div>
   )
 })
