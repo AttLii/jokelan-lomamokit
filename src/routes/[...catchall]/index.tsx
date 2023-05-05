@@ -170,18 +170,6 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
         name: "twitter:card",
         content: "summary",
       },
-      {
-        name: "twitter:image",
-        content: imageUrl,
-      },
-      {
-        name: "twitter:title",
-        content: title,
-      },
-      {
-        name: "twitter:description",
-        content: description,
-      },
     ],
   };
 };
