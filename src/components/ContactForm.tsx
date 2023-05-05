@@ -28,7 +28,6 @@ export const ContactForm = component$(() => {
           'Content-Type': 'application/json'
         },
       })
-      console.log(status, clientErrorMessage)
 
       if (status === 201) {
         message.value = successMessage
@@ -39,7 +38,6 @@ export const ContactForm = component$(() => {
         message.value = clientErrorMessage
       }
     } catch (e) {
-      console.log(e)
       // error if endpoint is not setup properly
       message.value = serverErrorMessage
     } finally {
