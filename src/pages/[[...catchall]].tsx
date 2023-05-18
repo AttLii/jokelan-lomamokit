@@ -7,17 +7,14 @@ import { getContentByPath, getContentPaths } from "../repositories/contentful";
 import { isEntryCabin, isEntryPage } from "../typeguards/contentful";
 import { notEmpty } from "../utils/typescript";
 import { ContentHead } from "../components/ContentHead";
-import { useT } from "../contexts/stringTranslations";
 
 type Props = {
   content: ParsedEntryPage | ParsedEntryCabin
 }
 const Catchall: FC<Props> = (props) => {
-  const hi = useT("cabin.information.title")
   return (
     <main>
       <ContentHead content={props.content} />
-      {hi}
     </main>
   )
 }

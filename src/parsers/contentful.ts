@@ -111,3 +111,5 @@ export const parseEntryGlobalContent = (globalContent: EntryGlobalContent) => {
       : null,
   };
 };
+
+export type ParsedGlobalContent = ReturnType<typeof parseEntryGlobalContent>;
