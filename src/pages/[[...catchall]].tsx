@@ -5,15 +5,20 @@ import type { ParsedEntryPage, ParsedEntryCabin } from "../parsers/contentful";
 import allContent from "../prevals/allContent.preval";
 import { notEmpty } from "../utils/typescript";
 import { ContentHead } from "../components/ContentHead";
+import { RichText } from "../components/RichText";
 
 type Props = {
   content: ParsedEntryPage | ParsedEntryCabin
 }
 const Catchall: FC<Props> = (props) => {
   return (
-    <main>
+    <>
       <ContentHead content={props.content} />
-    </main>
+      <RichText>
+        <p>moi</p>
+        <h1>moi</h1>
+      </RichText>
+    </>
   )
 }
 

@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rich-text {
+  & > * {
+    &:not(:first-child) {
+      margin-top: 0.3em;
+    }
+    &:not(:last-child) {
+      margin-bottom: 0.3em;
+    }
+  }
+  h1 {
+    @apply text-6xl;
+    @apply font-display;
+    @apply font-bold;
+  }
+  h2 {
+    @apply text-4xl;
+    @apply font-display;
+    @apply font-bold;
+  }
+  h3 {
+    @apply text-2xl;
+    @apply font-display;
+    @apply font-bold;
+  }
+  p {
+    @apply text-base;
+  }
+  a {
+    @apply text-base;
+    @apply leading-8;
+    @apply underline;
+    @apply hover:no-underline;
+    @apply focus:no-underline;
+  }
+}
