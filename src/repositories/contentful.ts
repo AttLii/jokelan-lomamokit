@@ -12,7 +12,7 @@ const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE + "",
 }).withoutUnresolvableLinks;
 
-const getEntries = <T extends EntrySkeletonType>(
+const getEntries = async <T extends EntrySkeletonType>(
   query?: contentful.EntriesQueries<T, undefined> | undefined
 ) => {
   return client.getEntries(query).then((r) => r.items);

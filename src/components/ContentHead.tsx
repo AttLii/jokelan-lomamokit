@@ -1,7 +1,7 @@
-import { ParsedEntryCabin, ParsedEntryPage } from "@/parsers/contentful";
-import { buildLocalUrlFromRelativePath } from "@/utils/seo";
+import type { FC } from "react";
+import type { ParsedEntryCabin, ParsedEntryPage } from "../parsers/contentful";
 import Head from "next/head";
-import { FC } from "react";
+import { buildLocalUrlFromRelativePath } from "../utils/seo";
 
 type Props = {
   content: ParsedEntryCabin | ParsedEntryPage

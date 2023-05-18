@@ -1,21 +1,23 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 import type { FC } from "react";
-import type { ParsedEntryPage, ParsedEntryCabin } from "@/parsers/contentful";
-import { parseEntryCabin, parseEntryPage } from "@/parsers/contentful";
-import { getContentByPath, getContentPaths } from "@/repositories/contentful";
-import { isEntryCabin, isEntryPage } from "@/typeguards/contentful";
-import { notEmpty } from "@/utils/typescript";
-import { ContentHead } from "@/components/ContentHead";
+import type { ParsedEntryPage, ParsedEntryCabin } from "../parsers/contentful";
+import { parseEntryCabin, parseEntryPage } from "../parsers/contentful";
+import { getContentByPath, getContentPaths } from "../repositories/contentful";
+import { isEntryCabin, isEntryPage } from "../typeguards/contentful";
+import { notEmpty } from "../utils/typescript";
+import { ContentHead } from "../components/ContentHead";
+import { useT } from "../contexts/stringTranslations";
 
 type Props = {
   content: ParsedEntryPage | ParsedEntryCabin
 }
 const Catchall: FC<Props> = (props) => {
+  const hi = useT("cabin.information.title")
   return (
     <main>
       <ContentHead content={props.content} />
-      {JSON.stringify(props, null, 2)}
+      {hi}
     </main>
   )
 }

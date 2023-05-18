@@ -60,13 +60,14 @@ export const parseEntryCabin = (page: EntryCabin) => {
 };
 export type ParsedEntryCabin = ReturnType<typeof parseEntryCabin>;
 
-export const reduceStringTranslationToObject = (
-  acc: Record<string, string>,
-  t: EntryStringTranslation
+export const reduceStringTranslationsToObject = (
+  stringTranslations: EntryStringTranslation[]
 ) => {
-  const { slug, translation } = t.fields;
-  acc[slug] = translation;
-  return acc;
+  return stringTranslations.reduce((acc, t) => {
+    const { slug, translation } = t.fields;
+    acc[slug] = translation;
+    return acc;
+  }, {} as Record<string, string>);
 };
 
 export const parseEntrySubMenuItem = (subMenuItem: EntrySubMenuItem) => {
