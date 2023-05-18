@@ -18,13 +18,11 @@ const getEntries = async <T extends EntrySkeletonType>(
   return client.getEntries(query).then((r) => r.items);
 };
 
-export const getContentPaths = async () => {
+export const getAllContent = () => {
   return Promise.all([
     getEntries<PageSkeleton>({ content_type: "page" }),
     getEntries<CabinSkeleton>({ content_type: "cabin" }),
-  ])
-    .then((content) => [...content[0], ...content[1]])
-    .then((content) => content.map((c) => c.fields.path));
+  ]).then((content) => [...content[0], ...content[1]]);
 };
 
 export const getContentByPath = async (path: string) => {

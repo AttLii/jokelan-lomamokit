@@ -1,6 +1,7 @@
 import type { Asset } from "contentful";
 import type {
   EntryCabin,
+  EntryContent,
   EntryGlobalContent,
   EntryMenu,
   EntryMenuItem,
@@ -11,6 +12,7 @@ import type {
 } from "../types/contentful";
 import { notEmpty } from "../utils/typescript";
 import { parseEntryLocalBusinessToType } from "./seo";
+import { isEntryCabin, isEntryPage } from "../typeguards/contentful";
 
 export const fixAssetUrl = (url: string) => {
   if (!url.startsWith("//")) return url;
@@ -59,6 +61,16 @@ export const parseEntryCabin = (page: EntryCabin) => {
   };
 };
 export type ParsedEntryCabin = ReturnType<typeof parseEntryCabin>;
+
+export const parseContent = (content: EntryContent) => {
+  if (isEntryCabin(content)) {
+    return parseEntryCabin(content);
+  } else if (isEntryPage(content)) {
+    return parseEntryPage(content);
+  } else {
+    return null;
+  }
+};
 
 export const reduceStringTranslationsToObject = (
   stringTranslations: EntryStringTranslation[]
