@@ -3,6 +3,7 @@ import {
   ParsedEntryPage,
   ParsedFiftyFifty,
   ParsedHero,
+  ParsedMap,
   ParsedSection,
 } from "../parsers/contentful";
 import type {
@@ -10,22 +11,31 @@ import type {
   EntryContent,
   EntryFiftyFifty,
   EntryHero,
+  EntryMap,
   EntryPage,
   EntrySection,
 } from "../types/contentful";
 
-export const isEntryPage = (entry: EntryContent): entry is EntryPage =>
-  entry.sys.contentType.sys.id === "page";
+export const isEntryPage = (entry: EntryContent): entry is EntryPage => {
+  return entry.sys.contentType.sys.id === "page";
+};
 
-export const isEntryCabin = (entry: EntryContent): entry is EntryCabin =>
-  entry.sys.contentType.sys.id === "cabin";
+export const isEntryCabin = (entry: EntryContent): entry is EntryCabin => {
+  return entry.sys.contentType.sys.id === "cabin";
+};
 
 export const isEntryHero = (entry: EntrySection): entry is EntryHero => {
   return entry.sys.contentType.sys.id === "hero";
 };
 
-export const isFiftyFifty = (entry: EntrySection): entry is EntryFiftyFifty => {
+export const isEntryFiftyFifty = (
+  entry: EntrySection
+): entry is EntryFiftyFifty => {
   return entry.sys.contentType.sys.id === "fiftyFifty";
+};
+
+export const isEntryMap = (entry: EntrySection): entry is EntryMap => {
+  return entry.sys.contentType.sys.id === "map";
 };
 
 export const isParsedPage = (
@@ -42,4 +52,8 @@ export const isParsedFiftyFifty = (
   section: ParsedSection
 ): section is ParsedFiftyFifty => {
   return section.type === "fiftyFifty";
+};
+
+export const isParsedMap = (section: ParsedSection): section is ParsedMap => {
+  return section.type === "map";
 };

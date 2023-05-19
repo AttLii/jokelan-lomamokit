@@ -5,6 +5,7 @@ import type {
   EntryFiftyFifty,
   EntryGlobalContent,
   EntryHero,
+  EntryMap,
   EntryMenu,
   EntryMenuItem,
   EntryPage,
@@ -19,9 +20,10 @@ import { notEmpty } from "../utils/typescript";
 import { parseEntryLocalBusinessToType } from "./seo";
 import {
   isEntryCabin,
+  isEntryFiftyFifty,
   isEntryHero,
+  isEntryMap,
   isEntryPage,
-  isFiftyFifty,
 } from "../typeguards/contentful";
 
 /**
@@ -85,11 +87,24 @@ export const parseFiftyFifty = (section: EntryFiftyFifty) => {
 };
 export type ParsedFiftyFifty = ReturnType<typeof parseFiftyFifty>;
 
+export const parseMap = (section: EntryMap) => {
+  const { title, richText, location } = section.fields;
+  return {
+    type: "map",
+    title,
+    richText: documentToHtml(richText),
+    location,
+  };
+};
+export type ParsedMap = ReturnType<typeof parseMap>;
+
 export const parseSection = (section: EntrySection) => {
   if (isEntryHero(section)) {
     return parseHero(section);
-  } else if (isFiftyFifty(section)) {
+  } else if (isEntryFiftyFifty(section)) {
     return parseFiftyFifty(section);
+  } else if (isEntryMap(section)) {
+    return parseMap(section);
   } else {
     console.log(JSON.stringify(section, null, 2));
     return {

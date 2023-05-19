@@ -15,6 +15,14 @@ export type FiftyFiftySkeleton = {
     order: EntryFieldTypes.Text;
   };
 };
+export type MapSkeleton = {
+  contentTypeId: "map";
+  fields: {
+    title: EntryFieldTypes.Text;
+    richText: EntryFieldTypes.RichText;
+    location: EntryFieldTypes.Location;
+  };
+};
 
 export type AddressSkeleton = {
   contentTypeId: "address";
@@ -183,4 +191,5 @@ export type EntryFiftyFifty = Entry<
   "WITHOUT_UNRESOLVABLE_LINKS",
   string
 >;
-export type EntrySection = EntryHero | EntryFiftyFifty;
+export type EntryMap = Entry<MapSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
+export type EntrySection = EntryHero | EntryFiftyFifty | EntryMap;
