@@ -30,6 +30,7 @@ export const Carousel: FC<Props> = ({ images }) => {
             height={1139}
             className="w-full h-full object-cover object-center"
             loading={i === 0 ? "eager" : "lazy"}
+            priority={i === 0}
             src={`${src}&w=639&h=1136&fit=fill`}
             srcSet={{
               '(min-width: 640px)': `${src}&w=1920&h=1080&fit=fill`
