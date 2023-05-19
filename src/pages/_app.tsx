@@ -22,13 +22,13 @@ const App = ({ Component, pageProps }: AppProps) => {
     <main className={`${cabinFont.variable} ${ptSansFont.variable}`}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalContent.localBusiness) }} />
       </Head>
       <GlobalContentContext.Provider value={globalContent}>
         <StringTranslationContext.Provider value={stringTranslations}>
           <Component {...pageProps} />
         </StringTranslationContext.Provider>
       </GlobalContentContext.Provider>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalContent.localBusiness) }} />
     </main >
   )
 }

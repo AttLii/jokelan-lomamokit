@@ -2,11 +2,13 @@ import type { FC } from "react";
 import type { ParsedEntryCabin, ParsedEntryPage } from "../parsers/contentful";
 import Head from "next/head";
 import { buildLocalUrlFromRelativePath } from "../utils/seo";
+import { composeJsonLDfromContent } from "../parsers/seo";
 
 type Props = {
-  content: ParsedEntryCabin | ParsedEntryPage
+  content: ParsedEntryCabin | ParsedEntryPage,
+  jsonld: ReturnType<typeof composeJsonLDfromContent>
 }
-export const ContentHead: FC<Props> = ({ content }) => {
+export const ContentHead: FC<Props> = ({ content, jsonld }) => {
   const {
     path,
     seoFields: {
@@ -38,6 +40,10 @@ export const ContentHead: FC<Props> = ({ content }) => {
       <meta name="robots" content={robots} />
       <meta name="og:type" content="website" />
       <meta name="twitter:card" content="summary" />
+
+      {jsonld && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }} />
+      )}
     </Head>
   )
 }
