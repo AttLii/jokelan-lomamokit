@@ -5,8 +5,8 @@ import { Container } from "../components/Container";
 import { useT } from "../contexts/stringTranslations";
 
 const Custom404: FC = () => {
-  const titleLabel = useT('404.page.title')
-  const linkLabel = useT('404.page.link')
+  const titleLabel = useT('404.page.title');
+  const linkLabel = useT('404.page.link');
   return (
     <Section>
       <Container type="wide" className="text-center rich-text">
@@ -14,7 +14,7 @@ const Custom404: FC = () => {
         <Link href="/">{linkLabel}</Link>
       </Container>
     </Section>
-  )
+  );
 };
 
-export default Custom404
+export default Custom404;

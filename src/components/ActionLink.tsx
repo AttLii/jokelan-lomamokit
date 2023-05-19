@@ -6,7 +6,7 @@ type Props = PropsWithChildren & {
   disabled?: boolean
 }
 export const ActionLink: FC<Props> = ({ href, disabled, children }) => {
-  const onClick = () => window.open(href, "_blank", "noopener noreferrer")
+  const onClick = () => window.open(href, "_blank", "noopener noreferrer");
   return (
     <button
       className="
@@ -26,6 +26,6 @@ export const ActionLink: FC<Props> = ({ href, disabled, children }) => {
       }
       {children}
     </button>
-  )
-}
+  );
+};
 

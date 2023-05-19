@@ -1,30 +1,30 @@
-import { FC, FormEventHandler, useState } from "react"
-import { Input } from "./Input"
-import { useT } from "../contexts/stringTranslations"
-import { Textarea } from "./Textarea"
-import { RichText } from "./RichText"
-import { HCaptcha } from "./HCaptcha"
+import { FC, FormEventHandler, useState } from "react";
+import { Input } from "./Input";
+import { useT } from "../contexts/stringTranslations";
+import { Textarea } from "./Textarea";
+import { RichText } from "./RichText";
+import { HCaptcha } from "./HCaptcha";
 
 export const ContactForm: FC = () => {
-  const serverErrorMessage = useT('contact.form.submit.server.error')
-  const clientErrorMessage = useT('contact.form.submit.client.error')
-  const submitLabel = useT('generic.form.submit')
-  const successLabel = useT('contact.form.submit.success')
-  const nameLabel = useT('contact.form.name')
-  const emailLabel = useT('contact.form.email')
-  const telLabel = useT('contact.form.phonenumber')
-  const messageLabel = useT('contact.form.message')
-  const privacyPolicyLabel = useT('generic.form.privacy.policy')
+  const serverErrorMessage = useT('contact.form.submit.server.error');
+  const clientErrorMessage = useT('contact.form.submit.client.error');
+  const submitLabel = useT('generic.form.submit');
+  const successLabel = useT('contact.form.submit.success');
+  const nameLabel = useT('contact.form.name');
+  const emailLabel = useT('contact.form.email');
+  const telLabel = useT('contact.form.phonenumber');
+  const messageLabel = useT('contact.form.message');
+  const privacyPolicyLabel = useT('generic.form.privacy.policy');
 
-  const [hCaptchaVerified, setHCaptchaVerified] = useState(false)
-  const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
+  const [hCaptchaVerified, setHCaptchaVerified] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const useSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault()
-    setSubmitting(true)
-    setErrorMessage("")
-    const formData = new FormData(e.currentTarget)
+    e.preventDefault();
+    setSubmitting(true);
+    setErrorMessage("");
+    const formData = new FormData(e.currentTarget);
 
     try {
       const { status } = await fetch("/api/contact-form", {
@@ -34,22 +34,22 @@ export const ContactForm: FC = () => {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-      })
+      });
 
       if (status === 201) {
         setSubmitted(true);
       } else if (status === 404 || status >= 500 && status < 600) {
-        setErrorMessage(serverErrorMessage)
+        setErrorMessage(serverErrorMessage);
       } else if (status >= 400 && status < 500) {
-        setErrorMessage(clientErrorMessage)
+        setErrorMessage(clientErrorMessage);
       }
     } catch (e) {
       // error if endpoint is not setup properly
-      setErrorMessage(serverErrorMessage)
+      setErrorMessage(serverErrorMessage);
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   return (
     <div className="p-4 bg-slate-100 border-black border-2 rounded-md">
@@ -74,5 +74,5 @@ export const ContactForm: FC = () => {
         )
       }
     </div>
-  )
-}
+  );
+};

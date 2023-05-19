@@ -1,7 +1,7 @@
-import { FC } from "react"
-import { ParsedMap } from "../../parsers/contentful"
-import { SectionWithRichText } from "../SectionWithRichText"
-import { OpenStreetMapEmbed } from "../OpenStreetMapEmbed"
+import { FC } from "react";
+import { ParsedMap } from "../../parsers/contentful";
+import { SectionWithRichText } from "../SectionWithRichText";
+import { OpenStreetMapEmbed } from "../OpenStreetMapEmbed";
 
 type Props = {
   section: ParsedMap
@@ -11,5 +11,5 @@ export const Map: FC<Props> = ({ section: { title, richText, location } }) => {
     <SectionWithRichText richText={richText} type="wide">
       <OpenStreetMapEmbed title={title} location={location} />
     </SectionWithRichText>
-  )
-}
+  );
+};

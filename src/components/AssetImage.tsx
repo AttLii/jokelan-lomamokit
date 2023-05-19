@@ -1,6 +1,6 @@
-import { FC, useMemo } from "react"
-import { ParsedAssetImage } from "../parsers/contentful"
-import Image from "next/image"
+import { FC, useMemo } from "react";
+import { ParsedAssetImage } from "../parsers/contentful";
+import Image from "next/image";
 
 type Props = ParsedAssetImage & {
   className?: string,
@@ -13,12 +13,12 @@ type Props = ParsedAssetImage & {
 
 type ImgProps = Omit<Props, "srcSet">
 
-const Img: FC<ImgProps> = ({ alt = "", ...rest }) => <Image {...rest} alt={alt} decoding="async" />
+const Img: FC<ImgProps> = ({ alt = "", ...rest }) => <Image {...rest} alt={alt} decoding="async" />;
 
 export const AssetImage: FC<Props> = (({ srcSet, alt, height, loading, src, width, className, priority }) => {
-  const _Image = useMemo(() => <Img alt={alt} height={height} loading={loading} src={src} width={width} className={className} priority={priority} />, [alt, height, loading, src, width, className, priority])
+  const _Image = useMemo(() => <Img alt={alt} height={height} loading={loading} src={src} width={width} className={className} priority={priority} />, [alt, height, loading, src, width, className, priority]);
 
-  if (!srcSet) return _Image
+  if (!srcSet) return _Image;
   return (
     <picture>
       {Object.keys(srcSet)?.map((key, i) => (
@@ -26,5 +26,5 @@ export const AssetImage: FC<Props> = (({ srcSet, alt, height, loading, src, widt
       ))}
       {_Image}
     </picture>
-  )
-})
+  );
+});

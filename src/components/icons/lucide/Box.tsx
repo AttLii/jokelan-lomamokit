@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const Box: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -8,5 +8,5 @@ export const Box: FC<IconProps> = ({ className = "" }) => {
       <polyline points="3.29 7 12 12 20.71 7" />
       <line x1="12" x2="12" y1="22" y2="12" />
     </svg>
-  )
-}
+  );
+};

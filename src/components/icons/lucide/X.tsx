@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const X: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -7,5 +7,5 @@ export const X: FC<IconProps> = ({ className = "" }) => {
       <line x1="18" x2="6" y1="6" y2="18" />
       <line x1="6" x2="18" y1="6" y2="18" />
     </svg>
-  )
-}
+  );
+};

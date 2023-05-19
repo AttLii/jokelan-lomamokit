@@ -6,7 +6,7 @@ import { FooterInfoList } from "./FooterInfoList";
 import { useGlobalContentContext } from "../contexts/globalContent";
 
 export const Footer = () => {
-  const { footerMenu } = useGlobalContentContext()
+  const { footerMenu } = useGlobalContentContext();
   return (
     <footer className="w-full bg-slate-100 pt-10 pb-4 border-t-2 border-black relative">
       <Container type="wide" className="relative flex flex-col gap-4">
@@ -30,5 +30,5 @@ export const Footer = () => {
         <BackToTopButton className="absolute bottom-1.5 right-4" />
       </Container>
     </footer>
-  )
-}
+  );
+};

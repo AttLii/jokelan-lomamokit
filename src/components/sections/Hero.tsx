@@ -1,7 +1,7 @@
-import { FC } from "react"
-import { ParsedHero } from "../../parsers/contentful"
-import { Carousel } from "../Carousel"
-import { RichText } from "../RichText"
+import { FC } from "react";
+import { ParsedHero } from "../../parsers/contentful";
+import { Carousel } from "../Carousel";
+import { RichText } from "../RichText";
 
 type Props = {
   section: ParsedHero
@@ -22,5 +22,5 @@ export const Hero: FC<Props> = ({
         />
       </div>
     </section>
-  )
-}
+  );
+};

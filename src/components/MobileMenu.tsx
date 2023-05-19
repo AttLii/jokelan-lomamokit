@@ -13,28 +13,28 @@ const SubMenuRenderer: FC<SubItemsRendererProps> = ({ subItems }) => (
       ))}
     </ul>
   </div>
-)
+);
 
 export const MobileMenu = () => {
-  const { headerMenu } = useGlobalContentContext()
-  const { state, dispatch } = useUiContext()
+  const { headerMenu } = useGlobalContentContext();
+  const { state, dispatch } = useUiContext();
   const { backdrop, menuLeft } = useMemo(() => {
     if (state.navOpen) {
       return {
         backdrop: "right-0 opacity-30",
         menuLeft: "right-0"
-      }
+      };
     } else {
       return {
         backdrop: "-right-full opacity-0",
         menuLeft: "-right-full"
-      }
+      };
     }
-  }, [state.navOpen])
+  }, [state.navOpen]);
 
-  const onBackdropClick = () => dispatch({ type: "NAV_CLOSE" })
+  const onBackdropClick = () => dispatch({ type: "NAV_CLOSE" });
 
-  if (!headerMenu) return <Fragment />
+  if (!headerMenu) return <Fragment />;
   return (
     <>
       <div onClick={onBackdropClick} className={`sm:hidden block cursor-pointer fixed top-[3.5rem] h-[calc(100%-3.5rem)] w-screen bg-black transition-opacity duration-500 ${backdrop}`} />
@@ -49,5 +49,5 @@ export const MobileMenu = () => {
         </ul>
       </nav>
     </>
-  )
-}
+  );
+};

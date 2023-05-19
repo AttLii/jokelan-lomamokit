@@ -22,15 +22,15 @@ export const MenuLink: FC<Props> = ({
   showSubItems,
   SubMenuRenderer
 }) => {
-  const { path, title } = menuItem
-  const label = useT('sub.menu.toggle')
-  const router = useRouter()
+  const { path, title } = menuItem;
+  const label = useT('sub.menu.toggle');
+  const router = useRouter();
 
   const activeClass = router.asPath === path
     ? 'font-semibold'
-    : ''
+    : '';
 
-  const showIcon = showSubItems && "subItems" in menuItem && menuItem.subItems.length > 0
+  const showIcon = showSubItems && "subItems" in menuItem && menuItem.subItems.length > 0;
   return (
     <div className={`group relative ${className} ${showIcon ? "pr-6" : ""} flex items-center justify-center`}>
       <Link className={`font-sans w-full hover:underline ${activeClass}`} href={path}>
@@ -46,5 +46,5 @@ export const MenuLink: FC<Props> = ({
         <SubMenuRenderer subItems={menuItem.subItems} />
       )}
     </div>
-  )
-}
+  );
+};

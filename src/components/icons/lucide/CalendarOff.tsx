@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const CalendarOff: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -11,5 +11,5 @@ export const CalendarOff: FC<IconProps> = ({ className = "" }) => {
       <path d="M21 10h-5.5" />
       <line x1="2" x2="22" y1="2" y2="22" />
     </svg>
-  )
-}
+  );
+};

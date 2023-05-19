@@ -15,5 +15,5 @@ export const SectionWithRichText: FC<Props> = (({ richText, type, children }) =>
         {children}
       </Container>
     </Section>
-  )
-})
+  );
+});

@@ -17,24 +17,24 @@ export const SectionsRenderer: FC<Props> = ({ sections }) => {
     <>
       {sections.map((section, i) => {
         if (isParsedHero(section)) {
-          return <Hero key={i} section={section} />
+          return <Hero key={i} section={section} />;
         } else if (isParsedFiftyFifty(section)) {
-          return <FiftyFifty key={i} section={section} />
+          return <FiftyFifty key={i} section={section} />;
         } else if (isParsedMap(section)) {
-          return <Map key={i} section={section} />
+          return <Map key={i} section={section} />;
         } else if (isParsedCabinReferences(section)) {
-          return <CabinReferencesSection key={i} section={section} />
+          return <CabinReferencesSection key={i} section={section} />;
         } else if (isParsedForm(section)) {
-          return <Form key={i} section={section} />
+          return <Form key={i} section={section} />;
         } else if (isParsedContent(section)) {
-          return <Content key={i} section={section} />
+          return <Content key={i} section={section} />;
         } else if (isParsedFaqs(section)) {
-          return <FAQs key={i} section={section} />
+          return <FAQs key={i} section={section} />;
         } else {
-          return <Fragment key={i} />
+          return <Fragment key={i} />;
         }
       })}
     </>
-  )
+  );
 
-}
+};

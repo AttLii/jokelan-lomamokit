@@ -1,7 +1,7 @@
-import { FC } from "react"
-import { ParsedFaqs } from "../../parsers/contentful"
-import { SectionWithRichText } from "../SectionWithRichText"
-import { FAQ } from "../FAQCard"
+import { FC } from "react";
+import { ParsedFaqs } from "../../parsers/contentful";
+import { SectionWithRichText } from "../SectionWithRichText";
+import { FAQ } from "../FAQCard";
 
 type Props = {
   section: ParsedFaqs
@@ -17,5 +17,5 @@ export const FAQs: FC<Props> = ({ section: { richText, faqs } }) => {
         ))}
       </ul>
     </SectionWithRichText>
-  )
-}
+  );
+};

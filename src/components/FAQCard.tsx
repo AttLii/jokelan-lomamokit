@@ -11,5 +11,5 @@ export const FAQ: FC<Props> = ({ faq: { answer, question } }) => {
       <summary className="p-4 cursor-pointer font-display font-bold">{question}</summary>
       <RichText className="p-4 pt-0" html={answer} />
     </details>
-  )
-}
+  );
+};

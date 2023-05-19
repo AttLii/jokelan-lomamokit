@@ -1,16 +1,16 @@
-import { FC, MutableRefObject } from "react"
-import { useT } from "../contexts/stringTranslations"
+import { FC, MutableRefObject } from "react";
+import { useT } from "../contexts/stringTranslations";
 
 type Props = {
   focusElement: MutableRefObject<HTMLElement | null>
 }
 export const SkipToContent: FC<Props> = ({ focusElement }) => {
-  const label = useT('generic.skip.to.content')
+  const label = useT('generic.skip.to.content');
   const onClick = () => {
-    if (!focusElement.current) return
-    console.log('hi')
-    focusElement.current.focus()
-  }
+    if (!focusElement.current) return;
+    console.log('hi');
+    focusElement.current.focus();
+  };
   return (
     <button
       className="
@@ -22,5 +22,5 @@ export const SkipToContent: FC<Props> = ({ focusElement }) => {
     >
       {label}
     </button>
-  )
-}
+  );
+};

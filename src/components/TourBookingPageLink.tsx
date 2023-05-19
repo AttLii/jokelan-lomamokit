@@ -8,8 +8,8 @@ type Props = {
   className?: string;
 }
 export const TourBookingPageLink: FC<Props> = ({ tourBookingPage, name, className = "" }) => {
-  const linkLabel = useT('cabin.action.link.text')
-  const disabledLabel = useT('cabin.action.link.disabled.help')
+  const linkLabel = useT('cabin.action.link.text');
+  const disabledLabel = useT('cabin.action.link.disabled.help');
 
   return (
     <div className={`font-sans ${className}`}>
@@ -22,5 +22,5 @@ export const TourBookingPageLink: FC<Props> = ({ tourBookingPage, name, classNam
           </>
         )}
     </div>
-  )
-}
+  );
+};

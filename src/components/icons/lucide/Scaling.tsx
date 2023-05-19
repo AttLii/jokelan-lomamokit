@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const Scaling: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -9,5 +9,5 @@ export const Scaling: FC<IconProps> = ({ className = "" }) => {
       <path d="M16 3h5v5" />
       <path d="M14 15H9v-5" />
     </svg>
-  )
-}
+  );
+};

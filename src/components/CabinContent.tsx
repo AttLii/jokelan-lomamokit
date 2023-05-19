@@ -1,14 +1,14 @@
-import { FC } from "react"
-import { ParsedEntryCabin } from "../parsers/contentful"
-import { ApartmentJsonLD } from "../parsers/seo"
-import { useT } from "../contexts/stringTranslations"
-import { Section } from "./Section"
-import { Container } from "./Container"
-import { CabinGallery } from "./CabinGallery"
-import { Ban, Box, Cigarette, CigaretteOff, Dog, DoubleBed, Hammer, LayoutGrid, Phone, Users } from "./icons/lucide"
-import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed"
-import { TourBookingPageLink } from "./TourBookingPageLink"
-import { StarRating } from "./StarRating"
+import { FC } from "react";
+import { ParsedEntryCabin } from "../parsers/contentful";
+import { ApartmentJsonLD } from "../parsers/seo";
+import { useT } from "../contexts/stringTranslations";
+import { Section } from "./Section";
+import { Container } from "./Container";
+import { CabinGallery } from "./CabinGallery";
+import { Ban, Box, Cigarette, CigaretteOff, Dog, DoubleBed, Hammer, LayoutGrid, Phone, Users } from "./icons/lucide";
+import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
+import { TourBookingPageLink } from "./TourBookingPageLink";
+import { StarRating } from "./StarRating";
 
 type Props = {
   content: ParsedEntryCabin,
@@ -31,20 +31,20 @@ export const CabinContent: FC<Props> = ({
   },
   jsonld
 }) => {
-  const averageLabel = useT('cabin.reviews.average')
-  const countLabel = useT('cabin.reviews.count')
-  const titleLabel = useT('cabin.information.title')
-  const builtLabel = useT('cabin.year.built')
-  const occupancyLabel = useT('cabin.occupancy')
-  const squaredLabel = useT('generic.meter.squared')
-  const roomsLabel = useT('cabin.number.of.rooms')
-  const bedroomsLabel = useT('cabin.number.of.bedrooms')
-  const petsAllowedLabel = useT('cabin.pets.allowed')
-  const petsNotAllowedLabel = useT('cabin.pets.not.allowed')
-  const smokingAllowedLabel = useT('cabin.smoking.allowed')
-  const smokingNotAllowedLabel = useT('cabin.smoking.not.allowed')
-  const locationTitleLabel = useT('cabin.location.title')
-  const locationLabel = useT('cabin.map.location')
+  const averageLabel = useT('cabin.reviews.average');
+  const countLabel = useT('cabin.reviews.count');
+  const titleLabel = useT('cabin.information.title');
+  const builtLabel = useT('cabin.year.built');
+  const occupancyLabel = useT('cabin.occupancy');
+  const squaredLabel = useT('generic.meter.squared');
+  const roomsLabel = useT('cabin.number.of.rooms');
+  const bedroomsLabel = useT('cabin.number.of.bedrooms');
+  const petsAllowedLabel = useT('cabin.pets.allowed');
+  const petsNotAllowedLabel = useT('cabin.pets.not.allowed');
+  const smokingAllowedLabel = useT('cabin.smoking.allowed');
+  const smokingNotAllowedLabel = useT('cabin.smoking.not.allowed');
+  const locationTitleLabel = useT('cabin.location.title');
+  const locationLabel = useT('cabin.map.location');
   return (
     <>
       <Section>
@@ -143,5 +143,5 @@ export const CabinContent: FC<Props> = ({
         </Container>
       </Section>
     </>
-  )
-}
+  );
+};

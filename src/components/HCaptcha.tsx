@@ -5,8 +5,8 @@ type Props = {
   setVerified: Dispatch<SetStateAction<boolean>>
 }
 export const HCaptcha: FC<Props> = ({ setVerified }) => {
-  const onVerify = () => setVerified(true)
-  const onError = () => setVerified(false)
+  const onVerify = () => setVerified(true);
+  const onError = () => setVerified(false);
   return (
     <HCaptchaComponent
       sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
@@ -15,5 +15,5 @@ export const HCaptcha: FC<Props> = ({ setVerified }) => {
       onVerify={onVerify}
       onError={onError}
     />
-  )
-}
+  );
+};

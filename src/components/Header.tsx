@@ -1,9 +1,9 @@
-import { FC } from "react"
-import { Container } from "./Container"
-import { HeaderLogoLink } from "./HeaderLogoLink"
-import { DesktopMenu } from "./DesktopMenu"
-import { BurgerButton } from "./BurgerButton"
-import { MobileMenu } from "./MobileMenu"
+import { FC } from "react";
+import { Container } from "./Container";
+import { HeaderLogoLink } from "./HeaderLogoLink";
+import { DesktopMenu } from "./DesktopMenu";
+import { BurgerButton } from "./BurgerButton";
+import { MobileMenu } from "./MobileMenu";
 
 export const Header: FC = () => {
   return (
@@ -15,5 +15,5 @@ export const Header: FC = () => {
         <MobileMenu />
       </Container>
     </header>
-  )
-}
+  );
+};

@@ -8,7 +8,7 @@ type Props = {
   disabled?: boolean
 }
 export const Input: FC<Props> = ({ required, label, ...rest }) => {
-  const _label = useMemo(() => label + (required ? " *" : ""), [label, required])
+  const _label = useMemo(() => label + (required ? " *" : ""), [label, required]);
   return (
     <label className="flex flex-col font-sans">
       <span>{_label}</span>
@@ -18,5 +18,5 @@ export const Input: FC<Props> = ({ required, label, ...rest }) => {
         {...rest}
       />
     </label>
-  )
-}
+  );
+};

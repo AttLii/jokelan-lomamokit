@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const DoubleBed: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -9,5 +9,5 @@ export const DoubleBed: FC<IconProps> = ({ className = "" }) => {
       <path d="M12 4v6" />
       <path d="M2 18h20" />
     </svg>
-  )
-}
+  );
+};

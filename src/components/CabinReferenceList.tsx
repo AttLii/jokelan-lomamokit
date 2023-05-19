@@ -13,8 +13,8 @@ export const CabinReferenceList: FC<Props> = ({ cabinReferences }) => {
           <li key={cabin.id}>
             <CabinCard cabin={cabin} />
           </li>
-        )
+        );
       })}
     </ul>
-  )
-}
+  );
+};

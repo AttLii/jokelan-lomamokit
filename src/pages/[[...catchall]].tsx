@@ -19,12 +19,12 @@ type CabinPageProps = {
   jsonld: ApartmentJsonLD
 }
 
-const isPageProps = (props: Props): props is PageProps => props.content.type === "page"
+const isPageProps = (props: Props): props is PageProps => props.content.type === "page";
 
 type Props = CabinPageProps | PageProps;
 
 const Catchall: FC<Props> = (props) => {
-  const { content, jsonld } = props
+  const { content, jsonld } = props;
   return (
     <>
       <ContentHead content={content} jsonld={jsonld} />
@@ -33,42 +33,42 @@ const Catchall: FC<Props> = (props) => {
         : <CabinContent content={props.content} jsonld={props.jsonld} />
       }
     </>
-  )
-}
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = allContent.map(content => ({
     params: {
       catchall: content.path.split("/").filter(notEmpty)
     }
-  }))
+  }));
   return {
     paths,
     fallback: false,
   };
-}
+};
 
 interface IParams extends ParsedUrlQuery {
   catchall: string[]
 }
 export const getStaticProps: GetStaticProps<{}, IParams> = async (context) => {
-  const path = `/${context.params?.catchall ? context.params.catchall.join("/") : ""}`
+  const path = `/${context.params?.catchall ? context.params.catchall.join("/") : ""}`;
 
-  let content = allContent.find(content => content.path === path)
+  let content = allContent.find(content => content.path === path);
   if (!content) {
     return {
       notFound: true
-    }
+    };
   }
 
-  const jsonld = await composeJsonLDfromContent(content)
+  const jsonld = await composeJsonLDfromContent(content);
 
   return {
     props: {
       content,
       jsonld
     }
-  }
-}
+  };
+};
 
-export default Catchall
+export default Catchall;

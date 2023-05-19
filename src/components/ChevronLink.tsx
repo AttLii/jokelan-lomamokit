@@ -1,6 +1,6 @@
-import Link, { LinkProps } from "next/link"
-import { FC, PropsWithChildren } from "react"
-import { ChevronRight } from "./icons/lucide"
+import Link, { LinkProps } from "next/link";
+import { FC, PropsWithChildren } from "react";
+import { ChevronRight } from "./icons/lucide";
 
 type Props = LinkProps & PropsWithChildren
 export const IconLink: FC<Props> = ({ children, ...rest }) => {
@@ -9,5 +9,5 @@ export const IconLink: FC<Props> = ({ children, ...rest }) => {
       {children}
       <ChevronRight className="h-4 w-4" />
     </Link>
-  )
-}
+  );
+};

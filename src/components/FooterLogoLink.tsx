@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 }
 export const FooterLogoLink: FC<Props> = ({ className = "" }: Props) => {
-  const label = useT('generic.logo.link')
+  const label = useT('generic.logo.link');
   return (
     <Link
       href="/"
@@ -16,5 +16,5 @@ export const FooterLogoLink: FC<Props> = ({ className = "" }: Props) => {
     >
       <Image src="/logo-footer.svg" loading="lazy" width="120" height="120" alt="" />
     </Link>
-  )
-}
+  );
+};

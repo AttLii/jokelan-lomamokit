@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const Calendar: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -9,5 +9,5 @@ export const Calendar: FC<IconProps> = ({ className = "" }) => {
       <line x1="8" x2="8" y1="2" y2="6" />
       <line x1="3" x2="21" y1="10" y2="10" />
     </svg>
-  )
-}
+  );
+};

@@ -13,8 +13,8 @@ export const ContentHead: FC<Props> = ({ content, jsonld }) => {
     seoFields: {
       description, image, keywords, robots, title,
     }
-  } = content
-  const href = buildLocalUrlFromRelativePath(path)
+  } = content;
+  const href = buildLocalUrlFromRelativePath(path);
   return (
     <Head>
       <title>{title}</title>
@@ -42,5 +42,5 @@ export const ContentHead: FC<Props> = ({ content, jsonld }) => {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }} />
     </Head>
-  )
-}
+  );
+};

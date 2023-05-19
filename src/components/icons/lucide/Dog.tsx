@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const Dog: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -11,5 +11,5 @@ export const Dog: FC<IconProps> = ({ className = "" }) => {
       <path d="M11.25 16.25h1.5L12 17l-.75-.75Z" />
       <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306" />
     </svg>
-  )
-}
+  );
+};

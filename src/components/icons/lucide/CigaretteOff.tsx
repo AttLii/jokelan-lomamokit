@@ -1,5 +1,5 @@
-import { FC } from "react"
-import { IconProps } from "../../../types/icon"
+import { FC } from "react";
+import { IconProps } from "../../../types/icon";
 
 export const CigaretteOff: FC<IconProps> = ({ className = "" }) => {
   return (
@@ -12,5 +12,5 @@ export const CigaretteOff: FC<IconProps> = ({ className = "" }) => {
       <path d="M18 8c0-2.5-2-2.5-2-5" />
       <path d="M22 8c0-2.5-2-2.5-2-5" />
     </svg>
-  )
-}
+  );
+};

@@ -17,11 +17,11 @@ const SubMenuRenderer: FC<SubItemsRendererProps> = ({ subItems }) => (
       ))}
     </ul>
   </div>
-)
+);
 
 export const DesktopMenu: FC = () => {
-  const { headerMenu } = useGlobalContentContext()
-  if (!headerMenu) return <Fragment />
+  const { headerMenu } = useGlobalContentContext();
+  if (!headerMenu) return <Fragment />;
 
   return (
     <nav className="hidden sm:flex" aria-label={headerMenu.title}>
@@ -38,5 +38,5 @@ export const DesktopMenu: FC = () => {
         ))}
       </ul>
     </nav>
-  )
-}
+  );
+};

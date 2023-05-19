@@ -1,14 +1,14 @@
-import { FC } from "react"
-import { ParsedCabinReference } from "../parsers/contentful"
-import { useT } from "../contexts/stringTranslations"
-import { AssetImage } from "./AssetImage"
-import { IconLink } from "./ChevronLink"
+import { FC } from "react";
+import { ParsedCabinReference } from "../parsers/contentful";
+import { useT } from "../contexts/stringTranslations";
+import { AssetImage } from "./AssetImage";
+import { IconLink } from "./ChevronLink";
 
 type Props = {
   cabin: ParsedCabinReference
 }
 export const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
-  const label = useT('generic.read.more')
+  const label = useT('generic.read.more');
   return (
     <article className="bg-slate-100 border-black border-2 rounded-md overflow-hidden">
       {image && (
@@ -25,5 +25,5 @@ export const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
         <IconLink href={path}>{label}</IconLink>
       </div>
     </article>
-  )
-}
+  );
+};

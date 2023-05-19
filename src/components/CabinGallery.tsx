@@ -1,35 +1,35 @@
-import { FC, MouseEventHandler, useEffect, useRef, useState } from "react"
-import { ParsedAssetImage } from "../parsers/contentful"
-import { AssetImage } from "./AssetImage"
-import { useT } from "../contexts/stringTranslations"
-import { Scaling, X } from "./icons/lucide"
+import { FC, MouseEventHandler, useEffect, useRef, useState } from "react";
+import { ParsedAssetImage } from "../parsers/contentful";
+import { AssetImage } from "./AssetImage";
+import { useT } from "../contexts/stringTranslations";
+import { Scaling, X } from "./icons/lucide";
 
 type Props = {
   gallery: ParsedAssetImage[]
 }
 export const CabinGallery: FC<Props> = ({ gallery }) => {
-  const dialog = useRef<HTMLDialogElement | null>(null)
-  const scrollContainer = useRef<HTMLUListElement | null>(null)
-  const [index, setIndex] = useState(0)
-  const onClick = (i: number) => setIndex(i)
-  const goToLabel = useT('cabin.gallery.go.to')
-  const openDialogLabel = useT("cabin.gallery.dialog.open")
-  const closeDialogLabel = useT('cabin.gallery.dialog.close')
+  const dialog = useRef<HTMLDialogElement | null>(null);
+  const scrollContainer = useRef<HTMLUListElement | null>(null);
+  const [index, setIndex] = useState(0);
+  const onClick = (i: number) => setIndex(i);
+  const goToLabel = useT('cabin.gallery.go.to');
+  const openDialogLabel = useT("cabin.gallery.dialog.open");
+  const closeDialogLabel = useT('cabin.gallery.dialog.close');
 
-  const openDialog = () => dialog.current?.showModal()
-  const closeDialog = () => dialog.current?.close()
+  const openDialog = () => dialog.current?.showModal();
+  const closeDialog = () => dialog.current?.close();
   const onDialogClick: MouseEventHandler<HTMLDialogElement> = (e) => {
-    if (e.target !== dialog.current) return
-    dialog.current?.close()
-  }
+    if (e.target !== dialog.current) return;
+    dialog.current?.close();
+  };
 
   useEffect(() => {
-    if (!scrollContainer.current || gallery.length === 0) return
+    if (!scrollContainer.current || gallery.length === 0) return;
 
-    const child = scrollContainer.current.children[index]
-    if (!child) return
+    const child = scrollContainer.current.children[index];
+    if (!child) return;
     child.scrollIntoView({ behavior: "smooth", inline: "center", block: "end" });
-  }, [index, scrollContainer, gallery.length])
+  }, [index, scrollContainer, gallery.length]);
   return (
     <div className="flex flex-col gap-2">
       {gallery[index] && (
@@ -76,5 +76,5 @@ export const CabinGallery: FC<Props> = ({ gallery }) => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
