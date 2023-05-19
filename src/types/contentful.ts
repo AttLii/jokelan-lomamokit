@@ -1,4 +1,4 @@
-import type { EntryFieldTypes, Entry, EntryField } from "contentful";
+import type { EntryFieldTypes, Entry } from "contentful";
 
 export type HeroSkeleton = {
   contentTypeId: "hero";
