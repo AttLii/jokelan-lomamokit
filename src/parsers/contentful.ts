@@ -2,7 +2,7 @@ import type { Asset } from "contentful";
 import type {
   EntryCabin,
   EntryCabinReferences,
-  EntryContent,
+  EntryForPage,
   EntryFiftyFifty,
   EntryForm,
   EntryGlobalContent,
@@ -15,6 +15,7 @@ import type {
   EntrySeoFields,
   EntryStringTranslation,
   EntrySubMenuItem,
+  EntryContent,
 } from "../types/contentful";
 import type { Document } from "@contentful/rich-text-types";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
@@ -23,6 +24,7 @@ import { parseEntryLocalBusinessToType } from "./seo";
 import {
   isEntryCabin,
   isEntryCabinReferences,
+  isEntryContent,
   isEntryFiftyFifty,
   isEntryForm,
   isEntryHero,
@@ -136,6 +138,15 @@ export const parseEntryForm = (section: EntryForm) => {
 };
 export type ParsedForm = ReturnType<typeof parseEntryForm>;
 
+export const parseEntryContent = (section: EntryContent) => {
+  const { richText } = section.fields;
+  return {
+    type: "content",
+    richText: documentToHtml(richText),
+  };
+};
+export type ParsedContent = ReturnType<typeof parseEntryContent>;
+
 export const parseSection = (section: EntrySection) => {
   if (isEntryHero(section)) {
     return parseHero(section);
@@ -147,8 +158,9 @@ export const parseSection = (section: EntrySection) => {
     return parseCabinReferences(section);
   } else if (isEntryForm(section)) {
     return parseEntryForm(section);
+  } else if (isEntryContent(section)) {
+    return parseEntryContent(section);
   } else {
-    console.log(JSON.stringify(section, null, 2));
     return {
       type: "noop",
     };
@@ -183,7 +195,7 @@ export const parseEntryCabin = (page: EntryCabin) => {
 };
 export type ParsedEntryCabin = ReturnType<typeof parseEntryCabin>;
 
-export const parseContent = (content: EntryContent) => {
+export const parseContent = (content: EntryForPage) => {
   if (isEntryCabin(content)) {
     return parseEntryCabin(content);
   } else if (isEntryPage(content)) {

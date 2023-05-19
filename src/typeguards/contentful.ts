@@ -1,5 +1,6 @@
 import {
   ParsedCabinReferences,
+  ParsedContent,
   ParsedEntryCabin,
   ParsedEntryPage,
   ParsedFiftyFifty,
@@ -11,20 +12,21 @@ import {
 import type {
   EntryCabin,
   EntryCabinReferences,
-  EntryContent,
+  EntryForPage,
   EntryFiftyFifty,
   EntryForm,
   EntryHero,
   EntryMap,
   EntryPage,
   EntrySection,
+  EntryContent,
 } from "../types/contentful";
 
-export const isEntryPage = (entry: EntryContent): entry is EntryPage => {
+export const isEntryPage = (entry: EntryForPage): entry is EntryPage => {
   return entry.sys.contentType.sys.id === "page";
 };
 
-export const isEntryCabin = (entry: EntryContent): entry is EntryCabin => {
+export const isEntryCabin = (entry: EntryForPage): entry is EntryCabin => {
   return entry.sys.contentType.sys.id === "cabin";
 };
 
@@ -50,6 +52,10 @@ export const isEntryCabinReferences = (
 
 export const isEntryForm = (entry: EntrySection): entry is EntryForm => {
   return entry.sys.contentType.sys.id === "form";
+};
+
+export const isEntryContent = (entry: EntrySection): entry is EntryContent => {
+  return entry.sys.contentType.sys.id === "content";
 };
 
 export const isParsedPage = (
@@ -79,4 +85,9 @@ export const isParsedCabinReferences = (
 };
 export const isParsedForm = (section: ParsedSection): section is ParsedForm => {
   return section.type === "form";
+};
+export const isParsedContent = (
+  section: ParsedSection
+): section is ParsedContent => {
+  return section.type === "content";
 };
