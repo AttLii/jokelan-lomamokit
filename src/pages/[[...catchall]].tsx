@@ -51,10 +51,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 interface IParams extends ParsedUrlQuery {
   catchall: string[]
 }
-export const getStaticProps: GetStaticProps<{}, IParams> = async (context) => {
+export const getStaticProps: GetStaticProps<object, IParams> = async (context) => {
   const path = `/${context.params?.catchall ? context.params.catchall.join("/") : ""}`;
 
-  let content = allContent.find(content => content.path === path);
+  const content = allContent.find(content => content.path === path);
   if (!content) {
     return {
       notFound: true

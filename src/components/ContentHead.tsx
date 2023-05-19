@@ -5,7 +5,7 @@ import { buildLocalUrlFromRelativePath } from "../utils/seo";
 
 type Props = {
   content: ParsedEntryCabin | ParsedEntryPage,
-  jsonld: Record<string, any>
+  jsonld: Record<string, unknown>
 }
 export const ContentHead: FC<Props> = ({ content, jsonld }) => {
   const {
