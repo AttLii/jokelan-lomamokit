@@ -10,22 +10,19 @@ export type SubItemsRendererProps = {
 }
 
 type Props = {
-  menuItem: ParsedMenuItem,
+  menuItem: ParsedMenuItem | ParsedSubMenuItem,
   className?: string,
   showSubItems: boolean;
   SubMenuRenderer?: FC<SubItemsRendererProps>
 }
 
 export const MenuLink: FC<Props> = ({
-  menuItem: {
-    title,
-    path,
-    subItems
-  },
+  menuItem,
   className = "",
   showSubItems,
   SubMenuRenderer
 }) => {
+  const { path, title } = menuItem
   const label = useT('sub.menu.toggle')
   const router = useRouter()
 
@@ -33,7 +30,7 @@ export const MenuLink: FC<Props> = ({
     ? 'font-semibold'
     : ''
 
-  const showIcon = showSubItems && subItems.length > 0
+  const showIcon = showSubItems && "subItems" in menuItem && menuItem.subItems.length > 0
   return (
     <div className={`group relative ${className} ${showIcon ? "pr-6" : ""} flex items-center justify-center`}>
       <Link className={`font-sans w-full hover:underline ${activeClass}`} href={path}>
@@ -46,7 +43,7 @@ export const MenuLink: FC<Props> = ({
         </button>
       )}
       {(showIcon && SubMenuRenderer) && (
-        <SubMenuRenderer subItems={subItems} />
+        <SubMenuRenderer subItems={menuItem.subItems} />
       )}
     </div>
   )

@@ -1,7 +1,7 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { StringTranslationContext } from '../contexts/stringTranslations.ts'
-import { useRef } from 'react'
+import { useEffect, useReducer, useRef } from 'react'
 import Head from 'next/head'
 import { Cabin, PT_Sans } from "next/font/google"
 import { Footer } from '../components/Footer.tsx'
@@ -9,6 +9,9 @@ import { SkipToContent } from '../components/SkipToContent.tsx'
 import { GlobalContentContext } from '../contexts/globalContent.ts'
 import stringTranslations from '../prevals/stringTranslations.preval.ts'
 import globalContent from '../prevals/globalContent.preval.ts'
+import { Header } from '../components/Header.tsx'
+import { UiContext, initialState as uiInitialState, reducer as uiReducer } from '../contexts/ui.tsx'
+import { useRouter } from 'next/router'
 
 const cabinFont = Cabin({
   subsets: ["latin"],
@@ -21,7 +24,14 @@ const ptSansFont = PT_Sans({
 })
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+  const [uiState, uiDispatch] = useReducer(uiReducer, uiInitialState);
   const main = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => uiDispatch({ type: "NAV_CLOSE" }));
+  }, [router.events]);
+
   return (
     <div className={`${cabinFont.variable} ${ptSansFont.variable}`}>
       <Head>
@@ -30,11 +40,14 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <GlobalContentContext.Provider value={globalContent}>
         <StringTranslationContext.Provider value={stringTranslations}>
-          <SkipToContent focusElement={main} />
-          <main ref={main}>
-            <Component {...pageProps} />
-          </main>
-          <Footer />
+          <UiContext.Provider value={{ state: uiState, dispatch: uiDispatch }}>
+            <SkipToContent focusElement={main} />
+            <Header />
+            <main ref={main} tabIndex={-1} className="pt-14 flex-1">
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </UiContext.Provider>
         </StringTranslationContext.Provider>
       </GlobalContentContext.Provider>
     </div>
