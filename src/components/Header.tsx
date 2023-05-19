@@ -8,7 +8,7 @@ import { MobileMenu } from "./MobileMenu"
 export const Header: FC = () => {
   return (
     <header className="fixed w-full bg-slate-100 z-10 h-14 border-black border-b-2 py-2">
-      <Container type="wide" className="flex h-full align-middle justify-center">
+      <Container type="wide" className="flex h-full align-middle justify-between">
         <HeaderLogoLink />
         <DesktopMenu />
         <BurgerButton />

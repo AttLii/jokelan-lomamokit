@@ -33,7 +33,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [router.events]);
 
   return (
-    <div className={`${cabinFont.variable} ${ptSansFont.variable}`}>
+    <div className={`${cabinFont.variable} ${ptSansFont.variable} min-h-screen flex flex-col`}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalContent.localBusiness) }} />

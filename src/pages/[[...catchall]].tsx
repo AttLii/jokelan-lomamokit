@@ -18,9 +18,7 @@ const Catchall: FC<Props> = (props) => {
     <>
       <ContentHead content={props.content} jsonld={props.jsonld} />
       {isParsedPage(props.content) && (
-        <>
-          <SectionsRenderer sections={props.content.sections} />
-        </>
+        <SectionsRenderer sections={props.content.sections} />
       )}
     </>
   )
