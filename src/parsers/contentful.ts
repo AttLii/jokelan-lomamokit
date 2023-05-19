@@ -186,7 +186,6 @@ export const parseSection = (section: EntrySection) => {
   } else if (isEntryFaqs(section)) {
     return parseEntryFaqs(section);
   } else {
-    console.log(JSON.stringify(section, null, 2));
     return {
       type: "noop",
     };
@@ -248,6 +247,7 @@ export const parseEntrySubMenuItem = (subMenuItem: EntrySubMenuItem) => {
     path: content?.fields.path || "",
   };
 };
+export type ParsedSubMenuItem = ReturnType<typeof parseEntrySubMenuItem>;
 
 export const parseEntryMenuItem = (menuItem: EntryMenuItem) => {
   const { content, title, subItems } = menuItem.fields;
@@ -260,6 +260,8 @@ export const parseEntryMenuItem = (menuItem: EntryMenuItem) => {
         : [],
   };
 };
+
+export type ParsedMenuItem = ReturnType<typeof parseEntryMenuItem>;
 
 export const parseEntryMenu = (menu: EntryMenu) => {
   const { title, menuItems } = menu.fields;

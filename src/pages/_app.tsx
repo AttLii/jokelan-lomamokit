@@ -6,6 +6,7 @@ import stringTranslations from '../prevals/stringTranslations.preval.ts'
 import globalContent from '../prevals/globalContent.preval.ts'
 import Head from 'next/head'
 import { Cabin, PT_Sans } from "next/font/google"
+import { Footer } from '../components/Footer.tsx'
 
 const cabinFont = Cabin({
   subsets: ["latin"],
@@ -19,17 +20,20 @@ const ptSansFont = PT_Sans({
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <main className={`${cabinFont.variable} ${ptSansFont.variable}`}>
+    <div className={`${cabinFont.variable} ${ptSansFont.variable}`}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalContent.localBusiness) }} />
       </Head>
       <GlobalContentContext.Provider value={globalContent}>
         <StringTranslationContext.Provider value={stringTranslations}>
-          <Component {...pageProps} />
+          <main>
+            <Component {...pageProps} />
+          </main>
+          <Footer />
         </StringTranslationContext.Provider>
       </GlobalContentContext.Provider>
-    </main >
+    </div>
   )
 }
 
