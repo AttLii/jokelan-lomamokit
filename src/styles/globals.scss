@@ -27,9 +27,11 @@
     @apply font-bold;
   }
   p {
+    @apply font-sans;
     @apply text-base;
   }
   a {
+    @apply font-sans;
     @apply text-base;
     @apply leading-8;
     @apply underline;
