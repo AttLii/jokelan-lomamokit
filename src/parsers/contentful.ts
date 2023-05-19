@@ -22,7 +22,7 @@ import type {
 import type { Document } from "@contentful/rich-text-types";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { notEmpty } from "../utils/typescript";
-import { parseEntryLocalBusinessToType } from "./seo";
+import { parseEntryAddressToType, parseEntryLocalBusinessToType } from "./seo";
 import {
   isEntryCabin,
   isEntryCabinReferences,
@@ -60,6 +60,8 @@ export const parseAssetImage = (image: Asset<undefined, string>) => {
   return {
     alt: title + "",
     src: file ? fixAssetUrl(file.url) : "",
+    width: file?.details.image?.width ?? 0,
+    height: file?.details.image?.height ?? 0,
   };
 };
 export type ParsedAssetImage = ReturnType<typeof parseAssetImage>;
@@ -210,12 +212,47 @@ export const parseEntryPage = (page: EntryPage) => {
 };
 export type ParsedEntryPage = ReturnType<typeof parseEntryPage>;
 
-export const parseEntryCabin = (page: EntryCabin) => {
-  const { name, path, seoFields } = page.fields;
+export const parseEntryCabin = ({
+  fields: {
+    name,
+    path,
+    seoFields,
+    address,
+    description,
+    floorLevel,
+    floorSize,
+    gallery,
+    location,
+    numberOfBathroomsTotal,
+    numberOfBedrooms,
+    numberOfRooms,
+    occupancy,
+    petsAllowed,
+    smokingAllowed,
+    telephone,
+    yearBuilt,
+    tourBookingPage,
+  },
+}: EntryCabin) => {
   return {
     name,
     path,
     seoFields: parseSeoFields(seoFields),
+    address: address ? parseEntryAddressToType(address) : null,
+    description,
+    floorLevel,
+    floorSize,
+    gallery: gallery.filter(notEmpty).map(parseAssetImage),
+    location,
+    numberOfBathroomsTotal,
+    numberOfBedrooms,
+    numberOfRooms,
+    occupancy,
+    petsAllowed,
+    smokingAllowed,
+    telephone,
+    yearBuilt,
+    tourBookingPage: tourBookingPage ?? null,
   };
 };
 export type ParsedEntryCabin = ReturnType<typeof parseEntryCabin>;

@@ -163,6 +163,21 @@ export type CabinSkeleton = {
     name: EntryFieldTypes.Text;
     seoFields: EntrySeoFields;
     referenceImage: EntryFieldTypes.AssetLink;
+    gallery: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+    description: EntryFieldTypes.Text;
+    numberOfRooms: EntryFieldTypes.Number;
+    occupancy: EntryFieldTypes.Text;
+    floorLevel: EntryFieldTypes.Number;
+    floorSize: EntryFieldTypes.Number;
+    numberOfBathroomsTotal: EntryFieldTypes.Number;
+    numberOfBedrooms: EntryFieldTypes.Number;
+    petsAllowed: EntryFieldTypes.Boolean;
+    yearBuilt: EntryFieldTypes.Number;
+    telephone: EntryFieldTypes.Text;
+    location: EntryFieldTypes.Location;
+    smokingAllowed: EntryFieldTypes.Boolean;
+    address: EntryFieldTypes.EntryLink<AddressSkeleton>;
+    tourBookingPage?: EntryFieldTypes.Text;
   };
 };
 

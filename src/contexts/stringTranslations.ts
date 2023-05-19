@@ -56,6 +56,8 @@ export const stringTranslationSchema = z.object({
   "seo.title": z.string(),
   "nav.close": z.string(),
   "nav.open": z.string(),
+  "cabin.gallery.dialog.open": z.string(),
+  "cabin.gallery.dialog.close": z.string(),
 });
 
 export type StringTranslationSchema = z.infer<typeof stringTranslationSchema>;

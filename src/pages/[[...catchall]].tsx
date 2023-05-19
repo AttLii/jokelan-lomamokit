@@ -8,6 +8,7 @@ import { ContentHead } from "../components/ContentHead";
 import { isParsedPage } from "../typeguards/contentful";
 import { SectionsRenderer } from "../components/SectionsRenderer";
 import { composeJsonLDfromContent } from "../parsers/seo";
+import { CabinContent } from "../components/CabinContent";
 
 type Props = {
   content: ParsedEntryPage | ParsedEntryCabin,
@@ -17,9 +18,9 @@ const Catchall: FC<Props> = (props) => {
   return (
     <>
       <ContentHead content={props.content} jsonld={props.jsonld} />
-      {isParsedPage(props.content) && (
-        <SectionsRenderer sections={props.content.sections} />
-      )}
+      {isParsedPage(props.content)
+        ? <SectionsRenderer sections={props.content.sections} />
+        : <CabinContent content={props.content} />}
     </>
   )
 }
