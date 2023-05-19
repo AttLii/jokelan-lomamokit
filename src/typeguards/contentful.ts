@@ -3,6 +3,7 @@ import {
   ParsedContent,
   ParsedEntryCabin,
   ParsedEntryPage,
+  ParsedFaqs,
   ParsedFiftyFifty,
   ParsedForm,
   ParsedHero,
@@ -20,6 +21,7 @@ import type {
   EntryPage,
   EntrySection,
   EntryContent,
+  EntryFaqs,
 } from "../types/contentful";
 
 export const isEntryPage = (entry: EntryForPage): entry is EntryPage => {
@@ -58,6 +60,10 @@ export const isEntryContent = (entry: EntrySection): entry is EntryContent => {
   return entry.sys.contentType.sys.id === "content";
 };
 
+export const isEntryFaqs = (entry: EntrySection): entry is EntryFaqs => {
+  return entry.sys.contentType.sys.id === "faqs";
+};
+
 export const isParsedPage = (
   content: ParsedEntryPage | ParsedEntryCabin
 ): content is ParsedEntryPage => {
@@ -90,4 +96,7 @@ export const isParsedContent = (
   section: ParsedSection
 ): section is ParsedContent => {
   return section.type === "content";
+};
+export const isParsedFaqs = (section: ParsedSection): section is ParsedFaqs => {
+  return section.type === "faqs";
 };

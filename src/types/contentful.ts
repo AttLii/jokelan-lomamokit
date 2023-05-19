@@ -45,6 +45,20 @@ export type ContentSkeleton = {
     richText: EntryFieldTypes.RichText;
   };
 };
+export type FaqSkeleton = {
+  contentTypeId: "faq";
+  fields: {
+    question: EntryFieldTypes.Text;
+    answer: EntryFieldTypes.RichText;
+  };
+};
+export type FaqsSkeleton = {
+  contentTypeId: "faqs";
+  fields: {
+    richText: EntryFieldTypes.RichText;
+    faqs: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<FaqSkeleton>>;
+  };
+};
 
 export type AddressSkeleton = {
   contentTypeId: "address";
@@ -230,10 +244,17 @@ export type EntryContent = Entry<
   "WITHOUT_UNRESOLVABLE_LINKS",
   string
 >;
+export type EntryFaq = Entry<FaqSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
+export type EntryFaqs = Entry<
+  FaqsSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS",
+  string
+>;
 export type EntrySection =
   | EntryHero
   | EntryFiftyFifty
   | EntryMap
   | EntryCabinReferences
   | EntryForm
-  | EntryContent;
+  | EntryContent
+  | EntryFaqs;

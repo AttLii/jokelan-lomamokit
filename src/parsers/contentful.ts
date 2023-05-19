@@ -16,6 +16,8 @@ import type {
   EntryStringTranslation,
   EntrySubMenuItem,
   EntryContent,
+  EntryFaqs,
+  EntryFaq,
 } from "../types/contentful";
 import type { Document } from "@contentful/rich-text-types";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
@@ -25,6 +27,7 @@ import {
   isEntryCabin,
   isEntryCabinReferences,
   isEntryContent,
+  isEntryFaqs,
   isEntryFiftyFifty,
   isEntryForm,
   isEntryHero,
@@ -147,6 +150,26 @@ export const parseEntryContent = (section: EntryContent) => {
 };
 export type ParsedContent = ReturnType<typeof parseEntryContent>;
 
+export const parseEntryFaq = (section: EntryFaq) => {
+  const { question, answer } = section.fields;
+  return {
+    type: "faq",
+    question,
+    answer: documentToHtml(answer),
+  };
+};
+export type ParsedFaq = ReturnType<typeof parseEntryFaq>;
+
+export const parseEntryFaqs = (section: EntryFaqs) => {
+  const { richText, faqs } = section.fields;
+  return {
+    type: "faqs",
+    richText: documentToHtml(richText),
+    faqs: faqs.filter(notEmpty).map(parseEntryFaq),
+  };
+};
+export type ParsedFaqs = ReturnType<typeof parseEntryFaqs>;
+
 export const parseSection = (section: EntrySection) => {
   if (isEntryHero(section)) {
     return parseHero(section);
@@ -160,7 +183,10 @@ export const parseSection = (section: EntrySection) => {
     return parseEntryForm(section);
   } else if (isEntryContent(section)) {
     return parseEntryContent(section);
+  } else if (isEntryFaqs(section)) {
+    return parseEntryFaqs(section);
   } else {
+    console.log(JSON.stringify(section, null, 2));
     return {
       type: "noop",
     };
