@@ -1,10 +1,7 @@
 import {
   Dispatch,
-  FC,
-  PropsWithChildren,
   createContext,
   useContext,
-  useReducer,
 } from "react";
 
 export const initialState = {

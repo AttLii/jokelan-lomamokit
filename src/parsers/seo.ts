@@ -3,7 +3,6 @@ import type { EntryAddress, EntryLocalBusiness } from "../types/contentful";
 import {
   ParsedEntryCabin,
   ParsedEntryPage,
-  ParsedFaqs,
   parseUrlFromAsset,
 } from "./contentful";
 import { isParsedFaqs, isParsedPage } from "../typeguards/contentful";
