@@ -32,6 +32,13 @@ export type CabinReferencesSkeleton = {
     >;
   };
 };
+export type FormSkeleton = {
+  contentTypeId: "form";
+  fields: {
+    richText: EntryFieldTypes.RichText;
+    form: EntryFieldTypes.Text;
+  };
+};
 
 export type AddressSkeleton = {
   contentTypeId: "address";
@@ -207,8 +214,14 @@ export type EntryCabinReferences = Entry<
   "WITHOUT_UNRESOLVABLE_LINKS",
   string
 >;
+export type EntryForm = Entry<
+  FormSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS",
+  string
+>;
 export type EntrySection =
   | EntryHero
   | EntryFiftyFifty
   | EntryMap
-  | EntryCabinReferences;
+  | EntryCabinReferences
+  | EntryForm;

@@ -3,6 +3,7 @@ import {
   ParsedEntryCabin,
   ParsedEntryPage,
   ParsedFiftyFifty,
+  ParsedForm,
   ParsedHero,
   ParsedMap,
   ParsedSection,
@@ -12,6 +13,7 @@ import type {
   EntryCabinReferences,
   EntryContent,
   EntryFiftyFifty,
+  EntryForm,
   EntryHero,
   EntryMap,
   EntryPage,
@@ -46,6 +48,10 @@ export const isEntryCabinReferences = (
   return entry.sys.contentType.sys.id === "cabinReferences";
 };
 
+export const isEntryForm = (entry: EntrySection): entry is EntryForm => {
+  return entry.sys.contentType.sys.id === "form";
+};
+
 export const isParsedPage = (
   content: ParsedEntryPage | ParsedEntryCabin
 ): content is ParsedEntryPage => {
@@ -70,4 +76,7 @@ export const isParsedCabinReferences = (
   section: ParsedSection
 ): section is ParsedCabinReferences => {
   return section.type === "cabinReferences";
+};
+export const isParsedForm = (section: ParsedSection): section is ParsedForm => {
+  return section.type === "form";
 };

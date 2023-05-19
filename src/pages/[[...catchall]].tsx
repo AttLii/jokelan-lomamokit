@@ -38,7 +38,7 @@ interface IParams extends ParsedUrlQuery {
   catchall: string[]
 }
 export const getStaticProps: GetStaticProps<{}, IParams> = async (context) => {
-  let path = `/${context.params?.catchall ? context.params.catchall.join("/") : ""}`
+  const path = `/${context.params?.catchall ? context.params.catchall.join("/") : ""}`
 
   let content = allContent.find(content => content.path === path)
   if (!content) {

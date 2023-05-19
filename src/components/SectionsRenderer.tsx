@@ -1,10 +1,11 @@
 import { FC, Fragment } from "react";
 import { ParsedSections } from "../parsers/contentful";
-import { isParsedCabinReferences, isParsedFiftyFifty, isParsedHero, isParsedMap } from "../typeguards/contentful";
+import { isParsedCabinReferences, isParsedFiftyFifty, isParsedForm, isParsedHero, isParsedMap } from "../typeguards/contentful";
 import { Hero } from "./sections/Hero";
 import { FiftyFifty } from "./sections/FiftyFifty";
 import { Map } from "./sections/Map";
 import { CabinReferencesSection } from "./sections/CabinReferences";
+import { Form } from "./sections/Form";
 
 type Props = {
   sections: ParsedSections
@@ -21,6 +22,8 @@ export const SectionsRenderer: FC<Props> = ({ sections }) => {
           return <Map key={i} section={section} />
         } else if (isParsedCabinReferences(section)) {
           return <CabinReferencesSection key={i} section={section} />
+        } else if (isParsedForm(section)) {
+          return <Form key={i} section={section} />
         } else {
           return <Fragment key={i} />
         }

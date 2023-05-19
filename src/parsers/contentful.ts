@@ -4,6 +4,7 @@ import type {
   EntryCabinReferences,
   EntryContent,
   EntryFiftyFifty,
+  EntryForm,
   EntryGlobalContent,
   EntryHero,
   EntryMap,
@@ -23,6 +24,7 @@ import {
   isEntryCabin,
   isEntryCabinReferences,
   isEntryFiftyFifty,
+  isEntryForm,
   isEntryHero,
   isEntryMap,
   isEntryPage,
@@ -124,6 +126,16 @@ export const parseCabinReferences = (section: EntryCabinReferences) => {
 };
 export type ParsedCabinReferences = ReturnType<typeof parseCabinReferences>;
 
+export const parseEntryForm = (section: EntryForm) => {
+  const { richText, form } = section.fields;
+  return {
+    type: "form",
+    richText: documentToHtml(richText),
+    form,
+  };
+};
+export type ParsedForm = ReturnType<typeof parseEntryForm>;
+
 export const parseSection = (section: EntrySection) => {
   if (isEntryHero(section)) {
     return parseHero(section);
@@ -133,6 +145,8 @@ export const parseSection = (section: EntrySection) => {
     return parseMap(section);
   } else if (isEntryCabinReferences(section)) {
     return parseCabinReferences(section);
+  } else if (isEntryForm(section)) {
+    return parseEntryForm(section);
   } else {
     console.log(JSON.stringify(section, null, 2));
     return {
