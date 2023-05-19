@@ -2,11 +2,10 @@ import type { FC } from "react";
 import type { ParsedEntryCabin, ParsedEntryPage } from "../parsers/contentful";
 import Head from "next/head";
 import { buildLocalUrlFromRelativePath } from "../utils/seo";
-import { composeJsonLDfromContent } from "../parsers/seo";
 
 type Props = {
   content: ParsedEntryCabin | ParsedEntryPage,
-  jsonld: ReturnType<typeof composeJsonLDfromContent>
+  jsonld: Record<string, any>
 }
 export const ContentHead: FC<Props> = ({ content, jsonld }) => {
   const {
@@ -41,9 +40,7 @@ export const ContentHead: FC<Props> = ({ content, jsonld }) => {
       <meta name="og:type" content="website" />
       <meta name="twitter:card" content="summary" />
 
-      {jsonld && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }} />
-      )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }} />
     </Head>
   )
 }

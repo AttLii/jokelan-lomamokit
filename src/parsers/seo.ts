@@ -8,6 +8,8 @@ import {
 } from "./contentful";
 import { isParsedFaqs, isParsedPage } from "../typeguards/contentful";
 import { buildLocalUrlFromRelativePath } from "../utils/seo";
+import { scrapeReviews } from "../repositories/lomarengas";
+import { Reviews } from "../repositories/lomarengas";
 
 export const parseLocationToType = ({ lat, lon }: EntryFields.Location) => {
   return {
@@ -100,6 +102,19 @@ const composeFAQPageJsonLD = (content: ParsedEntryPage) => {
     mainEntity,
   };
 };
+export type FAQPageJsonLD = ReturnType<typeof composeFAQPageJsonLD>;
+
+const parseAggregatedRating = (
+  name: string,
+  { averageRating: { average, count } }: Reviews
+) => {
+  return {
+    "@type": "AggregateRating",
+    ratingValue: average / 2, // lomarengas returns the average from 0-10, json-ld expects 0-5
+    reviewCount: count,
+    itemReviewed: name,
+  };
+};
 
 export const composeWebPageJsonLD = (content: ParsedEntryPage) => {
   const {
@@ -118,8 +133,64 @@ export const composeWebPageJsonLD = (content: ParsedEntryPage) => {
     keywords,
   };
 };
+export type WebPageJsonLD = ReturnType<typeof composeWebPageJsonLD>;
 
-export const composeJsonLDfromContent = (
+export const composeApartmentJsonLD = (
+  {
+    numberOfRooms,
+    occupancy,
+    floorLevel,
+    floorSize,
+    numberOfBathroomsTotal,
+    numberOfBedrooms,
+    petsAllowed,
+    tourBookingPage,
+    yearBuilt,
+    telephone,
+    seoFields: { title, description, image },
+    location: { lat, lon },
+    address,
+    smokingAllowed,
+    path,
+  }: ParsedEntryCabin,
+  reviews: Reviews | null
+) => {
+  const [minValue, maxValue] = occupancy.split("-").map(Number);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Apartment",
+    url: buildLocalUrlFromRelativePath(path),
+    name: title,
+    description,
+    numberOfRooms,
+    occupancy: {
+      "@type": "QuantitativeValue",
+      minValue,
+      maxValue,
+    },
+    floorLevel,
+    floorSize: {
+      "@type": "QuantitativeValue",
+      value: floorSize,
+      unitCode: "MTK",
+    },
+    numberOfBathroomsTotal,
+    numberOfBedrooms,
+    petsAllowed,
+    tourBookingPage,
+    yearBuilt,
+    telephone,
+    address,
+    latitude: lat,
+    longitude: lon,
+    smokingAllowed,
+    ...(image && { image: image.src }),
+    ...(reviews && { aggregateRating: parseAggregatedRating(title, reviews) }),
+  };
+};
+export type ApartmentJsonLD = ReturnType<typeof composeApartmentJsonLD>;
+
+export const composeJsonLDfromContent = async (
   content: ParsedEntryPage | ParsedEntryCabin
 ) => {
   if (isParsedPage(content)) {
@@ -128,7 +199,10 @@ export const composeJsonLDfromContent = (
     } else {
       return composeWebPageJsonLD(content);
     }
+  } else {
+    const reviews = content.tourBookingPage
+      ? await scrapeReviews(content.tourBookingPage)
+      : null;
+    return composeApartmentJsonLD(content, reviews);
   }
-
-  return null;
 };

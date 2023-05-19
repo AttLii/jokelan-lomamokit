@@ -204,6 +204,7 @@ export type ParsedSections = ReturnType<typeof parseSections>;
 export const parseEntryPage = (page: EntryPage) => {
   const { name, path, seoFields, sections } = page.fields;
   return {
+    type: "page",
     name,
     path,
     seoFields: parseSeoFields(seoFields),
@@ -235,6 +236,7 @@ export const parseEntryCabin = ({
   },
 }: EntryCabin) => {
   return {
+    type: "cabin",
     name,
     path,
     seoFields: parseSeoFields(seoFields),

@@ -5,22 +5,33 @@ import type { ParsedEntryPage, ParsedEntryCabin } from "../parsers/contentful";
 import allContent from "../prevals/allContent.preval";
 import { notEmpty } from "../utils/typescript";
 import { ContentHead } from "../components/ContentHead";
-import { isParsedPage } from "../typeguards/contentful";
+import { ApartmentJsonLD, FAQPageJsonLD, WebPageJsonLD, composeJsonLDfromContent } from "../parsers/seo";
 import { SectionsRenderer } from "../components/SectionsRenderer";
-import { composeJsonLDfromContent } from "../parsers/seo";
 import { CabinContent } from "../components/CabinContent";
 
-type Props = {
-  content: ParsedEntryPage | ParsedEntryCabin,
-  jsonld: ReturnType<typeof composeJsonLDfromContent>
+type PageProps = {
+  content: ParsedEntryPage;
+  jsonld: WebPageJsonLD | FAQPageJsonLD;
 }
+
+type CabinPageProps = {
+  content: ParsedEntryCabin,
+  jsonld: ApartmentJsonLD
+}
+
+const isPageProps = (props: Props): props is PageProps => props.content.type === "page"
+
+type Props = CabinPageProps | PageProps;
+
 const Catchall: FC<Props> = (props) => {
+  const { content, jsonld } = props
   return (
     <>
-      <ContentHead content={props.content} jsonld={props.jsonld} />
-      {isParsedPage(props.content)
+      <ContentHead content={content} jsonld={jsonld} />
+      {isPageProps(props)
         ? <SectionsRenderer sections={props.content.sections} />
-        : <CabinContent content={props.content} />}
+        : <CabinContent content={props.content} jsonld={props.jsonld} />
+      }
     </>
   )
 }
@@ -50,7 +61,7 @@ export const getStaticProps: GetStaticProps<{}, IParams> = async (context) => {
     }
   }
 
-  const jsonld = composeJsonLDfromContent(content)
+  const jsonld = await composeJsonLDfromContent(content)
 
   return {
     props: {

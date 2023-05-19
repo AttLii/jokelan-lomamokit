@@ -16,7 +16,6 @@ export const useT = (translation: keyof StringTranslationSchema) => {
 
 export const stringTranslationSchema = z.object({
   "generic.read.more": z.string(),
-  "cabin.review.recommendation": z.string(),
   "404.description": z.string(),
   "404.content": z.string(),
   "404.page.link": z.string(),
