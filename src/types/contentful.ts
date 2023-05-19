@@ -7,6 +7,14 @@ export type HeroSkeleton = {
     richText: EntryFieldTypes.RichText;
   };
 };
+export type FiftyFiftySkeleton = {
+  contentTypeId: "fiftyFifty";
+  fields: {
+    richText: EntryFieldTypes.RichText;
+    image: EntryFieldTypes.AssetLink;
+    order: EntryFieldTypes.Text;
+  };
+};
 
 export type AddressSkeleton = {
   contentTypeId: "address";
@@ -170,4 +178,9 @@ export type EntryHero = Entry<
   "WITHOUT_UNRESOLVABLE_LINKS",
   string
 >;
-export type EntrySection = EntryHero;
+export type EntryFiftyFifty = Entry<
+  FiftyFiftySkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS",
+  string
+>;
+export type EntrySection = EntryHero | EntryFiftyFifty;

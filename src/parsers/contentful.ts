@@ -2,6 +2,7 @@ import type { Asset } from "contentful";
 import type {
   EntryCabin,
   EntryContent,
+  EntryFiftyFifty,
   EntryGlobalContent,
   EntryHero,
   EntryMenu,
@@ -20,6 +21,7 @@ import {
   isEntryCabin,
   isEntryHero,
   isEntryPage,
+  isFiftyFifty,
 } from "../typeguards/contentful";
 
 /**
@@ -72,10 +74,24 @@ export const parseHero = (hero: EntryHero) => {
 };
 export type ParsedHero = ReturnType<typeof parseHero>;
 
+export const parseFiftyFifty = (section: EntryFiftyFifty) => {
+  const { image, order, richText } = section.fields;
+  return {
+    type: "fiftyFifty",
+    order,
+    image: image ? parseAssetImage(image) : null,
+    richText: documentToHtml(richText),
+  };
+};
+export type ParsedFiftyFifty = ReturnType<typeof parseFiftyFifty>;
+
 export const parseSection = (section: EntrySection) => {
   if (isEntryHero(section)) {
     return parseHero(section);
+  } else if (isFiftyFifty(section)) {
+    return parseFiftyFifty(section);
   } else {
+    console.log(JSON.stringify(section, null, 2));
     return {
       type: "noop",
     };

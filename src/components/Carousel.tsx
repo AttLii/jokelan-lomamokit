@@ -20,7 +20,6 @@ export const Carousel: FC<Props> = ({ images }) => {
     return () => clearInterval(timer)
   })
 
-  console.log(images)
   return (
     <ul className="flex h-full transition-all duration-1000" style={{ transform: `translateX(${index === 0 ? 0 : index * 100 * -1}%)` }}>
       {images.map(({ src, ...rest }, i) => (
