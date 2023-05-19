@@ -23,6 +23,15 @@ export type MapSkeleton = {
     location: EntryFieldTypes.Location;
   };
 };
+export type CabinReferencesSkeleton = {
+  contentTypeId: "cabinReferences";
+  fields: {
+    richText: EntryFieldTypes.RichText;
+    cabinReferences: EntryFieldTypes.Array<
+      EntryFieldTypes.EntryLink<CabinSkeleton>
+    >;
+  };
+};
 
 export type AddressSkeleton = {
   contentTypeId: "address";
@@ -126,6 +135,7 @@ export type CabinSkeleton = {
     path: EntryFieldTypes.Text;
     name: EntryFieldTypes.Text;
     seoFields: EntrySeoFields;
+    referenceImage: EntryFieldTypes.AssetLink;
   };
 };
 
@@ -192,4 +202,13 @@ export type EntryFiftyFifty = Entry<
   string
 >;
 export type EntryMap = Entry<MapSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
-export type EntrySection = EntryHero | EntryFiftyFifty | EntryMap;
+export type EntryCabinReferences = Entry<
+  CabinReferencesSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS",
+  string
+>;
+export type EntrySection =
+  | EntryHero
+  | EntryFiftyFifty
+  | EntryMap
+  | EntryCabinReferences;

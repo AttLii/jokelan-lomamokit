@@ -1,4 +1,5 @@
 import {
+  ParsedCabinReferences,
   ParsedEntryCabin,
   ParsedEntryPage,
   ParsedFiftyFifty,
@@ -8,6 +9,7 @@ import {
 } from "../parsers/contentful";
 import type {
   EntryCabin,
+  EntryCabinReferences,
   EntryContent,
   EntryFiftyFifty,
   EntryHero,
@@ -38,6 +40,12 @@ export const isEntryMap = (entry: EntrySection): entry is EntryMap => {
   return entry.sys.contentType.sys.id === "map";
 };
 
+export const isEntryCabinReferences = (
+  entry: EntrySection
+): entry is EntryCabinReferences => {
+  return entry.sys.contentType.sys.id === "cabinReferences";
+};
+
 export const isParsedPage = (
   content: ParsedEntryPage | ParsedEntryCabin
 ): content is ParsedEntryPage => {
@@ -56,4 +64,10 @@ export const isParsedFiftyFifty = (
 
 export const isParsedMap = (section: ParsedSection): section is ParsedMap => {
   return section.type === "map";
+};
+
+export const isParsedCabinReferences = (
+  section: ParsedSection
+): section is ParsedCabinReferences => {
+  return section.type === "cabinReferences";
 };

@@ -1,6 +1,7 @@
 import type { Asset } from "contentful";
 import type {
   EntryCabin,
+  EntryCabinReferences,
   EntryContent,
   EntryFiftyFifty,
   EntryGlobalContent,
@@ -20,6 +21,7 @@ import { notEmpty } from "../utils/typescript";
 import { parseEntryLocalBusinessToType } from "./seo";
 import {
   isEntryCabin,
+  isEntryCabinReferences,
   isEntryFiftyFifty,
   isEntryHero,
   isEntryMap,
@@ -98,6 +100,30 @@ export const parseMap = (section: EntryMap) => {
 };
 export type ParsedMap = ReturnType<typeof parseMap>;
 
+export const parseCabinReference = (cabin: EntryCabin) => {
+  const {
+    sys: { id },
+    fields: { path, name, referenceImage },
+  } = cabin;
+  return {
+    id,
+    path,
+    title: name,
+    image: referenceImage ? parseAssetImage(referenceImage) : null,
+  };
+};
+export type ParsedCabinReference = ReturnType<typeof parseCabinReference>;
+
+export const parseCabinReferences = (section: EntryCabinReferences) => {
+  const { richText, cabinReferences } = section.fields;
+  return {
+    type: "cabinReferences",
+    richText: documentToHtml(richText),
+    cabinReferences: cabinReferences.filter(notEmpty).map(parseCabinReference),
+  };
+};
+export type ParsedCabinReferences = ReturnType<typeof parseCabinReferences>;
+
 export const parseSection = (section: EntrySection) => {
   if (isEntryHero(section)) {
     return parseHero(section);
@@ -105,6 +131,8 @@ export const parseSection = (section: EntrySection) => {
     return parseFiftyFifty(section);
   } else if (isEntryMap(section)) {
     return parseMap(section);
+  } else if (isEntryCabinReferences(section)) {
+    return parseCabinReferences(section);
   } else {
     console.log(JSON.stringify(section, null, 2));
     return {

@@ -1,9 +1,10 @@
 import { FC, Fragment } from "react";
 import { ParsedSections } from "../parsers/contentful";
-import { isParsedFiftyFifty, isParsedHero, isParsedMap } from "../typeguards/contentful";
+import { isParsedCabinReferences, isParsedFiftyFifty, isParsedHero, isParsedMap } from "../typeguards/contentful";
 import { Hero } from "./sections/Hero";
 import { FiftyFifty } from "./sections/FiftyFifty";
 import { Map } from "./sections/Map";
+import { CabinReferencesSection } from "./sections/CabinReferences";
 
 type Props = {
   sections: ParsedSections
@@ -18,8 +19,9 @@ export const SectionsRenderer: FC<Props> = ({ sections }) => {
           return <FiftyFifty key={i} section={section} />
         } else if (isParsedMap(section)) {
           return <Map key={i} section={section} />
+        } else if (isParsedCabinReferences(section)) {
+          return <CabinReferencesSection key={i} section={section} />
         } else {
-          console.warn(`unrecognized section ${section}`)
           return <Fragment key={i} />
         }
       })}

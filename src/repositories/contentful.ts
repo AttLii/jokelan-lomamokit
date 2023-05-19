@@ -20,8 +20,8 @@ const getEntries = async <T extends EntrySkeletonType>(
 
 export const getAllContent = () => {
   return Promise.all([
-    getEntries<PageSkeleton>({ content_type: "page" }),
-    getEntries<CabinSkeleton>({ content_type: "cabin" }),
+    getEntries<PageSkeleton>({ content_type: "page", include: 10 }),
+    getEntries<CabinSkeleton>({ content_type: "cabin", include: 10 }),
   ]).then((content) => [...content[0], ...content[1]]);
 };
 
