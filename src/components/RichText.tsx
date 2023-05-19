@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
 
-export const RichText: FC<PropsWithChildren & { className?: string }> = ({ children, className = "" }) => {
-  return <div className={`rich-text ${className}`}>{children}</div>
+export const RichText: FC<{ className?: string, html: string }> = ({ className = "", html }) => {
+  return <div className={`rich-text ${className}`} dangerouslySetInnerHTML={{ __html: html }} />
 }

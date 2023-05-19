@@ -1,4 +1,12 @@
-import type { EntryFieldTypes, Entry } from "contentful";
+import type { EntryFieldTypes, Entry, EntryField } from "contentful";
+
+export type HeroSkeleton = {
+  contentTypeId: "hero";
+  fields: {
+    gallery: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+    richText: EntryFieldTypes.RichText;
+  };
+};
 
 export type AddressSkeleton = {
   contentTypeId: "address";
@@ -92,6 +100,7 @@ export type PageSkeleton = {
     path: EntryFieldTypes.Text;
     name: EntryFieldTypes.Text;
     seoFields: EntrySeoFields;
+    sections?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<HeroSkeleton>>;
   };
 };
 
@@ -155,3 +164,10 @@ export type EntryCabin = Entry<
   string
 >;
 export type EntryContent = EntryPage | EntryCabin;
+
+export type EntryHero = Entry<
+  HeroSkeleton,
+  "WITHOUT_UNRESOLVABLE_LINKS",
+  string
+>;
+export type EntrySection = EntryHero;

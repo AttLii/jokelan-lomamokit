@@ -1,6 +1,12 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@contentful/rich-text-html-renderer':
+    specifier: ^16.0.4
+    version: 16.0.4
+  '@contentful/rich-text-types':
+    specifier: ^16.1.0
+    version: 16.1.0
   '@types/node':
     specifier: 20.2.1
     version: 20.2.1
@@ -1229,6 +1235,14 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
+  /@contentful/rich-text-html-renderer@16.0.4:
+    resolution: {integrity: sha512-7VPU+iuAoYhAdqm4FhzdmVLii2NJ83fd70ZoagDZQ+Cw6ixmeiBRgtprjvRjKP8GE9qJjhpDp5y2ddMyNx7l3Q==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      '@contentful/rich-text-types': 16.1.0
+      escape-html: 1.0.3
+    dev: false
+
   /@contentful/rich-text-types@16.1.0:
     resolution: {integrity: sha512-Pucb68FK0j9cHJ96FAewXv+bvH4XizC4KBbVqyHhPLkDIVfasj0AWU5rI1lnvysdVKu66NQkFe8xZdeFTkaLWQ==}
     engines: {node: '>=6.0.0'}
@@ -2381,6 +2395,10 @@ packages:
   /escalade@3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
     engines: {node: '>=6'}
+    dev: false
+
+  /escape-html@1.0.3:
+    resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
     dev: false
 
   /escape-string-regexp@1.0.5:

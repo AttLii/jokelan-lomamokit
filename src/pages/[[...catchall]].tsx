@@ -5,7 +5,8 @@ import type { ParsedEntryPage, ParsedEntryCabin } from "../parsers/contentful";
 import allContent from "../prevals/allContent.preval";
 import { notEmpty } from "../utils/typescript";
 import { ContentHead } from "../components/ContentHead";
-import { RichText } from "../components/RichText";
+import { isParsedPage } from "../typeguards/contentful";
+import { SectionsRenderer } from "../components/SectionsRenderer";
 
 type Props = {
   content: ParsedEntryPage | ParsedEntryCabin
@@ -14,10 +15,9 @@ const Catchall: FC<Props> = (props) => {
   return (
     <>
       <ContentHead content={props.content} />
-      <RichText>
-        <p>moi</p>
-        <h1>moi</h1>
-      </RichText>
+      {isParsedPage(props.content) && (
+        <SectionsRenderer sections={props.content.sections} />
+      )}
     </>
   )
 }
@@ -45,11 +45,11 @@ export const getStaticProps: GetStaticProps<{}, IParams> = async (context) => {
     return {
       notFound: true
     }
-  } else {
-    return {
-      props: {
-        content
-      }
+  }
+
+  return {
+    props: {
+      content
     }
   }
 }
