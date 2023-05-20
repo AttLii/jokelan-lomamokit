@@ -27,6 +27,10 @@ const rotateY = plugin(({ addUtilities }) => {
   });
 });
 
+const emptyHref = plugin(({ addVariant }) => {
+  addVariant("empty-href", ['&[href=""]', '&[href="#"]']);
+});
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -49,5 +53,5 @@ module.exports = {
       },
     },
   },
-  plugins: [backfaceVisibility, rotateY, transformStyle],
+  plugins: [backfaceVisibility, rotateY, transformStyle, emptyHref],
 };

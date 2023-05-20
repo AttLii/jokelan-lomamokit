@@ -7,8 +7,8 @@ import { Container } from "./Container";
 import { CabinGallery } from "./CabinGallery";
 import { Ban, Box, Cigarette, CigaretteOff, Dog, DoubleBed, Hammer, LayoutGrid, Phone, Users } from "./icons/lucide";
 import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
-import { TourBookingPageLink } from "./TourBookingPageLink";
 import { StarRating } from "./StarRating";
+import { ActionLink } from "./ActionLink";
 
 type Props = {
   content: ParsedEntryCabin,
@@ -45,6 +45,8 @@ export const CabinContent: FC<Props> = ({
   const smokingNotAllowedLabel = useT('cabin.smoking.not.allowed');
   const locationTitleLabel = useT('cabin.location.title');
   const locationLabel = useT('cabin.map.location');
+  const actionLinkLabel = useT('cabin.action.link.text');
+  const actionLinkDisabledLabel = useT('cabin.action.link.disabled.help');
   return (
     <>
       <Section>
@@ -138,7 +140,14 @@ export const CabinContent: FC<Props> = ({
             />
           </div>
           <aside className="h-auto relative">
-            <TourBookingPageLink className="sticky left-0 top-16" tourBookingPage={tourBookingPage} name={name} />
+            <div className="sticky left-0 top-16">
+              <ActionLink href={tourBookingPage ?? ""}>
+                {actionLinkLabel} {name}
+              </ActionLink>
+              {!tourBookingPage && (
+                <p className="font-sans text-sm mt-1">{actionLinkDisabledLabel}</p>
+              )}
+            </div>
           </aside>
         </Container>
       </Section>
