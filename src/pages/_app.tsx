@@ -29,7 +29,10 @@ const App = ({ Component, pageProps }: AppProps) => {
   const main = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    router.events.on('routeChangeStart', () => uiDispatch({ type: "NAV_CLOSE" }));
+    router.events.on('routeChangeStart', () => {
+      uiDispatch({ type: "NAV_CLOSE" });
+      (document.activeElement as HTMLElement)?.blur();
+    });
   }, [router.events]);
 
   useEffect(() => {
