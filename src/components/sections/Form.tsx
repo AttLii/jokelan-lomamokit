@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { ParsedForm } from "../../parsers/contentful";
+import type { FC } from "react";
+import type { ParsedForm } from "../../parsers/contentful";
 import { SectionWithRichText } from "../SectionWithRichText";
 import { ContactForm } from "../ContactForm";
 

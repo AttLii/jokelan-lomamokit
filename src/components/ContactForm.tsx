@@ -1,4 +1,5 @@
-import { FC, FormEventHandler, useState } from "react";
+import type { FC, FormEventHandler} from "react";
+import { useState } from "react";
 import { Input } from "./Input";
 import { useT } from "../contexts/stringTranslations";
 import { Textarea } from "./Textarea";

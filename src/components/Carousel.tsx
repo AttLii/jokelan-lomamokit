@@ -1,5 +1,6 @@
-import { ParsedAssetImage } from "../parsers/contentful";
-import { FC, useEffect, useState } from "react";
+import type { ParsedAssetImage } from "../parsers/contentful";
+import type { FC} from "react";
+import { useEffect, useState } from "react";
 import { AssetImage } from "./AssetImage";
 
 type Props = {

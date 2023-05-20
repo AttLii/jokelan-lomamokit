@@ -1,5 +1,7 @@
-import { FC, Fragment } from "react";
-import { MenuLink, SubItemsRendererProps } from "./MenuLink";
+import type { FC} from "react";
+import { Fragment } from "react";
+import type { SubItemsRendererProps } from "./MenuLink";
+import { MenuLink } from "./MenuLink";
 import { useGlobalContentContext } from "../contexts/globalContent";
 
 const SubMenuRenderer: FC<SubItemsRendererProps> = ({ subItems }) => (

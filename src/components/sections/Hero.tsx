@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { ParsedHero } from "../../parsers/contentful";
+import type { FC } from "react";
+import type { ParsedHero } from "../../parsers/contentful";
 import { Carousel } from "../Carousel";
 import { RichText } from "../RichText";
 

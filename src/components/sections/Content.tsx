@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { ParsedContent } from "../../parsers/contentful";
+import type { FC } from "react";
+import type { ParsedContent } from "../../parsers/contentful";
 import { SectionWithRichText } from "../SectionWithRichText";
 
 type Props = {

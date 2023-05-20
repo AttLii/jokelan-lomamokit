@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ParsedGlobalContent } from "../parsers/contentful";
+import type { ParsedGlobalContent } from "../parsers/contentful";
 
 export const GlobalContentContext = createContext<
   undefined | ParsedGlobalContent

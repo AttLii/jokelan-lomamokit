@@ -1,5 +1,7 @@
-import { FC, Fragment, useMemo } from "react";
-import { MenuLink, SubItemsRendererProps } from "./MenuLink";
+import type { FC} from "react";
+import { Fragment, useMemo } from "react";
+import type { SubItemsRendererProps } from "./MenuLink";
+import { MenuLink } from "./MenuLink";
 import { useGlobalContentContext } from "../contexts/globalContent";
 import { useUiContext } from "../contexts/ui";
 

@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { IconProps } from "../../../types/icon";
+import type { FC } from "react";
+import type { IconProps } from "../../../types/icon";
 
 export const LayoutGrid: FC<IconProps> = ({ className = "" }) => {
   return (

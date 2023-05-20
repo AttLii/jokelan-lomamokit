@@ -5,7 +5,8 @@ import type { ParsedEntryPage, ParsedEntryCabin } from "../parsers/contentful";
 import allContent from "../prevals/allContent.preval";
 import { notEmpty } from "../utils/typescript";
 import { ContentHead } from "../components/ContentHead";
-import { ApartmentJsonLD, FAQPageJsonLD, WebPageJsonLD, composeJsonLDfromContent } from "../parsers/seo";
+import type { ApartmentJsonLD, FAQPageJsonLD, WebPageJsonLD} from "../parsers/seo";
+import { composeJsonLDfromContent } from "../parsers/seo";
 import { SectionsRenderer } from "../components/SectionsRenderer";
 import { CabinContent } from "../components/CabinContent";
 

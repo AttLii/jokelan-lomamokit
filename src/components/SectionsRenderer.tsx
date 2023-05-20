@@ -1,5 +1,6 @@
-import { FC, Fragment } from "react";
-import { ParsedSections } from "../parsers/contentful";
+import type { FC} from "react";
+import { Fragment } from "react";
+import type { ParsedSections } from "../parsers/contentful";
 import { isParsedCabinReferences, isParsedContent, isParsedFaqs, isParsedFiftyFifty, isParsedForm, isParsedHero, isParsedMap } from "../typeguards/contentful";
 import { Hero } from "./sections/Hero";
 import { FiftyFifty } from "./sections/FiftyFifty";

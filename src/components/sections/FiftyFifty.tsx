@@ -1,5 +1,6 @@
-import { FC, useMemo } from "react";
-import { ParsedFiftyFifty } from "../../parsers/contentful";
+import type { FC} from "react";
+import { useMemo } from "react";
+import type { ParsedFiftyFifty } from "../../parsers/contentful";
 import { AssetImage } from "../AssetImage";
 import { RichText } from "../RichText";
 import { Container } from "../Container";

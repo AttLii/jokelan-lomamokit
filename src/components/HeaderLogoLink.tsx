@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { useT } from "../contexts/stringTranslations";
 import Link from "next/link";
 import Image from "next/image";

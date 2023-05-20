@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import Link from "next/link";
 import { Section } from "../components/Section";
 import { Container } from "../components/Container";

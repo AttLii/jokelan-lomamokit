@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { ParsedCabinReference } from "../parsers/contentful";
+import type { FC } from "react";
+import type { ParsedCabinReference } from "../parsers/contentful";
 import { useT } from "../contexts/stringTranslations";
 import { AssetImage } from "./AssetImage";
 import { IconLink } from "./ChevronLink";

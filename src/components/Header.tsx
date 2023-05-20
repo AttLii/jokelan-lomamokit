@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Container } from "./Container";
 import { HeaderLogoLink } from "./HeaderLogoLink";
 import { DesktopMenu } from "./DesktopMenu";

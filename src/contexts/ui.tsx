@@ -1,5 +1,6 @@
+import type {
+  Dispatch} from "react";
 import {
-  Dispatch,
   createContext,
   useContext,
 } from "react";

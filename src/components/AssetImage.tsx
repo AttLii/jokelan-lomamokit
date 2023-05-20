@@ -1,5 +1,6 @@
-import { FC, useMemo } from "react";
-import { ParsedAssetImage } from "../parsers/contentful";
+import type { FC} from "react";
+import { useMemo } from "react";
+import type { ParsedAssetImage } from "../parsers/contentful";
 import Image from "next/image";
 
 type Props = ParsedAssetImage & {

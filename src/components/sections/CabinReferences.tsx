@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { ParsedCabinReferences } from "../../parsers/contentful";
+import type { FC } from "react";
+import type { ParsedCabinReferences } from "../../parsers/contentful";
 import { SectionWithRichText } from "../SectionWithRichText";
 import { CabinReferenceList } from "../CabinReferenceList";
 

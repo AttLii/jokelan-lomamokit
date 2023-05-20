@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import type { Dispatch, FC, SetStateAction } from "react";
 import HCaptchaComponent from '@hcaptcha/react-hcaptcha';
 
 type Props = {

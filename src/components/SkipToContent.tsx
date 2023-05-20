@@ -1,4 +1,4 @@
-import { FC, MutableRefObject } from "react";
+import type { FC, MutableRefObject } from "react";
 import { useT } from "../contexts/stringTranslations";
 
 type Props = {

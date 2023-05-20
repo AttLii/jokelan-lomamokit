@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 import { Calendar, CalendarOff } from "./icons/lucide";
 
 type Props = PropsWithChildren & {

@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { ParsedMap } from "../../parsers/contentful";
+import type { FC } from "react";
+import type { ParsedMap } from "../../parsers/contentful";
 import { SectionWithRichText } from "../SectionWithRichText";
 import { OpenStreetMapEmbed } from "../OpenStreetMapEmbed";
 

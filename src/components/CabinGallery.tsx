@@ -1,5 +1,6 @@
-import { FC, MouseEventHandler, useEffect, useRef, useState } from "react";
-import { ParsedAssetImage } from "../parsers/contentful";
+import type { FC, MouseEventHandler} from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ParsedAssetImage } from "../parsers/contentful";
 import { AssetImage } from "./AssetImage";
 import { useT } from "../contexts/stringTranslations";
 import { Scaling, X } from "./icons/lucide";

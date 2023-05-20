@@ -2,7 +2,7 @@ import { Container } from "./Container";
 import { RichText } from "./RichText";
 import { Section } from "./Section";
 import type { Props as ContainerProps } from "./Container";
-import { FC } from "react";
+import type { FC } from "react";
 
 type Props = ContainerProps & {
   richText: string

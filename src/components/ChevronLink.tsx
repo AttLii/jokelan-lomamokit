@@ -1,5 +1,6 @@
-import Link, { LinkProps } from "next/link";
-import { FC, PropsWithChildren } from "react";
+import type { LinkProps } from "next/link";
+import Link from "next/link";
+import type { FC, PropsWithChildren } from "react";
 import { ChevronRight } from "./icons/lucide";
 
 type Props = LinkProps & PropsWithChildren

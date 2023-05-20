@@ -1,4 +1,4 @@
-import {
+import type {
   ParsedCabinReferences,
   ParsedContent,
   ParsedEntryCabin,

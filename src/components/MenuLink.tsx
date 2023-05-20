@@ -1,9 +1,9 @@
-import { FC } from "react";
+import type { FC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChevronDown } from "./icons/lucide";
 import { useT } from "../contexts/stringTranslations";
-import { ParsedMenuItem, ParsedSubMenuItem } from "../parsers/contentful";
+import type { ParsedMenuItem, ParsedSubMenuItem } from "../parsers/contentful";
 
 export type SubItemsRendererProps = {
   subItems: ParsedSubMenuItem[]

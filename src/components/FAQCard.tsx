@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { ParsedFaq } from "../parsers/contentful";
+import type { FC } from "react";
+import type { ParsedFaq } from "../parsers/contentful";
 import { RichText } from "./RichText";
 
 type Props = {

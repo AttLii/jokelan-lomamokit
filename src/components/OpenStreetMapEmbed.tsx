@@ -1,5 +1,5 @@
 import type { EntryFields } from "contentful";
-import { FC } from "react";
+import type { FC } from "react";
 
 type Props = {
   title: string;

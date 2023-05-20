@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { ParsedEntryCabin } from "../parsers/contentful";
-import { ApartmentJsonLD } from "../parsers/seo";
+import type { FC } from "react";
+import type { ParsedEntryCabin } from "../parsers/contentful";
+import type { ApartmentJsonLD } from "../parsers/seo";
 import { useT } from "../contexts/stringTranslations";
 import { Section } from "./Section";
 import { Container } from "./Container";
