@@ -1,25 +1,24 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 import type { FC } from "react";
+import dynamic from 'next/dynamic';
 import type { ParsedEntryPage, ParsedEntryCabin } from "../parsers/contentful";
 import allContent from "../prevals/allContent.preval";
 import { notEmpty } from "../utils/typescript";
 import { ContentHead } from "../components/ContentHead";
-import type { ApartmentJsonLD, FAQPageJsonLD, WebPageJsonLD} from "../parsers/seo";
+import type { ApartmentJsonLD, FAQPageJsonLD, WebPageJsonLD } from "../parsers/seo";
 import { composeJsonLDfromContent } from "../parsers/seo";
-import { SectionsRenderer } from "../components/SectionsRenderer";
-import { CabinContent } from "../components/CabinContent";
+const SectionsRenderer = dynamic(() => import('../components/SectionsRenderer').then(mod => mod.SectionsRenderer));
+const CabinContent = dynamic(() => import('../components/CabinContent').then(mod => mod.CabinContent));
 
 type PageProps = {
   content: ParsedEntryPage;
   jsonld: WebPageJsonLD | FAQPageJsonLD;
 }
-
 type CabinPageProps = {
   content: ParsedEntryCabin,
   jsonld: ApartmentJsonLD
 }
-
 const isPageProps = (props: Props): props is PageProps => props.content.type === "page";
 
 type Props = CabinPageProps | PageProps;
