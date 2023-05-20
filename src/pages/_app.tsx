@@ -32,6 +32,13 @@ const App = ({ Component, pageProps }: AppProps) => {
     router.events.on('routeChangeStart', () => uiDispatch({ type: "NAV_CLOSE" }));
   }, [router.events]);
 
+  useEffect(() => {
+    const scrollLockClasses = ["overflow-hidden", "sm:overflow-auto"];
+    uiState.navOpen
+      ? document.body.classList.add(...scrollLockClasses)
+      : document.body.classList.remove(...scrollLockClasses);
+  }, [uiState.navOpen]);
+
   return (
     <div className={`${cabinFont.variable} ${ptSansFont.variable} min-h-screen flex flex-col`}>
       <Head>
