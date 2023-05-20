@@ -32,6 +32,8 @@ GOOGLE_SHEETS_ID=
 Remember to:
 
 - Add Deploy hook and paste it to contentful's web hooks
+  - add this also to github secrets (`DEPLOY_HOOK`)
 - Ignored Build Step -> `bash ignored-build-step.sh` - deploys only main branch
-- Setup close Function Region
+- Setup Function Region
 - Add environment variables
+- Add install command: `pnpm i --prod --ignore-scripts`
