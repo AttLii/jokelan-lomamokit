@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { useMemo } from "react";
 import type { ParsedEntryCabin } from "../parsers/contentful";
 import type { ApartmentJsonLD } from "../parsers/seo";
 import { useT } from "../contexts/stringTranslations";
@@ -47,6 +48,44 @@ const CabinContent: FC<Props> = ({
   const locationLabel = useT('cabin.map.location');
   const actionLinkLabel = useT('cabin.action.link.text');
   const actionLinkDisabledLabel = useT('cabin.action.link.disabled.help');
+
+  const infoItems = useMemo(() => [
+    {
+      Icon: <Hammer />,
+      Content: <>{builtLabel} {yearBuilt}</>
+    },
+    {
+      Icon: <Users />,
+      Content: <>{occupancyLabel} {occupancy}</>,
+    },
+    {
+      Icon: <Box />,
+      Content: <>{floorSize} {squaredLabel}</>,
+    },
+    {
+      Icon: <LayoutGrid />,
+      Content: <>{roomsLabel} {numberOfRooms}</>,
+    },
+    {
+      Icon: <DoubleBed />,
+      Content: <>{bedroomsLabel} {numberOfBedrooms}</>,
+    },
+    {
+      Icon: petsAllowed ? <Dog /> : <Ban />,
+      Content: petsAllowed ? <>{petsAllowedLabel}</> : <>{petsNotAllowedLabel}</>
+    },
+    {
+      Icon: smokingAllowed ? <Cigarette /> : <CigaretteOff />,
+      Content: smokingAllowed ? <>{smokingAllowedLabel}</> : <>{smokingNotAllowedLabel}</>
+    },
+    {
+      Icon: <Phone />,
+      Content:
+        <a className="underline hover:no-underline focus:no-underline" href={`tel:${telephone}`}>
+          {telephone}
+        </a>
+    },
+  ], [bedroomsLabel, builtLabel, floorSize, numberOfBedrooms, numberOfRooms, occupancy, occupancyLabel, petsAllowed, petsAllowedLabel, petsNotAllowedLabel, roomsLabel, smokingAllowed, smokingAllowedLabel, smokingNotAllowedLabel, squaredLabel, telephone, yearBuilt]);
   return (
     <>
       <Section>
@@ -76,61 +115,12 @@ const CabinContent: FC<Props> = ({
               {titleLabel}
             </h2>
             <ul className="flex flex-col gap-1 font-sans">
-              <li className="flex flex-nowrap items-center gap-2">
-                <Hammer />
-                {builtLabel} {yearBuilt}
-              </li>
-              <li className="flex flex-nowrap items-center gap-2">
-                <Users />
-                {occupancyLabel} {occupancy}
-              </li>
-
-              <li className="flex flex-nowrap items-center gap-2">
-                <Box />
-                {floorSize} {squaredLabel}
-              </li>
-              <li className="flex flex-nowrap items-center gap-2">
-                <LayoutGrid />
-                {roomsLabel} {numberOfRooms}
-              </li>
-              <li className="flex flex-nowrap items-center gap-2">
-                <DoubleBed />
-                {bedroomsLabel} {numberOfBedrooms}
-              </li>
-              <li className="flex flex-nowrap items-center gap-2">
-                {petsAllowed
-                  ? (
-                    <>
-                      <Dog />
-                      {petsAllowedLabel}
-                    </>
-                  ) : (
-                    <>
-                      <Ban />
-                      {petsNotAllowedLabel}
-                    </>
-                  )}
-              </li>
-              <li className="flex flex-nowrap items-center gap-2">
-                {smokingAllowed
-                  ? (
-                    <>
-                      <Cigarette />
-                      {smokingAllowedLabel}
-                    </>
-                  ) : (
-                    <>
-                      <CigaretteOff />
-                      {smokingNotAllowedLabel}
-                    </>
-                  )}
-              </li>
-              <li className="flex flex-nowrap items-center gap-2">
-                <Phone />
-                <a className="underline hover:no-underline focus:no-underline" href={`tel:${telephone}`}>{telephone}</a>
-              </li>
+              {infoItems.map(({ Content, Icon }, i) => (
+                <li key={i} className="flex flex-nowrap items-center gap-2">
+                  {Icon} {Content}
+                </li>
+              ))}
             </ul>
-
             <h2 className="text-4xl font-display font-bold">
               {locationTitleLabel}
             </h2>
