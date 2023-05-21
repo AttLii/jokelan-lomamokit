@@ -9,15 +9,15 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     <?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${allContentPreval
-        .filter((content) => !content.seoFields.robots.includes("noindex"))
-        .map((content) => {
-          return `
+      .filter((content) => !content.seoFields.robots.includes("noindex"))
+      .map((content) => {
+        return `
             <url>
               <loc>${buildLocalUrlFromRelativePath(content.path)}</loc>
             </url>
           `;
-        })
-        .join("")}
+      })
+      .join("")}
     </urlset>
   `.trim();
 
