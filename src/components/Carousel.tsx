@@ -1,12 +1,12 @@
 import type { ParsedAssetImage } from "../parsers/contentful";
-import type { FC} from "react";
+import type { FC } from "react";
 import { useEffect, useState } from "react";
-import { AssetImage } from "./AssetImage";
+import AssetImage from "./AssetImage";
 
 type Props = {
   images: ParsedAssetImage[]
 }
-export const Carousel: FC<Props> = ({ images }) => {
+const Carousel: FC<Props> = ({ images }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -42,3 +42,5 @@ export const Carousel: FC<Props> = ({ images }) => {
     </ul>
   );
 };
+
+export default Carousel;

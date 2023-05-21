@@ -6,7 +6,7 @@ import Image from "next/image";
 type Props = {
   className?: string;
 }
-export const FooterLogoLink: FC<Props> = ({ className = "" }: Props) => {
+const FooterLogoLink: FC<Props> = ({ className = "" }: Props) => {
   const label = useT('generic.logo.link');
   return (
     <Link
@@ -18,3 +18,5 @@ export const FooterLogoLink: FC<Props> = ({ className = "" }: Props) => {
     </Link>
   );
 };
+
+export default FooterLogoLink;

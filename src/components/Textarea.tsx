@@ -6,7 +6,7 @@ type Props = {
   name: string;
   disabled?: boolean
 }
-export const Textarea: FC<Props> = (({ label, required, ...rest }) => {
+const Textarea: FC<Props> = (({ label, required, ...rest }) => {
   const _label = label + (required ? " *" : "");
   return (
     <label className="flex flex-col font-sans">
@@ -15,3 +15,4 @@ export const Textarea: FC<Props> = (({ label, required, ...rest }) => {
     </label>
   );
 });
+export default Textarea;

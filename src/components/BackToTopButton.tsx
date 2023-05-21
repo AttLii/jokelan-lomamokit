@@ -5,7 +5,7 @@ import { ArrowUp } from "./icons/lucide";
 type Props = {
   className?: string;
 }
-export const BackToTopButton: FC<Props> = ({ className = "" }: Props) => {
+const BackToTopButton: FC<Props> = ({ className = "" }: Props) => {
   const label = useT('generic.back.to.top');
   const onClick = () => window.scrollTo({
     behavior: "smooth",
@@ -21,3 +21,5 @@ export const BackToTopButton: FC<Props> = ({ className = "" }: Props) => {
     </button>
   );
 };
+
+export default BackToTopButton;

@@ -16,7 +16,7 @@ type Props = {
   SubMenuRenderer?: FC<SubItemsRendererProps>
 }
 
-export const MenuLink: FC<Props> = ({
+const MenuLink: FC<Props> = ({
   menuItem,
   className = "",
   showSubItems,
@@ -48,3 +48,5 @@ export const MenuLink: FC<Props> = ({
     </div>
   );
 };
+
+export default MenuLink;

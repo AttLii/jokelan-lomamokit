@@ -4,18 +4,18 @@ import dynamic from "next/dynamic";
 import type { ParsedSections } from "../parsers/contentful";
 import { isParsedCabinReferences, isParsedContent, isParsedFaqs, isParsedFiftyFifty, isParsedForm, isParsedHero, isParsedMap } from "../typeguards/contentful";
 
-const Hero = dynamic(() => import("./sections/Hero").then((mod) => mod.Hero));
-const FiftyFifty = dynamic(() => import("./sections/FiftyFifty").then((mod) => mod.FiftyFifty));
-const Map = dynamic(() => import("./sections/Map").then((mod) => mod.Map));
-const CabinReferences = dynamic(() => import("./sections/CabinReferences").then((mod) => mod.CabinReferencesSection));
-const Form = dynamic(() => import("./sections/Form").then((mod) => mod.Form));
-const Content = dynamic(() => import("./sections/Content").then((mod) => mod.Content));
-const Faqs = dynamic(() => import("./sections/Faqs").then((mod) => mod.FAQs));
+const Hero = dynamic(() => import("./sections/Hero"));
+const FiftyFifty = dynamic(() => import("./sections/FiftyFifty"));
+const Map = dynamic(() => import("./sections/Map"));
+const CabinReferences = dynamic(() => import("./sections/CabinReferences"));
+const Form = dynamic(() => import("./sections/Form"));
+const Content = dynamic(() => import("./sections/Content"));
+const Faqs = dynamic(() => import("./sections/Faqs"));
 
 type Props = {
   sections: ParsedSections
 }
-export const SectionsRenderer: FC<Props> = ({ sections }) => {
+const SectionsRenderer: FC<Props> = ({ sections }) => {
   return (
     <>
       {sections.map((section, i) => {
@@ -41,3 +41,5 @@ export const SectionsRenderer: FC<Props> = ({ sections }) => {
   );
 
 };
+
+export default SectionsRenderer;

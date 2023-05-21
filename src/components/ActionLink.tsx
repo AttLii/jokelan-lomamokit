@@ -4,7 +4,7 @@ import { Calendar, CalendarOff } from "./icons/lucide";
 type Props = PropsWithChildren & {
   href: string;
 }
-export const ActionLink: FC<Props> = ({ href, children }) => {
+const ActionLink: FC<Props> = ({ href, children }) => {
   return (
     <a
       className="
@@ -25,3 +25,4 @@ export const ActionLink: FC<Props> = ({ href, children }) => {
   );
 };
 
+export default ActionLink;

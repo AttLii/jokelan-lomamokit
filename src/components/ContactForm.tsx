@@ -1,12 +1,12 @@
-import type { FC, FormEventHandler} from "react";
+import type { FC, FormEventHandler } from "react";
 import { useState } from "react";
-import { Input } from "./Input";
 import { useT } from "../contexts/stringTranslations";
-import { Textarea } from "./Textarea";
-import { RichText } from "./RichText";
-import { HCaptcha } from "./HCaptcha";
+import Input from "./Input";
+import Textarea from "./Textarea";
+import RichText from "./RichText";
+import HCaptcha from "./HCaptcha";
 
-export const ContactForm: FC = () => {
+const ContactForm: FC = () => {
   const serverErrorMessage = useT('contact.form.submit.server.error');
   const clientErrorMessage = useT('contact.form.submit.client.error');
   const submitLabel = useT('generic.form.submit');
@@ -77,3 +77,5 @@ export const ContactForm: FC = () => {
     </div>
   );
 };
+
+export default ContactForm;

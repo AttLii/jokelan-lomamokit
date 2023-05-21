@@ -1,15 +1,15 @@
-import type { FC} from "react";
+import type { FC } from "react";
 import { useMemo } from "react";
 import type { ParsedFiftyFifty } from "../../parsers/contentful";
-import { AssetImage } from "../AssetImage";
-import { RichText } from "../RichText";
-import { Container } from "../Container";
-import { Section } from "../Section";
+import AssetImage from "../AssetImage";
+import RichText from "../RichText";
+import Container from "../Container";
+import Section from "../Section";
 
 type Props = {
   section: ParsedFiftyFifty
 }
-export const FiftyFifty: FC<Props> = (({ section: { image, richText, order } }) => {
+const FiftyFifty: FC<Props> = (({ section: { image, richText, order } }) => {
   const orderClass = useMemo(() => order === "Image-Text" ? "md:order-first" : "md:order-last", [order]);
   return (
     <Section>
@@ -38,3 +38,5 @@ export const FiftyFifty: FC<Props> = (({ section: { image, richText, order } }) 
     </Section>
   );
 });
+
+export default FiftyFifty;

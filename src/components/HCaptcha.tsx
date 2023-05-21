@@ -4,7 +4,7 @@ import HCaptchaComponent from '@hcaptcha/react-hcaptcha';
 type Props = {
   setVerified: Dispatch<SetStateAction<boolean>>
 }
-export const HCaptcha: FC<Props> = ({ setVerified }) => {
+const HCaptcha: FC<Props> = ({ setVerified }) => {
   const onVerify = () => setVerified(true);
   const onError = () => setVerified(false);
   return (
@@ -17,3 +17,5 @@ export const HCaptcha: FC<Props> = ({ setVerified }) => {
     />
   );
 };
+
+export default HCaptcha;

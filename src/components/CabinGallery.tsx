@@ -1,14 +1,14 @@
 import type { FC, MouseEventHandler } from "react";
-import { useEffect, useRef, useState } from "react";
 import type { ParsedAssetImage } from "../parsers/contentful";
-import { AssetImage } from "./AssetImage";
-import { useT } from "../contexts/stringTranslations";
+import { useEffect, useRef, useState } from "react";
+import AssetImage from "./AssetImage";
 import { Scaling, X } from "./icons/lucide";
+import { useT } from "../contexts/stringTranslations";
 
 type Props = {
   gallery: ParsedAssetImage[]
 }
-export const CabinGallery: FC<Props> = ({ gallery }) => {
+const CabinGallery: FC<Props> = ({ gallery }) => {
   const dialog = useRef<HTMLDialogElement | null>(null);
   const scrollContainer = useRef<HTMLUListElement | null>(null);
   const [index, setIndex] = useState(0);
@@ -79,3 +79,5 @@ export const CabinGallery: FC<Props> = ({ gallery }) => {
     </div>
   );
 };
+
+export default CabinGallery;

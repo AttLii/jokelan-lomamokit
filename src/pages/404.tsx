@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import Link from "next/link";
-import { Section } from "../components/Section";
-import { Container } from "../components/Container";
 import { useT } from "../contexts/stringTranslations";
+import Container from "../components/Container";
+import Section from "../components/Section";
 
 const Custom404: FC = () => {
   const titleLabel = useT('404.page.title');

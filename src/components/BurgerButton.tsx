@@ -1,9 +1,9 @@
-import type { FC} from "react";
+import type { FC } from "react";
 import { useMemo } from "react";
 import { useUiContext } from "../contexts/ui";
 import { useT } from "../contexts/stringTranslations";
 
-export const BurgerButton: FC = () => {
+const BurgerButton: FC = () => {
   const { state, dispatch } = useUiContext();
 
   const openLabel = useT('nav.open');
@@ -41,3 +41,5 @@ export const BurgerButton: FC = () => {
     </button>
   );
 };
+
+export default BurgerButton;

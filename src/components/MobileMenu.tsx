@@ -1,7 +1,7 @@
-import type { FC} from "react";
+import type { FC } from "react";
 import { Fragment, useMemo } from "react";
 import type { SubItemsRendererProps } from "./MenuLink";
-import { MenuLink } from "./MenuLink";
+import MenuLink from "./MenuLink";
 import { useGlobalContentContext } from "../contexts/globalContent";
 import { useUiContext } from "../contexts/ui";
 
@@ -17,7 +17,7 @@ const SubMenuRenderer: FC<SubItemsRendererProps> = ({ subItems }) => (
   </div>
 );
 
-export const MobileMenu = () => {
+const MobileMenu = () => {
   const { headerMenu } = useGlobalContentContext();
   const { state, dispatch } = useUiContext();
   const { backdrop, menuLeft } = useMemo(() => {
@@ -53,3 +53,5 @@ export const MobileMenu = () => {
     </>
   );
 };
+
+export default MobileMenu;

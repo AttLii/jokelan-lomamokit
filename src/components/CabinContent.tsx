@@ -2,19 +2,19 @@ import type { FC } from "react";
 import type { ParsedEntryCabin } from "../parsers/contentful";
 import type { ApartmentJsonLD } from "../parsers/seo";
 import { useT } from "../contexts/stringTranslations";
-import { Section } from "./Section";
-import { Container } from "./Container";
-import { CabinGallery } from "./CabinGallery";
 import { Ban, Box, Cigarette, CigaretteOff, Dog, DoubleBed, Hammer, LayoutGrid, Phone, Users } from "./icons/lucide";
-import { OpenStreetMapEmbed } from "./OpenStreetMapEmbed";
-import { StarRating } from "./StarRating";
-import { ActionLink } from "./ActionLink";
+import Section from "./Section";
+import Container from "./Container";
+import CabinGallery from "./CabinGallery";
+import OpenStreetMapEmbed from "./OpenStreetMapEmbed";
+import StarRating from "./StarRating";
+import ActionLink from "./ActionLink";
 
 type Props = {
   content: ParsedEntryCabin,
   jsonld: ApartmentJsonLD
 }
-export const CabinContent: FC<Props> = ({
+const CabinContent: FC<Props> = ({
   content: {
     name,
     location,
@@ -154,3 +154,5 @@ export const CabinContent: FC<Props> = ({
     </>
   );
 };
+
+export default CabinContent;

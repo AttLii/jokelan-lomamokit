@@ -5,7 +5,7 @@ import { StarHalf } from "./icons/lucide";
 type Props = {
   rating: number;
 }
-export const StarRating: FC<Props> = ({ rating }: Props) => {
+const StarRating: FC<Props> = ({ rating }: Props) => {
   return (
     <ul aria-hidden={true} className="flex flex-nowrap">
       {Array.from({ length: 10 }).map((_, i) => {
@@ -21,3 +21,4 @@ export const StarRating: FC<Props> = ({ rating }: Props) => {
     </ul>
   );
 };
+export default StarRating;
