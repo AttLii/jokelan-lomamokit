@@ -1,12 +1,12 @@
 import type { FC } from "react";
 import type { ParsedHero } from "../../parsers/contentful";
-import { Carousel } from "../Carousel";
-import { RichText } from "../RichText";
+import Carousel from "../Carousel";
+import RichText from "../RichText";
 
 type Props = {
   section: ParsedHero
 }
-export const Hero: FC<Props> = ({
+const Hero: FC<Props> = ({
   section: {
     gallery,
     richText
@@ -24,3 +24,5 @@ export const Hero: FC<Props> = ({
     </section>
   );
 };
+
+export default Hero;

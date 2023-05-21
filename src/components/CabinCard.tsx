@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import type { ParsedCabinReference } from "../parsers/contentful";
 import { useT } from "../contexts/stringTranslations";
-import { AssetImage } from "./AssetImage";
-import { IconLink } from "./ChevronLink";
+import AssetImage from "./AssetImage";
+import IconLink from "./ChevronLink";
 
 type Props = {
   cabin: ParsedCabinReference
 }
-export const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
+const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
   const label = useT('generic.read.more');
   return (
     <article className="bg-slate-100 border-black border-2 rounded-md overflow-hidden">
@@ -27,3 +27,5 @@ export const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
     </article>
   );
 };
+
+export default CabinCard;

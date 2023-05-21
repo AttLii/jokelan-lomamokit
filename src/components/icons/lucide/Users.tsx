@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import type { IconProps } from "../../../types/icon";
 
-export const Users: FC<IconProps> = ({ className = "" }) => {
+const Users: FC<IconProps> = ({ className = "" }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`lucide lucide-users ${className}`}>
       <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -11,3 +11,5 @@ export const Users: FC<IconProps> = ({ className = "" }) => {
     </svg>
   );
 };
+
+export default Users;

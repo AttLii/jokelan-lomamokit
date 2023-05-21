@@ -1,11 +1,11 @@
-import { Container } from "./Container";
-import { MenuLink } from "./MenuLink";
-import { FooterLogoLink } from "./FooterLogoLink";
-import { BackToTopButton } from "./BackToTopButton";
-import { FooterInfoList } from "./FooterInfoList";
+import Container from "./Container";
+import MenuLink from "./MenuLink";
+import FooterLogoLink from "./FooterLogoLink";
+import BackToTopButton from "./BackToTopButton";
+import FooterInfoList from "./FooterInfoList";
 import { useGlobalContentContext } from "../contexts/globalContent";
 
-export const Footer = () => {
+const Footer = () => {
   const { footerMenu } = useGlobalContentContext();
   return (
     <footer className="w-full bg-slate-100 pt-10 pb-4 border-t-2 border-black relative">
@@ -32,3 +32,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

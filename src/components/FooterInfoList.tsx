@@ -1,10 +1,10 @@
-import type { FC} from "react";
+import type { FC } from "react";
 import { Fragment } from "react";
 import { useGlobalContentContext } from "../contexts/globalContent";
 import { Mail, MapPin, Phone } from "./icons/lucide";
-import { RichText } from "./RichText";
+import RichText from "./RichText";
 
-export const FooterInfoList: FC = () => {
+const FooterInfoList: FC = () => {
   const context = useGlobalContentContext();
   if (!context.localBusiness) return <Fragment />;
 
@@ -50,3 +50,5 @@ export const FooterInfoList: FC = () => {
     </div>
   );
 };
+
+export default FooterInfoList;

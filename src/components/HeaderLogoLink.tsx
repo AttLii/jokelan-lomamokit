@@ -3,7 +3,7 @@ import { useT } from "../contexts/stringTranslations";
 import Link from "next/link";
 import Image from "next/image";
 
-export const HeaderLogoLink: FC = () => {
+const HeaderLogoLink: FC = () => {
   const label = useT('generic.logo.link');
   return (
     <Link href="/" aria-label={label} className="flex items-center gap-2 uppercase font-semibold group">
@@ -15,3 +15,5 @@ export const HeaderLogoLink: FC = () => {
     </Link>
   );
 };
+
+export default HeaderLogoLink;

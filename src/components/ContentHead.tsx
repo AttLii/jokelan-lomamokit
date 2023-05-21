@@ -7,7 +7,7 @@ type Props = {
   content: ParsedEntryCabin | ParsedEntryPage,
   jsonld: Record<string, unknown>
 }
-export const ContentHead: FC<Props> = ({ content, jsonld }) => {
+const ContentHead: FC<Props> = ({ content, jsonld }) => {
   const {
     path,
     seoFields: {
@@ -44,3 +44,5 @@ export const ContentHead: FC<Props> = ({ content, jsonld }) => {
     </Head>
   );
 };
+
+export default ContentHead;

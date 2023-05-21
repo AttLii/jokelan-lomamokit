@@ -5,7 +5,7 @@ type Props = {
   title: string;
   location: EntryFields.Location
 }
-export const OpenStreetMapEmbed: FC<Props> = (({ title, location }) => {
+const OpenStreetMapEmbed: FC<Props> = (({ title, location }) => {
   const { lat, lon } = location;
   return (
     <div className="relative w-full aspect-square sm:aspect-16/9 border-black border-2 rounded-md overflow-hidden">
@@ -18,3 +18,5 @@ export const OpenStreetMapEmbed: FC<Props> = (({ title, location }) => {
     </div>
   );
 });
+
+export default OpenStreetMapEmbed;

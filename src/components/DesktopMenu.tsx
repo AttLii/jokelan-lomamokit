@@ -1,7 +1,7 @@
-import type { FC} from "react";
+import type { FC } from "react";
 import { Fragment } from "react";
 import type { SubItemsRendererProps } from "./MenuLink";
-import { MenuLink } from "./MenuLink";
+import MenuLink from "./MenuLink";
 import { useGlobalContentContext } from "../contexts/globalContent";
 
 const SubMenuRenderer: FC<SubItemsRendererProps> = ({ subItems }) => (
@@ -21,7 +21,7 @@ const SubMenuRenderer: FC<SubItemsRendererProps> = ({ subItems }) => (
   </div>
 );
 
-export const DesktopMenu: FC = () => {
+const DesktopMenu: FC = () => {
   const { headerMenu } = useGlobalContentContext();
   if (!headerMenu) return <Fragment />;
 
@@ -42,3 +42,5 @@ export const DesktopMenu: FC = () => {
     </nav>
   );
 };
+
+export default DesktopMenu;

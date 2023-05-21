@@ -1,17 +1,17 @@
 import '../styles/globals.scss';
-import type { AppProps } from 'next/app';
-import { StringTranslationContext } from '../contexts/stringTranslations.ts';
 import { useEffect, useReducer, useRef } from 'react';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { Cabin, PT_Sans } from "next/font/google";
-import { Footer } from '../components/Footer.tsx';
-import { SkipToContent } from '../components/SkipToContent.tsx';
-import { GlobalContentContext } from '../contexts/globalContent.ts';
 import stringTranslations from '../prevals/stringTranslations.preval.ts';
 import globalContent from '../prevals/globalContent.preval.ts';
-import { Header } from '../components/Header.tsx';
+import { StringTranslationContext } from '../contexts/stringTranslations.ts';
 import { UiContext, initialState as uiInitialState, reducer as uiReducer } from '../contexts/ui.tsx';
-import { useRouter } from 'next/router';
+import Footer from '../components/Footer.tsx';
+import SkipToContent from '../components/SkipToContent.tsx';
+import { GlobalContentContext } from '../contexts/globalContent.ts';
+import Header from '../components/Header.tsx';
 
 const cabinFont = Cabin({
   subsets: ["latin"],

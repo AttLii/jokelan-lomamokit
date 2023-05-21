@@ -4,7 +4,7 @@ import { useT } from "../contexts/stringTranslations";
 type Props = {
   focusElement: MutableRefObject<HTMLElement | null>
 }
-export const SkipToContent: FC<Props> = ({ focusElement }) => {
+const SkipToContent: FC<Props> = ({ focusElement }) => {
   const label = useT('generic.skip.to.content');
   const onClick = () => {
     if (!focusElement.current) return;
@@ -24,3 +24,4 @@ export const SkipToContent: FC<Props> = ({ focusElement }) => {
     </button>
   );
 };
+export default SkipToContent;
