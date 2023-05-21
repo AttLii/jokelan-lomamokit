@@ -30,7 +30,7 @@ const Catchall: FC<Props> = (props) => {
       <ContentHead content={content} jsonld={jsonld} />
       {isPageProps(props)
         ? <SectionsRenderer sections={props.content.sections} />
-        : <CabinContent content={props.content} jsonld={props.jsonld} />
+        : <CabinContent key={props.content.name} content={props.content} jsonld={props.jsonld} />
       }
     </>
   );

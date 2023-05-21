@@ -71,7 +71,7 @@ const CabinContent: FC<Props> = ({
             )}
           </div>
           <div className="w-full md:w-9/12 flex flex-col gap-4">
-            <CabinGallery key={name} gallery={gallery} />
+            <CabinGallery gallery={gallery} />
             <h2 className="text-4xl font-display font-bold">
               {titleLabel}
             </h2>
@@ -135,7 +135,6 @@ const CabinContent: FC<Props> = ({
               {locationTitleLabel}
             </h2>
             <OpenStreetMapEmbed
-              key={name}
               title={locationLabel}
               location={location}
             />
