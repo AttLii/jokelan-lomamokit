@@ -7,7 +7,7 @@ type Props = {
 }
 const CabinReferenceList: FC<Props> = ({ cabinReferences }) => {
   return (
-    <ul className="grid gap-4 sm:grid-cols-4">
+    <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
       {cabinReferences.map((cabin) => {
         return (
           <li key={cabin.id}>
