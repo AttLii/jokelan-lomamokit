@@ -11,13 +11,16 @@ const handler = async (
     return response.status(404).json({ message: "Unsupported method" });
   }
 
+  // converts malicious google sheet formulas to strings
+  const transformString = (s: string) => "'" + s;
+
   const result = z
     .object({
-      name: z.string(),
-      email: z.string().email(),
-      tel: z.string(),
-      message: z.string(),
-      "h-captcha-response": z.string(),
+      name: z.string().transform(transformString),
+      email: z.string().email().transform(transformString),
+      tel: z.string().transform(transformString),
+      message: z.string().transform(transformString),
+      "h-captcha-response": z.string().transform(transformString),
     })
     .safeParse(body);
 
