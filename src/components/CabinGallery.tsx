@@ -60,7 +60,8 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
                   loading={i === 0 ? "eager" : "lazy"}
                   width="936"
                   height="527"
-                  src={`${src}&w=936&h=527&fit=pad`}
+                  fit="pad"
+                  src={src}
                 />
               </li>
             ))}
@@ -87,7 +88,8 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
                 loading={i <= 5 ? "eager" : "lazy"}
                 width="174"
                 height="100"
-                src={`${src}&w=174&h=100&fit=fill`}
+                fit="fill"
+                src={src}
               />
             </button>
           </li>

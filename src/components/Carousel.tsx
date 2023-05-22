@@ -26,11 +26,12 @@ const Carousel: FC<Props> = ({ images }) => {
       {images.map(({ src }, i) => (
         <li className="min-w-full relative" key={i}>
           <AssetImage
-            width="639"
-            height="1139"
+            width="1920"
+            height="1080"
+            fit="fill"
             className="w-full h-full object-cover object-center"
             loading={i === 0 ? "eager" : "lazy"}
-            src={`${src}&w=639&h=1136&fit=fill`}
+            src={src}
           />
         </li>
       ))}

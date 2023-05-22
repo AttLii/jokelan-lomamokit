@@ -16,7 +16,8 @@ const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
           alt=""
           width="608"
           height="456"
-          src={`${image.src}&w=608&h=456&fit=fill`}
+          fit="fill"
+          src={image.src}
         />
       )}
       <div className="p-4 border-black border-t-2">
