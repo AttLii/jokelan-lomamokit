@@ -11,7 +11,7 @@ const handler = async (
     return response.status(404).json({ message: "Unsupported method" });
   }
 
-  // converts malicious google sheet formulas to strings
+  // converts malicious google sheet formula to string
   const transformString = (s: string) => "'" + s;
 
   const result = z
@@ -32,7 +32,7 @@ const handler = async (
 
   const { "h-captcha-response": token, ...dataWithoutToken } = result.data;
   try {
-    const tokenResult = await verify(process.env.HCAPTCHA_SECRET + "", token);
+    const tokenResult = await verify(process.env.HCAPTCHA_SECRET, token);
     if (!tokenResult.success) {
       return response
         .status(422)
@@ -47,15 +47,26 @@ const handler = async (
   try {
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEETS_ID);
     await doc.useServiceAccountAuth({
-      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || "",
-      private_key: process.env.GOOGLE_PRIVATE_KEY || "",
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
     await doc.loadInfo();
-    const sheet = doc.sheetsByIndex[0];
-    await sheet.addRow({
+
+    const title = "Contact";
+    const row = {
       ...dataWithoutToken,
       date: new Date().toISOString(),
-    });
+    };
+
+    let sheet = doc.sheetsByTitle[title];
+    if (!sheet) {
+      sheet = await doc.addSheet({
+        title,
+        headerValues: Object.keys(row),
+      });
+    }
+
+    await sheet.addRow(row);
   } catch {
     return response
       .status(500)
