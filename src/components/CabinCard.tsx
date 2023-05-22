@@ -13,11 +13,24 @@ const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
     <article className="bg-slate-100 border-black border-2 rounded-md overflow-hidden">
       {image && (
         <AssetImage
+          className="aspect-4/3 object-cover w-full"
           alt=""
-          width="608"
-          height="456"
-          fit="fill"
           src={image.src}
+          fit="fill"
+          height="452"
+          width="603"
+          srcSet={{
+            "(min-width: 640px)": {
+              fit: "fill",
+              height: "267",
+              width: "356",
+            },
+            "(min-width: 768px)": {
+              fit: "fill",
+              height: "222",
+              width: "296",
+            }
+          }}
         />
       )}
       <div className="p-4 border-black border-t-2">

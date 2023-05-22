@@ -47,6 +47,8 @@ module.exports = {
       aspectRatio: {
         "16/9": "16 / 9",
         "9/16": "9 / 16",
+        "4/3": "4 / 3",
+        "2/1": "2 / 1",
       },
       maxHeight: {
         "50rem": "50rem",

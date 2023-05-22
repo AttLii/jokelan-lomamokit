@@ -56,12 +56,20 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
             {gallery.map(({ src }, i) => (
               <li key={i} className="min-w-full">
                 <AssetImage
+                  className="mx-auto aspect-16/9 object-contain"
                   alt=""
                   loading={i === 0 ? "eager" : "lazy"}
-                  width="936"
-                  height="527"
-                  fit="pad"
                   src={src}
+                  fit="pad"
+                  width="731"
+                  height="411"
+                  srcSet={{
+                    "(min-width: 768px)": {
+                      fit: "pad",
+                      width: "933",
+                      height: "525",
+                    }
+                  }}
                 />
               </li>
             ))}
@@ -84,12 +92,20 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
           <li key={i} className="w-[20%] min-w-[20%] snap-start px-1 -md:mx-2">
             <button onClick={() => onClick(i)} className={`${index === i ? "rounded-md overflow-hidden outline-double outline-2 outline-black -outline-offset-2" : ""}`}>
               <AssetImage
+                className="aspect-2/1 w-full"
                 alt={`${goToLabel} ${i + 1}`}
-                loading={i <= 5 ? "eager" : "lazy"}
-                width="174"
-                height="100"
-                fit="fill"
                 src={src}
+                loading={i <= 5 ? "eager" : "lazy"}
+                fit="fill"
+                width="150"
+                height="75"
+                srcSet={{
+                  "(min-width: 768px)": {
+                    fit: "fill",
+                    width: "180",
+                    height: "90",
+                  }
+                }}
               />
             </button>
           </li>
