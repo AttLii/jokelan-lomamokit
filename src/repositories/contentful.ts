@@ -8,8 +8,8 @@ import type {
 } from "../types/contentful";
 
 const client = contentful.createClient({
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN + "",
-  space: process.env.CONTENTFUL_SPACE + "",
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.CONTENTFUL_SPACE,
 }).withoutUnresolvableLinks;
 
 const getEntries = async <T extends EntrySkeletonType>(
