@@ -1,33 +1,46 @@
-import type { FC } from "react";
-import { useMemo } from "react";
-import type { ParsedAssetImage } from "../parsers/contentful";
-import Image from "next/image";
+import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from "react";
 
-type Props = ParsedAssetImage & {
-  className?: string,
-  srcSet?: Record<string, string>,
-  priority?: boolean,
-  loading: "eager" | "lazy",
-  height: number,
-  width: number,
+type ImgProps = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+type ContentfulImageProps = {
+  fit?: "pad" | "fill";
+  width: string | number;
+  height: string | number;
 }
 
-type ImgProps = Omit<Props, "srcSet">
+type Breakpoint = 640 | 768 | 1024;
+type MediaQuery = "min-width";
+type SrcSetKey = `(${MediaQuery}: ${Breakpoint}px)`
 
-const Img: FC<ImgProps> = ({ alt = "", ...rest }) => <Image {...rest} alt={alt} decoding="async" />;
+type Props = Omit<ImgProps, "srcSet"> & ContentfulImageProps & {
+  src: string;
+  srcSet?: Record<SrcSetKey, Required<ContentfulImageProps>>
+}
 
-const AssetImage: FC<Props> = (({ srcSet, alt, height, loading, src, width, className, priority }) => {
-  const _Image = useMemo(() => <Img alt={alt} height={height} loading={loading} src={src} width={width} className={className} priority={priority} />, [alt, height, loading, src, width, className, priority]);
-
-  if (!srcSet) return _Image;
-  return (
+const AssetImage: FC<Props> = ({ alt = "", loading = "lazy", src, fit, width, height, srcSet, ...props }) => {
+  const Image = <img
+    decoding="async"
+    alt={alt}
+    loading={loading}
+    src={fit ? `${src}&fit=${fit}&w=${width}&h=${height}` : src}
+    width={width}
+    height={height}
+    {...props}
+  />;
+  return srcSet ?
     <picture>
-      {Object.keys(srcSet)?.map((key, i) => (
-        <source key={i} media={key} srcSet={srcSet[key]} />
-      ))}
-      {_Image}
+      {Object.keys(srcSet).map((_key) => {
+        const key = _key as SrcSetKey;
+        return (
+          <source
+            key={key}
+            media={key}
+            srcSet={`${src}&fit=${srcSet[key].fit}&w=${srcSet[key].width}&h=${srcSet[key].height}`}
+          />
+        );
+      })}
+      {Image}
     </picture>
-  );
-});
+    : Image;
+};
 
 export default AssetImage;
