@@ -4,9 +4,6 @@ dependencies:
   '@contentful/rich-text-html-renderer':
     specifier: ^16.0.4
     version: 16.0.4
-  '@hcaptcha/react-hcaptcha':
-    specifier: ^1.8.1
-    version: 1.8.1(react-dom@18.2.0)(react@18.2.0)
   '@types/node':
     specifier: ^20.2.3
     version: 20.2.3
@@ -25,9 +22,6 @@ dependencies:
   google-spreadsheet:
     specifier: ^3.3.0
     version: 3.3.0
-  hcaptcha:
-    specifier: ^0.1.1
-    version: 0.1.1
   next:
     specifier: 13.4.3
     version: 13.4.3(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
@@ -1342,17 +1336,6 @@ packages:
     resolution: {integrity: sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
-
-  /@hcaptcha/react-hcaptcha@1.8.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-33tIl77HgeahiQ6R0+JPDA8cGBBv95cIVcdOcFVwiGCJhrOxyiOQetCdEUNTDS13xrkvIP29K/PrqLXXSbKl6Q==}
-    peerDependencies:
-      react: '>= 16.3.0'
-      react-dom: '>= 16.3.0'
-    dependencies:
-      '@babel/runtime': 7.21.5
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -3744,10 +3727,6 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
-
-  /hcaptcha@0.1.1:
-    resolution: {integrity: sha512-iMrDmH2VpIEKOrcKWidVjI89FdDKTEdZ7PfPWkP27sTazIIkob8YfdY2ezaufAnWBiUUcvzsn0qF+dyXtBH2Vw==}
-    dev: false
 
   /he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}

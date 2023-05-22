@@ -1,6 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { z } from "zod";
-import { verify } from "hcaptcha";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
 const handler = async (
@@ -20,7 +19,6 @@ const handler = async (
       email: z.string().email().transform(transformString),
       tel: z.string().transform(transformString),
       message: z.string().transform(transformString),
-      "h-captcha-response": z.string(),
     })
     .safeParse(body);
 
@@ -28,20 +26,6 @@ const handler = async (
     return response
       .status(422)
       .json({ message: "Provided body is in unexpected form" });
-  }
-
-  const { "h-captcha-response": token, ...dataWithoutToken } = result.data;
-  try {
-    const tokenResult = await verify(process.env.HCAPTCHA_SECRET, token);
-    if (!tokenResult.success) {
-      return response
-        .status(422)
-        .json({ message: "Couldn't verify h-captcha response" });
-    }
-  } catch {
-    return response
-      .status(500)
-      .json({ message: "Couldn't verify h-captcha-response" });
   }
 
   try {
@@ -54,7 +38,7 @@ const handler = async (
 
     const title = "Contact";
     const row = {
-      ...dataWithoutToken,
+      ...result.data,
       date: new Date().toISOString(),
     };
 

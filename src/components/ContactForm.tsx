@@ -4,7 +4,6 @@ import { useT } from "../contexts/stringTranslations";
 import Input from "./Input";
 import Textarea from "./Textarea";
 import RichText from "./RichText";
-import HCaptcha from "./HCaptcha";
 
 const ContactForm: FC = () => {
   const serverErrorMessage = useT('contact.form.submit.server.error');
@@ -17,7 +16,6 @@ const ContactForm: FC = () => {
   const messageLabel = useT('contact.form.message');
   const privacyPolicyLabel = useT('generic.form.privacy.policy');
 
-  const [hCaptchaVerified, setHCaptchaVerified] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,12 +61,11 @@ const ContactForm: FC = () => {
             <Input type="tel" name="tel" label={telLabel} disabled={submitting} />
             <Textarea name="message" required label={messageLabel} disabled={submitting} />
             <RichText html={`<p>${privacyPolicyLabel}</p>`} />
-            <HCaptcha setVerified={setHCaptchaVerified} />
             <input
               className="font-sans enabled:cursor-pointer color-black disabled:text-slate-500 disabled:cursor-default mt-4 bg-slate-300 p-2 border-black disabled:border-slate-500 border-2 hover:enabled:bg-slate-400 focus:enabled:bg-slate-400"
               type="submit"
               value={submitLabel}
-              disabled={submitting || !hCaptchaVerified}
+              disabled={submitting}
             />
             {(errorMessage !== "") && <p className="font-sans font-bold">{errorMessage}</p>}
           </form>
