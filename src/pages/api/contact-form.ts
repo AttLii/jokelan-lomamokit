@@ -20,7 +20,7 @@ const handler = async (
       email: z.string().email().transform(transformString),
       tel: z.string().transform(transformString),
       message: z.string().transform(transformString),
-      "h-captcha-response": z.string().transform(transformString),
+      "h-captcha-response": z.string(),
     })
     .safeParse(body);
 
