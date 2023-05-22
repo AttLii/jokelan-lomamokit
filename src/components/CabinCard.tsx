@@ -14,9 +14,8 @@ const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
       {image && (
         <AssetImage
           alt=""
-          width={608}
-          height={456}
-          loading="lazy"
+          width="608"
+          height="456"
           src={`${image.src}&w=608&h=456&fit=fill`}
         />
       )}

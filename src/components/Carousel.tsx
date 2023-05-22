@@ -23,19 +23,14 @@ const Carousel: FC<Props> = ({ images }) => {
 
   return (
     <ul className="flex h-full transition-all duration-1000" style={{ transform: `translateX(${index === 0 ? 0 : index * 100 * -1}%)` }}>
-      {images.map(({ src, ...rest }, i) => (
+      {images.map(({ src }, i) => (
         <li className="min-w-full relative" key={i}>
           <AssetImage
-            {...rest}
-            width={639}
-            height={1139}
+            width="639"
+            height="1139"
             className="w-full h-full object-cover object-center"
             loading={i === 0 ? "eager" : "lazy"}
-            priority={i === 0}
             src={`${src}&w=639&h=1136&fit=fill`}
-            srcSet={{
-              '(min-width: 640px)': `${src}&w=1920&h=1080&fit=fill`
-            }}
           />
         </li>
       ))}

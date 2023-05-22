@@ -22,12 +22,11 @@ const FiftyFifty: FC<Props> = (({ section: { image, richText, order } }) => {
         `}>
           {image && (
             <AssetImage
-              {...image}
+              alt={image.alt}
               className="absolute top-0 left-0 w-full h-full object-center object-cover"
               src={`${image.src}&w=616&h=616&fit=fill`}
-              loading="lazy"
-              height={616}
-              width={616}
+              height="616"
+              width="616"
             />
           )}
         </div>

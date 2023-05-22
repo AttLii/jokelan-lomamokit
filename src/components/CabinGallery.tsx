@@ -39,7 +39,12 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
             <button className="absolute top-1 right-4 text-2xl p-1 ml-auto" aria-label={closeDialogLabel} onClick={closeDialog}>
               <X />
             </button>
-            <AssetImage alt="" loading="lazy" width={gallery[index].width} height={gallery[index].height} src={gallery[index].src} />
+            <AssetImage
+              alt=""
+              width={gallery[index].width}
+              height={gallery[index].height}
+              src={gallery[index].src}
+            />
           </div>
         </dialog>
       )}
@@ -50,7 +55,13 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
           }}>
             {gallery.map(({ src }, i) => (
               <li key={i} className="min-w-full">
-                <AssetImage alt="" loading={i === 0 ? "eager" : "lazy"} priority={i === 0} width={936} height={527} src={`${src}&w=936&h=527&fit=pad`} />
+                <AssetImage
+                  alt=""
+                  loading={i === 0 ? "eager" : "lazy"}
+                  width="936"
+                  height="527"
+                  src={`${src}&w=936&h=527&fit=pad`}
+                />
               </li>
             ))}
           </ul>
@@ -71,7 +82,13 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
         {gallery.map(({ src }, i) => (
           <li key={i} className="w-[20%] min-w-[20%] snap-start px-1 -md:mx-2">
             <button onClick={() => onClick(i)} className={`${index === i ? "rounded-md overflow-hidden outline-double outline-2 outline-black -outline-offset-2" : ""}`}>
-              <AssetImage alt={`${goToLabel} ${i + 1}`} loading={i === 0 ? "eager" : "lazy"} width={174} height={100} src={`${src}&w=174&h=100&fit=fill`} />
+              <AssetImage
+                alt={`${goToLabel} ${i + 1}`}
+                loading={i <= 5 ? "eager" : "lazy"}
+                width="174"
+                height="100"
+                src={`${src}&w=174&h=100&fit=fill`}
+              />
             </button>
           </li>
         ))}
