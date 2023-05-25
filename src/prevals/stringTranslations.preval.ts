@@ -1,10 +1,11 @@
 import preval from "next-plugin-preval";
+import client from "../factories/client";
 import { reduceStringTranslationsToObject } from "../parsers/contentful";
-import { getStringTranslations } from "../repositories/contentful";
 import { stringTranslationSchema } from "../contexts/stringTranslations";
 
 async function stringTranslations() {
-  return getStringTranslations()
+  return client
+    .getStringTranslations()
     .then(reduceStringTranslationsToObject)
     .then(stringTranslationSchema.parse);
 }

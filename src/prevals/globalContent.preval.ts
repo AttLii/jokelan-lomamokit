@@ -1,9 +1,9 @@
 import preval from "next-plugin-preval";
 import { parseEntryGlobalContent } from "../parsers/contentful";
-import { getGlobalContent } from "../repositories/contentful";
+import client from "../factories/client";
 
 async function globalContent() {
-  return getGlobalContent().then(parseEntryGlobalContent);
+  return client.getGlobalContent().then(parseEntryGlobalContent);
 }
 
 export default preval(globalContent());

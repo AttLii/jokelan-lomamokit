@@ -2,12 +2,14 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 import type { FC } from "react";
 import type { ParsedEntryPage, ParsedEntryCabin } from "../parsers/contentful";
+import { parseContent } from "../parsers/contentful";
 import type { ApartmentJsonLD, FAQPageJsonLD, WebPageJsonLD } from "../parsers/seo";
 import { composeJsonLDfromContent } from "../parsers/seo";
 import dynamic from 'next/dynamic';
 import allContent from "../prevals/allContent.preval";
 import { notEmpty } from "../utils/typescript";
 import ContentHead from "../components/ContentHead";
+import previewClient from "../factories/PreviewClient";
 const SectionsRenderer = dynamic(() => import('../components/SectionsRenderer'));
 const CabinContent = dynamic(() => import('../components/CabinContent'));
 
@@ -54,7 +56,20 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps<object, IParams> = async (context) => {
   const path = `/${context.params?.catchall ? context.params.catchall.join("/") : ""}`;
 
-  const content = allContent.find(content => content.path === path);
+  let content;
+  if (context.draftMode) {
+    try {
+      const previewContent = await previewClient.getContentByPath(path);
+      if (previewContent) {
+        content = parseContent(previewContent);
+      }
+    } catch {
+      console.error("couldn't fetch preview with path " + path);
+    }
+  } else {
+    content = allContent.find(content => content.path === path);
+  }
+
   if (!content) {
     return {
       notFound: true
