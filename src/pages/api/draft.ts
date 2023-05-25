@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import previewClient from "../../factories/PreviewClient";
+import previewClient from "../../factories/previewClient";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (
