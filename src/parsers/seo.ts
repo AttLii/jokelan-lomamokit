@@ -1,15 +1,11 @@
 import type { EntryFields } from "contentful";
 import type { EntryAddress, EntryLocalBusiness } from "../types/contentful";
-import type {
-  ParsedEntryCabin,
-  ParsedEntryPage} from "./contentful";
-import {
-  parseUrlFromAsset,
-} from "./contentful";
+import type { ParsedEntryCabin, ParsedEntryPage } from "./contentful";
+import type { Reviews } from "../repositories/lomarengas";
+import { parseUrlFromAsset } from "./contentful";
 import { isParsedFaqs, isParsedPage } from "../typeguards/contentful";
 import { buildLocalUrlFromRelativePath } from "../utils/seo";
 import { scrapeReviews } from "../repositories/lomarengas";
-import type { Reviews } from "../repositories/lomarengas";
 
 export const parseLocationToType = ({ lat, lon }: EntryFields.Location) => {
   return {
