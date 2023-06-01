@@ -10,7 +10,7 @@ CONTENTFUL_SPACE=
 CONTENTFUL_ACCESS_TOKEN=
 CONTENTFUL_PREVIEW_ACCESS_TOKEN=
 
-// Secret for content preview (https://app.contentful.com/spaces/<CONTENTFUL_SPACE>/settings/content_preview)
+# Secret for content preview (https://app.contentful.com/spaces/<CONTENTFUL_SPACE>/settings/content_preview)
 DRAFT_SECRET=
 
 # App's origin (f.e. http://localhost:3000)
