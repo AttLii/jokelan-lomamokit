@@ -28,13 +28,14 @@ const FiftyFifty: FC<Props> = (({ section: { image, richText, order } }) => {
               fit="fill"
               height="731"
               width="731"
-              srcSet={{
-                "(min-width: 1024px)": {
+              srcSet={[
+                {
+                  media: "(min-width: 1024px)",
                   fit: "fill",
                   height: "604",
                   width: "604",
                 }
-              }}
+              ]}
             />
           )}
         </div>

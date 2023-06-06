@@ -63,13 +63,14 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
                   fit="pad"
                   width="731"
                   height="411"
-                  srcSet={{
-                    "(min-width: 768px)": {
+                  srcSet={[
+                    {
+                      media: "(min-width: 768px)",
                       fit: "pad",
                       width: "933",
                       height: "525",
                     }
-                  }}
+                  ]}
                 />
               </li>
             ))}
@@ -99,13 +100,14 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
                 fit="fill"
                 width="150"
                 height="75"
-                srcSet={{
-                  "(min-width: 768px)": {
+                srcSet={[
+                  {
+                    media: "(min-width: 768px)",
                     fit: "fill",
                     width: "180",
                     height: "90",
                   }
-                }}
+                ]}
               />
             </button>
           </li>

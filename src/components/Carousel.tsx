@@ -32,18 +32,20 @@ const Carousel: FC<Props> = ({ images }) => {
             className="w-full h-full object-cover object-center"
             loading={i === 0 ? "eager" : "lazy"}
             src={src}
-            srcSet={{
-              "(min-width: 640px)": {
+            srcSet={[
+              {
+                media: "(min-width: 640px)",
                 fit: "fill",
                 width: "1041",
                 height: "584"
               },
-              "(min-width: 1024px)": {
+              {
+                media: "(min-width: 1024px)",
                 fit: "fill",
                 width: "1920",
                 height: "1080"
               }
-            }}
+            ]}
           />
         </li>
       ))}

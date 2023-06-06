@@ -7,13 +7,13 @@ type ContentfulImageProps = {
   height: string | number;
 }
 
-type Breakpoint = 640 | 768 | 1024;
-type MediaQuery = "min-width";
-type SrcSetKey = `(${MediaQuery}: ${Breakpoint}px)`
+type SrcSetKey = `(min-width: ${640 | 768 | 1024}px)`
 
 type Props = Omit<ImgProps, "srcSet"> & ContentfulImageProps & {
   src: string;
-  srcSet?: Record<SrcSetKey, Required<ContentfulImageProps>>
+  srcSet?: (ContentfulImageProps & {
+    media: SrcSetKey
+  })[]
 }
 
 const AssetImage: FC<Props> = ({ alt = "", loading = "lazy", src, fit, width, height, srcSet, ...props }) => {
@@ -26,18 +26,15 @@ const AssetImage: FC<Props> = ({ alt = "", loading = "lazy", src, fit, width, he
     height={height}
     {...props}
   />;
-  return srcSet ?
+  return (srcSet && srcSet.length > 0) ?
     <picture>
-      {Object.keys(srcSet).map((_key) => {
-        const key = _key as SrcSetKey;
-        return (
-          <source
-            key={key}
-            media={key}
-            srcSet={`${src}&fit=${srcSet[key].fit}&w=${srcSet[key].width}&h=${srcSet[key].height}`}
-          />
-        );
-      })}
+      {srcSet.map(({ height, media, width, fit }) => (
+        <source
+          key={media}
+          media={media}
+          srcSet={`${src}&fit=${fit}&w=${width}&h=${height}`}
+        />
+      ))}
       {Image}
     </picture>
     : Image;

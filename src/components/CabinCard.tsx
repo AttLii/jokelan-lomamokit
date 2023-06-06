@@ -19,18 +19,20 @@ const CabinCard: FC<Props> = ({ cabin: { path, title, image } }) => {
           fit="fill"
           height="452"
           width="603"
-          srcSet={{
-            "(min-width: 640px)": {
+          srcSet={[
+            {
+              media: "(min-width: 640px)",
               fit: "fill",
               height: "267",
               width: "356",
             },
-            "(min-width: 768px)": {
+            {
+              media: "(min-width: 768px)",
               fit: "fill",
               height: "222",
               width: "296",
             }
-          }}
+          ]}
         />
       )}
       <div className="p-4 border-black border-t-2">
