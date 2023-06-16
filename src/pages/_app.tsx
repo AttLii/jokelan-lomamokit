@@ -4,14 +4,17 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Cabin, PT_Sans } from "next/font/google";
-import stringTranslations from '../prevals/stringTranslations.preval.ts';
-import globalContent from '../prevals/globalContent.preval.ts';
 import { StringTranslationContext } from '../contexts/stringTranslations.ts';
 import { UiContext, initialState as uiInitialState, reducer as uiReducer } from '../contexts/ui.tsx';
+import { GlobalContentContext } from '../contexts/globalContent.ts';
+import { ConsentContextProvider } from '../contexts/consent.tsx';
 import Footer from '../components/Footer.tsx';
 import SkipToContent from '../components/SkipToContent.tsx';
-import { GlobalContentContext } from '../contexts/globalContent.ts';
 import Header from '../components/Header.tsx';
+import CookieNotification from "../components/CookieNotification.tsx";
+
+import stringTranslations from '../prevals/stringTranslations.preval.ts';
+import globalContent from '../prevals/globalContent.preval.ts';
 
 const cabinFont = Cabin({
   subsets: ["latin"],
@@ -48,18 +51,21 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalContent.localBusiness) }} />
       </Head>
-      <GlobalContentContext.Provider value={globalContent}>
-        <StringTranslationContext.Provider value={stringTranslations}>
-          <UiContext.Provider value={{ state: uiState, dispatch: uiDispatch }}>
-            <SkipToContent focusElement={main} />
-            <Header />
-            <main ref={main} tabIndex={-1} className="pt-14 flex-1">
-              <Component {...pageProps} />
-            </main>
-            <Footer />
-          </UiContext.Provider>
-        </StringTranslationContext.Provider>
-      </GlobalContentContext.Provider>
+      <ConsentContextProvider>
+        <GlobalContentContext.Provider value={globalContent}>
+          <StringTranslationContext.Provider value={stringTranslations}>
+            <UiContext.Provider value={{ state: uiState, dispatch: uiDispatch }}>
+              <CookieNotification />
+              <SkipToContent focusElement={main} />
+              <Header />
+              <main ref={main} tabIndex={-1} className="pt-14 flex-1">
+                <Component {...pageProps} />
+              </main>
+              <Footer />
+            </UiContext.Provider>
+          </StringTranslationContext.Provider>
+        </GlobalContentContext.Provider>
+      </ConsentContextProvider>
     </div>
   );
 };
