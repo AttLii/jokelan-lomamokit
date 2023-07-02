@@ -6,13 +6,8 @@ export const initialState = {
 };
 
 type State = typeof initialState
-
-type NavOpenAction = {
-  type: 'NAV_OPEN'
-}
-type NavCloseAction = {
-  type: 'NAV_CLOSE'
-}
+type NavOpenAction = { type: 'NAV_OPEN' }
+type NavCloseAction = { type: 'NAV_CLOSE' }
 type Action = NavOpenAction | NavCloseAction
 
 export const UiContext = createContext<{ state: State, dispatch: Dispatch<Action> } | undefined>(undefined);
