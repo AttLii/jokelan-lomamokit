@@ -13,7 +13,7 @@ type SrcSetKey = `(${MediaQuery}: ${Breakpoint}px)`
 
 type Props = Omit<ImgProps, "srcSet"> & ContentfulImageProps & {
   src: string;
-  srcSet?: Record<SrcSetKey, Required<ContentfulImageProps>>
+  srcSet?: Partial<Record<SrcSetKey, Required<ContentfulImageProps>>>
 }
 
 const AssetImage: FC<Props> = ({ alt = "", loading = "lazy", src, fit, width, height, srcSet, ...props }) => {

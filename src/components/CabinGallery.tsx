@@ -1,21 +1,23 @@
+"use client";
 import type { FC, MouseEventHandler } from "react";
 import type { ParsedAssetImage } from "../parsers/contentful";
 import { useEffect, useRef, useState } from "react";
 import AssetImage from "./AssetImage";
 import { Scaling, X } from "./icons/lucide";
-import { useT } from "../contexts/stringTranslations";
+import useT from "../hooks/useT";
 
 type Props = {
   gallery: ParsedAssetImage[]
 }
 const CabinGallery: FC<Props> = ({ gallery }) => {
+  const goToLabel = useT('cabin.gallery.go.to');
+  const openDialogLabel = useT("cabin.gallery.dialog.open");
+  const closeDialogLabel = useT('cabin.gallery.dialog.close');
+
   const dialog = useRef<HTMLDialogElement | null>(null);
   const scrollContainer = useRef<HTMLUListElement | null>(null);
   const [index, setIndex] = useState(0);
   const onClick = (i: number) => setIndex(i);
-  const goToLabel = useT('cabin.gallery.go.to');
-  const openDialogLabel = useT("cabin.gallery.dialog.open");
-  const closeDialogLabel = useT('cabin.gallery.dialog.close');
 
   const openDialog = () => dialog.current?.showModal();
   const closeDialog = () => dialog.current?.close();

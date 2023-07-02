@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import allContentPreval from "../../prevals/allContent.preval";
+import SectionsRenderer from '../../components/SectionsRenderer';
+import { composeJsonLDfromContent } from '../../parsers/seo';
+import { isPageProps } from '../../typeguards/parser';
 import { notEmpty } from "../../utils/typescript";
 import { pathParamToPath } from '../../utils/next';
-import { composeJsonLDfromContent } from '../../parsers/seo';
+import allContentPreval from "../../prevals/allContent.preval";
+import CabinContent from '../../components/CabinContent';
 
 type Props = {
   params: {
@@ -18,10 +21,17 @@ export default async function Page({ params: { catchall } }: Props) {
 
   const jsonLd = await composeJsonLDfromContent(content);
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {isPageProps(content)
+        ? <SectionsRenderer sections={content.sections} />
+        : <CabinContent key={content.name} content={content} />
+      }
+    </>
   );
 }
 

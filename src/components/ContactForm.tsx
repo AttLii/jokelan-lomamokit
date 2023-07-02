@@ -1,9 +1,10 @@
+"use client";
 import type { FC, FormEventHandler } from "react";
 import { useState } from "react";
-import { useT } from "../contexts/stringTranslations";
 import Input from "./Input";
 import Textarea from "./Textarea";
 import RichText from "./RichText";
+import useT from "../hooks/useT";
 
 const ContactForm: FC = () => {
   const serverErrorMessage = useT('contact.form.submit.server.error');
