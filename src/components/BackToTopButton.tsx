@@ -1,6 +1,7 @@
+"use client";
 import type { FC } from "react";
-import { useT } from "../contexts/stringTranslations";
 import { ArrowUp } from "./icons/lucide";
+import useT from "../hooks/useT";
 
 type Props = {
   className?: string;
@@ -17,7 +18,7 @@ const BackToTopButton: FC<Props> = ({ className = "" }: Props) => {
       onClick={onClick}
       aria-label={label}
     >
-      <ArrowUp className="w-7 h-7 m-auto " />
+      <ArrowUp className="w-7 h-7 m-auto" />
     </button>
   );
 };

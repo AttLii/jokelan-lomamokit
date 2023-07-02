@@ -9,6 +9,7 @@ import { scrapeReviews } from "../repositories/lomarengas";
 
 export const parseLocationToType = ({ lat, lon }: EntryFields.Location) => {
   return {
+    "@context": "https://schema.org",
     "@type": "GeoCoordinates",
     latitude: lat,
     longitude: lon,
@@ -24,6 +25,7 @@ export const parseEntryAddressToType = (address: EntryAddress) => {
     streetAddress,
   } = address.fields;
   return {
+    "@context": "https://schema.org",
     "@type": "PostalAddress",
     addressLocality,
     addressRegion,
@@ -105,6 +107,7 @@ const parseAggregatedRating = (
   { averageRating: { average, count } }: Reviews
 ) => {
   return {
+    "@context": "https://schema.org",
     "@type": "AggregateRating",
     ratingValue: average / 2, // lomarengas returns the average from 0-10, json-ld expects 0-5
     reviewCount: count,
@@ -121,7 +124,6 @@ export const composeWebPageJsonLD = (content: ParsedEntryPage) => {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    id: url,
     url,
     inLanguage: "fi",
     name: title,
@@ -164,7 +166,7 @@ export const composeApartmentJsonLD = (
       minValue,
       maxValue,
     },
-    floorLevel,
+    floorLevel: floorLevel + "",
     floorSize: {
       "@type": "QuantitativeValue",
       value: floorSize,
@@ -173,13 +175,15 @@ export const composeApartmentJsonLD = (
     numberOfBathroomsTotal,
     numberOfBedrooms,
     petsAllowed,
-    tourBookingPage,
     yearBuilt,
     telephone,
-    address,
     latitude: lat,
     longitude: lon,
     smokingAllowed,
+    ...(tourBookingPage && { tourBookingPage }),
+    ...(address && {
+      address: { address },
+    }),
     ...(image && { image: image.src }),
     ...(reviews && { aggregateRating: parseAggregatedRating(title, reviews) }),
   };

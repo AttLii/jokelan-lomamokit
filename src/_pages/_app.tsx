@@ -51,7 +51,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <GlobalContentContext.Provider value={globalContent}>
         <StringTranslationContext.Provider value={stringTranslations}>
           <UiContext.Provider value={{ state: uiState, dispatch: uiDispatch }}>
-            <SkipToContent focusElement={main} />
+            <SkipToContent />
             <Header />
             <main ref={main} tabIndex={-1} className="pt-14 flex-1">
               <Component {...pageProps} />

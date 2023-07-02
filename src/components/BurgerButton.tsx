@@ -1,16 +1,16 @@
-import type { FC } from "react";
+"use client";
 import { useMemo } from "react";
-import { useUiContext } from "../contexts/ui";
-import { useT } from "../contexts/stringTranslations";
+import useT from "../hooks/useT";
+import useUi from "../hooks/useUi";
 
-const BurgerButton: FC = () => {
-  const { state, dispatch } = useUiContext();
+export default function BurgerButton() {
+  const ui = useUi();
 
   const openLabel = useT('nav.open');
   const closeLabel = useT('nav.close');
 
   const { openClassFirst, openClassMiddle, openClassLast, label } = useMemo(() => {
-    if (state.navOpen) {
+    if (ui.state.navOpen) {
       return {
         openClassFirst: "top-1/2 -translate-y-1/2 rotate-45",
         openClassMiddle: "opacity-0",
@@ -25,12 +25,12 @@ const BurgerButton: FC = () => {
         label: openLabel
       };
     }
-  }, [state.navOpen, closeLabel, openLabel]);
+  }, [ui.state.navOpen, closeLabel, openLabel]);
 
   const onClick = () => {
-    state.navOpen
-      ? dispatch({ type: 'NAV_CLOSE' })
-      : dispatch({ type: 'NAV_OPEN' });
+    ui.state.navOpen
+      ? ui.dispatch({ type: 'NAV_CLOSE' })
+      : ui.dispatch({ type: 'NAV_OPEN' });
   };
 
   return (
@@ -40,6 +40,4 @@ const BurgerButton: FC = () => {
       <span className={`absolute left-0 w-full bg-black h-0.5 transition-all ${openClassLast}`} />
     </button>
   );
-};
-
-export default BurgerButton;
+}

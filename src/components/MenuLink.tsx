@@ -1,8 +1,10 @@
+"use client";
 import type { FC } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { ChevronDown } from "./icons/lucide";
-import { useT } from "../contexts/stringTranslations";
+import { usePathname } from "next/navigation";
+import MenuChevronButton from "./MenuChevronButton";
+import useUi from "../hooks/useUi";
 import type { ParsedMenuItem, ParsedSubMenuItem } from "../parsers/contentful";
 
 export type SubItemsRendererProps = {
@@ -16,37 +18,27 @@ type Props = {
   SubMenuRenderer?: FC<SubItemsRendererProps>
 }
 
-const MenuLink: FC<Props> = ({
-  menuItem,
-  className = "",
-  showSubItems,
-  SubMenuRenderer
-}) => {
-  const { path, title } = menuItem;
-  const label = useT('sub.menu.toggle');
-  const router = useRouter();
-
-  const activeClass = router.asPath === path
-    ? 'font-semibold'
-    : '';
-
+export default function MenuLink({ menuItem, className = "", showSubItems, SubMenuRenderer }: Props) {
+  const ui = useUi();
+  const pathname = usePathname();
+  const onClick = () => ui.dispatch({ type: "NAV_CLOSE" });
+  // not wrapped in useMemo, since typescript loses checks for subItems
   const showIcon = showSubItems && "subItems" in menuItem && menuItem.subItems.length > 0;
+  const activeClass = useMemo(() => pathname === menuItem.path ? 'font-semibold' : '', [pathname, menuItem.path]);
   return (
-    <div className={`group relative ${className} ${showIcon ? "pr-6" : ""} flex items-center justify-center`}>
-      <Link className={`font-sans w-full hover:underline ${activeClass}`} href={path}>
-        {title}
+    <div className={`${className} ${showIcon ? "pr-6" : ""} group relative flex items-center justify-center`}>
+      <Link className={`font-sans w-full hover:underline ${activeClass}`} href={menuItem.path} onClick={onClick}>
+        {menuItem.title}
       </Link>
-
       {showIcon && (
-        <button tabIndex={-1} aria-hidden="true" className="aspect-square absolute top-0 right-0" aria-label={label}>
-          <ChevronDown className="h-6 w-6 rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform" />
-        </button>
+        <MenuChevronButton
+          className="absolute top-0 right-0"
+          iconClassName="rotate-0 group-focus-within:rotate-180 group-hover:rotate-180 transition-transform"
+        />
       )}
       {(showIcon && SubMenuRenderer) && (
         <SubMenuRenderer subItems={menuItem.subItems} />
       )}
     </div>
   );
-};
-
-export default MenuLink;
+}
