@@ -1,12 +1,12 @@
 "use client";
-import type { FC, FormEventHandler } from "react";
+import type { FormEventHandler } from "react";
 import { useState } from "react";
 import Input from "./Input";
 import Textarea from "./Textarea";
 import RichText from "./RichText";
 import useT from "../hooks/useT";
 
-const ContactForm: FC = () => {
+export default function ContactForm() {
   const serverErrorMessage = useT('contact.form.submit.server.error');
   const clientErrorMessage = useT('contact.form.submit.client.error');
   const submitLabel = useT('generic.form.submit');
@@ -29,7 +29,7 @@ const ContactForm: FC = () => {
     try {
       const { status } = await fetch("/api/contact-form", {
         body: JSON.stringify(Object.fromEntries(formData)),
-        method: "post",
+        method: "POST",
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -74,6 +74,4 @@ const ContactForm: FC = () => {
       }
     </div>
   );
-};
-
-export default ContactForm;
+}
