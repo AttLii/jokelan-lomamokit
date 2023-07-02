@@ -1,13 +1,12 @@
+import type { Props as ContainerProps } from "./Container";
 import Container from "./Container";
 import RichText from "./RichText";
 import Section from "./Section";
-import type { Props as ContainerProps } from "./Container";
-import type { FC } from "react";
 
 type Props = ContainerProps & {
   richText: string
 }
-const SectionWithRichText: FC<Props> = (({ richText, type, children }) => {
+export default function SectionWithRichText({ richText, type, children }: Props) {
   return (
     <Section>
       <Container type={type} className="flex flex-col gap-4">
@@ -16,6 +15,4 @@ const SectionWithRichText: FC<Props> = (({ richText, type, children }) => {
       </Container>
     </Section>
   );
-});
-
-export default SectionWithRichText;
+}

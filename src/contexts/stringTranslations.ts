@@ -1,18 +1,9 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import z from "zod";
 
 export const StringTranslationContext = createContext<
   StringTranslationSchema | undefined
 >(undefined);
-
-export const useT = (translation: keyof StringTranslationSchema) => {
-  const context = useContext(StringTranslationContext);
-  if (context === undefined) {
-    throw new Error("useT must be within StringTranslationContext.Provider");
-  }
-
-  return context[translation];
-};
 
 export const stringTranslationSchema = z.object({
   "generic.read.more": z.string(),

@@ -1,11 +1,10 @@
 import type { EntryFields } from "contentful";
-import type { FC } from "react";
 
 type Props = {
   title: string;
   location: EntryFields.Location
 }
-const OpenStreetMapEmbed: FC<Props> = (({ title, location }) => {
+export default function OpenStreetMapEmbed({ title, location }: Props) {
   const { lat, lon } = location;
   return (
     <div className="relative w-full aspect-square sm:aspect-16/9 border-black border-2 rounded-md overflow-hidden">
@@ -17,6 +16,4 @@ const OpenStreetMapEmbed: FC<Props> = (({ title, location }) => {
       />
     </div>
   );
-});
-
-export default OpenStreetMapEmbed;
+}

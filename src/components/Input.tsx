@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import { useMemo } from "react";
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
   name: string;
   disabled?: boolean
 }
-const Input: FC<Props> = ({ required, label, ...rest }) => {
+export default function Input({ required, label, ...rest }: Props) {
   const _label = useMemo(() => label + (required ? " *" : ""), [label, required]);
   return (
     <label className="flex flex-col font-sans">
@@ -20,6 +19,4 @@ const Input: FC<Props> = ({ required, label, ...rest }) => {
       />
     </label>
   );
-};
-
-export default Input;
+}

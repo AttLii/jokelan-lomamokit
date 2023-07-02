@@ -1,16 +1,10 @@
-import type { FC, MutableRefObject } from "react";
-import { useT } from "../contexts/stringTranslations";
+"use client";
 
-type Props = {
-  focusElement: MutableRefObject<HTMLElement | null>
-}
-const SkipToContent: FC<Props> = ({ focusElement }) => {
-  const label = useT('generic.skip.to.content');
-  const onClick = () => {
-    if (!focusElement.current) return;
-    console.log('hi');
-    focusElement.current.focus();
-  };
+import useT from "../hooks/useT";
+
+export default function SkipToContent() {
+  const label = useT("generic.skip.to.content");
+  const onClick = () => document.querySelector("main")?.focus();
   return (
     <button
       className="
@@ -23,5 +17,4 @@ const SkipToContent: FC<Props> = ({ focusElement }) => {
       {label}
     </button>
   );
-};
-export default SkipToContent;
+}

@@ -1,12 +1,9 @@
-import type { FC } from "react";
-import { Fragment } from "react";
-import { useGlobalContentContext } from "../contexts/globalContent";
+import globalContent from "../prevals/globalContent.preval";
 import { Mail, MapPin, Phone } from "./icons/lucide";
 import RichText from "./RichText";
 
-const FooterInfoList: FC = () => {
-  const context = useGlobalContentContext();
-  if (!context.localBusiness) return <Fragment />;
+export default function FooterInfoList() {
+  if (!globalContent.localBusiness) return null;
 
   const {
     name,
@@ -17,7 +14,7 @@ const FooterInfoList: FC = () => {
       latitude,
       longitude
     }
-  } = context.localBusiness;
+  } = globalContent.localBusiness;
 
   const infoItems = [
     {
@@ -56,6 +53,4 @@ const FooterInfoList: FC = () => {
       </ul>
     </div>
   );
-};
-
-export default FooterInfoList;
+}

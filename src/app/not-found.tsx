@@ -1,10 +1,11 @@
-import type { FC } from "react";
+"use client";
+
 import Link from "next/link";
-import { useT } from "../contexts/stringTranslations";
 import Container from "../components/Container";
 import Section from "../components/Section";
+import useT from "../hooks/useT";
 
-const Custom404: FC = () => {
+export default function NotFound() {
   const titleLabel = useT('404.page.title');
   const linkLabel = useT('404.page.link');
   return (
@@ -15,6 +16,4 @@ const Custom404: FC = () => {
       </Container>
     </Section>
   );
-};
-
-export default Custom404;
+}

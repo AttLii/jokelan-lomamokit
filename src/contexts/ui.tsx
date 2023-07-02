@@ -1,23 +1,13 @@
-import type {
-  Dispatch
-} from "react";
-import {
-  createContext,
-  useContext,
-} from "react";
+import type { Dispatch } from "react";
+import { createContext } from "react";
 
 export const initialState = {
   navOpen: false,
 };
 
 type State = typeof initialState
-
-type NavOpenAction = {
-  type: 'NAV_OPEN'
-}
-type NavCloseAction = {
-  type: 'NAV_CLOSE'
-}
+type NavOpenAction = { type: 'NAV_OPEN' }
+type NavCloseAction = { type: 'NAV_CLOSE' }
 type Action = NavOpenAction | NavCloseAction
 
 export const UiContext = createContext<{ state: State, dispatch: Dispatch<Action> } | undefined>(undefined);
@@ -37,13 +27,4 @@ export const reducer = (state: State, action: Action): State => {
     default:
       return state;
   }
-};
-
-export const useUiContext = () => {
-  const context = useContext(UiContext);
-  if (context === undefined) {
-    throw new Error("useUiContext must be within UiContext.Provider");
-  }
-
-  return context;
 };

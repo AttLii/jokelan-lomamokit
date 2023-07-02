@@ -1,9 +1,9 @@
-import type { FC } from "react";
-import { useT } from "../contexts/stringTranslations";
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import useT from "../hooks/useT";
 
-const HeaderLogoLink: FC = () => {
+export default function HeaderLogoLink() {
   const label = useT('generic.logo.link');
   return (
     <Link href="/" aria-label={label} className="flex items-center gap-2 uppercase font-semibold group">
@@ -14,6 +14,4 @@ const HeaderLogoLink: FC = () => {
       </div>
     </Link>
   );
-};
-
-export default HeaderLogoLink;
+}

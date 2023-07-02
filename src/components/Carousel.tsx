@@ -1,12 +1,12 @@
+"use client";
 import type { ParsedAssetImage } from "../parsers/contentful";
-import type { FC } from "react";
 import { useEffect, useState } from "react";
 import AssetImage from "./AssetImage";
 
 type Props = {
   images: ParsedAssetImage[]
 }
-const Carousel: FC<Props> = ({ images }) => {
+export default function Carousel({ images }: Props) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -49,6 +49,4 @@ const Carousel: FC<Props> = ({ images }) => {
       ))}
     </ul>
   );
-};
-
-export default Carousel;
+}
