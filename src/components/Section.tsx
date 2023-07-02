@@ -1,10 +1,9 @@
-import type { FC, PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
-const Section: FC<PropsWithChildren> = ({ children }) => {
+export default function Section({ children }: PropsWithChildren) {
   return (
     <section className="py-10">
       {children}
     </section>
   );
-};
-export default Section;
+}

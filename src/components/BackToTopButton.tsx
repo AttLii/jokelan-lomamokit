@@ -1,12 +1,11 @@
 "use client";
-import type { FC } from "react";
 import { ArrowUp } from "./icons/lucide";
 import useT from "../hooks/useT";
 
 type Props = {
   className?: string;
 }
-const BackToTopButton: FC<Props> = ({ className = "" }: Props) => {
+export default function BackToTopButton({ className = "" }: Props) {
   const label = useT('generic.back.to.top');
   const onClick = () => window.scrollTo({
     behavior: "smooth",
@@ -21,6 +20,4 @@ const BackToTopButton: FC<Props> = ({ className = "" }: Props) => {
       <ArrowUp className="w-7 h-7 m-auto" />
     </button>
   );
-};
-
-export default BackToTopButton;
+}

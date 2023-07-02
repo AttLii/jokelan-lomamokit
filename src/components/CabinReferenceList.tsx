@@ -1,11 +1,10 @@
-import type { FC } from "react";
 import type { ParsedCabinReference } from "../parsers/contentful";
 import CabinCard from "./CabinCard";
 
 type Props = {
   cabinReferences: ParsedCabinReference[]
 }
-const CabinReferenceList: FC<Props> = ({ cabinReferences }) => {
+export default function CabinReferenceList({ cabinReferences }: Props) {
   return (
     <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
       {cabinReferences.map((cabin) => {
@@ -17,6 +16,4 @@ const CabinReferenceList: FC<Props> = ({ cabinReferences }) => {
       })}
     </ul>
   );
-};
-
-export default CabinReferenceList;
+}

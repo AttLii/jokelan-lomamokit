@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import type { ParsedForm } from "../../parsers/contentful";
 import SectionWithRichText from "../SectionWithRichText";
 import ContactForm from "../ContactForm";
@@ -6,7 +5,7 @@ import ContactForm from "../ContactForm";
 type Props = {
   section: ParsedForm
 }
-const Form: FC<Props> = ({ section: { richText, form } }) => {
+export default function Form({ section: { richText, form } }: Props) {
   return (
     <SectionWithRichText richText={richText} type="narrow">
       {form === "Contact" && (
@@ -14,5 +13,4 @@ const Form: FC<Props> = ({ section: { richText, form } }) => {
       )}
     </SectionWithRichText>
   );
-};
-export default Form;
+}

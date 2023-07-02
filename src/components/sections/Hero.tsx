@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import type { ParsedHero } from "../../parsers/contentful";
 import Carousel from "../Carousel";
 import RichText from "../RichText";
@@ -6,12 +5,12 @@ import RichText from "../RichText";
 type Props = {
   section: ParsedHero
 }
-const Hero: FC<Props> = ({
+export default function Hero({
   section: {
     gallery,
     richText
   }
-}) => {
+}: Props) {
   return (
     <section className="relative overflow-hidden aspect-[9/16] sm:aspect-[16/9] z-0 max-h-[50rem] w-full border-black border-b-2">
       <Carousel images={gallery} />
@@ -23,6 +22,4 @@ const Hero: FC<Props> = ({
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

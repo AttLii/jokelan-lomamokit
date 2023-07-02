@@ -1,10 +1,10 @@
-import type { FC, PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { Calendar, CalendarOff } from "./icons/lucide";
 
 type Props = PropsWithChildren & {
   href: string;
 }
-const ActionLink: FC<Props> = ({ href, children }) => {
+export default function ActionLink({ href, children }: Props) {
   return (
     <a
       className="
@@ -23,6 +23,4 @@ const ActionLink: FC<Props> = ({ href, children }) => {
       {children}
     </a>
   );
-};
-
-export default ActionLink;
+}

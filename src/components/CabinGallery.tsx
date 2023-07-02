@@ -1,5 +1,5 @@
 "use client";
-import type { FC, MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 import type { ParsedAssetImage } from "../parsers/contentful";
 import { useEffect, useRef, useState } from "react";
 import AssetImage from "./AssetImage";
@@ -9,7 +9,7 @@ import useT from "../hooks/useT";
 type Props = {
   gallery: ParsedAssetImage[]
 }
-const CabinGallery: FC<Props> = ({ gallery }) => {
+export default function CabinGallery({ gallery }: Props) {
   const goToLabel = useT('cabin.gallery.go.to');
   const openDialogLabel = useT("cabin.gallery.dialog.open");
   const closeDialogLabel = useT('cabin.gallery.dialog.close');
@@ -115,6 +115,4 @@ const CabinGallery: FC<Props> = ({ gallery }) => {
       </ul>
     </div>
   );
-};
-
-export default CabinGallery;
+}

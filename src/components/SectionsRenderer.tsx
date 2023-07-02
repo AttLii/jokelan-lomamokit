@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import type { ParsedSections } from "../parsers/contentful";
@@ -15,7 +14,7 @@ const Faqs = dynamic(() => import("./sections/Faqs"));
 type Props = {
   sections: ParsedSections
 }
-const SectionsRenderer: FC<Props> = ({ sections }) => {
+export default function SectionsRenderer({ sections }: Props) {
   return (
     <>
       {sections.map((section, i) => {
@@ -39,7 +38,4 @@ const SectionsRenderer: FC<Props> = ({ sections }) => {
       })}
     </>
   );
-
-};
-
-export default SectionsRenderer;
+}

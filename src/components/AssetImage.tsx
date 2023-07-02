@@ -1,4 +1,4 @@
-import type { DetailedHTMLProps, FC, ImgHTMLAttributes } from "react";
+import type { DetailedHTMLProps, ImgHTMLAttributes } from "react";
 
 type ImgProps = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 type ContentfulImageProps = {
@@ -16,7 +16,7 @@ type Props = Omit<ImgProps, "srcSet"> & ContentfulImageProps & {
   srcSet?: Partial<Record<SrcSetKey, Required<ContentfulImageProps>>>
 }
 
-const AssetImage: FC<Props> = ({ alt = "", loading = "lazy", src, fit, width, height, srcSet, ...props }) => {
+export default function AssetImage({ alt = "", loading = "lazy", src, fit, width, height, srcSet, ...props }: Props) {
   const Image = <img
     decoding="async"
     alt={alt}
@@ -28,19 +28,18 @@ const AssetImage: FC<Props> = ({ alt = "", loading = "lazy", src, fit, width, he
   />;
   return srcSet ?
     <picture>
-      {Object.keys(srcSet).map((_key) => {
-        const key = _key as SrcSetKey;
+      {Object.keys(srcSet).map((key) => {
+        const _key = key as SrcSetKey;
+        const set = srcSet[_key] as Required<ContentfulImageProps>;
         return (
           <source
             key={key}
             media={key}
-            srcSet={`${src}&fit=${srcSet[key].fit}&w=${srcSet[key].width}&h=${srcSet[key].height}`}
+            srcSet={`${src}&fit=${set.fit}&w=${set.width}&h=${set.height}`}
           />
         );
       })}
       {Image}
     </picture>
     : Image;
-};
-
-export default AssetImage;
+}
