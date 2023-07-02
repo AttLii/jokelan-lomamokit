@@ -73,7 +73,16 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       })
     },
     twitter: {
-      card: "summary"
+      card: "summary",
+      title,
+      description,
+      ...(image && {
+        images: {
+          url: `${image.src}&w=1200&h=630&fit=fill`,
+          width: 1200,
+          height: 630,
+        }
+      })
     },
   };
 }
