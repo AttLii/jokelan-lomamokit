@@ -1,10 +1,9 @@
 "use client";
-import type { ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 import { useMemo } from "react";
 import useUi from "../hooks/useUi";
 
-type Props = {
-  children: ReactNode;
+type Props = PropsWithChildren & {
   title: string;
 }
 export default function MobileMenuNav({ children, title }: Props) {

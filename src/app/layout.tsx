@@ -1,5 +1,5 @@
 import "../styles/globals.scss";
-import type { ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 import { Cabin, PT_Sans } from "next/font/google";
 import globalContent from "../prevals/globalContent.preval";
 import SkipToContent from "../components/SkipToContent";
@@ -18,10 +18,7 @@ const ptSansFont = PT_Sans({
   variable: "--font-pt-sans"
 });
 
-type Props = {
-  children: ReactNode
-}
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="fi" className={`${cabinFont.variable} ${ptSansFont.variable}`}>
       <head>

@@ -1,12 +1,9 @@
 "use client";
-import type { ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 import { StringTranslationContext } from "../contexts/stringTranslations";
 import stringTranslations from "../prevals/stringTranslations.preval";
 
-type Props = {
-  children: ReactNode;
-}
-export default function StringTranslations({ children }: Props) {
+export default function StringTranslations({ children }: PropsWithChildren) {
   return (
     <StringTranslationContext.Provider value={stringTranslations}>
       {children}

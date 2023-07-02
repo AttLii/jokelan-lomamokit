@@ -1,12 +1,9 @@
 "use client";
-import type { ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 import { useReducer, useEffect } from "react";
 import { UiContext, initialState, reducer } from '../contexts/ui.tsx';
 
-type Props = {
-  children: ReactNode;
-}
-export default function Ui({ children }: Props) {
+export default function Ui({ children }: PropsWithChildren) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
