@@ -40,3 +40,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     </html>
   );
 }
+
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+export const revalidate = false;
