@@ -94,3 +94,4 @@ export async function generateStaticParams() {
 }
 
 export const revalidate = false;
+export const dynamicParams = false;
