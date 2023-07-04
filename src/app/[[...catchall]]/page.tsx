@@ -20,7 +20,6 @@ export default async function Page({ params: { catchall } }: Props) {
   const path = pathParamToPath(catchall);
 
   let content;
-  console.log(draftMode().isEnabled);
   if (draftMode().isEnabled) {
     content = await previewClient
       .getContentByPath(path)
@@ -31,6 +30,7 @@ export default async function Page({ params: { catchall } }: Props) {
   } else {
     content = allContentPreval.find(c => c.path === path);
   }
+
   if (!content) notFound();
 
   const jsonLd = await composeJsonLDfromContent(content);
