@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import SectionsRenderer from '../../components/SectionsRenderer';
 import { composeJsonLDfromContent } from '../../parsers/seo';
 import { isPageProps } from '../../typeguards/parser';
@@ -7,6 +8,8 @@ import { notEmpty } from "../../utils/typescript";
 import { pathParamToPath } from '../../utils/next';
 import allContentPreval from "../../prevals/allContent.preval";
 import CabinContent from '../../components/CabinContent';
+import previewClient from '../../factories/contentfulPreviewClient';
+import { parseContent } from '../../parsers/contentful';
 
 type Props = {
   params: {
@@ -15,8 +18,19 @@ type Props = {
 }
 export default async function Page({ params: { catchall } }: Props) {
   const path = pathParamToPath(catchall);
-  const content = allContentPreval.find(c => c.path === path);
 
+  let content;
+  console.log(draftMode().isEnabled);
+  if (draftMode().isEnabled) {
+    content = await previewClient
+      .getContentByPath(path)
+      .then(content => {
+        if (!content) return undefined;
+        return parseContent(content);
+      });
+  } else {
+    content = allContentPreval.find(c => c.path === path);
+  }
   if (!content) notFound();
 
   const jsonLd = await composeJsonLDfromContent(content);
