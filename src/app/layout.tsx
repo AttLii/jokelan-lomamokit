@@ -1,12 +1,14 @@
 import "../styles/globals.scss";
 import type { PropsWithChildren } from "react";
 import { Cabin, PT_Sans } from "next/font/google";
+import { draftMode } from "next/headers";
 import globalContent from "../prevals/globalContent.preval";
 import SkipToContent from "../components/SkipToContent";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Ui from "../providers/Ui";
 import StringTranslations from "../providers/StringTranslations";
+import PreviewInfoBanner from "../components/PreviewInfoBanner";
 
 const cabinFont = Cabin({
   subsets: ["latin"],
@@ -28,6 +30,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className="min-h-screen flex flex-col">
         <StringTranslations>
           <Ui>
+            {draftMode().isEnabled && (
+              <PreviewInfoBanner />
+            )}
             <SkipToContent />
             <Header />
             <main tabIndex={-1} className="pt-14 flex-1">
