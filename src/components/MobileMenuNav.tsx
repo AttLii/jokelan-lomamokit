@@ -1,15 +1,16 @@
 "use client";
 import type { PropsWithChildren } from "react";
 import { useMemo } from "react";
-import useUi from "../hooks/useUi";
+import useUiStore from "../stores/ui";
 
 type Props = PropsWithChildren & {
   title: string;
 }
 export default function MobileMenuNav({ children, title }: Props) {
-  const ui = useUi();
+  const navOpen = useUiStore(state => state.navOpen);
+  const toggleNavOpen = useUiStore(state => state.toggleNavOpen);
   const { backdrop, menuLeft } = useMemo(() => {
-    if (ui.state.navOpen) {
+    if (navOpen) {
       return {
         backdrop: "right-0 opacity-30",
         menuLeft: "right-0"
@@ -20,9 +21,9 @@ export default function MobileMenuNav({ children, title }: Props) {
         menuLeft: "-right-full"
       };
     }
-  }, [ui.state.navOpen]);
+  }, [navOpen]);
 
-  const onClick = () => ui.dispatch({ type: "NAV_CLOSE" });
+  const onClick = () => toggleNavOpen;
   return (
     <>
       <div onClick={onClick} className={`sm:hidden block cursor-pointer fixed top-[3.5rem] h-[calc(100%-3.5rem)] w-screen bg-black transition-opacity duration-500 ${backdrop}`} />
