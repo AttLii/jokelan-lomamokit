@@ -1,13 +1,9 @@
 "use client";
-import type { StringTranslationSchema } from "../contexts/stringTranslations";
-import { useContext } from "react";
-import { StringTranslationContext } from "../contexts/stringTranslations";
+import type { StringTranslationsSchema } from "../stores/stringTranslations";
+import useStringTranslationStore from "../stores/stringTranslations";
 
-export default function useT(translation: keyof StringTranslationSchema) {
-  const context = useContext(StringTranslationContext);
-  if (context === undefined) {
-    throw new Error("useT must be within StringTranslationContext.Provider");
-  }
 
-  return context[translation];
+export default function useT(translation: keyof StringTranslationsSchema) {
+  const t = useStringTranslationStore((store) => store.t);
+  return t(translation);
 }

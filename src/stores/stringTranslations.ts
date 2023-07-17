@@ -2,7 +2,7 @@ import z from "zod";
 import { create } from "zustand";
 import stringTranslations from "../prevals/stringTranslations.preval";
 
-export const stringTranslationSchema = z.object({
+export const stringTranslationsSchema = z.object({
   "generic.read.more": z.string(),
   "404.description": z.string(),
   "404.content": z.string(),
@@ -47,19 +47,16 @@ export const stringTranslationSchema = z.object({
   "cabin.gallery.dialog.close": z.string(),
 });
 
-export type StringTranslationSchema = z.infer<typeof stringTranslationSchema>;
+export type StringTranslationsSchema = z.infer<typeof stringTranslationsSchema>;
 
 type StringTranslationState = {
-  stringTranslations: StringTranslationSchema;
-  t: (text: keyof StringTranslationSchema) => string;
+  stringTranslations: StringTranslationsSchema;
+  t: (text: keyof StringTranslationsSchema) => string;
 };
 
 const useStringTranslationStore = create<StringTranslationState>(() => ({
   stringTranslations,
-  t: (text: keyof StringTranslationSchema) => stringTranslations[text],
+  t: (text: keyof StringTranslationsSchema) => stringTranslations[text],
 }));
 
-export const useT = (text: keyof StringTranslationSchema) => {
-  const t = useStringTranslationStore((store) => store.t);
-  return t(text);
-};
+export default useStringTranslationStore;
