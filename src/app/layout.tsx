@@ -4,10 +4,9 @@ import { Cabin, PT_Sans } from "next/font/google";
 import { draftMode } from "next/headers";
 import globalContent from "../prevals/globalContent.preval";
 import SkipToContent from "../components/SkipToContent";
+import Body from "../components/Body";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Ui from "../providers/Ui";
-import StringTranslations from "../providers/StringTranslations";
 import PreviewInfoBanner from "../components/PreviewInfoBanner";
 
 const cabinFont = Cabin({
@@ -27,21 +26,17 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalContent.localBusiness) }} />
       </head>
-      <body className="min-h-screen flex flex-col">
-        <StringTranslations>
-          <Ui>
-            {draftMode().isEnabled && (
-              <PreviewInfoBanner />
-            )}
-            <SkipToContent />
-            <Header />
-            <main tabIndex={-1} className="pt-14 flex-1">
-              {children}
-            </main>
-            <Footer />
-          </Ui>
-        </StringTranslations>
-      </body>
+      <Body className="min-h-screen flex flex-col">
+        {draftMode().isEnabled && (
+          <PreviewInfoBanner />
+        )}
+        <SkipToContent />
+        <Header />
+        <main tabIndex={-1} className="pt-14 flex-1">
+          {children}
+        </main>
+        <Footer />
+      </Body>
     </html>
   );
 }

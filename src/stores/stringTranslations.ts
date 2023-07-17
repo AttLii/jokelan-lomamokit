@@ -1,11 +1,8 @@
-import { createContext } from "react";
 import z from "zod";
+import { create } from "zustand";
+import stringTranslations from "../prevals/stringTranslations.preval";
 
-export const StringTranslationContext = createContext<
-  StringTranslationSchema | undefined
->(undefined);
-
-export const stringTranslationSchema = z.object({
+export const stringTranslationsSchema = z.object({
   "generic.read.more": z.string(),
   "404.description": z.string(),
   "404.content": z.string(),
@@ -50,4 +47,16 @@ export const stringTranslationSchema = z.object({
   "cabin.gallery.dialog.close": z.string(),
 });
 
-export type StringTranslationSchema = z.infer<typeof stringTranslationSchema>;
+export type StringTranslationsSchema = z.infer<typeof stringTranslationsSchema>;
+
+type StringTranslationState = {
+  stringTranslations: StringTranslationsSchema;
+  t: (text: keyof StringTranslationsSchema) => string;
+};
+
+const useStringTranslationStore = create<StringTranslationState>(() => ({
+  stringTranslations,
+  t: (text: keyof StringTranslationsSchema) => stringTranslations[text],
+}));
+
+export default useStringTranslationStore;

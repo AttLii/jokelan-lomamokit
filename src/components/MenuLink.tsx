@@ -1,11 +1,11 @@
 "use client";
 import type { FC } from "react";
+import type { ParsedMenuItem, ParsedSubMenuItem } from "../parsers/contentful";
 import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MenuChevronButton from "./MenuChevronButton";
-import useUi from "../hooks/useUi";
-import type { ParsedMenuItem, ParsedSubMenuItem } from "../parsers/contentful";
+import useUiStore from "../stores/ui";
 
 export type SubItemsRendererProps = {
   subItems: ParsedSubMenuItem[]
@@ -19,11 +19,11 @@ type Props = {
 }
 
 export default function MenuLink({ menuItem, className = "", showSubItems, SubMenuRenderer }: Props) {
-  const ui = useUi();
   const pathname = usePathname();
+  const toggleNavOpen = useUiStore(state => state.toggleNavOpen);
   const onClick = () => {
     (document.activeElement as HTMLElement)?.blur();
-    ui.dispatch({ type: "NAV_CLOSE" });
+    toggleNavOpen();
   };
   // not wrapped in useMemo, since typescript loses checks for subItems
   const showIcon = showSubItems && "subItems" in menuItem && menuItem.subItems.length > 0;

@@ -92,7 +92,6 @@ const composeFAQPageJsonLD = (content: ParsedEntryPage) => {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: "fi",
-    id: url,
     url,
     name: title,
     description,
