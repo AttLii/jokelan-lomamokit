@@ -7,7 +7,6 @@ import SkipToContent from "../components/SkipToContent";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import StringTranslations from "../providers/StringTranslations";
 import PreviewInfoBanner from "../components/PreviewInfoBanner";
 
 const cabinFont = Cabin({
@@ -28,17 +27,15 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalContent.localBusiness) }} />
       </head>
       <Body className="min-h-screen flex flex-col">
-        <StringTranslations>
-          {draftMode().isEnabled && (
-            <PreviewInfoBanner />
-          )}
-          <SkipToContent />
-          <Header />
-          <main tabIndex={-1} className="pt-14 flex-1">
-            {children}
-          </main>
-          <Footer />
-        </StringTranslations>
+        {draftMode().isEnabled && (
+          <PreviewInfoBanner />
+        )}
+        <SkipToContent />
+        <Header />
+        <main tabIndex={-1} className="pt-14 flex-1">
+          {children}
+        </main>
+        <Footer />
       </Body>
     </html>
   );
