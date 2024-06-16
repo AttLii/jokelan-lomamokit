@@ -1,5 +1,5 @@
-import z from "zod";
-import { parse } from "node-html-parser";
+import z from 'zod';
+import { parse } from 'node-html-parser';
 
 const ratingSchema = z.object({
   totalCountRecommendations: z.number(),
@@ -19,7 +19,7 @@ export const scrapeReviews = async (url: string): Promise<null | Reviews> => {
 
   try {
     const html = await fetch(url).then((r) => r.text());
-    const data = parse(html).querySelector("#__NEXT_DATA__");
+    const data = parse(html).querySelector('#__NEXT_DATA__');
 
     if (!data) return null;
 

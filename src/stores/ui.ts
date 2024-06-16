@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface UiState {
   navOpen: boolean;
@@ -9,7 +9,7 @@ interface UiState {
 const useUiStore = create<UiState>((set) => ({
   navOpen: false,
   toggleNavOpen: () => set((state) => ({ navOpen: !state.navOpen })),
-  closeNav: () => set(() => ({ navOpen: false }))
+  closeNav: () => set(() => ({ navOpen: false })),
 }));
 
 export default useUiStore;

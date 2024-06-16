@@ -1,14 +1,14 @@
-import type { EntryFieldTypes, Entry } from "contentful";
+import type { EntryFieldTypes, Entry } from 'contentful';
 
 export type HeroSkeleton = {
-  contentTypeId: "hero";
+  contentTypeId: 'hero';
   fields: {
     gallery: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
     richText: EntryFieldTypes.RichText;
   };
 };
 export type FiftyFiftySkeleton = {
-  contentTypeId: "fiftyFifty";
+  contentTypeId: 'fiftyFifty';
   fields: {
     richText: EntryFieldTypes.RichText;
     image: EntryFieldTypes.AssetLink;
@@ -16,7 +16,7 @@ export type FiftyFiftySkeleton = {
   };
 };
 export type MapSkeleton = {
-  contentTypeId: "map";
+  contentTypeId: 'map';
   fields: {
     title: EntryFieldTypes.Text;
     richText: EntryFieldTypes.RichText;
@@ -24,7 +24,7 @@ export type MapSkeleton = {
   };
 };
 export type CabinReferencesSkeleton = {
-  contentTypeId: "cabinReferences";
+  contentTypeId: 'cabinReferences';
   fields: {
     richText: EntryFieldTypes.RichText;
     cabinReferences: EntryFieldTypes.Array<
@@ -33,27 +33,27 @@ export type CabinReferencesSkeleton = {
   };
 };
 export type FormSkeleton = {
-  contentTypeId: "form";
+  contentTypeId: 'form';
   fields: {
     richText: EntryFieldTypes.RichText;
     form: EntryFieldTypes.Text;
   };
 };
 export type ContentSkeleton = {
-  contentTypeId: "content";
+  contentTypeId: 'content';
   fields: {
     richText: EntryFieldTypes.RichText;
   };
 };
 export type FaqSkeleton = {
-  contentTypeId: "faq";
+  contentTypeId: 'faq';
   fields: {
     question: EntryFieldTypes.Text;
     answer: EntryFieldTypes.RichText;
   };
 };
 export type FaqsSkeleton = {
-  contentTypeId: "faqs";
+  contentTypeId: 'faqs';
   fields: {
     richText: EntryFieldTypes.RichText;
     faqs: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<FaqSkeleton>>;
@@ -61,7 +61,7 @@ export type FaqsSkeleton = {
 };
 
 export type AddressSkeleton = {
-  contentTypeId: "address";
+  contentTypeId: 'address';
   fields: {
     addressLocality: EntryFieldTypes.Text;
     addressRegion: EntryFieldTypes.Text;
@@ -72,7 +72,7 @@ export type AddressSkeleton = {
 };
 
 export type LocalBusinessSkeleton = {
-  contentTypeId: "localBusiness";
+  contentTypeId: 'localBusiness';
   fields: {
     name: EntryFieldTypes.Text;
     description: EntryFieldTypes.Text;
@@ -89,7 +89,7 @@ export type LocalBusinessSkeleton = {
 };
 
 export type MenuSubItemSkeleton = {
-  contentTypeId: "menuSubItem";
+  contentTypeId: 'menuSubItem';
   fields: {
     title: EntryFieldTypes.Text;
     content: EntryFieldTypes.EntryLink<PageSkeleton | CabinSkeleton>;
@@ -97,7 +97,7 @@ export type MenuSubItemSkeleton = {
 };
 
 export type MenuItemSkeleton = {
-  contentTypeId: "menuItem";
+  contentTypeId: 'menuItem';
   fields: {
     title: EntryFieldTypes.Text;
     content: EntryFieldTypes.EntryLink<PageSkeleton | CabinSkeleton>;
@@ -108,7 +108,7 @@ export type MenuItemSkeleton = {
 };
 
 export type MenuSkeleton = {
-  contentTypeId: "menu";
+  contentTypeId: 'menu';
   fields: {
     title: EntryFieldTypes.Text;
     menuItems: EntryFieldTypes.Array<
@@ -118,7 +118,7 @@ export type MenuSkeleton = {
 };
 
 export type GlobalContentSkeleton = {
-  contentTypeId: "globalContent";
+  contentTypeId: 'globalContent';
   fields: {
     title: EntryFieldTypes.Text;
     headerMenu: EntryFieldTypes.EntryLink<MenuSkeleton>;
@@ -128,7 +128,7 @@ export type GlobalContentSkeleton = {
 };
 
 export type StringTranslationSkeleton = {
-  contentTypeId: "stringTranslation";
+  contentTypeId: 'stringTranslation';
   fields: {
     slug: EntryFieldTypes.Text;
     translation: EntryFieldTypes.Text;
@@ -136,7 +136,7 @@ export type StringTranslationSkeleton = {
 };
 
 export type SeoFieldsSkeleton = {
-  contentTypeId: "seoFields";
+  contentTypeId: 'seoFields';
   fields: {
     title: EntryFieldTypes.Text;
     description: EntryFieldTypes.Text;
@@ -147,7 +147,7 @@ export type SeoFieldsSkeleton = {
 };
 
 export type PageSkeleton = {
-  contentTypeId: "page";
+  contentTypeId: 'page';
   fields: {
     path: EntryFieldTypes.Text;
     name: EntryFieldTypes.Text;
@@ -157,7 +157,7 @@ export type PageSkeleton = {
 };
 
 export type CabinSkeleton = {
-  contentTypeId: "cabin";
+  contentTypeId: 'cabin';
   fields: {
     path: EntryFieldTypes.Text;
     name: EntryFieldTypes.Text;
@@ -188,81 +188,81 @@ export type EntryStringTranslation = Entry<
 >;
 export type EntrySubMenuItem = Entry<
   MenuSubItemSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryMenuItem = Entry<
   MenuItemSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryMenu = Entry<
   MenuSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryGlobalContent = Entry<
   GlobalContentSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryLocalBusiness = Entry<
   LocalBusinessSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryAddress = Entry<
   AddressSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntrySeoFields = Entry<
   SeoFieldsSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryPage = Entry<
   PageSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryCabin = Entry<
   CabinSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryForPage = EntryPage | EntryCabin;
 
 export type EntryHero = Entry<
   HeroSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryFiftyFifty = Entry<
   FiftyFiftySkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
-export type EntryMap = Entry<MapSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
+export type EntryMap = Entry<MapSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>;
 export type EntryCabinReferences = Entry<
   CabinReferencesSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryForm = Entry<
   FormSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntryContent = Entry<
   ContentSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
-export type EntryFaq = Entry<FaqSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
+export type EntryFaq = Entry<FaqSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>;
 export type EntryFaqs = Entry<
   FaqsSkeleton,
-  "WITHOUT_UNRESOLVABLE_LINKS",
+  'WITHOUT_UNRESOLVABLE_LINKS',
   string
 >;
 export type EntrySection =

@@ -1,19 +1,27 @@
-import { Fragment } from "react";
-import dynamic from "next/dynamic";
-import type { ParsedSections } from "../parsers/contentful";
-import { isParsedCabinReferences, isParsedContent, isParsedFaqs, isParsedFiftyFifty, isParsedForm, isParsedHero, isParsedMap } from "../typeguards/contentful";
+import { Fragment } from 'react';
+import dynamic from 'next/dynamic';
+import type { ParsedSections } from '../parsers/contentful';
+import {
+  isParsedCabinReferences,
+  isParsedContent,
+  isParsedFaqs,
+  isParsedFiftyFifty,
+  isParsedForm,
+  isParsedHero,
+  isParsedMap,
+} from '../typeguards/contentful';
 
-const Hero = dynamic(() => import("./sections/Hero"));
-const FiftyFifty = dynamic(() => import("./sections/FiftyFifty"));
-const Map = dynamic(() => import("./sections/Map"));
-const CabinReferences = dynamic(() => import("./sections/CabinReferences"));
-const Form = dynamic(() => import("./sections/Form"));
-const Content = dynamic(() => import("./sections/Content"));
-const Faqs = dynamic(() => import("./sections/Faqs"));
+const Hero = dynamic(() => import('./sections/Hero'));
+const FiftyFifty = dynamic(() => import('./sections/FiftyFifty'));
+const Map = dynamic(() => import('./sections/Map'));
+const CabinReferences = dynamic(() => import('./sections/CabinReferences'));
+const Form = dynamic(() => import('./sections/Form'));
+const Content = dynamic(() => import('./sections/Content'));
+const Faqs = dynamic(() => import('./sections/Faqs'));
 
 type Props = {
-  sections: ParsedSections
-}
+  sections: ParsedSections;
+};
 export default function SectionsRenderer({ sections }: Props) {
   return (
     <>

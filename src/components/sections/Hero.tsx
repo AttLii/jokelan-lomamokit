@@ -1,22 +1,17 @@
-import type { ParsedHero } from "../../parsers/contentful";
-import Carousel from "../Carousel";
-import RichText from "../RichText";
+import type { ParsedHero } from '../../parsers/contentful';
+import Carousel from '../Carousel';
+import RichText from '../RichText';
 
 type Props = {
-  section: ParsedHero
-}
-export default function Hero({
-  section: {
-    gallery,
-    richText
-  }
-}: Props) {
+  section: ParsedHero;
+};
+export default function Hero({ section: { gallery, richText } }: Props) {
   return (
-    <section className="relative overflow-hidden aspect-[9/16] sm:aspect-[16/9] z-0 max-h-[50rem] w-full border-black border-b-2">
+    <section className='relative z-0 aspect-[9/16] max-h-[50rem] w-full overflow-hidden border-b-2 border-black sm:aspect-[16/9]'>
       <Carousel images={gallery} />
-      <div className="flex items-center justify-center p-4 absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-10">
+      <div className='absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black bg-opacity-10 p-4'>
         <RichText
-          className="break-keep h-max w-full max-w-2xl text-white"
+          className='h-max w-full max-w-2xl break-keep text-white'
           html={richText}
         />
       </div>

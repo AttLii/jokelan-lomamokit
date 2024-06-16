@@ -4,31 +4,29 @@ import { draftMode } from 'next/headers';
 import SectionsRenderer from '../../components/SectionsRenderer';
 import { composeJsonLDfromContent } from '../../parsers/seo';
 import { isPageProps } from '../../typeguards/parser';
-import { notEmpty } from "../../utils/typescript";
+import { notEmpty } from '../../utils/typescript';
 import { pathParamToPath } from '../../utils/next';
-import allContentPreval from "../../prevals/allContent.preval";
+import allContentPreval from '../../prevals/allContent.preval';
 import CabinContent from '../../components/CabinContent';
 import previewClient from '../../factories/contentfulPreviewClient';
 import { parseContent } from '../../parsers/contentful';
 
 type Props = {
   params: {
-    catchall: string[] | undefined
-  }
-}
+    catchall: string[] | undefined;
+  };
+};
 export default async function Page({ params: { catchall } }: Props) {
   const path = pathParamToPath(catchall);
 
   let content;
   if (draftMode().isEnabled) {
-    content = await previewClient
-      .getContentByPath(path)
-      .then(content => {
-        if (!content) return undefined;
-        return parseContent(content);
-      });
+    content = await previewClient.getContentByPath(path).then((content) => {
+      if (!content) return undefined;
+      return parseContent(content);
+    });
   } else {
-    content = allContentPreval.find(c => c.path === path);
+    content = allContentPreval.find((c) => c.path === path);
   }
 
   if (!content) notFound();
@@ -37,30 +35,29 @@ export default async function Page({ params: { catchall } }: Props) {
   return (
     <>
       <script
-        type="application/ld+json"
+        type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {isPageProps(content)
-        ? <SectionsRenderer sections={content.sections} />
-        : <CabinContent key={content.name} content={content} />
-      }
+      {isPageProps(content) ? (
+        <SectionsRenderer sections={content.sections} />
+      ) : (
+        <CabinContent key={content.name} content={content} />
+      )}
     </>
   );
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const path = pathParamToPath(props.params.catchall);
-  const content = allContentPreval.find(c => c.path === path);
+  const content = allContentPreval.find((c) => c.path === path);
 
   if (!content) {
     return {};
   }
 
   const {
-    seoFields: {
-      description, image, keywords, robots, title,
-    }
+    seoFields: { description, image, keywords, robots, title },
   } = content;
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_ORIGIN),
@@ -75,7 +72,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       title,
       description,
       url: path,
-      type: "website",
+      type: 'website',
       ...(image && {
         images: {
           url: `${image.src}&w=1200&h=630&fit=fill`,
@@ -83,11 +80,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
           alt: image.alt,
           width: 1200,
           height: 630,
-        }
-      })
+        },
+      }),
     },
     twitter: {
-      card: "summary",
+      card: 'summary',
       title,
       description,
       ...(image && {
@@ -95,15 +92,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
           url: `${image.src}&w=1200&h=630&fit=fill`,
           width: 1200,
           height: 630,
-        }
-      })
+        },
+      }),
     },
   };
 }
 
 export async function generateStaticParams() {
   return allContentPreval.map((content) => ({
-    catchall: content.path.split("/").filter(notEmpty),
+    catchall: content.path.split('/').filter(notEmpty),
   }));
 }
 

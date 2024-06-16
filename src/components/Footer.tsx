@@ -1,18 +1,21 @@
-import Container from "./Container";
-import MenuLink from "./MenuLink";
-import FooterLogoLink from "./FooterLogoLink";
-import BackToTopButton from "./BackToTopButton";
-import FooterInfoList from "./FooterInfoList";
-import globalContent from "../prevals/globalContent.preval";
+import Container from './Container';
+import MenuLink from './MenuLink';
+import FooterLogoLink from './FooterLogoLink';
+import BackToTopButton from './BackToTopButton';
+import FooterInfoList from './FooterInfoList';
+import globalContent from '../prevals/globalContent.preval';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-slate-100 pt-10 pb-4 border-t-2 border-black relative">
-      <Container type="wide" className="relative flex flex-col gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <footer className='relative w-full border-t-2 border-black bg-slate-100 pb-4 pt-10'>
+      <Container type='wide' className='relative flex flex-col gap-4'>
+        <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           {globalContent.footerMenu && (
-            <nav aria-label={globalContent.footerMenu.title} className="md:order-last">
-              <ul className="flex flex-col md:flex-row gap-x-4 gap-y-1">
+            <nav
+              aria-label={globalContent.footerMenu.title}
+              className='md:order-last'
+            >
+              <ul className='flex flex-col gap-x-4 gap-y-1 md:flex-row'>
                 {globalContent.footerMenu.menuItems.map((menuItem, i) => (
                   <li key={i}>
                     <MenuLink menuItem={menuItem} showSubItems={false} />
@@ -23,9 +26,11 @@ const Footer = () => {
           )}
           <FooterInfoList />
         </div>
-        <FooterLogoLink className="mx-auto" />
-        <p className="text-center font-sans">© {(new Date()).getFullYear()} Jokelan Lomamökit</p>
-        <BackToTopButton className="absolute bottom-1.5 right-4" />
+        <FooterLogoLink className='mx-auto' />
+        <p className='text-center font-sans'>
+          © {new Date().getFullYear()} Jokelan Lomamökit
+        </p>
+        <BackToTopButton className='absolute bottom-1.5 right-4' />
       </Container>
     </footer>
   );

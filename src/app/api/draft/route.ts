@@ -1,7 +1,7 @@
-import { draftMode } from "next/headers";
-import { redirect } from "next/navigation";
-import z from "zod";
-import previewClient from "../../../factories/contentfulPreviewClient";
+import { draftMode } from 'next/headers';
+import { redirect } from 'next/navigation';
+import z from 'zod';
+import previewClient from '../../../factories/contentfulPreviewClient';
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     .safeParse(Object.fromEntries(url.searchParams));
 
   if (!result.success || result.data.secret !== process.env.DRAFT_SECRET) {
-    return new Response("Expected GET-params not provided", {
+    return new Response('Expected GET-params not provided', {
       status: 422,
     });
   }
