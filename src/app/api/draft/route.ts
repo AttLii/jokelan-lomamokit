@@ -28,5 +28,3 @@ export async function GET(request: Request) {
   draftMode().enable();
   redirect(`${content.fields.path}?ts=${Date.now()}`);
 }
-
-// https://jokelan-lomamokit.vercel.app/api/draft?secret=0934079950&path={entry_field.path}
