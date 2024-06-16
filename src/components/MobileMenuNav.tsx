@@ -8,7 +8,7 @@ type Props = PropsWithChildren & {
 }
 export default function MobileMenuNav({ children, title }: Props) {
   const navOpen = useUiStore(state => state.navOpen);
-  const toggleNavOpen = useUiStore(state => state.toggleNavOpen);
+  const closeNav = useUiStore(state => state.closeNav);
   const { backdrop, menuLeft } = useMemo(() => {
     if (navOpen) {
       return {
@@ -23,7 +23,7 @@ export default function MobileMenuNav({ children, title }: Props) {
     }
   }, [navOpen]);
 
-  const onClick = () => toggleNavOpen;
+  const onClick = () => closeNav;
   return (
     <>
       <div onClick={onClick} className={`sm:hidden block cursor-pointer fixed top-[3.5rem] h-[calc(100%-3.5rem)] w-screen bg-black transition-opacity duration-500 ${backdrop}`} />
