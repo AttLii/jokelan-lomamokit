@@ -20,10 +20,10 @@ type Props = {
 
 export default function MenuLink({ menuItem, className = "", showSubItems, SubMenuRenderer }: Props) {
   const pathname = usePathname();
-  const toggleNavOpen = useUiStore(state => state.toggleNavOpen);
+  const closeNav = useUiStore(state => state.closeNav);
   const onClick = () => {
     (document.activeElement as HTMLElement)?.blur();
-    toggleNavOpen();
+    closeNav();
   };
   // not wrapped in useMemo, since typescript loses checks for subItems
   const showIcon = showSubItems && "subItems" in menuItem && menuItem.subItems.length > 0;
