@@ -1,5 +1,5 @@
-import * as contentful from "contentful";
-import Contentful from "../repositories/contentful";
+import * as contentful from 'contentful';
+import Contentful from '../repositories/contentful';
 
 const client = new Contentful(
   contentful.createClient({

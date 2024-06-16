@@ -1,4 +1,4 @@
-import type { Asset } from "contentful";
+import type { Asset } from 'contentful';
 import type {
   EntryCabin,
   EntryCabinReferences,
@@ -18,11 +18,11 @@ import type {
   EntryContent,
   EntryFaqs,
   EntryFaq,
-} from "../types/contentful";
-import type { Document } from "@contentful/rich-text-types";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import { notEmpty } from "../utils/typescript";
-import { parseEntryAddressToType, parseEntryLocalBusinessToType } from "./seo";
+} from '../types/contentful';
+import type { Document } from '@contentful/rich-text-types';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { notEmpty } from '../utils/typescript';
+import { parseEntryAddressToType, parseEntryLocalBusinessToType } from './seo';
 import {
   isEntryCabin,
   isEntryCabinReferences,
@@ -33,7 +33,7 @@ import {
   isEntryHero,
   isEntryMap,
   isEntryPage,
-} from "../typeguards/contentful";
+} from '../typeguards/contentful';
 
 /**
  * @see https://github.com/contentful/rich-text/issues/122#issue-527478687
@@ -42,24 +42,24 @@ const documentToHtml = (document: Document): string => {
   const REGEX_REPLACE_SANITIZED_SHY_TAG = /&amp;shy;/gm;
   return documentToHtmlString(document).replace(
     REGEX_REPLACE_SANITIZED_SHY_TAG,
-    "&shy;"
+    '&shy;'
   );
 };
 
 export const fixAssetUrl = (url: string) => {
-  if (!url.startsWith("//")) return url;
+  if (!url.startsWith('//')) return url;
   return `https:${url}?fm=webp`;
 };
 export const parseUrlFromAsset = (asset: Asset<undefined, string>) => {
   const { file } = asset.fields;
-  return file?.url ? fixAssetUrl(file.url) : "";
+  return file?.url ? fixAssetUrl(file.url) : '';
 };
 
 export const parseAssetImage = (image: Asset<undefined, string>) => {
   const { title, file } = image.fields;
   return {
-    alt: title + "",
-    src: file ? fixAssetUrl(file.url) : "",
+    alt: title + '',
+    src: file ? fixAssetUrl(file.url) : '',
     width: file?.details.image?.width ?? 0,
     height: file?.details.image?.height ?? 0,
   };
@@ -80,7 +80,7 @@ export const parseSeoFields = (seoFields: EntrySeoFields) => {
 export const parseHero = (hero: EntryHero) => {
   const { gallery, richText } = hero.fields;
   return {
-    type: "hero",
+    type: 'hero',
     gallery: gallery.filter(notEmpty).map(parseAssetImage),
     richText: documentToHtml(richText),
   };
@@ -90,7 +90,7 @@ export type ParsedHero = ReturnType<typeof parseHero>;
 export const parseFiftyFifty = (section: EntryFiftyFifty) => {
   const { image, order, richText } = section.fields;
   return {
-    type: "fiftyFifty",
+    type: 'fiftyFifty',
     order,
     image: image ? parseAssetImage(image) : null,
     richText: documentToHtml(richText),
@@ -101,7 +101,7 @@ export type ParsedFiftyFifty = ReturnType<typeof parseFiftyFifty>;
 export const parseMap = (section: EntryMap) => {
   const { title, richText, location } = section.fields;
   return {
-    type: "map",
+    type: 'map',
     title,
     richText: documentToHtml(richText),
     location,
@@ -126,7 +126,7 @@ export type ParsedCabinReference = ReturnType<typeof parseCabinReference>;
 export const parseCabinReferences = (section: EntryCabinReferences) => {
   const { richText, cabinReferences } = section.fields;
   return {
-    type: "cabinReferences",
+    type: 'cabinReferences',
     richText: documentToHtml(richText),
     cabinReferences: cabinReferences.filter(notEmpty).map(parseCabinReference),
   };
@@ -136,7 +136,7 @@ export type ParsedCabinReferences = ReturnType<typeof parseCabinReferences>;
 export const parseEntryForm = (section: EntryForm) => {
   const { richText, form } = section.fields;
   return {
-    type: "form",
+    type: 'form',
     richText: documentToHtml(richText),
     form,
   };
@@ -146,7 +146,7 @@ export type ParsedForm = ReturnType<typeof parseEntryForm>;
 export const parseEntryContent = (section: EntryContent) => {
   const { richText } = section.fields;
   return {
-    type: "content",
+    type: 'content',
     richText: documentToHtml(richText),
   };
 };
@@ -155,7 +155,7 @@ export type ParsedContent = ReturnType<typeof parseEntryContent>;
 export const parseEntryFaq = (section: EntryFaq) => {
   const { question, answer } = section.fields;
   return {
-    type: "faq",
+    type: 'faq',
     question,
     answer: documentToHtml(answer),
   };
@@ -165,7 +165,7 @@ export type ParsedFaq = ReturnType<typeof parseEntryFaq>;
 export const parseEntryFaqs = (section: EntryFaqs) => {
   const { richText, faqs } = section.fields;
   return {
-    type: "faqs",
+    type: 'faqs',
     richText: documentToHtml(richText),
     faqs: faqs.filter(notEmpty).map(parseEntryFaq),
   };
@@ -189,7 +189,7 @@ export const parseSection = (section: EntrySection) => {
     return parseEntryFaqs(section);
   } else {
     return {
-      type: "noop",
+      type: 'noop',
     };
   }
 };
@@ -204,7 +204,7 @@ export type ParsedSections = ReturnType<typeof parseSections>;
 export const parseEntryPage = (page: EntryPage) => {
   const { name, path, seoFields, sections } = page.fields;
   return {
-    type: "page",
+    type: 'page',
     name,
     path,
     seoFields: parseSeoFields(seoFields),
@@ -236,7 +236,7 @@ export const parseEntryCabin = ({
   },
 }: EntryCabin) => {
   return {
-    type: "cabin",
+    type: 'cabin',
     name,
     path,
     seoFields: parseSeoFields(seoFields),
@@ -272,18 +272,21 @@ export const parseContent = (content: EntryForPage) => {
 export const reduceStringTranslationsToObject = (
   stringTranslations: EntryStringTranslation[]
 ) => {
-  return stringTranslations.reduce((acc, t) => {
-    const { slug, translation } = t.fields;
-    acc[slug] = translation;
-    return acc;
-  }, {} as Record<string, string>);
+  return stringTranslations.reduce(
+    (acc, t) => {
+      const { slug, translation } = t.fields;
+      acc[slug] = translation;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 };
 
 export const parseEntrySubMenuItem = (subMenuItem: EntrySubMenuItem) => {
   const { content, title } = subMenuItem.fields;
   return {
     title,
-    path: content?.fields.path || "",
+    path: content?.fields.path || '',
   };
 };
 export type ParsedSubMenuItem = ReturnType<typeof parseEntrySubMenuItem>;
@@ -292,7 +295,7 @@ export const parseEntryMenuItem = (menuItem: EntryMenuItem) => {
   const { content, title, subItems } = menuItem.fields;
   return {
     title,
-    path: content?.fields.path || "",
+    path: content?.fields.path || '',
     subItems:
       subItems && Array.isArray(subItems)
         ? subItems.filter(notEmpty).map(parseEntrySubMenuItem)

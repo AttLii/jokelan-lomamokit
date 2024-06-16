@@ -1,6 +1,6 @@
-import { GoogleSpreadsheet } from "google-spreadsheet";
-import { JWT } from "google-auth-library";
-import z from "zod";
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
+import z from 'zod';
 
 const transformString = (s: string) => "'" + s;
 
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     result = formSchema.parse(body);
   } catch {
-    return new Response("Provided body is in unexpected form", {
+    return new Response('Provided body is in unexpected form', {
       status: 422,
     });
   }
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       new JWT({
         email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
         key: process.env.GOOGLE_PRIVATE_KEY,
-        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
       })
     );
 
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
       date: new Date().toISOString(),
     };
 
-    const title = "Contact";
+    const title = 'Contact';
     let sheet = doc.sheetsByTitle[title];
     if (!sheet) {
       sheet = await doc.addSheet({
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
     });
   }
 
-  return new Response("Form saved successfully", {
+  return new Response('Form saved successfully', {
     status: 201,
   });
 }

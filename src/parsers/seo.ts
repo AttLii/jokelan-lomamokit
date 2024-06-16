@@ -1,16 +1,16 @@
-import type { EntryFields } from "contentful";
-import type { EntryAddress, EntryLocalBusiness } from "../types/contentful";
-import type { ParsedEntryCabin, ParsedEntryPage } from "./contentful";
-import type { Reviews } from "../repositories/lomarengas";
-import { parseUrlFromAsset } from "./contentful";
-import { isParsedFaqs, isParsedPage } from "../typeguards/contentful";
-import { buildLocalUrlFromRelativePath } from "../utils/seo";
-import { scrapeReviews } from "../repositories/lomarengas";
+import type { EntryFields } from 'contentful';
+import type { EntryAddress, EntryLocalBusiness } from '../types/contentful';
+import type { ParsedEntryCabin, ParsedEntryPage } from './contentful';
+import type { Reviews } from '../repositories/lomarengas';
+import { parseUrlFromAsset } from './contentful';
+import { isParsedFaqs, isParsedPage } from '../typeguards/contentful';
+import { buildLocalUrlFromRelativePath } from '../utils/seo';
+import { scrapeReviews } from '../repositories/lomarengas';
 
 export const parseLocationToType = ({ lat, lon }: EntryFields.Location) => {
   return {
-    "@context": "https://schema.org",
-    "@type": "GeoCoordinates",
+    '@context': 'https://schema.org',
+    '@type': 'GeoCoordinates',
     latitude: lat,
     longitude: lon,
   };
@@ -25,8 +25,8 @@ export const parseEntryAddressToType = (address: EntryAddress) => {
     streetAddress,
   } = address.fields;
   return {
-    "@context": "https://schema.org",
-    "@type": "PostalAddress",
+    '@context': 'https://schema.org',
+    '@type': 'PostalAddress',
     addressLocality,
     addressRegion,
     streetAddress,
@@ -51,9 +51,9 @@ export const parseEntryLocalBusinessToType = (entry: EntryLocalBusiness) => {
   } = entry.fields;
 
   return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": id,
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': id,
     url,
     name,
     description,
@@ -79,19 +79,19 @@ const composeFAQPageJsonLD = (content: ParsedEntryPage) => {
     .flatMap((x) => x.faqs)
     .map(({ answer, question }) => {
       return {
-        "@type": "Question",
+        '@type': 'Question',
         name: question,
         acceptedAnswer: {
-          "@type": "Answer",
+          '@type': 'Answer',
           text: answer,
         },
       };
     });
 
   return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    inLanguage: "fi",
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'fi',
     url,
     name: title,
     description,
@@ -106,8 +106,8 @@ const parseAggregatedRating = (
   { averageRating: { average, count } }: Reviews
 ) => {
   return {
-    "@context": "https://schema.org",
-    "@type": "AggregateRating",
+    '@context': 'https://schema.org',
+    '@type': 'AggregateRating',
     ratingValue: average / 2, // lomarengas returns the average from 0-10, json-ld expects 0-5
     reviewCount: count,
     itemReviewed: name,
@@ -121,10 +121,10 @@ export const composeWebPageJsonLD = (content: ParsedEntryPage) => {
   } = content;
   const url = buildLocalUrlFromRelativePath(path);
   return {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
     url,
-    inLanguage: "fi",
+    inLanguage: 'fi',
     name: title,
     description,
     keywords,
@@ -152,24 +152,24 @@ export const composeApartmentJsonLD = (
   }: ParsedEntryCabin,
   reviews: Reviews | null
 ) => {
-  const [minValue, maxValue] = occupancy.split("-").map(Number);
+  const [minValue, maxValue] = occupancy.split('-').map(Number);
   return {
-    "@context": "https://schema.org",
-    "@type": "Apartment",
+    '@context': 'https://schema.org',
+    '@type': 'Apartment',
     url: buildLocalUrlFromRelativePath(path),
     name: title,
     description,
     numberOfRooms,
     occupancy: {
-      "@type": "QuantitativeValue",
+      '@type': 'QuantitativeValue',
       minValue,
       maxValue,
     },
-    floorLevel: floorLevel + "",
+    floorLevel: floorLevel + '',
     floorSize: {
-      "@type": "QuantitativeValue",
+      '@type': 'QuantitativeValue',
       value: floorSize,
-      unitCode: "MTK",
+      unitCode: 'MTK',
     },
     numberOfBathroomsTotal,
     numberOfBedrooms,
@@ -193,7 +193,7 @@ export const composeJsonLDfromContent = async (
   content: ParsedEntryPage | ParsedEntryCabin
 ) => {
   if (isParsedPage(content)) {
-    if (content.sections.some((s) => s.type === "faqs")) {
+    if (content.sections.some((s) => s.type === 'faqs')) {
       return composeFAQPageJsonLD(content);
     } else {
       return composeWebPageJsonLD(content);

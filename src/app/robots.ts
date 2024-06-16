@@ -1,13 +1,13 @@
-import type { MetadataRoute } from "next";
-import { buildLocalUrlFromRelativePath } from "../utils/seo";
-import allContent from "../prevals/allContent.preval";
+import type { MetadataRoute } from 'next';
+import { buildLocalUrlFromRelativePath } from '../utils/seo';
+import allContent from '../prevals/allContent.preval';
 
 export default function robots(): MetadataRoute.Robots {
   const disallow: string[] = [];
   for (const content of allContent) {
     if (
-      content.seoFields.robots.includes("noindex") ||
-      content.seoFields.robots.includes("nofollow")
+      content.seoFields.robots.includes('noindex') ||
+      content.seoFields.robots.includes('nofollow')
     ) {
       disallow.push(content.path);
     }
@@ -15,9 +15,9 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: {
-      userAgent: "*",
+      userAgent: '*',
       disallow,
     },
-    sitemap: buildLocalUrlFromRelativePath("/sitemap.xml"),
+    sitemap: buildLocalUrlFromRelativePath('/sitemap.xml'),
   };
 }
