@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useMemo } from 'react';
 import type { ParsedEntryCabin } from '../parsers/contentful';
 import {
@@ -19,6 +20,7 @@ import CabinGallery from './CabinGallery';
 import OpenStreetMapEmbed from './OpenStreetMapEmbed';
 import ActionLink from './ActionLink';
 import useT from '../hooks/useT';
+import globalContent from '../prevals/globalContent.preval';
 
 type Props = {
   content: ParsedEntryCabin;
@@ -53,6 +55,9 @@ export default function CabinContent({
   const locationLabel = useT('cabin.map.location');
   const actionLinkLabel = useT('cabin.action.link.text');
   const actionLinkDisabledLabel = useT('cabin.action.link.disabled.help');
+  const cabinDistancesTitle = useT('cabin.distances.title');
+  const cabinDistancesDescription = useT('cabin.distances.description');
+  const cabinDistancesLinkSuffix = useT('cabin.distances.link.suffix');
 
   const infoItems = useMemo(
     () => [
@@ -162,6 +167,20 @@ export default function CabinContent({
                 </li>
               ))}
             </ul>
+            {globalContent.cabinsPage && (
+              <div className='rich-text'>
+                <h2 className='font-display text-4xl font-bold'>
+                  {cabinDistancesTitle}
+                </h2>
+                <p>
+                  {cabinDistancesDescription}{' '}
+                  <Link href={globalContent.cabinsPage.path}>
+                    {globalContent.cabinsPage.title}
+                  </Link>
+                  {cabinDistancesLinkSuffix}
+                </p>
+              </div>
+            )}
             <h2 className='font-display text-4xl font-bold'>
               {locationTitleLabel}
             </h2>
