@@ -124,6 +124,7 @@ export type GlobalContentSkeleton = {
     headerMenu: EntryFieldTypes.EntryLink<MenuSkeleton>;
     footerMenu: EntryFieldTypes.EntryLink<MenuSkeleton>;
     localBusiness: EntryFieldTypes.EntryLink<LocalBusinessSkeleton>;
+    cabinsPage: EntryFieldTypes.EntryLink<CabinSkeleton>;
   };
 };
 

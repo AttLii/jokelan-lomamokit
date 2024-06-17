@@ -317,13 +317,15 @@ export const parseEntryMenu = (menu: EntryMenu) => {
 };
 
 export const parseEntryGlobalContent = (globalContent: EntryGlobalContent) => {
-  const { headerMenu, footerMenu, localBusiness } = globalContent.fields;
+  const { headerMenu, footerMenu, localBusiness, cabinsPage } =
+    globalContent.fields;
   return {
     headerMenu: headerMenu ? parseEntryMenu(headerMenu) : null,
     footerMenu: footerMenu ? parseEntryMenu(footerMenu) : null,
     localBusiness: localBusiness
       ? parseEntryLocalBusinessToType(localBusiness)
       : null,
+    cabinsPage: cabinsPage ? parseCabinReference(cabinsPage) : null,
   };
 };
 
